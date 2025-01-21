@@ -10,6 +10,7 @@
             <div class="itemForm">
                 <div class="formulaire" v-for="(item, index) in filteredData" :key="index">
                     <div class="cercle">
+                       
                         <h1>{{ item.listeDistrict.length }}</h1>
                     </div>
                     <h4>{{ item.region }}</h4>

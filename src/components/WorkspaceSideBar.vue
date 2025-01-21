@@ -10,6 +10,7 @@
                 <div class="sectionTitle">
                     <h4>ELECTION</h4>
                 </div>
+
                 <div class="sectionContainer">
                     <!-- For election -->
                     <div class="itemSection" :class="{ active: show.showElectionActive }">
@@ -60,6 +61,8 @@
                         <WorkspaceSubSectionElectionEnCours v-if="show.showElectionEnCours" />
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -114,6 +117,7 @@ const show = useShow(); // call Show in show.js
     color: #eaedf4;
     font-weight: 700;
     border-radius: 5px 5px 0px 0px;
+    text-align: center;
 }
 
 .sectionTitle h4 {

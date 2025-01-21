@@ -1,41 +1,20 @@
 <template>
   <Transition>
-    <div class="showModal" v-if="show.showAcceuilModala">
-      <div class="modal">
-        <div class="closeForm" @click="show.showAcceuilModala = !show.showAcceuilModala">
-          <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
-        </div>
-        <div class="contenaireModal">
-          <div class="content">
-            <h1 class="title">Choisir une année</h1>
-
-            <div class="cards-container">
-              <template v-if="anneeElectorale.allanneeData && anneeElectorale.allanneeData.length > 0">
-                <div class="card" v-for="(item, index) in anneeElectorale.allanneeData" :key="index">
-                  <div class="anneeElectorale">
-                    <h2> {{ item.annee }}</h2>
-                  </div>
-                  <div class="genreElection">
-                    <h3>{{ item.descriptionAnnee }}</h3>
-                  </div>
-                  <div class="bouton">
-                    <h4 @click="voirDetails(item)">Voir</h4>
-                  </div>
-                </div>
-              </template>
-              <template v-else>
-
-                <div
-                  style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-                  <p style="font-size: 18px; margin: 0;">Aucune donnée disponible pour l'année électorale.</p>
-                  <p style="font-size: 14px; margin-top: 5px;">Veuillez aller ajouter une année!</p>
-                </div>
-              </template>
-            </div>
-
-          </div>
+    <div class="showModal" v-if="show.showModalElecteurSupprimer">
+      <div class="modal" v-if="show.showModalElecteurSupprimer">
+      <div class="contenaireModalSupp">
+        <h4 class="supp">
+          Voulez vous vraiment supprimer
+        </h4>
+        <h4 class="suppNom">
+          Cet électeur ?
+        </h4>
+        <div class="flex">
+          <h3 class="btnAdd add" @click="show.showModalElecteurSupprimer">Oui</h3>
+          <h3 class="btnAdd cancel" @click="show.showModalElecteurSupprimer =! show.showModalElecteurSupprimer">Non</h3>
         </div>
       </div>
+    </div>
     </div>
   </Transition>
 

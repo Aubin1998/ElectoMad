@@ -11,6 +11,7 @@
             <span class="annee">{{ anneeElectorale?.anneeElectoraleChoisi?.annee }}</span> <span class="description">{{
                 anneeElectorale?.anneeElectoraleChoisi?.descriptionAnnee }}</span>
         </div>
+
         <div class="profil">
             <div class="notif">
                 <div class="notification show">
@@ -23,7 +24,9 @@
                 </div>
             </div>
 
-            <div class="photo" @click="show.showDescFunc()">P</div> <!--Fonction atao agnaty click fa tsy variable-->
+            <div class="photo" @click="show.showDescFunc()">
+                <img src="/profil.png" alt="Photo de profil" style="width: 40px; height: 40px; border-radius: 100%;">
+            </div> <!--Fonction atao agnaty click fa tsy variable-->
             <div class="showProfil" v-if="show.showDesc">
                 <div class="sectionItem">
                     <h4 class="textSection">Compte</h4>
@@ -31,6 +34,8 @@
 
                 <div class="container">
                     <div class="imageProfil">
+                        <img src="/profil.png" alt="Photo de profil"
+                            style="width: 50px; height: 50px; border-radius: 100%;">
 
                     </div>
                     <div class="info">
@@ -40,8 +45,6 @@
                         <h5>{{ utilisateur.user.email }}</h5>
                     </div>
                 </div>
-
-
                 <div class="items">
                     <div class="option">
                         <h5 class="item" @click="show.showModalCompteFunc">Gérer le compte</h5>
@@ -112,7 +115,6 @@ console.log(utilisateur.user)
 }
 
 .photo {
-    background-color: rgb(255, 127, 127);
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -151,7 +153,6 @@ console.log(utilisateur.user)
 }
 
 .imageProfil {
-    background-color: aqua;
     width: 50px;
     height: 50px;
     border-radius: 100%;

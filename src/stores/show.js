@@ -29,6 +29,17 @@ export const useShow = defineStore('Show', () => {
 	const showModalOeilCandidat = ref(false)
 	const showModalAnneSupprimer = ref(false)
 	const showVoirAnnee = ref(false)
+	const showModalVoirElecteur = ref(false)
+	const showModalModifierElecteur = ref(false)
+	const showModalElecteurSupprimer = ref(false)
+	const showModalAjoutElecteur = ref(false)
+
+	
+
+	
+
+	
+	
 
 
 	function showLoginFunc() {
@@ -970,6 +981,10 @@ export const useShow = defineStore('Show', () => {
 	function acceuilFunc() {
 		acceuil.value = ! acceuil.value
 	}
+function showModalVoirElecteurFunc() {
+	showModalVoirElecteur.value = ! showModalVoirElecteur.value
+	}
+
 	const showPresident = ref(true)
 	const showVicePresident = ref(false)
 	const showSecretaire = ref(false)
@@ -1046,6 +1061,11 @@ export const useShow = defineStore('Show', () => {
 
 	}
 	return {
+		showModalAjoutElecteur,
+		showModalElecteurSupprimer,
+		showModalModifierElecteur,
+		showModalVoirElecteur,
+		showModalVoirElecteurFunc,
 		showVoirAnnee,
 		showacceuilFunc,
 		showModalAnneSupprimer,

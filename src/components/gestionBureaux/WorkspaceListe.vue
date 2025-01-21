@@ -4,6 +4,7 @@
             <div class="itemForm">
                 <div class="formulaire" v-for="(item, index) in data.slice(0, 3)" :key="index">
                     <div class="cercle">
+                      drttytuyiopoip
                         <h1>{{ item.nombrePopulation }}</h1>
                     </div>
                     <h4>{{ item.province }}</h4>

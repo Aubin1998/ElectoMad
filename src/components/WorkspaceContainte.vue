@@ -4,7 +4,7 @@
             <div class="nav button">
 
 
-                <h4 class="btn" v-if="show.isOptionProvince" @click="show.showOption('province')">Province</h4>
+                <h4 class="btn" v-if="show.isOptionProvince" @click="show.showOption('province')">Région</h4>
                 <h4 class="btn" v-if="show.isOptionDistrict" @click="show.showOption('district')">District</h4>
                 <h4 class="btn" v-if="show.isOptionCommune" @click="show.showOption('commune')">Commune</h4>
                 <h4 class="btn" v-if="show.isOptionFokontany" @click="show.showOption('fokontany')">Fokontany</h4>
@@ -31,12 +31,12 @@
 
             <WorkspaceAnneeElectorale v-if="show.showAnneElectoral" />
             <WorkspaceGenreElection v-if="show.showGenreElection" />
-            <WorkspaceListeElecteurs v-if="show.showListeElecteurs" />
+            <WorkspaceListeElecteurs v-if="show.showListeElecteurs || show.showListe" />
             <WorkspaceFiltrageRecherche v-if="show.showFiltrageRecherche" />
             <WorkspaceActionsGestion v-if="show.showActionsGestion" />
             <WorkspaceSurveillance v-if="show.showSurveillance" />
             <WorkspaceCreation v-if="show.showCreation" />
-            <WorkspaceListe v-if="show.showListe" />
+         <!--   <WorkspaceListe v-if="show.showListe" /> -->
             <WorkspaceAjoutUtilisateur v-if="show.showAjoutUtilisateur" />
             <WorkspaceListeUtilisateurs v-if="show.showListeUtilisateurs" />
             <WorkspaceChanger v-if="show.showChanger" />

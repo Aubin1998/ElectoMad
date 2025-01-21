@@ -5,7 +5,7 @@
        Liste de électeurs 
       </h4>
       <h4 class="number">{{ dataListePersonne.length }}</h4>
-      <h3 class="btnAdd add" @click="show.showModalAjoutFunc">Ajouter</h3>
+      <h3 class="btnAdd add" @click="show.showModalAjoutElecteur=! show.showModalAjoutElecteur">Ajouter</h3>
 
       <div class="itemContainer">
         <input type="text" placeholder="Recherche par nom" class="input" />
@@ -20,13 +20,13 @@
           <h5>{{ item.sex }}</h5>
         </div>
         <div class="btn">
-          <div class="icon blue" @click="show.showModalOeilFunc">
+          <div class="icon blue" @click="Voir(item)">
             <i class="pi pi-eye" style="font-size: 18px; color: white;"></i>
           </div>
-          <div class="icon orange" @click="show.showModalModifierFunc">
+          <div class="icon orange" @click="Modifier(item)">
             <i class="pi pi-pencil" style="font-size: 18px; color: white;"></i>
           </div>
-          <div class="icon red" @click="show.showModalSupprimerFunc">
+          <div class="icon red" @click="SupprimerCandidat(item)">
             <i class="pi pi-trash" style="font-size: 18px; color: white;"></i>
           </div>
         </div>
@@ -34,248 +34,51 @@
       </div>
     </div>
 
-    <div class="modal" v-if="show.showModalAjout">
-      <div class="contenaireModal">
-        <h1 class="tritreModal">AJOUT NOUVEAU ELECTEUR</h1>
-        <div class="flex">
-          <div class="section">
-            <div class="inputCard">
-              <h3 class="label">Nom</h3>
-              <input type="text" placeholder="Ajoutez un nom" class="input" />
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Prénom</h3>
-              <input type="text" placeholder="Ajoutez un prénom" class="input" />
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Date de naissance</h3>
-              <input type="text" placeholder="Insérez une date de naissance" class="input" />
+   <!--modale ajout déplacé-->
 
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Lieu de naissance</h3>
-              <input type="text" placeholder="Insérez un lieu de naissance" class="input" />
+    <!--modale voir déplacé-->
+ <!--modale Supprimer déplacé-->
+    
 
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Sexe</h3>
-              <input type="text" placeholder="Ajoutez un sexe" class="input" />
-
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Filiation</h3>
-              <input type="text" placeholder="Nom du père et de la mère" class="input" />
-            </div>
-
-          </div>
-          <div class="section">
-            <div class="inputCard">
-              <h3 class="label">Numéro de la CIN</h3>
-              <input type="text" placeholder="Insérez un numéro de la CIN" class="input" />
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Date de délivrance de la CIN</h3>
-              <input type="text" placeholder="Insérez une date de délivrance de la CIN" class="input" />
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Lieu de délivrance de la CIN</h3>
-              <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input" />
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Adresse ou le lieu de résidence</h3>
-              <input type="text" placeholder="Insérez une adresse ou le lieu de résidence" class="input" />
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Profession</h3>
-              <input type="text" placeholder="Ajoutez un profession" class="input" />
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Carte d'électeur</h3>
-              <input type="text" placeholder="Ecrire le numéro de la Carte électeur" class="input" />
-
-            </div>
-
-          </div>
-        </div>
-        <div class="modalFooter">
-          <h3 class="btnAdd add" @click="show.showModalAjoutFunc">Ajouter</h3>
-          <h3 class="btnAdd cancel" @click="show.showModalAjoutFunc">Annuler</h3>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="modal" v-if="show.showModalOeil">
-      <div class="contenaireModal">
-        <h1 class="tritreModal">INFORMATION PERSONNEL ELECTEUR</h1>
-        <div class="flex">
-          <div class="section">
-            <div class="inputCard">
-              <h3 class="label">Nom</h3>
-
-              <h4 class="contenu">Aubin</h4>
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Prénom</h3>
-              <h4 class="contenu">Aubin</h4>
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Date de naissance</h3>
-              <h4 class="contenu">Aubin</h4>
-
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Lieu de naissance</h3>
-              <h4 class="contenu">Aubin</h4>
-
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Sexe</h3>
-              <h4 class="contenu">Aubin</h4>
-
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Filiation</h3>
-              <h4 class="contenu">Aubin</h4>
-            </div>
-          </div>
-          <div class="section">
-            <div class="inputCard">
-              <h3 class="label">Numéro de la CIN</h3>
-              <h4 class="contenu">Aubin</h4>
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Date de délivrance de la CIN</h3>
-
-
-              <h4 class="contenu">Aubin</h4>
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Lieu de délivrance de la CIN</h3>
-
-
-              <h4 class="contenu">Aubin</h4>
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Adresse ou le lieu de résidence</h3>
-
-
-
-              <h4 class="contenu">Aubin</h4>
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Profession</h3>
-              <h4 class="contenu">Aubin</h4>
-
-
-            </div>
-            <div class="inputCard">
-              <h3 class="label">Carte d'électeur</h3>
-              <h4 class="contenu">Aubin</h4>
-
-            </div>
-
-          </div>
-        </div>
-        <div class="modalFooter">
-          <h3 class="btnAdd cancel" @click="show.showModalOeilFunc">Fermer</h3>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal" v-if="show.showModalModifier">
-            <div class="contenaireModal">
-                <h1 class="tritreModal">MODIFIER INFORMATION PERSONNEL</h1>
-                <div class="flex">
-                    <div class="section">
-                        <div class="inputCard">
-                            <h3 class="label">Nom</h3>
-                            <input type="text" placeholder="Ajoutez un nom" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Prénom</h3>
-                            <input type="text" placeholder="Ajoutez un prénom" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Date de naissance</h3>
-                            <input type="text" placeholder="Insérez une date de naissance" class="input" />
-
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Lieu de naissance</h3>
-                            <input type="text" placeholder="Insérez un lieu de naissance" class="input" />
-
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Sexe</h3>
-                            <input type="text" placeholder="Ajoutez un sexe" class="input" />
-
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Filiation</h3>
-                            <input type="text" placeholder="Nom du père et de la mère" class="input" />
-                        </div>
-
-                    </div>
-                    <div class="section">
-                        <div class="inputCard">
-                            <h3 class="label">Numéro de la CIN</h3>
-                            <input type="text" placeholder="Insérez un numéro de la CIN" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Date de délivrance de la CIN</h3>
-                            <input type="text" placeholder="Insérez une date de délivrance de la CIN" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Lieu de délivrance de la CIN</h3>
-                            <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Adresse ou le lieu de résidence</h3>
-                            <input type="text" placeholder="Insérez une adresse ou le lieu de résidence"
-                                class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Profession</h3>
-                            <input type="text" placeholder="Ajoutez un profession" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Carte d'électeur</h3>
-                            <input type="text" placeholder="Ecrire le numéro de la Carte électeur" class="input" />
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modalFooter">
-                    <h3 class="btnAdd add" @click="show.showModalModifierFunc">Ajouter</h3>
-                    <h3 class="btnAdd cancel" @click="show.showModalModifierFunc">Annuler</h3>
-                </div>
-            </div>
-        </div>
-
-    <div class="modal" v-if="show.showModalSupprimer">
-      <div class="contenaireModalSupp">
-        <h4 class="supp">
-          Voulez vous vraiment supprimer
-        </h4>
-        <h4 class="suppNom">
-          Aubin ?
-        </h4>
-        <div class="flex">
-          <h3 class="btnAdd add" @click="show.showModalSupprimerFunc">Oui</h3>
-          <h3 class="btnAdd cancel" @click="show.showModalSupprimerFunc">Non</h3>
-        </div>
-      </div>
+    
     </div>
 
 
 
-  </div>
+
 </template>
 
 <script setup>
 import { useShow } from "@/stores/show";
 const show = useShow(); //call Show in show.js
+
+import {uselisteElecteur  } from "@/stores/listeElecteur";
+const listeElecteur = uselisteElecteur()
+
+function Voir(item) {
+  show.showModalVoirElecteur = !show.showModalVoirElecteur
+  console.log('dssssssssssssss', show.voirElecteurData);
+  listeElecteur.voirElecteurData = item
+
+
+  
+}
+function Modifier(item) {
+  show.showModalModifierElecteur = !show.showModalModifierElecteur
+  console.log('dssssssssssssss', show.showModalModifierElecteur);
+
+  listeElecteur.modifierElecteurData = item
+  console.log('listeElecteur.modifierElecteurData', item);
+  
+}
+function SupprimerCandidat(item) {
+  show.showModalElecteurSupprimer = !show.showModalElecteurSupprimer
+  console.log('dssssssssssssss', show.showModalElecteurSupprimer);
+
+
+  
+}
+
 
 const dataListePersonne = [
   {

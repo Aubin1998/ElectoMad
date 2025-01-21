@@ -10,7 +10,7 @@
           <section class=" py-8 antialiased dark:bg-gray-900 md:py-8 sectionscroll">
             <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
               <h2 class="mb-2 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl ">{{ !isEditing ?
-                "Moncompte" : "Modifier mon compte" }}
+                "Mon compte" : "Modifier mon compte" }}
               </h2>
 
               <div class="py-4 md:py-8">
@@ -19,9 +19,7 @@
 
                   <div class="space-y-2">
                     <div class="flex space-x-4">
-                      <img class="h-16 w-16 rounded-lg"
-                        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png"
-                        alt="Helene avatar" />
+                      <img class="h-16 w-16 rounded-lg object-cover" src="/profil.png" alt="Helene avatar" />
 
                       <div>
                         <span

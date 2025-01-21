@@ -7,28 +7,11 @@ import {useAuth} from "./auth";
 import {useUtilisateur} from "./utilisateur";
 
 
-export const uselisteCandidat = defineStore('ListeCandidat', () => {
+export const uselisteElecteur = defineStore('ListeElecteur', () => {
 	const show = useShow();
 	const URL = useUrl().url;
 	const auth = useAuth();
 	const utilisateur = useUtilisateur();
-
-	const declarationHonneurBiens = ref();
-	const certificatNationalite = ref();
-	const declarationHonneurImpôts = ref();
-	const certificatAdministrationFiscale = ref();
-	const copieCarteElecteur = ref();
-	const declarationProbite = ref();
-	const copieRecipissePatrimoine = ref();
-
-	const matriceSupportElectronique = ref();
-	const quittanceContribution = ref();
-	const declarationHonneurConstitution = ref();
-	const attestationInvestiture = ref();
-	const certificatResidence = ref();
-	const casierJudiciaire = ref();
-	const copieActeNaissance = ref();
-	const annee_electorale_id = ref();
 
 
 	const electeur_id = ref();
@@ -52,31 +35,23 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 	const password = ref()
 
 
-	const allCandidatData = ref();
 	const voirData = ref();
 	const modifierData = ref();
 	const enregistrerData = ref();
 	const supprimerData = ref();
-	const modifierCandidatData = ref();
-	const allListeCandidat = ref();
-	const voirCandidatData = ref()
+
+	const allElecteurData = ref();
+
+	const annee_electorale_id = ref();
+
+	const modifierElecteurData = ref();
+	const voirElecteurData = ref();
+
+	
+
+	
 
 
-	const ModifierdeclarationHonneurBiens = ref('')
-	const ModifiercertificatNationalite = ref('')
-	const ModifierdeclarationHonneurImpôts = ref('')
-	const ModifiercertificatAdministrationFiscale = ref('')
-	const ModifiercopieCarteElecteur = ref('')
-	const ModifierdeclarationProbite = ref('')
-	const ModifiercopieRecipissePatrimoine = ref('')
-	const ModifiermatriceSupportElectronique = ref('')
-	const ModifierquittanceContribution = ref('')
-	const ModifierdeclarationHonneurConstitution = ref('')
-	const ModifierattestationInvestiture = ref('')
-	const ModifiercertificatResidence = ref('')
-	const ModifiercasierJudiciaire = ref('')
-	const ModifiercopieActeNaissance = ref('')
-	const Modifierannee_electorale_id = ref('')
 	const Modifierelecteur_id = ref('')
 	const ModifiernomComplet = ref('')
 	const Modifierprofession = ref('')
@@ -91,14 +66,17 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 	const ModifierdateNaissance = ref('')
 	const Modifiertelephone = ref('')
 	const ModifierdateInscription = ref('')
-	const Modifieremail = ref('')
+	const Modifierannee_electorale_id = ref('')
+	const allListeElecteur = ref('')
+
+
+	
 	const Modifieruser_id = ref('')
-	const ModifierIdCandidat = ref('')
 
 
-	function getCandidats() {
+	function getElecteurs() {
 		show.showSpinner = true;
-		axios.get(`${URL}/api/allcandidat`, {
+		axios.get(`${URL}/api/allElecteur`, {
 			headers: {
 				"Content-Type": "application/json"
 			}
@@ -106,13 +84,13 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			console.log('responseData', response.data);
 
 			if (response.status === 200) {
-				allCandidatData.value = response.data;
+				allElecteurData.value = response.data;
 				show.showAlert = true;
-				allListeCandidat.value = response.data.candidats;
-				console.log("type, ", response.data.candidats[0]);
+				allListeElecteur.value = response.data.electeurs;
+				console.log("type, ", response.data.electeurs[0]);
 
 				show.showAlertType = 'success';
-				show.showAlertMessage = 'Données des candidats récupérées avec succès';
+				show.showAlertMessage = 'Données des électeurs récupérées avec succès';
 			} else {
 				show.showAlert = true;
 				show.showAlertType = 'warning';
@@ -126,7 +104,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			}, 3000);
 		}).catch((err) => {
 			show.showAlertType = 'danger';
-			show.showAlertMessage = 'Erreur lors de la récupération des données des candidats';
+			show.showAlertMessage = 'Erreur lors de la récupération des données des électeurs';
 			console.error(err);
 
 			setTimeout(() => {
@@ -139,25 +117,9 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 		});
 	}
 
-	function createCandidat() {
+	function createElecteur() {
 		let formData = {
-			
-			declarationHonneurBiens: declarationHonneurBiens.value,
-			certificatNationalite: certificatNationalite.value,
-			declarationHonneurImpôts: declarationHonneurImpôts.value,
-			certificatAdministrationFiscale: certificatAdministrationFiscale.value,
-			copieCarteElecteur: copieCarteElecteur.value,
-			declarationProbite: declarationProbite.value,
-			copieRecipissePatrimoine: copieRecipissePatrimoine.value,
-			matriceSupportElectronique: matriceSupportElectronique.value,
-			quittanceContribution: quittanceContribution.value,
-			declarationHonneurConstitution: declarationHonneurConstitution.value,
-			attestationInvestiture: attestationInvestiture.value,
-			certificatResidence: certificatResidence.value,
-			casierJudiciaire: casierJudiciaire.value,
-			copieActeNaissance: copieActeNaissance.value,
-			
-			annee_electorale_id: annee_electorale_id.value,
+
 			nomComplet: nomComplet.value,
 			profession: profession.value,
 			adresse: adresse.value,
@@ -171,15 +133,16 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			dateNaissance: dateNaissance.value,
 			telephone: telephone.value,
 			dateInscription: dateInscription.value,
+			annee_electorale_id: annee_electorale_id.value,
 
 			email: email.value
 		};
 
-		console.log('formData', formData);
+		console.log('formDataElecteur', formData);
 		console.log('aaaaaaa');
 
 		show.showSpinner = true;
-		axios.post(`${URL}/api/candidat`, formData, {
+		axios.post(`${URL}/api/electeur`, formData, {
 			headers: {
 				Authorization: `Bearer ${
 					auth.token
@@ -190,15 +153,15 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 
 			if (response.status === 201) {
 				email.value = ''
-				getCandidats();
+				getElecteurs();
 
 				show.showAlert = true;
 				show.showAlertType = 'success';
-				show.showAlertMessage = 'Candidat créé avec succès';
+				show.showAlertMessage = 'Electeur créé avec succès';
 			} else {
 				show.showAlert = true;
 				show.showAlertType = 'warning';
-				show.showAlertMessage = 'Échec de la création du candidat';
+				show.showAlertMessage = 'Échec de la création électeur';
 			}
 			if (response.status === 500) {
 				console.log('qzsdefrtytujiklo');
@@ -212,7 +175,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			}, 3000);
 		}).catch((err) => {
 			show.showAlertType = 'danger';
-			show.showAlertMessage = 'Erreur lors de la création du candidat';
+			show.showAlertMessage = 'Erreur lors de la création électeur';
 			console.error(err);
 			console.log('qzsdefrtytujiklo');
 			setTimeout(() => {
@@ -225,25 +188,9 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 		});
 	}
 
-	function updateCandidat(id, data) {
+	function updateElecteur(id, data) {
 
 		let updatedData = {
-			id : ModifierIdCandidat.value,
-			declarationHonneurBiens: ModifierdeclarationHonneurBiens.value,
-			certificatNationalite: ModifiercertificatNationalite.value,
-			declarationHonneurImpôts: ModifierdeclarationHonneurImpôts.value,
-			certificatAdministrationFiscale: ModifiercertificatAdministrationFiscale.value,
-			copieCarteElecteur: ModifiercopieCarteElecteur.value,
-			declarationProbite: ModifierdeclarationProbite.value,
-			copieRecipissePatrimoine: ModifiercopieRecipissePatrimoine.value,
-			matriceSupportElectronique: ModifiermatriceSupportElectronique.value,
-			quittanceContribution: ModifierquittanceContribution.value,
-			declarationHonneurConstitution: ModifierdeclarationHonneurConstitution.value,
-			attestationInvestiture: ModifierattestationInvestiture.value,
-			certificatResidence: ModifiercertificatResidence.value,
-			casierJudiciaire: ModifiercasierJudiciaire.value,
-			copieActeNaissance: ModifiercopieActeNaissance.value,
-			annee_electorale_id: Modifierannee_electorale_id.value,
 
 			electeur_id: Modifierelecteur_id.value,
 			nomComplet: ModifiernomComplet.value,
@@ -259,16 +206,17 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			dateNaissance: ModifierdateNaissance.value,
 			telephone: Modifiertelephone.value,
 			dateInscription: ModifierdateInscription.value,
+			annee_electorale_id: annee_electorale_id.value,
+			email: email.value,
 
-			email: Modifieremail.value,
-			user_id:Modifieruser_id.value,
+			user_id: Modifieruser_id.value
 		};
 
-		console.log('updatedData',updatedData);
-		
+		console.log('updatedData', updatedData);
+
 
 		show.showSpinner = true;
-		axios.put(`${URL}/api/candidat/${id}`, updatedData, {
+		axios.put(`${URL}/api/electeur/${id}`, updatedData, {
 			headers: {
 				Authorization: `Bearer ${
 					auth.token
@@ -278,17 +226,17 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			if (response.status === 200) {
 
 				console.log('responseData', response.data);
-				
-				getCandidats();
+
+				getElecteurs();
 				show.showAlert = true;
-				show.showModalModifierCandidat = false
+				show.showModalModifierElecteur = false
 
 				show.showAlertType = 'success';
-				show.showAlertMessage = 'Candidat mis à jour avec succès';
+				show.showAlertMessage = 'Electeur mis à jour avec succès';
 			} else {
 				show.showAlert = true;
 				show.showAlertType = 'warning';
-				show.showAlertMessage = 'Échec de la mise à jour du candidat';
+				show.showAlertMessage = 'Échec de la mise à jour électeur';
 			}
 
 			setTimeout(() => {
@@ -298,7 +246,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			}, 3000);
 		}).catch((err) => {
 			show.showAlertType = 'danger';
-			show.showAlertMessage = 'Erreur lors de la mise à jour du candidat';
+			show.showAlertMessage = 'Erreur lors de la mise à jour électeur';
 			console.error(err);
 
 			setTimeout(() => {
@@ -311,9 +259,9 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 		});
 	}
 
-	function deleteCandidat(id) {
+	function deleteElecteur(id) {
 		show.showSpinner = true;
-		axios.delete(`${URL}/api/candidat/${id}`, {
+		axios.delete(`${URL}/api/electeur/${id}`, {
 			headers: {
 				"Content-Type": "application/json"
 			}
@@ -321,15 +269,15 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			console.log('responseData', response.status);
 
 			if (response.status === 200) {
-				getCandidats();
+				getElecteurs();
 				show.showAlert = true;
 				show.showModalSupprimer = false;
 				show.showAlertType = 'success';
-				show.showAlertMessage = 'Candidat supprimé avec succès';
+				show.showAlertMessage = 'Electeur supprimé avec succès';
 			} else {
 				show.showAlert = true;
 				show.showAlertType = 'warning';
-				show.showAlertMessage = 'Échec de la suppression du candidat';
+				show.showAlertMessage = 'Échec de la suppression électeur';
 			}
 
 			setTimeout(() => {
@@ -339,7 +287,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			}, 3000);
 		}).catch((err) => {
 			show.showAlertType = 'danger';
-			show.showAlertMessage = 'Erreur lors de la suppression du candidat';
+			show.showAlertMessage = 'Erreur lors de la suppression électeur';
 			console.error(err);
 
 			setTimeout(() => {
@@ -353,14 +301,13 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 	}
 
 	onMounted(() => {
-		getCandidats();
+		getElecteurs();
 	});
 
 	return {
-		ModifierIdCandidat,
-		voirCandidatData,
-		modifierCandidatData,
-		allListeCandidat,
+		voirElecteurData,
+		modifierElecteurData,
+		Modifierannee_electorale_id,
 		annee_electorale_id,
 		nomComplet,
 		dateNaissance,
@@ -380,21 +327,6 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 		password,
 
 
-		ModifierdeclarationHonneurBiens,
-		ModifiercertificatNationalite,
-		ModifierdeclarationHonneurImpôts,
-		ModifiercertificatAdministrationFiscale,
-		ModifiercopieCarteElecteur,
-		ModifierdeclarationProbite,
-		ModifiercopieRecipissePatrimoine,
-		ModifiermatriceSupportElectronique,
-		ModifierquittanceContribution,
-		ModifierdeclarationHonneurConstitution,
-		ModifierattestationInvestiture,
-		ModifiercertificatResidence,
-		ModifiercasierJudiciaire,
-		ModifiercopieActeNaissance,
-		Modifierannee_electorale_id,
 		Modifierelecteur_id,
 		ModifiernomComplet,
 		Modifierprofession,
@@ -409,7 +341,6 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 		ModifierdateNaissance,
 		Modifiertelephone,
 		ModifierdateInscription,
-		Modifieremail,
 		Modifieruser_id,
 
 
@@ -417,25 +348,12 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 		enregistrerData,
 		modifierData,
 		voirData,
-		allCandidatData,
-		declarationHonneurBiens,
-		certificatNationalite,
-		declarationHonneurImpôts,
-		certificatAdministrationFiscale,
-		copieCarteElecteur,
-		declarationProbite,
-		copieRecipissePatrimoine,
-		matriceSupportElectronique,
-		quittanceContribution,
-		declarationHonneurConstitution,
-		attestationInvestiture,
-		certificatResidence,
-		casierJudiciaire,
-		copieActeNaissance,
+		allElecteurData,
+
 		electeur_id,
-		getCandidats,
-		createCandidat,
-		updateCandidat,
-		deleteCandidat
+		getElecteurs,
+		createElecteur,
+		updateElecteur,
+		deleteElecteur
 	};
 });

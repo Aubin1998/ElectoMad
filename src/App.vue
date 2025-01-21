@@ -13,6 +13,10 @@ import ModifierCandidat from "./components/modals/ModifierCandidat.vue";
 import SupprimerCandidat from "./components/modals/SupprimerCandidat.vue";
 import VoirAnnee from "./components/modals/VoirAnnee.vue";
 import ModalAcceuil from "./components/modals/ModalAcceuil.vue";
+import ModalElecteurAjout from "./components/modals/electeur/ModalElecteurAjout.vue";
+import ModalElecteurVoir from "./components/modals/electeur/ModalElecteurVoir.vue";
+import ModalElecteurModifier from "./components/modals/electeur/ModalElecteurModifier.vue";
+import ModalElecteurSupprimer from "./components/modals/electeur/ModalElecteurSupprimer.vue";
 
 const show = useShow(); // call Show in show.js
 
@@ -29,7 +33,7 @@ if (document.cookie.includes("access_token") && localStorage.getItem("user") && 
 <template>
   <div class="app">
     <WorkspaceLogin v-if="show.showLogin" />
-    <WorkspaceSignUp v-if="show.showSignUp" />
+    <WorkspaceSignUp v-if="show.showSingUp" />
     <WorkspaceDashboard v-if="show.showDashboard" />
     <Teleport to="body">
       <SpinnerComponent />
@@ -58,6 +62,20 @@ if (document.cookie.includes("access_token") && localStorage.getItem("user") && 
     <Teleport to="body">
       <VoirAnnee />
     </Teleport>
+
+    <Teleport to="body">
+      <ModalElecteurAjout />
+    </Teleport>
+    <Teleport to="body">
+      <ModalElecteurVoir />
+    </Teleport>
+    <Teleport to="body">
+      <ModalElecteurModifier />
+    </Teleport>
+    <Teleport to="body">
+      <ModalElecteurSupprimer />
+    </Teleport>
+    
   </div>
 </template>
 

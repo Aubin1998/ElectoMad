@@ -13,7 +13,21 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 	const auth = useAuth();
 	const utilisateur = useUtilisateur();
 
-	
+	const declarationHonneurBiens = ref();
+	const certificatNationalite = ref();
+	const declarationHonneurImpôts = ref();
+	const certificatAdministrationFiscale = ref();
+	const copieCarteElecteur = ref();
+	const declarationProbite = ref();
+	const copieRecipissePatrimoine = ref();
+
+	const matriceSupportElectronique = ref();
+	const quittanceContribution = ref();
+	const declarationHonneurConstitution = ref();
+	const attestationInvestiture = ref();
+	const certificatResidence = ref();
+	const casierJudiciaire = ref();
+	const copieActeNaissance = ref();
 	const annee_electorale_id = ref();
 
 
@@ -128,7 +142,21 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 	function createCandidat() {
 		let formData = {
 			
-		
+			declarationHonneurBiens: declarationHonneurBiens.value,
+			certificatNationalite: certificatNationalite.value,
+			declarationHonneurImpôts: declarationHonneurImpôts.value,
+			certificatAdministrationFiscale: certificatAdministrationFiscale.value,
+			copieCarteElecteur: copieCarteElecteur.value,
+			declarationProbite: declarationProbite.value,
+			copieRecipissePatrimoine: copieRecipissePatrimoine.value,
+			matriceSupportElectronique: matriceSupportElectronique.value,
+			quittanceContribution: quittanceContribution.value,
+			declarationHonneurConstitution: declarationHonneurConstitution.value,
+			attestationInvestiture: attestationInvestiture.value,
+			certificatResidence: certificatResidence.value,
+			casierJudiciaire: casierJudiciaire.value,
+			copieActeNaissance: copieActeNaissance.value,
+			
 			annee_electorale_id: annee_electorale_id.value,
 			nomComplet: nomComplet.value,
 			profession: profession.value,
