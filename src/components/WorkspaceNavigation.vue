@@ -25,10 +25,13 @@
             </div>
 
             <div class="photo" @click="show.showDescFunc()">
-                <img src="/profil.png" alt="Photo de profil" style="width: 40px; height: 40px; border-radius: 100%;">
-            </div> <!--Fonction atao agnaty click fa tsy variable-->
+                <img src="/profil.png" alt="Photo de profil" class="photo-profile">
+            </div>
             <div class="showProfil" v-if="show.showDesc">
                 <div class="sectionItem">
+                    <div class="closeForm" @click="show.showDesc = !show.showDesc">
+                        <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
+                    </div>
                     <h4 class="textSection">Compte</h4>
                 </div>
 
@@ -36,21 +39,18 @@
                     <div class="imageProfil">
                         <img src="/profil.png" alt="Photo de profil"
                             style="width: 50px; height: 50px; border-radius: 100%;">
-
                     </div>
                     <div class="info">
-                        <h4>
-                            {{ utilisateur.user.username }}
-                        </h4>
+                        <h4>{{ utilisateur.user.username }}</h4>
                         <h5>{{ utilisateur.user.email }}</h5>
                     </div>
                 </div>
                 <div class="items">
+
                     <div class="option">
                         <h5 class="item" @click="show.showModalCompteFunc">Gérer le compte</h5>
                         <i class="pi pi-user-edit" style="font-size: 16px; color: white;"></i>
                     </div>
-
 
                     <div class="option">
                         <h5 class="item" @click="show.showModalLogout = !show.showModalLogout">Déconnexion</h5>
@@ -59,8 +59,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
 </template>
@@ -79,7 +77,6 @@ const utilisateur = useUtilisateur(); //call Show in show.js
 const anneeElectorale = useAnneeElectorale();
 utilisateur.user = JSON.parse(localStorage.getItem("user"))
 console.log(utilisateur.user)
-
 </script>
 
 <style scoped>
@@ -100,10 +97,19 @@ console.log(utilisateur.user)
 .liking {
     padding: 0px 10px;
     color: #d4d2d2;
+    font-weight: 500;
+
+    display: inline-block;
+    transition: transform 0.2s ease-in-out;
 }
 
+
+
 .liking:hover {
-    background-color: #1D222B;
+    background-color: #3a4f63;
+    border-radius: 8px;
+    transform: translateX(2px);
+    /* Déplace l'élément de 10 pixels vers la droite au survol */
 }
 
 .profil {
@@ -135,10 +141,35 @@ console.log(utilisateur.user)
 }
 
 .sectionItem {
-    background-color: #72767e;
+    background-color: #4e525b;
     border-radius: 5px 5px 0px 0px;
     padding: 5px 20px;
 
+}
+
+.closeForm {
+    background-color: rgb(232, 226, 226);
+    width: 17px;
+    height: 17px;
+    border-radius: 100%;
+    position: absolute;
+    right: 8px;
+    /* Ajusté pour être à droite */
+    top: 6px;
+    /* Ajusté pour être en haut */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    /* Ajoute un curseur pointeur pour indiquer qu'il est cliquable */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.closeForm:hover {
+    background-color: rgb(163, 87, 87);
+    /* Change la couleur d'arrière-plan au survol */
+    transform: scale(1.1);
+    /* Agrandit légèrement l'élément au survol */
 }
 
 .textSection {
@@ -207,6 +238,15 @@ console.log(utilisateur.user)
     display: block;
 }
 
+.pi {
+    transition: transform 0.2s ease-in-out;
+}
+
+.pi:hover {
+    transform: scale(1.2);
+    /* Agrandit l'icône de 20% au survol */
+}
+
 .selected-year {
     display: flex;
     align-items: center;
@@ -217,5 +257,33 @@ console.log(utilisateur.user)
     font-weight: bold;
     font-size: 18px;
     margin-right: 10px;
+}
+
+.photo-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.photo-profile:hover {
+    transform: scale(1.2);
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.photo-profile.active {
+    animation: bounce 1s infinite;
 }
 </style>

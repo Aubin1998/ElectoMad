@@ -11,11 +11,12 @@
                     <h4>ELECTION</h4>
                 </div>
 
+
                 <div class="sectionContainer">
                     <!-- For election -->
                     <div class="itemSection" :class="{ active: show.showElectionActive }">
                         <i class="pi pi-id-card" style="font-size: 18px; color: white;"></i>
-                        <h4 @click="show.setSelectSideBar('Création élection')">Création électorale</h4>
+                        <h4   class="text" @click="show.setSelectSideBar('Création élection')">Création électorale</h4>
                         <WorkspaceSubSectionElections v-if="show.showElection" />
                     </div>
                     <!-- For candidates -->
@@ -63,6 +64,7 @@
                 </div>
 
 
+
             </div>
         </div>
     </div>
@@ -80,7 +82,6 @@ import WorkspaceSubSectionHistoriques from "@/components/subsections/WorkspaceSu
 import { useShow } from "@/stores/show";
 const show = useShow(); // call Show in show.js
 </script>
-
 <style scoped>
 .sideBar {
     width: 20%;
@@ -125,22 +126,59 @@ const show = useShow(); // call Show in show.js
     font-weight: 700;
 }
 
+.sectionContainer {
+    background-color: #2d405193;
+    padding: 0px;
+    border-radius: 10px;
+    height: 480px;
+}
+
 .itemSection {
     display: flex;
-    padding: 10px 20px;
-    align-items: center;
-    z-index: 10;
+    align-items: start;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    margin-top: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    
+
+}
+
+
+.itemSection i {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
 }
 
 .itemSection h4 {
-    padding-left: 20px;
-    color: #fff;
-    font-weight: 500;
+    display: flex;
+    align-items: center; /* Centre verticalement le contenu */
+    color: white;
+    font-size: 16px;
+    margin: 0;
+    padding-left: 1px; /* Ajoute un léger espacement à gauche du texte */
+    position: relative;
+    white-space: nowrap; /* Empêche les titres de se couper à la ligne */
+    justify-content: flex-start; /* Aligne le contenu à gauche */
 }
 
-.active {
-    background-color: rgb(102, 116, 111);
+
+
+.itemSection:hover {
+    background-color: #3a4f63;
+    transform: translate3d(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+
+
+
+
+
+
+
 
 .logo-name {
     color: white;
@@ -152,3 +190,4 @@ const show = useShow(); // call Show in show.js
     /* Ajout d'espace pour éviter que le texte ne touche l'image */
 }
 </style>
+

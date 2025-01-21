@@ -25,7 +25,7 @@ function voirelection() {
   background-color: rgb(182, 190, 190);
   min-height: 80vh;
   border-radius: 10px;
-  background-image: url('../election3.jpg');
+  background-image: url('../image.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

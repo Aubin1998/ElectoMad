@@ -5,7 +5,8 @@
 
             <div class="formulaire">
                 <div class="itemContainer">
-                    <input type="text" placeholder="Date d'élection" class="input1" v-model="anneeElectorale.annee" />
+                    <input type="text" placeholder="Date d'élection" class="input1" 
+                    v-model="anneeElectorale.annee" />
                 </div>
                 <div class="itemContainer">
                     <input type="text" placeholder="Description" class="input1"
@@ -15,27 +16,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
