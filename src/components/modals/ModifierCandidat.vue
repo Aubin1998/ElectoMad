@@ -297,7 +297,7 @@
 
                 </div>
                 <div class="modalFooter">
-                    <h3 class="btnAdd add" @click="modifier()">modifier</h3>
+                    <h3 class="btnAdd add1" @click="modifier()">modifier</h3>
                     <h3 class="btnAdd cancel" @click="show.showModalModifierCandidat = !show.showModalModifierCandidat">
                         Annuler</h3>
                 </div>
@@ -368,6 +368,10 @@ function modifier() {
     /* Espacement interne */
 }
 
+.down {
+    z-index: 0 !important;
+}
+
 .modal {
     width: 100%;
     height: 100vh;
@@ -403,14 +407,14 @@ function modifier() {
 .contenaireModal {
     width: 100%;
     height: 100vh;
-    background-color: white;
+    background-color: #414752;
     border-radius: 10px;
     margin: 0 auto;
     padding: 10px;
 }
 
 .tritreModal {
-    color: #2c2b2b;
+    color: white;
     font-weight: 600;
     font-size: 20px;
     padding-bottom: 10px;
@@ -446,8 +450,8 @@ function modifier() {
 }
 
 .label {
-    color: rgb(56, 55, 55);
-    font-weight: bold;
+    color: rgb(174, 168, 168);
+    font-weight: 600;
     font-size: 15px;
     padding-left: 5px;
     display: block;
@@ -456,9 +460,9 @@ function modifier() {
 }
 
 .contenu {
-    color: #57565680;
+    color: #d4cdcd80;
     font-weight: bold;
-    background-color: #302f2f13;
+    background-color: #807c7c13;
     padding: 10px 5px 5px 20px;
     border-radius: 5px;
     margin: 0;
@@ -482,9 +486,44 @@ function modifier() {
     font-weight: 700;
 }
 
+.icon {
+    margin-right: 10px;
+    /* Espace entre l'icône et le champ de saisie */
+    font-size: 18px;
+    color: grey;
+}
+
+.icon1 {
+    margin-right: 10px;
+    /* Espace entre l'icône et le champ de saisie */
+    font-size: 18px;
+    color: rgb(212, 206, 206);
+}
+
+.input {
+    padding: 5px 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #aaaac5;
+    background-color: #3c4c6d09;
+    color: #fafbfd;
+}
+
+.input:focus {
+    border-color: #1b65b4;
+    /* Couleur de bordure bleue quand l'input est actif */
+    box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
+    /* Ombre bleue plus marquée */
+    outline: none;
+    /* Enlever le contour par défaut */
+    color: rgb(219, 213, 213);
+    /* Couleur du texte quand l'input est actif */
+}
+
 .itemContainer {
-    width: 30%;
-    margin: 10px 2px;
+    display: flex;
+    align-items: center;
+    /* Aligne verticalement les éléments */
 }
 
 .number {
@@ -521,8 +560,21 @@ function modifier() {
     align-items: center;
 }
 
+.name h4 {
+    word-wrap: break-word;
+    /* Permet de couper les mots et de les mettre à la ligne */
+    white-space: normal;
+    /* Assure que le texte peut revenir à la ligne */
+    overflow-wrap: break-word;
+    /* Permet le retour à la ligne même pour les mots longs */
+    width: 50%;
+    /* Prend toute la largeur disponible */
+    background-color: red;
+}
+
+
 .btn {
-    width: 25%;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -555,18 +607,21 @@ function modifier() {
     background-color: rgb(241, 74, 74)
 }
 
-.input {
-    padding: 5px 10px;
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid #aaaac5;
-    background-color: #3c4c6d09;
-    color: #5a5959;
-}
+
 
 input-placeholder {
     color: red;
 }
+.input::placeholder {
+    color: #8b8787;  /* Couleur initiale du placeholder */
+    font-style: italic;  /* Optionnel: pour ajouter un style en italique */
+    transition: color 0.3s ease;  /* Transition fluide quand la couleur change */
+}
+
+.input:focus::placeholder {
+    color: #bebaba;  /* Couleur du placeholder quand l'input est focusé */
+}
+
 
 .formulaire {
     display: flex;
@@ -579,26 +634,50 @@ input-placeholder {
 
 .btnAdd {
     color: #fff;
-    font-weight: 600;
+    font-weight: 900;
     width: 50%;
-    display: block;
-    margin: 0 auto;
     text-align: center;
     background-color: rgb(34, 199, 83);
     padding: 5px 20px;
     border-radius: 5px;
 
+    display: inline-block;
+    position: relative;
+    margin-left: 0;
+    /* Positionne l'élément à gauche */
+
 }
 
 .cancel {
     width: 100px !important;
-    background-color: #fff !important;
+    background-color: rgb(192, 190, 190);
     border: 2px solid rgb(34, 199, 83);
-    color: rgb(34, 199, 83) !important;
+    color: rgb(7, 185, 60) !important;
 }
 
 .add {
-    width: 100px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px !important;
+    height: 30px;
+    border-radius: 100%;
+    padding: 5px;
+    margin-left: 20px;
+
+}
+
+.add1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    border-radius: 5px;
+    margin-left: 20px;
+    padding: 5px 20px;
+
+    border: 2px solid rgb(34, 199, 83);
+
 
 }
 
@@ -627,9 +706,24 @@ input-placeholder {
     background-color: #3c4c6d09;
     border-radius: 5px;
     border: 1px solid #aaaac5;
-    color: #5a5959;
+    color: #fafbfd;
+}
 
-
-
+.message {
+    display: flex;
+    justify-content: center;
+    /* Centre horizontalement */
+    align-items: center;
+    /* Centre verticalement */
+    height: 100%;
+    /* Assure que le conteneur prend toute la hauteur disponible */
+    text-align: center;
+    /* Centre le texte à l'intérieur de l'élément */
+    margin: 20px 0;
+    /* Ajoute un espacement au-dessus et en dessous */
+    color: rgb(231, 216, 216);
+    /* Couleur du texte pour le message */
+    font-size: 18px;
+    /* Taille de la police */
 }
 </style>

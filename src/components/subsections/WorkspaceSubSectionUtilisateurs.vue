@@ -1,6 +1,6 @@
 <template>
     <div class="subsection">
-        <div class="closeForm" @click="show.showElection = !show.showElection">
+        <div class="closeForm" @click="show.showUtilisateur = !show.showUtilisateur">
             <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
         </div>
         <div class="subItem"  @click="show.setOption('Ajout des utilisateurs')">

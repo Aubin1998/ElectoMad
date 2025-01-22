@@ -1,15 +1,14 @@
 <template>
-    <div>
+    <div class="form1">
         <div class="form" >
-            <h4>Création election</h4>
-
+            <h4>Création  élection</h4>
             <div class="formulaire">
                 <div class="itemContainer">
-                    <input type="text" placeholder="Date d'élection" class="input1" 
+                    <input type="text" placeholder="Date d'élection" class="input2 dateElectionInput" 
                     v-model="anneeElectorale.annee" />
                 </div>
                 <div class="itemContainer">
-                    <input type="text" placeholder="Description" class="input1"
+                    <input type="text" placeholder="Description" class="input2 descriptionInput"
                         v-model="anneeElectorale.descriptionAnnee" />
                 </div>
                 <h3 class="btnAdd add" @click="creer()">Créer</h3>
@@ -392,9 +391,22 @@ const dataListePersonne = [
 </script>
 
 <style scoped>
-.form {
+.form1{
     width: 100%;
     margin-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+
+
+}
+.form {
+    width: 98%;
+    margin-bottom: 0px;
+   background-color: #414b5e;
+    align-items: center;
+    border-radius: 6px 6px 0px 0px;
+    margin-top: 5px;
 }
 
 .form h4 {
@@ -529,6 +541,7 @@ const dataListePersonne = [
 .itemContainer {
     width: 30%;
     margin: 10px 2px;
+    
 }
 
 .itemContainer1 {
@@ -630,7 +643,7 @@ const dataListePersonne = [
 
 .input {
     padding: 10px;
-    width: 100%;
+    width: 100%!important;
     border-radius: 5px;
     border: 1px solid #aaaac5;
     background-color: #3c4c6d09;
@@ -649,6 +662,23 @@ const dataListePersonne = [
     padding: 5px;
     max-width: 200px;
 }
+.input2 {
+    width: 100%!important;
+    border-radius: 5px;
+    border: 1px solid #aaaac5;
+    background-color: #3c4c6d09;
+    color: #faf7f7;
+    font-weight: 600;
+    padding: 5px;
+    max-width: 400px; /* Augmenter la largeur maximale */
+}
+.dateElectionInput{
+    margin-right: 10px;
+}
+.descriptionInput{
+    margin-left: 20px;
+}
+
 
 input-placeholder {
     color: red;
@@ -657,8 +687,12 @@ input-placeholder {
 .formulaire {
     display: flex;
     justify-content: space-around;
-    background-color: rgba(213, 235, 235, 0.212);
+   background-color: #1F2937;
     align-items: center;
+    border-radius: 0px 0px 6px 6px;
+    padding: 5px 10px;
+
+    
 }
 
 

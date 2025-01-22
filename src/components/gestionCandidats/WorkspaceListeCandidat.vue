@@ -118,7 +118,7 @@
                         </div>
                         <div class="inputCard">
                             <h3 class="label">Email</h3>
-                            <input type="text" placeholder="Nom du père et de la mère" class="input"
+                            <input type="text" placeholder="Entrez son email" class="input"
                                 v-model="listeCandidat.email" />
                         </div>
                         <div class="inputCard">
@@ -449,14 +449,14 @@ const filteredCandidats = computed(() => {
 .contenaireModal {
     width: 100%;
     height: 100vh;
-    background-color: white;
+    background-color: #414752;
     border-radius: 10px;
     margin: 0 auto;
     padding: 10px;
 }
 
 .tritreModal {
-    color: #2c2b2b;
+    color: white;
     font-weight: 600;
     font-size: 20px;
     padding-bottom: 10px;
@@ -492,8 +492,8 @@ const filteredCandidats = computed(() => {
 }
 
 .label {
-    color: rgb(56, 55, 55);
-    font-weight: bold;
+    color: rgb(174, 168, 168);
+    font-weight: 600;
     font-size: 15px;
     padding-left: 5px;
     display: block;
@@ -502,9 +502,9 @@ const filteredCandidats = computed(() => {
 }
 
 .contenu {
-    color: #57565680;
+    color: #d4cdcd80;
     font-weight: bold;
-    background-color: #302f2f13;
+    background-color: #807c7c13;
     padding: 10px 5px 5px 20px;
     border-radius: 5px;
     margin: 0;
@@ -543,15 +543,16 @@ const filteredCandidats = computed(() => {
 }
 
 .input {
-    flex: 1;
-    /* Prend tout l'espace disponible */
-    padding: 5px;
-    /* Ajuste selon tes besoins */
-    background-color: rgb(240, 235, 235);
+    padding: 5px 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #aaaac5;
+    background-color: #3c4c6d09;
+    color: #fafbfd;
 }
 
 .input:focus {
-    border-color: #007BFF;
+    border-color: #1b65b4;
     /* Couleur de bordure bleue quand l'input est actif */
     box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
     /* Ombre bleue plus marquée */
@@ -648,18 +649,21 @@ const filteredCandidats = computed(() => {
     background-color: rgb(241, 74, 74)
 }
 
-.input {
-    padding: 5px 10px;
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid #aaaac5;
-    background-color: #3c4c6d09;
-    color: #5a5959;
-}
+
 
 input-placeholder {
     color: red;
 }
+.input::placeholder {
+    color: #8b8787;  /* Couleur initiale du placeholder */
+    font-style: italic;  /* Optionnel: pour ajouter un style en italique */
+    transition: color 0.3s ease;  /* Transition fluide quand la couleur change */
+}
+
+.input:focus::placeholder {
+    color: #bebaba;  /* Couleur du placeholder quand l'input est focusé */
+}
+
 
 .formulaire {
     display: flex;
@@ -688,9 +692,9 @@ input-placeholder {
 
 .cancel {
     width: 100px !important;
-    background-color: #fff !important;
+    background-color: rgb(192, 190, 190);
     border: 2px solid rgb(34, 199, 83);
-    color: rgb(34, 199, 83) !important;
+    color: rgb(7, 185, 60) !important;
 }
 
 .add {
@@ -744,7 +748,7 @@ input-placeholder {
     background-color: #3c4c6d09;
     border-radius: 5px;
     border: 1px solid #aaaac5;
-    color: #5a5959;
+    color: #fafbfd;
 }
 
 .message {

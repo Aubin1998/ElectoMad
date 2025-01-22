@@ -182,6 +182,10 @@ export const useAuth = defineStore('Auth', () => {
 				document.cookie = `access_token=;path=/;max-age=0`;
 				localStorage.removeItem("usersRole");
 				localStorage.removeItem("user");
+				localStorage.removeItem("anneeSelectionne");
+				localStorage.removeItem("utilisateur");
+
+
 
 			} else {
 				show.showAlert = true;

@@ -19,7 +19,7 @@
                     <h3>{{ item.descriptionAnnee }}</h3>
                   </div>
                   <div class="bouton">
-                    <h4 @click="voirDetails(item)">Voir</h4>
+                    <h4 @click="voirDetails(item)">fjsqjVoir</h4>
                   </div>
                 </div>
               </template>
@@ -60,6 +60,8 @@ function voirDetails(item) {
   show.showAlertType = 'success';
   show.showAlertMessage = `Année choisi ${item.annee}`
   anneeElectorale.anneeElectoraleChoisi = item
+  localStorage.setItem('anneeSelectionne', JSON.stringify(item));
+
 
   setTimeout(() => {
     show.showAlert = false;
