@@ -6,19 +6,15 @@
             </h4>
             <h4 class="number">{{ }}</h4>
             <div class="itemContainer"> <i class="pi pi-search icon1"></i>
-                <input type="text" v-model="searchTerm" placeholder="Recherche nom candidat" class="input" />
+                <input type="text" 
+                v-model="searchTerm" placeholder="Recherche nom candidat" 
+                class="input" />
                 <h3 class="btnAdd add" @click="show.showModalAjoutFunc">
                     <i class="pi pi-plus" style="font-size: 16px; color: white;left: 0;"></i>
-
                 </h3>
-
             </div>
         </div>
         <div class="scroll-container">
-
-
-
-
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg down">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -41,6 +37,8 @@
                             </th>
                         </tr>
                     </thead>
+
+
                     <tbody>
                         <div v-if="filteredCandidats.length === 0" class="no-results">
                             <h4 class="message">Aucun candidat trouvé.</h4>
@@ -77,12 +75,6 @@
             </div>
 
         </div>
-
-
-
-
-
-
 
         <div class="modal" v-if="show.showModalAjout">
             <div class="contenaireModal">

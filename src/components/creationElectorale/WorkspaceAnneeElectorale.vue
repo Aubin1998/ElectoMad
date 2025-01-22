@@ -28,7 +28,8 @@
             <div class="itemContainer1">
                 <i class="pi pi-search icon1"></i>
 
-                <input type="text" placeholder="Recherche par année" class="input1" />
+                <input type="text" placeholder="Recherche par année"
+                v-model="searchTerm" class="input1" />
             </div>
 
 
@@ -57,11 +58,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <div v-if="anneeElectorale.allanneeData.length === 0" class="no-results">
-                            <h4 class="message">Aucun candidat trouvé.</h4>
+                        <div v-if="filteredCandidats.length === 0" class="no-results">
+                            <h4 class="message">Aucune année trouvée.</h4>
                         </div>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                            v-for="(item, index) in anneeElectorale.allanneeData" :key="index">
+                            v-for="(item, index) in filteredCandidats" :key="index">
 
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -252,6 +253,8 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue'
+
 import { useShow } from "@/stores/show";
 import { useAuth } from "@/stores/auth";
 import { useUtilisateur } from "@/stores/utilisateur";
@@ -262,6 +265,16 @@ const show = useShow(); //call Show in show.js
 const auth = useAuth();
 const utilisateur = useUtilisateur();
 const anneeElectorale = useAnneeElectorale();
+
+
+const searchTerm = ref('');
+const filteredCandidats = computed(() => {
+    if (!searchTerm.value) {
+        return anneeElectorale.allanneeData;
+    } return anneeElectorale.allanneeData.filter(item => {
+        return item.annee.toLowerCase().includes(searchTerm.value.toLowerCase());
+    });
+});
 
 function creer() {
     anneeElectorale.createAnnee()
@@ -725,5 +738,22 @@ input-placeholder {
 
 .btnAdd h3:hover {
     background-color: rgb(101, 230, 140);
+}
+.message {
+    display: flex;
+    justify-content: center;
+    /* Centre horizontalement */
+    align-items: center;
+    /* Centre verticalement */
+    height: 100%;
+    /* Assure que le conteneur prend toute la hauteur disponible */
+    text-align: center;
+    /* Centre le texte à l'intérieur de l'élément */
+    margin: 20px 0;
+    /* Ajoute un espacement au-dessus et en dessous */
+    color: rgb(231, 216, 216);
+    /* Couleur du texte pour le message */
+    font-size: 18px;
+    /* Taille de la police */
 }
 </style>

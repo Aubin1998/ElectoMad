@@ -20,6 +20,14 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 	const modifierData = ref()
 	const enregistrerData = ref()
 	const supprimerData = ref()
+	const filteredanneeElectorale = ref()
+	const allanneeElectorale = ref()
+
+
+	
+
+
+	
 
 	function getAnnees() {
 		show.showSpinner = true;
@@ -208,6 +216,8 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 	});
 
 	return {
+		allanneeElectorale,
+		filteredanneeElectorale,
 		anneeElectoraleChoisi,
 		supprimerData,
 		enregistrerData,

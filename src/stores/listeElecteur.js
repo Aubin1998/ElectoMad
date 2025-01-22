@@ -47,10 +47,6 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 	const modifierElecteurData = ref();
 	const voirElecteurData = ref();
 
-	
-
-	
-
 
 	const Modifierelecteur_id = ref('')
 	const ModifiernomComplet = ref('')
@@ -70,7 +66,6 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 	const allListeElecteur = ref('')
 
 
-	
 	const Modifieruser_id = ref('')
 
 
@@ -87,7 +82,7 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 				allElecteurData.value = response.data;
 				show.showAlert = true;
 				allListeElecteur.value = response.data.electeurs;
-				console.log("type, ", response.data.electeurs[0]);
+				console.log("type, ", response.data.electeurs);
 
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Données des électeurs récupérées avec succès';
@@ -134,7 +129,10 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			telephone: telephone.value,
 			dateInscription: dateInscription.value,
 			annee_electorale_id: annee_electorale_id.value,
-			email: email.value
+			email: email.value,
+
+			region: region.value
+
 		};
 
 		console.log('formDataElecteur', formData);
@@ -158,22 +156,22 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Electeur créé avec succès';
 
-				  // Réinitialiser les champs d'entrée
-				  nomComplet.value = '';
-				  profession.value = '';
-				  adresse.value = '';
-				  numeroCIN.value = '';
-				  dateDelivreCIN.value = '';
-				  lieuDelivreCIN.value = '';
-				  carteElecteur.value = '';
-				  sexe.value = '';
-				  lieuNaissance.value = '';
-				  filiation.value = '';
-				  dateNaissance.value = '';
-				  telephone.value = '';
-				  dateInscription.value = '';
-				  annee_electorale_id.value = '';
-				  email.value = '';
+				// Réinitialiser les champs d'entrée
+				nomComplet.value = '';
+				profession.value = '';
+				adresse.value = '';
+				numeroCIN.value = '';
+				dateDelivreCIN.value = '';
+				lieuDelivreCIN.value = '';
+				carteElecteur.value = '';
+				sexe.value = '';
+				lieuNaissance.value = '';
+				filiation.value = '';
+				dateNaissance.value = '';
+				telephone.value = '';
+				dateInscription.value = '';
+				annee_electorale_id.value = '';
+				email.value = '';
 
 			} else {
 				show.showAlert = true;
