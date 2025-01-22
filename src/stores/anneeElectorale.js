@@ -87,6 +87,8 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 				show.showAlert = true;
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Année électorale créée avec succès';
+
+				
 			} else {
 				show.showAlert = true;
 				show.showAlertType = 'warning';

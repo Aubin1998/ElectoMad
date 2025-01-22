@@ -19,6 +19,7 @@
                   <h3 class="label">Nom et prénom</h3>
                   <input type="text" placeholder="Ajoutez un nom" class="input" v-model="listeElecteur.nomComplet" />
                 </div>
+             
 
                 <div class="inputCard">
                   <h3 class="label">Email</h3>
@@ -28,9 +29,10 @@
 
                 <div class="inputCard">
                   <h3 class="label">Date de naissance</h3>
-                  <input type="text" placeholder="Insérez une date de naissance" class="input"
-                    v-model="listeElecteur.dateNaissance" />
+                  <VueDatePicker v-model="listeElecteur.dateNaissance" placeholder="Insérez une date de naissance"
+                  class="input" />
                 </div>
+              
                 <div class="inputCard">
                   <h3 class="label">Lieu de naissance</h3>
                   <input type="text" placeholder="Insérez un lieu de naissance" class="input"
@@ -57,8 +59,9 @@
                 </div>
                 <div class="inputCard">
                   <h3 class="label">Date de délivrance</h3>
-                  <input type="text" placeholder="Insérez une date de délivrance de la CIN" class="input"
-                    v-model="listeElecteur.dateDelivreCIN" />
+                  <VueDatePicker v-model="listeElecteur.dateDelivreCIN" placeholder="Insérez une date de naissance"
+                  class="input" />
+                 
                 </div>
                 <div class="inputCard">
                   <h3 class="label">Lieu de délivrance CIN</h3>
@@ -78,19 +81,36 @@
                 </div>
                 <div class="inputCard">
                   <h3 class="label">Date d'inscription</h3>
-                  <input type="text" placeholder="Ajoutez une date d'inscription" class="input"
-                    v-model="listeElecteur.dateInscription" />
+                  <VueDatePicker v-model="listeElecteur.dateInscription" placeholder="Insérez une date de naissance"
+                  class="input" />
+                 
                 </div>
                 <div class="inputCard">
                   <h3 class="label">Carte d'électeur</h3>
                   <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
                     v-model="listeElecteur.carteElecteur" />
                 </div>
+
+               
+
+
                 <div class="inputCard">
                   <h3 class="label">Année électorale</h3>
-                  <input type="text" placeholder="Ajoutez une année électorale" class="input"
-                    v-model="listeElecteur.annee_electorale_id" />
+                 
+
+                  <select class="annee" v-model="listeElecteur.annee_electorale_id">
+                    <option disabled value="">Sélectionner une année</option>
+                    <option v-for="annee in anneeElectorale.allanneeData" :key="annee.id" :value="annee.id">
+                      {{ annee.annee }} - {{ annee.descriptionAnnee }}
+                    </option>
+                  </select>
                 </div>
+                <!-- <div class="inputCard"> 
+                  <h3 class="label">Année électorale</h3>
+                  <input type="text" placeholder="Ajoutez une année électorale" class="input"
+                   />
+                </div>-->
+
                 <div class="btn">
                   <h3 class="btnAdd add"></h3>
                 </div>
@@ -121,6 +141,9 @@ import { useUtilisateur } from "@/stores/utilisateur";
 import { useAnneeElectorale } from "@/stores/anneeElectorale";
 import { uselisteElecteur } from "@/stores/listeElecteur";
 
+import { ref } from 'vue';
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 
 const auth = useAuth();
 const utilisateur = useUtilisateur();

@@ -134,7 +134,6 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			telephone: telephone.value,
 			dateInscription: dateInscription.value,
 			annee_electorale_id: annee_electorale_id.value,
-
 			email: email.value
 		};
 
@@ -158,6 +157,24 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 				show.showAlert = true;
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Electeur créé avec succès';
+
+				  // Réinitialiser les champs d'entrée
+				  nomComplet.value = '';
+				  profession.value = '';
+				  adresse.value = '';
+				  numeroCIN.value = '';
+				  dateDelivreCIN.value = '';
+				  lieuDelivreCIN.value = '';
+				  carteElecteur.value = '';
+				  sexe.value = '';
+				  lieuNaissance.value = '';
+				  filiation.value = '';
+				  dateNaissance.value = '';
+				  telephone.value = '';
+				  dateInscription.value = '';
+				  annee_electorale_id.value = '';
+				  email.value = '';
+
 			} else {
 				show.showAlert = true;
 				show.showAlertType = 'warning';
