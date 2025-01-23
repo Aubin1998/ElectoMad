@@ -27,6 +27,9 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 	const dateNaissance = ref('xxxxxxx');
 	const telephone = ref('xxxxxxx');
 	const dateInscription = ref('xxxxxxx');
+
+	
+
 	const user_id = ref('')
 	const utilisateurId = ref('')
 

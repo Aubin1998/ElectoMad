@@ -3,8 +3,8 @@
 
     <div class="container">
       <div class="formulaire">
-        <h3 class="bienvenu">Se connecté</h3>
-        <h4 class="subtitle">Entrez votre compte</h4>
+        <h3 class="bienvenu">Se connecter</h3>
+        <h4 class="subtitle">Entrez vos informations</h4>
         <div class="inputForm">
           <div class="itemContainer">
             <input type="text" placeholder="Votre email" class="input" v-model="auth.email" />
@@ -15,10 +15,10 @@
 
         </div>
         <div class="btnlogin" @click="connecte()">
-          <h3>Se connécter</h3>
+          <h3>Se connecter</h3>
         </div>
         <h5>
-          <span @click="show.showSingUpFunc()" class="forgotPass">Mots de passe oublié?</span>
+          <span @click="show.showSingUpFunc()" class="forgotPass">Mot de passe oublié ?</span>
         </h5>
       </div>
       <div class="formulaire1">

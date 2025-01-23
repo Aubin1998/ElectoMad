@@ -29,6 +29,14 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 	const telephone = ref()
 	const dateInscription = ref()
 
+	
+
+	const region = ref()
+	const district = ref()
+	const commune = ref()
+	const fokontany = ref()
+
+
 	const user_id = ref()
 	const username = ref()
 	const email = ref()
@@ -63,9 +71,14 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 	const Modifiertelephone = ref('')
 	const ModifierdateInscription = ref('')
 	const Modifierannee_electorale_id = ref('')
+
+	const Modifierregion = ref('')
+	const Modifierdistrict = ref('')
+	const Modifiercommune = ref('')
+	const Modifierfokontany = ref('')
+
+
 	const allListeElecteur = ref('')
-
-
 	const Modifieruser_id = ref('')
 
 
@@ -131,7 +144,12 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			annee_electorale_id: annee_electorale_id.value,
 			email: email.value,
 
-			region: region.value
+
+			region: region.value,
+			district: district.value,
+			commune: commune.value,
+			fokontany: fokontany.value
+
 
 		};
 
@@ -172,6 +190,12 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 				dateInscription.value = '';
 				annee_electorale_id.value = '';
 				email.value = '';
+
+				region.value = '';
+				district.value = '';
+				commune.value = '';
+				fokontany.value = '';
+
 
 			} else {
 				show.showAlert = true;
@@ -224,7 +248,14 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			annee_electorale_id: annee_electorale_id.value,
 			email: email.value,
 
-			user_id: Modifieruser_id.value
+			user_id: Modifieruser_id.value,
+
+			region: region.value,
+			district: district.value,
+			commune: commune.value,
+			fokontany: fokontany.value
+
+
 		};
 
 		console.log('updatedData', updatedData);
@@ -320,6 +351,11 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 	});
 
 	return {
+		region,
+		district,
+		commune,
+		fokontany,
+
 		voirElecteurData,
 		modifierElecteurData,
 		Modifierannee_electorale_id,
@@ -337,9 +373,11 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 		carteElecteur,
 		telephone,
 		dateInscription,
+
 		username,
 		email,
 		password,
+		region,
 
 
 		Modifierelecteur_id,

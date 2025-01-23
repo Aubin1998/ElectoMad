@@ -4,13 +4,13 @@
     <div class="container">
       <div class="formulaire1">
         <div class="contain">
-          <h3 class="bienvenu">Se connecté</h3>
+          <h3 class="bienvenu">Se connecter</h3>
 
           <h5>
             Connectez-vous
           </h5>
           <div class="btnInscrit" @click="show.showLoginFunc">
-            <h3>Se connecté</h3>
+            <h3>Se connecter</h3>
           </div>
         </div>
       </div>

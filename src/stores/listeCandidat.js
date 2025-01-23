@@ -109,7 +109,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				allCandidatData.value = response.data;
 				show.showAlert = true;
 				allListeCandidat.value = response.data.candidats;
-				console.log("type, ", response.data.candidats[0]);
+				console.log("type, ", response.data.candidats);
 
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Données des candidats récupérées avec succès';

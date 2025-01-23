@@ -19,7 +19,7 @@
                   <h3 class="label">Nom et prénom</h3>
                   <input type="text" placeholder="Ajoutez un nom" class="input" v-model="listeElecteur.nomComplet" />
                 </div>
-             
+
 
                 <div class="inputCard">
                   <h3 class="label">Email</h3>
@@ -30,9 +30,9 @@
                 <div class="inputCard">
                   <h3 class="label">Date de naissance</h3>
                   <VueDatePicker v-model="listeElecteur.dateNaissance" placeholder="Insérez une date de naissance"
-                  class="input" />
+                    class="input" />
                 </div>
-              
+
                 <div class="inputCard">
                   <h3 class="label">Lieu de naissance</h3>
                   <input type="text" placeholder="Insérez un lieu de naissance" class="input"
@@ -60,8 +60,8 @@
                 <div class="inputCard">
                   <h3 class="label">Date de délivrance</h3>
                   <VueDatePicker v-model="listeElecteur.dateDelivreCIN" placeholder="Insérez une date de naissance"
-                  class="input" />
-                 
+                    class="input" />
+
                 </div>
                 <div class="inputCard">
                   <h3 class="label">Lieu de délivrance CIN</h3>
@@ -82,29 +82,56 @@
                 <div class="inputCard">
                   <h3 class="label">Date d'inscription</h3>
                   <VueDatePicker v-model="listeElecteur.dateInscription" placeholder="Insérez une date de naissance"
-                  class="input" />
-                 
+                    class="input1" />
                 </div>
+
                 <div class="inputCard">
                   <h3 class="label">Carte d'électeur</h3>
                   <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
                     v-model="listeElecteur.carteElecteur" />
                 </div>
 
-               
+
 
 
                 <div class="inputCard">
                   <h3 class="label">Année électorale</h3>
-                 
+
 
                   <select class="annee" v-model="listeElecteur.annee_electorale_id">
-                    <option disabled value="">Sélectionner une année</option>
+                    <option selected disabled value=""> sélectionner une année électorale</option>
                     <option v-for="annee in anneeElectorale.allanneeData" :key="annee.id" :value="annee.id">
                       {{ annee.annee }} - {{ annee.descriptionAnnee }}
                     </option>
                   </select>
                 </div>
+
+
+                <div class="inputCard">
+                  <h3 class="label">Région</h3>
+                  <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
+                    v-model="listeElecteur.region" />
+                </div>
+
+                <div class="inputCard">
+                  <h3 class="label">Disrict</h3>
+                  <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
+                    v-model="listeElecteur.district" />
+                </div>
+                
+                <div class="inputCard">
+                  <h3 class="label">Commune</h3>
+                  <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
+                    v-model="listeElecteur.commune" />
+                </div>
+                <div class="inputCard">
+                  <h3 class="label">Fokontany</h3>
+                  <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
+                    v-model="listeElecteur.fokontany" />
+                </div>
+
+
+
                 <!-- <div class="inputCard"> 
                   <h3 class="label">Année électorale</h3>
                   <input type="text" placeholder="Ajoutez une année électorale" class="input"
@@ -194,6 +221,27 @@ function voirDetails(item) {
 .label {
   font-size: 12px;
   font-weight: 600;
+}
+
+.annee {
+  width: 100%;
+  padding: 5px;
+  background-color: #3c4c6d09;
+  border-radius: 5px;
+  border: 1px solid #aaaac5;
+  color: #fafbfd;
+}
+
+.annee option {
+  background-color: #383a3d;
+  /* Couleur de l'arrière-plan pour les options */
+  color: #f5f6f8;
+}
+
+.annee:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+  outline: none;
 }
 
 .inputCard {
@@ -383,12 +431,37 @@ function voirDetails(item) {
 .input {
   width: 100%;
   padding: 5px 10px;
-  font-size: 14px;
-  border: 2px solid #ccc;
+  font-size: 16px;
+  border: 1px solid #aaaac5;
   border-radius: 4px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: #fafbfd;
+  background-color: #3c4c6d09;
+
 }
+
+.input1 {
+  width: 100%;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid #aaaac5;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: #fafbfd;
+  background-color: #0f52d609;
+
+}
+
+
+.input1:focus {
+  border-color: #1a93d0;
+  /* Couleur de la bordure lors du focus */
+  box-shadow: 0 0 5px rgba(102, 204, 255, 0.5);
+  /* Ombre */
+}
+
 
 .input:focus {
   border-color: #3498db;
