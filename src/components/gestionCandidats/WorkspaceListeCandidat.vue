@@ -6,9 +6,7 @@
             </h4>
             <h4 class="number">{{ }}</h4>
             <div class="itemContainer"> <i class="pi pi-search icon1"></i>
-                <input type="text" 
-                v-model="searchTerm" placeholder="Recherche nom candidat" 
-                class="input" />
+                <input type="text" v-model="searchTerm" placeholder="Recherche nom candidat" class="input" />
                 <h3 class="btnAdd add" @click="show.showModalAjoutFunc">
                     <i class="pi pi-plus" style="font-size: 16px; color: white;left: 0;"></i>
                 </h3>
@@ -33,7 +31,7 @@
                                 Année
                             </th>
                             <th scope="col" class="px-6 py-3">
-                               
+
                             </th>
                         </tr>
                     </thead>
@@ -87,11 +85,14 @@
                                 v-model="listeCandidat.nomComplet" />
                         </div>
                         <div class="flexCard">
+
+
                             <div class="inputCard">
                                 <h3 class="label">Date </h3>
-                                <input type="text" placeholder="Insérez une date de naissance" class="input"
-                                    v-model="listeCandidat.dateNaissance" />
+                                <VueDatePicker v-model="listeCandidat.dateNaissance"
+                                    placeholder="Insérez une date de naissance" class="input" />
                             </div>
+
                             <div class="inputCard">
                                 <h3 class="label">Lieu de naissance</h3>
                                 <input type="text" placeholder="Insérez un lieu de naissance" class="input"
@@ -189,9 +190,12 @@
                         <div class="flexCard">
                             <div class="inputCard">
                                 <h3 class="label">Date </h3>
-                                <input type="text" placeholder="Insérez une date de délivrance de la CIN" class="input"
-                                    v-model="listeCandidat.dateDelivreCIN" />
+                                <VueDatePicker v-model="listeCandidat.dateDelivreCIN"
+                                    placeholder="Insérez une date de délivrance de la CIN" class="input" />
                             </div>
+
+
+
                             <div class="inputCard">
                                 <h3 class="label">Lieu de délivrance CIN</h3>
                                 <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input"
@@ -228,11 +232,14 @@
                             <input type="text" placeholder="Ecrire votre numéro de téléphone" class="input"
                                 v-model="listeCandidat.telephone" />
                         </div>
+
+
                         <div class="inputCard">
-                            <h3 class="label">Date d'inscription</h3>
-                            <input type="text" placeholder="Ecrire la date d'inscription" class="input"
-                                v-model="listeCandidat.dateInscription" />
+                            <h3 class="label">Date d'inscription </h3>
+                            <VueDatePicker v-model="listeCandidat.dateInscription"
+                                placeholder="Ecrire la date d'inscription" class="input" />
                         </div>
+
                         <div class="inputCard">
                             <h3 class="label"> Année électorale</h3>
                             <select class="annee" v-model="listeCandidat.annee_electorale_id" id="">
@@ -301,6 +308,9 @@ import { useAuth } from "@/stores/auth";
 import { useUtilisateur } from "@/stores/utilisateur";
 import { uselisteCandidat } from "@/stores/listeCandidat";
 import { useAnneeElectorale } from "@/stores/anneeElectorale";
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
+
 
 const show = useShow(); //call Show in show.js
 const auth = useAuth();
@@ -513,6 +523,7 @@ const filteredCandidats = computed(() => {
     right: 70px;
     bottom: 2px;
 
+   
 }
 
 .subtitle {
@@ -646,14 +657,19 @@ const filteredCandidats = computed(() => {
 input-placeholder {
     color: red;
 }
+
 .input::placeholder {
-    color: #8b8787;  /* Couleur initiale du placeholder */
-    font-style: italic;  /* Optionnel: pour ajouter un style en italique */
-    transition: color 0.3s ease;  /* Transition fluide quand la couleur change */
+    color: #8b8787;
+    /* Couleur initiale du placeholder */
+    font-style: italic;
+    /* Optionnel: pour ajouter un style en italique */
+    transition: color 0.3s ease;
+    /* Transition fluide quand la couleur change */
 }
 
 .input:focus::placeholder {
-    color: #bebaba;  /* Couleur du placeholder quand l'input est focusé */
+    color: #bebaba;
+    /* Couleur du placeholder quand l'input est focusé */
 }
 
 

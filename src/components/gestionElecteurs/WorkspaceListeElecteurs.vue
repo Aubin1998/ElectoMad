@@ -14,11 +14,13 @@
                         <h1>{{ item.listeDistrict.length }}</h1>
                     </div>
                     <h4>{{ item.region }}</h4>
-                    <h3 class="btnAdd" @click="show.showOptionProvince(item.region, item.listeDistrict)">Voir</h3>
+                    <h3 class="btnAdd" @click="select(item)">Voir</h3> <!--//etape 1 -->
                 </div>
             </div>
         </div>
     </div>
+
+    
     <WorkspaceProvinceElecteur v-if="show.showProvinceElecteur" />
     <WorkspaceDistrictElecteur v-if="show.listeCommune" />
     <WorkspaceCommuneElecteur v-if="show.listeFokontany" />
@@ -40,6 +42,16 @@ const listeFokontanyDistrictStore = useListeFokontanyDistrictStore();
 
 // Recherche
 const searchQuery = ref('');
+
+
+//étape 2
+function select(item) {
+    show.showOptionProvince(item.region, item.listeDistrict)
+    localStorage.setItem('selectRegion', JSON.stringify(item.region))
+    
+}
+
+
 
 // Transformation des données
 const data = computed(() => {
@@ -64,6 +76,7 @@ const data = computed(() => {
         return transformedData;
     }
     return [];
+
 });
 
 // Filtrer les données en fonction de la recherche
@@ -290,7 +303,8 @@ input-placeholder {
 }
 
 .cercle h1 {
-    font-weight: 600;
+    font-size: 25px;
+    font-weight: 500;
     color: rgba(112, 105, 105, 0.74);
 }
 

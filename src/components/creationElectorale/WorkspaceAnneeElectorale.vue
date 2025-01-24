@@ -576,18 +576,14 @@ const dataListePersonne = [
     color: rgb(212, 206, 206);
 }
 
-.number {
-    font-weight: 600;
-    color: #d4d9e2;
-    flex: 1;
-    text-align: left;
-    /* Aligner à gauche */
-}
+
 
 .number1 {
+    font-weight: 600;
+    color: white;
     flex: 1;
     text-align: left;
-    margin-right: 0px;
+    font-size: 20px;
     /* Aligner à gauche */
 }
 

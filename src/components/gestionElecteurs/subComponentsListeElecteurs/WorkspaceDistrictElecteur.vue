@@ -14,7 +14,8 @@
                     </div>
                     <h4>{{ item.commune }}</h4>
 
-                    <h3 class="btnAdd" @click="show.listeFokontanyFunc(item.commune, item.listeFokontany)">Voir</h3>
+               <h3 class="btnAdd" @click="select(item)">Voir</h3> <!--//etape 1 -->
+
                 </div>
             </div>
 
@@ -29,8 +30,14 @@
 <script setup>
 //import WorkspaceDistrictElecteur from "@/components/gestionElecteurs/subComponentsProvince/ProvinceAntananarivo/DistrictAntananarivo/Ambohidratrimo/WorkspaceDistrictElecteur.vue";
 import { ref, computed, onMounted, watch } from "vue";
-
 import { useShow } from "@/stores/show";
+
+//étape 2
+function select(item) {
+    show.listeFokontanyFunc(item.commune, item.listeFokontany)
+    localStorage.setItem('selectCommune', JSON.stringify(item.commune))
+    
+}
 const show = useShow(); //call Show in show.js
 console.log('enfant', show.dataCommune);
 console.log("test rrrrrrrrrrrrrr", show.test)
@@ -249,12 +256,11 @@ input-placeholder {
     margin: 0 auto;
     border-radius: 100%;
 }
-
 .cercle h1 {
-    font-weight: 600;
+    font-size: 25px;
+    font-weight: 500;
     color: rgba(112, 105, 105, 0.74);
 }
-
 .add {
     width: 100px !important;
 }

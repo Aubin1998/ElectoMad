@@ -129,6 +129,11 @@
                   <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
                     v-model="listeElecteur.fokontany" />
                 </div>
+                <div class="inputCard">
+                  <h3 class="label">Poste Utilisateur</h3>
+                  <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
+                    v-model="listeElecteur.useer_id" />
+                </div>
 
 
 

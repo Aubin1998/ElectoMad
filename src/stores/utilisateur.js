@@ -28,7 +28,11 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 	const telephone = ref('xxxxxxx');
 	const dateInscription = ref('xxxxxxx');
 
-	
+	const region = ref('xxxxxxx');
+	const district = ref('xxxxxxx');
+	const commune = ref('xxxxxxx');
+	const fokontany = ref('xxxxxxx');
+
 
 	const user_id = ref('')
 	const utilisateurId = ref('')
@@ -60,6 +64,13 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 				dateNaissance.value = data.dateNaissance;
 				telephone.value = data.telephone;
 				dateInscription.value = data.dateInscription;
+
+				region.value = data.region;
+				district.value = data.district;
+				commune.value = data.commune;
+				fokontany.value = data.fokontany;
+
+
 				show.showAlert = true;
 
 				show.showAlertType = 'success';
@@ -107,6 +118,12 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 			dateNaissance: dateNaissance.value,
 			telephone: telephone.value,
 			dateInscription: dateInscription.value,
+
+			region: region.value,
+			district: district.value,
+			commune: commune.value,
+			fokontany: fokontany.value,
+
 			user_id: auth.userId
 
 		};
@@ -163,6 +180,12 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 	});
 
 	return {
+
+		region,
+		district,
+		commune,
+		fokontany,
+
 		utilisateurId,
 		user_id,
 		user,

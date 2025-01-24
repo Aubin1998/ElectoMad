@@ -1,15 +1,21 @@
 <template>
    <div class="contenaire" >
+    <div class="recherche">
+            <input v-model="searchQuery" class="input custom-input" type="text"
+                placeholder="Rechercher par nom de fokontany">
+
+        </div>
         <div class="form">
             <div class="itemForm">
 
-                <div class="formulaire" v-for="(item, index) in show.dataFokontany" :key="index">
+                <div class="formulaire" v-for="(item, index) in filteredData" :key="index">
                     <div class="cercle">
                         <h1>{{ item }}</h1>
                     </div>
                     <h4>{{ item }}</h4>
 
-                    <h3 class="btnAdd" @click="show.listePersonneFunc(item.nomFokontany, item.personne)">Voir</h3>
+                    <h3 class="btnAdd" @click="select(item)">Voir</h3> <!--//etape 1 -->
+
                 </div>
             </div>
 
@@ -22,11 +28,25 @@
  </template>
  
  <script setup>
-
- 
- 
- 
  import { useShow } from "@/stores/show";
+ import { ref, computed, onMounted, watch } from "vue";
+
+ const searchQuery = ref('');
+
+// Filtrer les données à partir de la recherche
+const filteredData = computed(() => {
+  let filtered = show.dataFokontany;
+  if (searchQuery.value) {
+    filtered = show.dataFokontany.filter(item => item.toLowerCase().includes(searchQuery.value.toLowerCase()));
+  }
+  return filtered;
+});
+//étape 2
+function select(item) {
+    show.listePersonneFunc(item)
+    localStorage.setItem('selectFokontany', JSON.stringify(item))
+    
+}
 
 const show = useShow(); //call Show in show.js
  </script>
@@ -63,6 +83,7 @@ const show = useShow(); //call Show in show.js
     /* Enlever le contour par défaut */
 
 }
+
 
 .input {
     padding: 10px;
@@ -233,10 +254,10 @@ input-placeholder {
 }
 
 .cercle h1 {
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
     color: rgba(112, 105, 105, 0.74);
 }
-
 .add {
     width: 100px !important;
 }

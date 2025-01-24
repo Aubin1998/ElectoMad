@@ -81,6 +81,17 @@ import WorkspaceSubSectionHistoriques from "@/components/subsections/WorkspaceSu
 
 import { useShow } from "@/stores/show";
 const show = useShow(); // call Show in show.js
+
+
+import { ref } from 'vue';
+
+// Gérez l'état de la section active
+const activeSection = ref(null);
+
+// Fonction pour définir la section active
+function setActiveSection(section) {
+  activeSection.value = section;
+}
 </script>
 <style scoped>
 .sideBar {
@@ -167,7 +178,7 @@ const show = useShow(); // call Show in show.js
 
 
 .itemSection:hover {
-    background-color: #3a4f63;
+    background-color: #21629f;
     transform: translate3d(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

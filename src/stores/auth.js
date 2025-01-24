@@ -180,6 +180,7 @@ export const useAuth = defineStore('Auth', () => {
 				show.showAlertType = "success";
 				show.showAlertMessage = "Déconnexion réussie";
 				document.cookie = `access_token=;path=/;max-age=0`;
+				
 				localStorage.removeItem("usersRole");
 				localStorage.removeItem("user");
 				localStorage.removeItem("anneeSelectionne");
