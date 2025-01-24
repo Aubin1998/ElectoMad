@@ -48,12 +48,10 @@ function logoutFunc() {
 function modifier() {
   isEditing.value = !isEditing.value
 
-  console.log('userId', auth.userId);
   auth.utilisateurId = JSON.parse(localStorage.getItem("utilisateur"))[0].id
   const user = JSON.parse(localStorage.getItem("user"))
 
   auth.userId = user.id
-  console.log('user', user);
 
   utilisateur.profession = 'administrateur'
   utilisateur.filiation = 'xxxxxx'

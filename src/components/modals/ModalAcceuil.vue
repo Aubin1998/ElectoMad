@@ -54,8 +54,7 @@ const utilisateur = useUtilisateur();
 const anneeElectorale = useAnneeElectorale();
 
 function voirDetails(item) {
-  console.log("Voir les détails");
-  console.log("item", item);
+  
   show.showAlert = true;
   show.showAlertType = 'success';
   show.showAlertMessage = `Année choisi ${item.annee}`

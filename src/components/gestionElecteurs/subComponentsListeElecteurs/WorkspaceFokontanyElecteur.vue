@@ -2,168 +2,84 @@
   <div class="list">
     <div class="titre">
       <h4 class="subtitle">
-       Liste de électeurs 
+        Liste des électeurs
       </h4>
-      <h4 class="number">{{ dataListePersonne.length }}</h4>
-      <h3 class="btnAdd add" @click="show.showModalAjoutElecteur=! show.showModalAjoutElecteur">Ajouter</h3>
+      <h4 class="number">{{ listeElecteur?.electeurs.length }}</h4>
+      <h3 class="btnAdd add" @click="show.showModalAjoutElecteur = !show.showModalAjoutElecteur">Ajouter</h3>
 
       <div class="itemContainer">
-        <input type="text" placeholder="Recherche par nom" class="input" />
+        <input v-model="searchQuery" type="text" placeholder="Recherche par nom" class="input" />
       </div>
     </div>
 
     <div class="scroll-container">
-      <div class="item" v-for="(item, index) in dataListePersonne" :key="index">
-        <h4>{{ item.id }}</h4>
+      <div class="item" v-for="(item, index) in filteredElecteurs" :key="index">
+        <h4>{{ item?.id }}</h4>
         <div class="subItem">
-          <h4>{{ item.nom }}</h4>
-          <h5>{{ item.sex }}</h5>
+          <h4>{{ item.nomComplet }}</h4>
+          <h5>{{ item.sexe }}</h5>
         </div>
         <div class="btn">
-          <div class="icon blue" @click="Voir(item)">
+          <div class="icon blue" @click="voir(item)">
             <i class="pi pi-eye" style="font-size: 18px; color: white;"></i>
           </div>
-          <div class="icon orange" @click="Modifier(item)">
+          <div class="icon orange" @click="modifier(item)">
             <i class="pi pi-pencil" style="font-size: 18px; color: white;"></i>
           </div>
-          <div class="icon red" @click="SupprimerCandidat(item)">
+          <div class="icon red" @click="supprimer(item)">
             <i class="pi pi-trash" style="font-size: 18px; color: white;"></i>
           </div>
         </div>
-
       </div>
     </div>
-
-   <!--modale ajout déplacé-->
-
-    <!--modale voir déplacé-->
- <!--modale Supprimer déplacé-->
-    
-
-    
-    </div>
-
-
-
-
+  </div>
 </template>
 
 <script setup>
+import { ref, computed } from 'vue';
 import { useShow } from "@/stores/show";
-const show = useShow(); //call Show in show.js
+import { uselisteElecteur } from "@/stores/listeElecteur";
 
-import {uselisteElecteur  } from "@/stores/listeElecteur";
-const listeElecteur = uselisteElecteur()
+const show = useShow();
+const listeElecteur = uselisteElecteur();
 
-function Voir(item) {
+// Déclaration de query de recherche
+const searchQuery = ref('');
+
+// Paramètres pour la requête axios
+const params = ref({
+  annee_electorale_id: localStorage.getItem('anneeSelectionne') ? JSON.parse(localStorage.getItem('anneeSelectionne')).id : null,
+  region: localStorage.getItem('region'),
+  district: localStorage.getItem('district'),
+  commune: localStorage.getItem('commune'),
+  fokontany: localStorage.getItem('fokontany')
+});
+
+const Voir = (item) => {
   show.showModalVoirElecteur = !show.showModalVoirElecteur
-  console.log('dssssssssssssss', show.voirElecteurData);
   listeElecteur.voirElecteurData = item
-
-
-  
 }
-function Modifier(item) {
+
+const Modifier = (item) => {
   show.showModalModifierElecteur = !show.showModalModifierElecteur
-  console.log('dssssssssssssss', show.showModalModifierElecteur);
-
   listeElecteur.modifierElecteurData = item
-  console.log('listeElecteur.modifierElecteurData', item);
-  
-}
-function SupprimerCandidat(item) {
-  show.showModalElecteurSupprimer = !show.showModalElecteurSupprimer
-  console.log('dssssssssssssss', show.showModalElecteurSupprimer);
-
-
-  
 }
 
+const Supprimer = (item) => {
+  show.showModalSupprimer = !show.showModalSupprimer
+  listeElecteur.supprimerElecteurData = item
+}
 
-const dataListePersonne = [
-  {
-    "id": "01",
-    "nom": "Aubin",
-    "sex": "Homme"
-  },
-  {
-    "id": "02",
-    "nom": "Claire",
-    "sex": "Femme"
-  },
-  {
-    "id": "03",
-    "nom": "Jean",
-    "sex": "Homme"
-  },
-  {
-    "id": "04",
-    "nom": "Sophie",
-    "sex": "Femme"
-  },
-  {
-    "id": "05",
-    "nom": "Michel",
-    "sex": "Homme"
-  },
-  {
-    "id": "06",
-    "nom": "Laura",
-    "sex": "Femme"
-  },
-  {
-    "id": "07",
-    "nom": "Paul",
-    "sex": "Homme"
-  },
-  {
-    "id": "08",
-    "nom": "Julie",
-    "sex": "Femme"
-  },
-  {
-    "id": "09",
-    "nom": "Antoine",
-    "sex": "Homme"
-  },
-  {
-    "id": "10",
-    "nom": "Marie",
-    "sex": "Femme"
-  },
-  {
-    "id": "11",
-    "nom": "Luc",
-    "sex": "Homme"
-  },
-  {
-    "id": "12",
-    "nom": "Emma",
-    "sex": "Femme"
-  },
-  {
-    "id": "13",
-    "nom": "Thomas",
-    "sex": "Homme"
-  },
-  {
-    "id": "14",
-    "nom": "Alice",
-    "sex": "Femme"
-  },
-  {
-    "id": "15",
-    "nom": "Hugo",
-    "sex": "Homme"
-  },
-  {
-    "id": "16",
-    "nom": "Nina",
-    "sex": "Femme"
-  }
-];
-
+// Filtrer les électeurs par nom complet basé sur la recherche
+const filteredElecteurs = computed(() => {
+  return listeElecteur.electeurs.filter(electeur =>
+    electeur.nomComplet.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
 </script>
+
+
+
 
 <style scoped>
 .contenaire {

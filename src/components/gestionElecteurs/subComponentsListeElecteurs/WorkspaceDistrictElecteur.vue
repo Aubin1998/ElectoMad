@@ -39,8 +39,7 @@ function select(item) {
     
 }
 const show = useShow(); //call Show in show.js
-console.log('enfant', show.dataCommune);
-console.log("test rrrrrrrrrrrrrr", show.test)
+
 
 const searchQuery = ref('');
 

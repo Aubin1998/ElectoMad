@@ -93,11 +93,7 @@
                 <input type="text" placeholder="Ajoutez une année électorale" class="input"
                   v-model="listeElecteur.voirElecteurData.annee_electorale_id" />
               </div>
-              <div class="inputCard">
-                <h3 class="label">User</h3>
-                <input type="text" placeholder="Ajoutez une année électorale" class="input"
-                  v-model="listeElecteur.voirElecteurData.electeur" />
-              </div>
+             
               <div class="btn">
                 <h3 class="" ></h3>
               </div>
@@ -139,13 +135,11 @@ const listeElecteur = uselisteElecteur();
 
 function Ajout() {
   listeElecteur.createElecteur()
-  console.log('qdqsdsq');
 
 
 }
 function voirDetails(item) {
-  console.log("Voir les détails");
-  console.log("item", item);
+
   show.showAlert = true;
   show.showAlertType = 'success';
   show.showAlertMessage = `Année choisi ${item.annee}`
@@ -164,8 +158,8 @@ function voirDetails(item) {
 function modifier() {
 
   //listeElecteur.updateElecteur(listeElecteur.modifierElecteurData.electeur.id, listeElecteur.modifierElecteurData)
-console.log('listeElecteur.voirElecteurData',listeElecteur.voirElecteurData);
-console.log('listeElecteur.voirElecteurData',listeElecteur.voirElecteurData);
+('listeElecteur.voirElecteurData',listeElecteur.voirElecteurData);
+
 
 }
 </script>

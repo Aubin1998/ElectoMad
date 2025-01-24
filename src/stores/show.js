@@ -256,7 +256,6 @@ export const useShow = defineStore('Show', () => {
 			showListeElecteurs.value = true
 			acceuil.value = false
 
-			console.log("ttttt", showListeElecteurs.value, showElecteur.value); // ty le misy blem
 
 		} else {
 			showListeElecteurs.value = false
@@ -416,7 +415,6 @@ export const useShow = defineStore('Show', () => {
 	function showProvinceAntsirananaFunc() {
 		showProvince.value = false
 		showProvinceAntsiranana.value = ! showProvinceAntsiranana.value
-		console.log("KARAKORY", showProvinceAntsiranana.value);
 
 	}
 
@@ -845,7 +843,6 @@ export const useShow = defineStore('Show', () => {
 	}
 	const districtData = ref([])
 	function showOptionProvince(option, District) {
-		console.log(option, District);
 		districtData.value = District
 		showProvinceElecteurFunc()
 
@@ -895,13 +892,11 @@ export const useShow = defineStore('Show', () => {
 		isFokontany.value = true
 		isOptionFokontany.value = true
 		isCommune.value = false
-		console.log("azertyuiop", selectedFokontany.value);
 
 	}
 
 	const isProvinceSpecial = ref(false)
 	function showOption(option) {
-		console.log(option);
 
 		// Réinitialisation des états
 		showProvinceElecteur.value = false;
@@ -939,10 +934,7 @@ export const useShow = defineStore('Show', () => {
 		}
 
 		// Debugging des valeurs après mise à jour
-		console.log('district', showProvinceElecteur.value);
-		console.log('commune', listeCommune.value);
-		console.log('fokontany', listeFokontany.value);
-		console.log('province', showProvince.value);
+		
 
 		// Mise à jour de l'état spécial
 		isProvinceSpecial.value = ! isDistrict.value && ! isCommune.value && ! isFokontany.value && ! isProvince.value;

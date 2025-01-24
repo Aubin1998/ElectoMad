@@ -76,7 +76,6 @@ const show = useShow(); //call Show in show.js
 const utilisateur = useUtilisateur(); //call Show in show.js
 const anneeElectorale = useAnneeElectorale();
 utilisateur.user = JSON.parse(localStorage.getItem("user"))
-console.log(utilisateur.user)
 </script>
 
 <style scoped>

@@ -318,6 +318,10 @@ const utilisateur = useUtilisateur();
 const listeCandidat = uselisteCandidat();
 const anneeElectorale = useAnneeElectorale();
 
+
+
+
+
 function voir(item) {
     listeCandidat.voirCandidatData = item
     show.showModalOeilCandidat = !show.showModalOeilCandidat
@@ -330,7 +334,6 @@ function supprimer(item) {
     listeCandidat.supprimerData = item
 }
 function modifier(item) {
-    console.log('azertyuiop', item);
     listeCandidat.modifierCandidatData = item
     show.showModalModifierCandidat = !show.showModalModifierCandidat
     listeCandidat.ModifierIdCandidat = item.candidat.id

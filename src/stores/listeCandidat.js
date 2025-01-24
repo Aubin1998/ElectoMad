@@ -103,13 +103,11 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				"Content-Type": "application/json"
 			}
 		}).then((response) => {
-			console.log('responseData', response.data);
 
 			if (response.status === 200) {
 				allCandidatData.value = response.data;
 				show.showAlert = true;
 				allListeCandidat.value = response.data.candidats;
-				console.log("type, ", response.data.candidats);
 
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Données des candidats récupérées avec succès';
@@ -172,11 +170,12 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			telephone: telephone.value,
 			dateInscription: dateInscription.value,
 
+
+
 			email: email.value
 		};
 
-		console.log('formData', formData);
-		console.log('aaaaaaa');
+		
 
 		show.showSpinner = true;
 		axios.post(`${URL}/api/candidat`, formData, {
@@ -186,7 +185,6 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				}`
 			}
 		}).then((response) => {
-			console.log('responseData', response.data);
 
 			if (response.status === 201) {
 				email.value = ''
@@ -201,7 +199,6 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				show.showAlertMessage = 'Échec de la création du candidat';
 			}
 			if (response.status === 500) {
-				console.log('qzsdefrtytujiklo');
 
 			}
 
@@ -214,7 +211,6 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			show.showAlertType = 'danger';
 			show.showAlertMessage = 'Erreur lors de la création du candidat';
 			console.error(err);
-			console.log('qzsdefrtytujiklo');
 			setTimeout(() => {
 				show.showAlert = false;
 				show.showAlertType = '';
@@ -264,7 +260,6 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			user_id:Modifieruser_id.value,
 		};
 
-		console.log('updatedData',updatedData);
 		
 
 		show.showSpinner = true;
@@ -277,7 +272,6 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 		}).then((response) => {
 			if (response.status === 200) {
 
-				console.log('responseData', response.data);
 				
 				getCandidats();
 				show.showAlert = true;
@@ -318,7 +312,6 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				"Content-Type": "application/json"
 			}
 		}).then((response) => {
-			console.log('responseData', response.status);
 
 			if (response.status === 200) {
 				getCandidats();

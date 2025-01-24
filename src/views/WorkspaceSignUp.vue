@@ -48,12 +48,6 @@ const auth = useAuth()
 
 
 function connecte() {
-/*  console.log('mandeha');
-  console.log('name', name.value);
-
-  console.log('email', email.value);
-
-  console.log('mdp', mdp.value);*/
 
   auth.register()
 

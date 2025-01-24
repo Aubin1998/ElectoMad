@@ -30,13 +30,6 @@ export const useAuth = defineStore('Auth', () => {
 
 		}
 
-		console.log('username', name.value);
-
-		console.log('email', email.value);
-
-		console.log('password', mdp.value);
-
-		console.log('role_id', '1');
 
 
 		axios.post(`${URL}/api/register`, formData, {
@@ -44,7 +37,6 @@ export const useAuth = defineStore('Auth', () => {
 				"Content-Type": "application/json"
 			}
 		}).then((response) => {
-			console.log(response.data);
 			if (response.status === 201) {
 				user.value = JSON.stringify(response.data.user)
 
@@ -96,16 +88,13 @@ export const useAuth = defineStore('Auth', () => {
 		}
 
 
-		console.log('email', email.value);
-
-		console.log('password', mdp.value);
+		
 
 		axios.post(`${URL}/api/login`, formData, {
 			headers: {
 				"Content-Type": "application/json"
 			}
 		}).then((response) => {
-			console.log("response login", response.data);
 			if (response.status === 200) {
 				show.showAlert = true
 				show.showAlertType = 'success'
@@ -113,9 +102,7 @@ export const useAuth = defineStore('Auth', () => {
 
 				userId.value = response.data.user.id
 				utilisateurId.value = response.data.utilisateur[0].id
-				console.log('userId', userId.value);
 
-				console.log('utilisateurId', utilisateurId.value);
 
 
 				document.cookie = `access_token=${
@@ -169,7 +156,6 @@ export const useAuth = defineStore('Auth', () => {
 				}`
 			}
 		}).then((response) => {
-			console.log("response", response.data);
 			if (response.status === 200) {
 				show.showModalLogout = false;
 
@@ -220,7 +206,6 @@ export const useAuth = defineStore('Auth', () => {
 				"Content-Type": "application/json"
 			}
 		}).then((response) => {
-			console.log("response login",response.data);
 			if (response.status === 200) {
 				show.showAlert = true
 				show.showAlertType = 'success'

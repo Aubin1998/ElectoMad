@@ -6346,11 +6346,8 @@ const data = [
     },
 
 ]
-console.log(typeof (data[0].district));
 
-/*data.map((item) => {
-    console.log(item);
-})*/
+
 </script>
 
 <style scoped>

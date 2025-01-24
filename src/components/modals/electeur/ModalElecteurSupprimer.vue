@@ -33,8 +33,7 @@ const utilisateur = useUtilisateur();
 const anneeElectorale = useAnneeElectorale();
 
 function voirDetails(item) {
-  console.log("Voir les détails");
-  console.log("item", item);
+ 
   show.showAlert = true;
   show.showAlertType = 'success';
   show.showAlertMessage = `Année choisi ${item.annee}`
@@ -93,6 +92,58 @@ function voirDetails(item) {
   overflow-y: hidden;
   align-items: center;
   padding: 10vh;
+}
+
+.contenaireModalSupp {
+    width: 25%;
+    height: 25vh;
+    background-color: rgb(84, 81, 81);
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 10px;
+}
+.supp {
+    color: #e1dddd;
+    padding: 0px 10px 20px 10px;
+}
+
+.suppNom {
+    color: white;
+    padding: 0px 10px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 10px;
+}
+
+.btnAdd {
+    color: #fff;
+    font-weight: 600;
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    background-color: rgb(34, 199, 83);
+    padding: 5px 20px;
+    border-radius: 5px;
+
+}
+
+.add {
+    width: 100px !important;
+
+}
+
+.cancel {
+    width: 100px !important;
+    background-color: rgb(192, 190, 190);
+    border: 2px solid rgb(34, 199, 83);
+    color: rgb(7, 185, 60) !important;
 }
 
 .content {

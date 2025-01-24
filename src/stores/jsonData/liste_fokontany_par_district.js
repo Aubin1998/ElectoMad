@@ -9,7 +9,6 @@ export const useListeFokontanyDistrictStore = defineStore('ListeFokontanyDistric
         try {
             const response = await axios.get('/liste_fokontany_par_district.json');
             listeFokontanyDistrict.value = response.data;
-            console.log('ListeFokontanyDistricts loaded:', response.data);
         } catch (error) {
             console.error('Failed to load listeFokontanyDistricts:', error);
         }

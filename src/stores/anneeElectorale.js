@@ -36,7 +36,6 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 				"Content-Type": "application/json"
 			}
 		}).then((response) => {
-			console.log('responseData', response.data);
 
 			if (response.status === 200) {
 				allanneeData.value = response.data
@@ -77,7 +76,6 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 		}
 
 
-		console.log('formData', formData);
 
 
 		show.showSpinner = true;
@@ -88,7 +86,6 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 				}`
 			}
 		}).then((response) => {
-			console.log('responseData', response.data);
 
 			if (response.status === 201) {
 				getAnnees()
@@ -176,7 +173,6 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 				"Content-Type": "application/json"
 			}
 		}).then((response) => {
-			console.log('responseData', response.status);
 
 			if (response.status === 204) {
 				show.showModalAnneSupprimer = false
@@ -211,7 +207,6 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 	}
 
 	onMounted(() => {
-		console.log('sdfjds');
 		getAnnees()
 	});
 

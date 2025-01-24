@@ -35,7 +35,6 @@ const listeCandidat = uselisteCandidat();
 const anneeElectorale = useAnneeElectorale();
 
 function accepter() {
-    console.log('listeCandidat.supprimerData', listeCandidat.supprimerData);
     listeCandidat.deleteCandidat(listeCandidat.supprimerData.candidat.id)
     
 }

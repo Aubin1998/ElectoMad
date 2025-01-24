@@ -48,7 +48,6 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 		}).then((response) => {
 			if (response.status === 200) {
 				const data = response.data;
-				console.log('data', data);
 
 				utilisateurId.value = response.data.id
 
@@ -129,8 +128,7 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 		};
 
 
-		console.log('formData uuuu', formData);
-		console.log('formData uuuu', auth.userId);
+		
 		axios.put(`${URL}/api/electeur/${
 			userId
 		}`, formData, {
@@ -138,7 +136,6 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 				"Content-Type": "application/json"
 			}
 		}).then((response) => {
-			console.log('response', response.data);
 
 			if (response.status === 200) {
 				show.showAlertType = 'success';
@@ -170,7 +167,6 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 
 
 	onMounted(() => {
-		console.log('sdfjds');
 
 
 		const user = JSON.parse(localStorage.getItem("user"));

@@ -299,14 +299,12 @@ function enregistrer() {
 function supprimer(item) {
     anneeElectorale.supprimerData = item
     show.showModalAnneSupprimer = true
-    console.log('anneeElectorale.supprimerData', anneeElectorale.supprimerData);
 
     // anneeElectorale.deleteAnnee(anneeElectorale.supprimerData.id)
 
 }
 
 function accepter() {
-    console.log('anneeElectorale.supprimerData', anneeElectorale.supprimerData);
     anneeElectorale.deleteAnnee(anneeElectorale.supprimerData.id)
 
 }
@@ -465,19 +463,19 @@ const dataListePersonne = [
 .contenaireModalSupp {
     width: 25%;
     height: 25vh;
-    background-color: white;
+    background-color: rgb(84, 81, 81);
     border-radius: 10px;
     margin: 0 auto;
     padding: 10px;
 }
 
 .supp {
-    color: #2c2b2b;
+    color: #e1dddd;
     padding: 0px 10px 20px 10px;
 }
 
 .suppNom {
-    color: #2c2b2b;
+    color: white;
     padding: 0px 10px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -718,12 +716,11 @@ input-placeholder {
     border-radius: 5px;
 
 }
-
 .cancel {
     width: 100px !important;
-    background-color: #fff !important;
+    background-color: rgb(192, 190, 190);
     border: 2px solid rgb(34, 199, 83);
-    color: rgb(34, 199, 83) !important;
+    color: rgb(7, 185, 60) !important;
 }
 
 .add {

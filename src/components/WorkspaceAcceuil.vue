@@ -13,9 +13,7 @@ import { useShow } from "@/stores/show";
 const show = useShow();
 
 function voirelection() {
-  console.log('btn');
   show.showAcceuilModala = !show.showAcceuilModala;
-  console.log("show.showAcceuilModala", show.showAcceuilModala);
 
 }
 </script>

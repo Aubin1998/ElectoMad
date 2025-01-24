@@ -9,7 +9,6 @@ export const useListeFokontanyCommuneDataStore = defineStore('ListeFokontanyComm
         try {
             const response = await axios.get('/liste_fokontany_par_commune_data.json');
             listeFokontanyCommuneData.value = response.data;
-            console.log('ListeFokontanyCommuneDatas loaded:', response.data);
         } catch (error) {
             console.error('Failed to load listeFokontanyCommuneDatas:', error);
         }

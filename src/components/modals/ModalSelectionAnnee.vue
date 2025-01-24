@@ -43,8 +43,7 @@ const utilisateur = useUtilisateur();
 const anneeElectorale = useAnneeElectorale();
 
 function voirDetails(item) {
-  console.log("Voir les détails");
-  console.log("item", item);
+ 
   localStorage.setItem('anneeSelectionne', JSON.stringify("item"));
 }
 </script>

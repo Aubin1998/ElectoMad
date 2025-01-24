@@ -9,7 +9,6 @@ export const useListeDistrictRegionStore = defineStore('ListeDistrictRegionStore
         try {
             const response = await axios.get('/liste_district_par_region.json');
             listeCommuneDistrict.value = response.data;
-            console.log('ListeDistrictRegions loaded:', response.data);
         } catch (error) {
             console.error('Failed to load listeDistrictRegions:', error);
         }

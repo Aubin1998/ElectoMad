@@ -10,7 +10,7 @@
 
 
             <div class="contenaireModal">
-              <h1 class="tritreModal">AJOUT NOUVEAU ELECTEUR</h1>
+              <h1 class="tritreModal">AJOUT NOUVEAUdfffffffffffffff ELECTEUR</h1>
 
 
               <div class="contenaire">
@@ -106,8 +106,7 @@
                   </select>
                 </div>
 
-
-                <div class="inputCard">
+<!-- <div class="inputCard">
                   <h3 class="label">Région</h3>
                   <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
                     v-model="listeElecteur.region" />
@@ -128,12 +127,9 @@
                   <h3 class="label">Fokontany</h3>
                   <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
                     v-model="listeElecteur.fokontany" />
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Poste Utilisateur</h3>
-                  <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
-                    v-model="listeElecteur.useer_id" />
-                </div>
+                </div>-->
+               
+               
 
 
 
@@ -185,13 +181,12 @@ const listeElecteur = uselisteElecteur();
 
 function Ajout() {
   listeElecteur.createElecteur()
-  console.log('qdqsdsq');
 
+console.log('ajoutElecteur');
 
 }
 function voirDetails(item) {
-  console.log("Voir les détails");
-  console.log("item", item);
+  
   show.showAlert = true;
   show.showAlertType = 'success';
   show.showAlertMessage = `Année choisi ${item.annee}`

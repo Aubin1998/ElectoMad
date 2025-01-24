@@ -9,7 +9,6 @@ export const useListeRegionStore = defineStore('useListeRegionStore', () => {
         try {
             const response = await axios.get('/liste_region.json');
             listeRegion.value = response.data;
-            console.log('ListeRegions loaded:', response.data);
         } catch (error) {
             console.error('Failed to load listeRegions:', error);
         }

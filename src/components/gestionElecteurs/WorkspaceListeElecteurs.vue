@@ -89,16 +89,12 @@ const dataJSON = computed(() => {
 });
 
 watch(dataJSON, (newDataJSON) => {
-    console.log('New data in JSON:', newDataJSON);
 }, { immediate: true });
 
-console.log('Data in JSON format:', dataJSON.value);
 
 watch(data, (newData) => {
-    console.log('New data in component:', newData);
 }, { immediate: true });
 
-console.log('Data in component:', data.value);
 </script>
 
 <style scoped>
