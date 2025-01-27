@@ -19,7 +19,7 @@
                     <h3>{{ item.descriptionAnnee }}</h3>
                   </div>
                   <div class="bouton">
-                    <h4 @click="voirDetails(item)">fjsqjVoir</h4>
+                    <h4 @click="voirDetails(item)">Voir</h4>
                   </div>
                 </div>
               </template>

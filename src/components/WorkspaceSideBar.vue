@@ -56,11 +56,12 @@
                         <WorkspaceSubSectionHistoriques v-if="show.showHistorique" />
                     </div>
                     <!-- For current election -->
-                    <div class="itemSection" :class="{ active: show.showElectionEnCoursActive }">
+                 <!-- <div class="itemSection" :class="{ active: show.showElectionEnCoursActive }">
                         <i class="pi pi-clock" style="font-size: 18px; color: white;"></i>
                         <h4 @click="show.setSelectSideBar('Election en cours')">Election en cours</h4>
                         <WorkspaceSubSectionElectionEnCours v-if="show.showElectionEnCours" />
-                    </div>
+                    </div>-->  
+                    
                 </div>
 
 

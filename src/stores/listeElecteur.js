@@ -6,41 +6,36 @@ import {useUrl} from "@/stores/url";
 import {useAuth} from "./auth";
 import {useUtilisateur} from "./utilisateur";
 
-
 export const uselisteElecteur = defineStore('ListeElecteur', () => {
 	const show = useShow();
 	const URL = useUrl().url;
 	const auth = useAuth();
 	const utilisateur = useUtilisateur();
 
-
 	const electeur_id = ref();
-	const nomComplet = ref()
-	const dateNaissance = ref()
-	const lieuNaissance = ref()
-	const sexe = ref()
-	const filiation = ref()
-	const numeroCIN = ref()
-	const dateDelivreCIN = ref()
-	const lieuDelivreCIN = ref()
-	const adresse = ref()
-	const profession = ref()
-	const carteElecteur = ref()
-	const telephone = ref()
-	const dateInscription = ref()
+	const nomComplet = ref('');
+	const dateNaissance = ref('');
+	const lieuNaissance = ref('');
+	const sexe = ref('');
+	const filiation = ref('');
+	const numeroCIN = ref('');
+	const dateDelivreCIN = ref('');
+	const lieuDelivreCIN = ref('');
+	const adresse = ref('');
+	const profession = ref('');
+	const carteElecteur = ref('');
+	const telephone = ref('');
+	const dateInscription = ref('');
 
+	const region = ref('');
+	const district = ref('');
+	const commune = ref('');
+	const fokontany = ref('');
 
-	const region = ref()
-	const district = ref()
-	const commune = ref()
-	const fokontany = ref()
-
-
-	const user_id = ref()
-	const username = ref()
-	const email = ref()
-	const password = ref()
-
+	const user_id = ref('');
+	const username = ref('');
+	const email = ref('');
+	const password = ref('');
 
 	const voirData = ref();
 	const modifierData = ref();
@@ -54,42 +49,41 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 	const modifierElecteurData = ref();
 	const voirElecteurData = ref();
 
+	const Modifierelecteur_id = ref('');
+	const ModifiernomComplet = ref('');
+	const Modifierprofession = ref('');
+	const Modifieradresse = ref('');
+	const ModifiernumeroCIN = ref('');
+	const ModifierdateDelivreCIN = ref('');
+	const ModifierlieuDelivreCIN = ref('');
+	const ModifiercarteElecteur = ref('');
+	const Modifiersexe = ref('');
+	const ModifierlieuNaissance = ref('');
+	const Modifierfiliation = ref('');
+	const ModifierdateNaissance = ref('');
+	const Modifiertelephone = ref('');
+	const ModifierdateInscription = ref('');
+	const Modifierannee_electorale_id = ref('');
 
-	const Modifierelecteur_id = ref('')
-	const ModifiernomComplet = ref('')
-	const Modifierprofession = ref('')
-	const Modifieradresse = ref('')
-	const ModifiernumeroCIN = ref('')
-	const ModifierdateDelivreCIN = ref('')
-	const ModifierlieuDelivreCIN = ref('')
-	const ModifiercarteElecteur = ref('')
-	const Modifiersexe = ref('')
-	const ModifierlieuNaissance = ref('')
-	const Modifierfiliation = ref('')
-	const ModifierdateNaissance = ref('')
-	const Modifiertelephone = ref('')
-	const ModifierdateInscription = ref('')
-	const Modifierannee_electorale_id = ref('')
+	const Modifierregion = ref('');
+	const Modifierdistrict = ref('');
+	const Modifiercommune = ref('');
+	const Modifierfokontany = ref('');
 
-	const Modifierregion = ref('')
-	const Modifierdistrict = ref('')
-	const Modifiercommune = ref('')
-	const Modifierfokontany = ref('')
+	const allListeElecteur = ref('');
+	const Modifieruser_id = ref('');
 
+	const electeurs = ref([]);
 
-	const allListeElecteur = ref('')
-	const Modifieruser_id = ref('')
-
-	const electeurs = ref([])
-	function getElecteurs() { // Obtenez la valeur d'annee_electorale_id à partir du localStorage
+	function getElecteurs() {
 		const anneeData = JSON.parse(localStorage.getItem('anneeSelectionne'));
+		console.log('anneeData', anneeData);
 
 
-		if (anneeData && anneeData.id) {
 			const anneeElectoraleId = anneeData.id;
 			show.showSpinner = true;
 
-			axios.get(`${URL}/api/electeurs/${anneeData.id}`, {
+			axios.get(`${URL}/api/electeurs/${anneeElectoraleId}`, {
 				headers: {
 					"Content-Type": "application/json"
 				},
@@ -102,7 +96,8 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 				}
 			}).then((response) => {
 				console.log('responseData', response.data);
-				electeurs.value = response.data
+				electeurs.value = response.data;
+
 				if (response.status === 200) {
 					allElecteurData.value = response.data;
 					show.showAlert = true;
@@ -134,18 +129,13 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			}). finally(() => {
 				show.showSpinner = false;
 			});
-		} else {
-			console.error('annee_electorale_id est null ou id est indéfini');
-		}
+
 	}
 
-
 	function createElecteur() {
-		console.log(" localStorage.getItem('region')", localStorage.getItem('region'));
+		console.log("localStorage.getItem('region')", localStorage.getItem('region'));
 
-
-	let formData = {
-
+		let formData = {
 			nomComplet: nomComplet.value,
 			profession: profession.value,
 			adresse: adresse.value,
@@ -166,11 +156,9 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			district: JSON.parse(localStorage.getItem('selectDistrict')),
 			commune: JSON.parse(localStorage.getItem('selectCommune')),
 			fokontany: JSON.parse(localStorage.getItem('selectFokontany'))
-
 		};
 
 		console.log('formDataElecteur Electeur', formData);
-		console.log('aaaaaaa');
 
 		show.showSpinner = true;
 		axios.post(`${URL}/api/electeur`, formData, {
@@ -181,9 +169,8 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			}
 		}).then((response) => {
 			console.log('responseData', response.data);
-
 			if (response.status === 201) {
-				email.value = ''
+				email.value = '';
 				getElecteurs();
 
 				show.showAlert = true;
@@ -211,16 +198,10 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 				district.value = '';
 				commune.value = '';
 				fokontany.value = '';
-
-
 			} else {
 				show.showAlert = true;
 				show.showAlertType = 'warning';
 				show.showAlertMessage = 'Échec de la création électeur';
-			}
-			if (response.status === 500) {
-				console.log('qzsdefrtytujiklo');
-
 			}
 
 			setTimeout(() => {
@@ -232,7 +213,7 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			show.showAlertType = 'danger';
 			show.showAlertMessage = 'Erreur lors de la création électeur';
 			console.error(err);
-			console.log('qzsdefrtytujiklo');
+
 			setTimeout(() => {
 				show.showAlert = false;
 				show.showAlertType = '';
@@ -244,9 +225,7 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 	}
 
 	function updateElecteur(id, data) {
-
 		let updatedData = {
-
 			electeur_id: Modifierelecteur_id.value,
 			nomComplet: ModifiernomComplet.value,
 			profession: Modifierprofession.value,
@@ -270,12 +249,9 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			district: Modifierdistrict.value,
 			commune: Modifiercommune.value,
 			fokontany: Modifierfokontany.value
-
-
 		};
 
 		console.log('updatedData', updatedData);
-
 
 		show.showSpinner = true;
 		axios.put(`${URL}/api/electeur/${id}`, updatedData, {
@@ -286,12 +262,10 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			}
 		}).then((response) => {
 			if (response.status === 200) {
-
 				console.log('responseData', response.data);
 
-				getElecteurs();
 				show.showAlert = true;
-				show.showModalModifierElecteur = false
+				show.showModalModifierElecteur = false;
 
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Electeur mis à jour avec succès';
@@ -331,7 +305,6 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			console.log('responseData', response.status);
 
 			if (response.status === 200) {
-				getElecteurs();
 				show.showAlert = true;
 				show.showModalSupprimer = false;
 				show.showAlertType = 'success';
@@ -401,7 +374,6 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 		password,
 		region,
 
-
 		Modifierelecteur_id,
 		ModifiernomComplet,
 		Modifierprofession,
@@ -417,7 +389,6 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 		Modifiertelephone,
 		ModifierdateInscription,
 		Modifieruser_id,
-
 
 		supprimerData,
 		enregistrerData,

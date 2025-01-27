@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted  } from 'vue';
 import { useShow } from "@/stores/show";
 import { uselisteElecteur } from "@/stores/listeElecteur";
 
@@ -45,8 +45,6 @@ const listeElecteur = uselisteElecteur();
 
 // Déclaration de query de recherche
 const searchQuery = ref('');
-
-// Paramètres pour la requête axios
 const params = ref({
   annee_electorale_id: localStorage.getItem('anneeSelectionne') ? JSON.parse(localStorage.getItem('anneeSelectionne')).id : null,
   region: localStorage.getItem('region'),
@@ -55,19 +53,20 @@ const params = ref({
   fokontany: localStorage.getItem('fokontany')
 });
 
-const Voir = (item) => {
-  show.showModalVoirElecteur = !show.showModalVoirElecteur
-  listeElecteur.voirElecteurData = item
+
+const voir = (item) => {
+  show.showModalVoirElecteur = !show.showModalVoirElecteur;
+  listeElecteur.voirElecteurData = item;
 }
 
-const Modifier = (item) => {
-  show.showModalModifierElecteur = !show.showModalModifierElecteur
-  listeElecteur.modifierElecteurData = item
+const modifier = (item) => {
+  show.showModalModifierElecteur = !show.showModalModifierElecteur;
+  listeElecteur.modifierElecteurData = item;
 }
 
-const Supprimer = (item) => {
-  show.showModalSupprimer = !show.showModalSupprimer
-  listeElecteur.supprimerElecteurData = item
+const supprimer = (item) => {
+  show.showModalSupprimer = !show.showModalSupprimer;
+  listeElecteur.supprimerElecteurData = item;
 }
 
 // Filtrer les électeurs par nom complet basé sur la recherche
@@ -76,10 +75,9 @@ const filteredElecteurs = computed(() => {
     electeur.nomComplet.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
+
+
 </script>
-
-
-
 
 <style scoped>
 .contenaire {
@@ -273,16 +271,7 @@ input-placeholder {
 .btnAdd h3:hover {
   background-color: rgb(101, 230, 140);
 
-
 }
-
-
-
-
-
-
-
-
 
 .modal {
   width: 100%;

@@ -4,7 +4,7 @@
         <div class="link">
             <h3 class="liking" @click="show.showacceuilFunc">Acceuil</h3>
             <h3 class="liking">Utilisateur</h3>
-            <h3 class="liking">Paramètre</h3>
+          <!--<h3 class="liking">Paramètre</h3>-->  
         </div>
 
         <div class="selected-year">
@@ -14,14 +14,15 @@
 
         <div class="profil">
             <div class="notif">
-                <div class="notification show">
+              <!-- <div class="notification show">
                     <i class="pi pi-bell " style="font-size: 18px; color: white;"></i>
                     <h4 class="text">Notification</h4>
                 </div>
                 <div class="Mail show">
                     <i class="pi pi-envelope" style="font-size: 18px; color: white;"></i>
                     <h4 class="text">Mail</h4>
-                </div>
+                </div>--> 
+                
             </div>
 
             <div class="photo" @click="show.showDescFunc()">
