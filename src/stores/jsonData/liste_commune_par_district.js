@@ -9,6 +9,7 @@ export const useListeCommuneDistrictStore = defineStore('ListeCommuneDistrictSto
         try {
             const response = await axios.get('/liste_commune_par_district.json');
             listeCommuneDistrict.value = response.data;
+            
         } catch (error) {
             console.error('Failed to load listeCommuneDistricts:', error);
         }

@@ -3,9 +3,18 @@
     <div class="navBar">
         <div class="link">
             <h3 class="liking" @click="show.showacceuilFunc">Acceuil</h3>
-            <h3 class="liking">Utilisateur</h3>
-          <!--<h3 class="liking">Paramètre</h3>-->  
+            <h3 class="liking"   @click="show.setOption('Liste des utilisateurs')">Utilisateurs</h3>
+            <!--<h3 class="liking">Paramètre</h3>-->
+            
         </div>
+
+
+         <!-- For users -->
+         <!-- <div class="itemSection" @click="show.setOption('Liste des utilisateurs')">
+                        <i class="pi pi-sitemap" style="font-size: 18px; color: white;"></i>
+
+                        <h4 class="text">Utilisateurs</h4>
+                    </div> -->
 
         <div class="selected-year">
             <span class="annee">{{ anneeElectorale?.anneeElectoraleChoisi?.annee }}</span> <span class="description">{{
@@ -14,20 +23,24 @@
 
         <div class="profil">
             <div class="notif">
-              <!-- <div class="notification show">
+                <!-- <div class="notification show">
                     <i class="pi pi-bell " style="font-size: 18px; color: white;"></i>
                     <h4 class="text">Notification</h4>
                 </div>
                 <div class="Mail show">
                     <i class="pi pi-envelope" style="font-size: 18px; color: white;"></i>
                     <h4 class="text">Mail</h4>
-                </div>--> 
-                
+                </div>-->
+
+            </div>
+            <div class="profile-container">
+                <span class="admin-title">Administrateur</span>
+                <div class="photo" @click="show.showDescFunc()">
+                    <img src="/profil.png" alt="Photo de profil" class="photo-profile">
+                </div>
             </div>
 
-            <div class="photo" @click="show.showDescFunc()">
-                <img src="/profil.png" alt="Photo de profil" class="photo-profile">
-            </div>
+
             <div class="showProfil" v-if="show.showDesc">
                 <div class="sectionItem">
                     <div class="closeForm" @click="show.showDesc = !show.showDesc">
@@ -67,7 +80,7 @@
 
 <script setup>
 import "primeicons/primeicons.css"
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 
 import { useShow } from "@/stores/show";
@@ -76,12 +89,21 @@ import { useAnneeElectorale } from "@/stores/anneeElectorale";
 const show = useShow(); //call Show in show.js
 const utilisateur = useUtilisateur(); //call Show in show.js
 const anneeElectorale = useAnneeElectorale();
-utilisateur.user = JSON.parse(localStorage.getItem("user"))
+utilisateur.user = JSON.parse(localStorage.getItem("user"));
+
+
+onMounted(() => {
+    anneeElectorale.anneeElectoraleChoisi = JSON.parse(localStorage.getItem('anneeSelectionne'))
+
+
+})
+
+
 </script>
 
 <style scoped>
 .navBar {
-    height: 10vh;
+    height: 8vh;
     background-color: #434955;
     display: flex;
     justify-content: space-between;
@@ -270,6 +292,21 @@ utilisateur.user = JSON.parse(localStorage.getItem("user"))
 .photo-profile:hover {
     transform: scale(1.2);
 }
+
+.admin-title {
+    position: relative;
+    left: -30px;
+    /* Ajustez cette valeur selon vos besoins */
+    font-size: 16px;
+    /* Ajustez la taille de la police selon vos besoins */
+    font-weight: bold;
+    /* Pour rendre le texte en gras */
+}
+.profile-container {
+  display: flex;
+  align-items: center;
+}
+
 
 @keyframes bounce {
 

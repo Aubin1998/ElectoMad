@@ -139,7 +139,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 
 	function createCandidat() {
 		let formData = {
-			
+
 			declarationHonneurBiens: declarationHonneurBiens.value,
 			certificatNationalite: certificatNationalite.value,
 			declarationHonneurImpôts: declarationHonneurImpôts.value,
@@ -154,7 +154,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			certificatResidence: certificatResidence.value,
 			casierJudiciaire: casierJudiciaire.value,
 			copieActeNaissance: copieActeNaissance.value,
-			
+
 			annee_electorale_id: annee_electorale_id.value,
 			nomComplet: nomComplet.value,
 			profession: profession.value,
@@ -171,11 +171,11 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			dateInscription: dateInscription.value,
 
 
-
 			email: email.value
 		};
 
-		
+		console.log('candidat', formData);
+
 
 		show.showSpinner = true;
 		axios.post(`${URL}/api/candidat`, formData, {
@@ -190,6 +190,9 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				email.value = ''
 				getCandidats();
 
+				console.log('ytydtyd');
+
+
 				show.showAlert = true;
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Candidat créé avec succès';
@@ -198,9 +201,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				show.showAlertType = 'warning';
 				show.showAlertMessage = 'Échec de la création du candidat';
 			}
-			if (response.status === 500) {
-
-			}
+			if (response.status === 500) {}
 
 			setTimeout(() => {
 				show.showAlert = false;
@@ -224,7 +225,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 	function updateCandidat(id, data) {
 
 		let updatedData = {
-			id : ModifierIdCandidat.value,
+			id: ModifierIdCandidat.value,
 			declarationHonneurBiens: ModifierdeclarationHonneurBiens.value,
 			certificatNationalite: ModifiercertificatNationalite.value,
 			declarationHonneurImpôts: ModifierdeclarationHonneurImpôts.value,
@@ -257,10 +258,9 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			dateInscription: ModifierdateInscription.value,
 
 			email: Modifieremail.value,
-			user_id:Modifieruser_id.value,
+			user_id: Modifieruser_id.value
 		};
 
-		
 
 		show.showSpinner = true;
 		axios.put(`${URL}/api/candidat/${id}`, updatedData, {
@@ -272,7 +272,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 		}).then((response) => {
 			if (response.status === 200) {
 
-				
+
 				getCandidats();
 				show.showAlert = true;
 				show.showModalModifierCandidat = false

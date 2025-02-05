@@ -1,53 +1,50 @@
 <template>
-  <div class="login">
-
-    <div class="container">
-      <div class="formulaire">
-        <h3 class="bienvenu">Se connecter</h3>
-        <h4 class="subtitle">Entrez vos informations</h4>
-        <div class="inputForm">
-          <div class="itemContainer">
-            <input type="text" placeholder="Votre email" class="input" v-model="auth.email" />
-          </div>
-          <div class="itemContainer">
-            <input type="text" placeholder="Votre Mot de passe" class="input" v-model="auth.mdp"   />
-          </div>
-
+  <div class="login ">
+    <button @click="goToAcceuil()" class="bg-blue-500 text-white absolute top-2 right-5 px-5 rounded py-2">
+      Acceuil
+    </button>
+    <div class="bg-gray-700 rounded-lg text-white py-20 px-10">
+      <h3 class="bienvenu text-center">Se connecter</h3>
+      <h4 class="subtitle text-center">Entrez vos informations</h4>
+      <div class="inputForm">
+        <div class="itemContainer">
+          <input type="text" placeholder="Votre email" class="input !w-80" v-model="auth.email" />
         </div>
-        <div class="btnlogin" @click="connecte()">
-          <h3>Se connecter</h3>
+        <div class="itemContainer">
+          <input type="text" placeholder="Votre Mot de passe" class="input !w-80" v-model="auth.mdp" />
         </div>
-        <h5>
-          <span @click="show.showSingUpFunc()" class="forgotPass">Mot de passe oublié ?</span>
-        </h5>
+
       </div>
-      <div class="formulaire1">
-        <div class="contain">
-          <h3 class="bienvenu">Inscription</h3>
-
-          <h5>
-            Veuillez vous inscrire
-          </h5>
-          <div class="btnInscrit" @click="show.showSingUpFunc">
-            <h3>S'inscrire</h3>
-          </div>
-        </div>
+      <div class="btnlogin" @click="connecte()">
+        <h3>Se connecter</h3>
       </div>
+      <h5>
+        <span @click="show.showSingUpFunc()" class="forgotPass">Mot de passe oublié ?</span>
+      </h5>
+      <p class=" mt-2 text-xs text-gray-400 text-center">Vous n'avez pas de compte ? <b @click="show.showSingUpFunc"
+          class="text-blue-500 cursor-pointer">S'incrire ici</b></p>
     </div>
   </div>
 </template>
-
 <script setup>
 import { useShow } from '@/stores/show';
 import { useAuth } from "@/stores/auth";
-import { ref } from 'vue';
-const show = useShow()
-const auth = useAuth()
+import { useRouter } from 'vue-router';
+
+const show = useShow();
+const auth = useAuth();
+const router = useRouter();
 
 function connecte() {
+  auth.login();
+}
 
-  auth.login()
-  }
+function goToAcceuil() {
+  show.showUser = true;
+  router.push('/');
+  show.showDashboard = false;
+  show.showLogin = false;
+}
 </script>
 
 <style scoped>

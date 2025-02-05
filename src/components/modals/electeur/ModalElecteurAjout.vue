@@ -10,7 +10,7 @@
 
 
             <div class="contenaireModal">
-              <h1 class="tritreModal">AJOUT NOUVEAUdfffffffffffffff ELECTEUR</h1>
+              <h1 class="tritreModal">AJOUT NOUVEAU ELECTEUR</h1>
 
 
               <div class="contenaire">
@@ -61,8 +61,10 @@
                   <h3 class="label">Date de délivrance</h3>
                   <VueDatePicker v-model="listeElecteur.dateDelivreCIN" placeholder="Insérez une date de naissance"
                     class="input" />
-
                 </div>
+
+
+                
                 <div class="inputCard">
                   <h3 class="label">Lieu de délivrance CIN</h3>
                   <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input"
@@ -94,19 +96,20 @@
 
 
 
-                <div class="inputCard">
-                  <h3 class="label">Année électorale</h3>
+                  <!-- <div class="inputCard">
+                    <h3 class="label">Année électorale</h3>
+                    <h3>{{  }}</h3>
 
 
-                  <select class="annee" v-model="listeElecteur.annee_electorale_id">
-                    <option selected disabled value=""> sélectionner une année électorale</option>
-                    <option v-for="annee in anneeElectorale.allanneeData" :key="annee.id" :value="annee.id">
-                      {{ annee.annee }} - {{ annee.descriptionAnnee }}
-                    </option>
-                  </select>
-                </div>
+                    <select class="annee" v-model="listeElecteur.annee_electorale_id">
+                      <option selected disabled value=""> sélectionner une année électorale</option>
+                      <option v-for="annee in anneeElectorale.allanneeData" :key="annee.id" :value="annee.id">
+                        {{ annee.annee }} - {{ annee.descriptionAnnee }}
+                      </option>
+                    </select>
+                  </div> -->
 
-<!-- <div class="inputCard">
+                <!-- <div class="inputCard">
                   <h3 class="label">Région</h3>
                   <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
                     v-model="listeElecteur.region" />
@@ -128,8 +131,8 @@
                   <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
                     v-model="listeElecteur.fokontany" />
                 </div>-->
-               
-               
+
+
 
 
 
@@ -182,11 +185,11 @@ const listeElecteur = uselisteElecteur();
 function Ajout() {
   listeElecteur.createElecteur()
 
-console.log('ajoutElecteur');
+  console.log('ajoutElecteur');
 
 }
 function voirDetails(item) {
-  
+
   show.showAlert = true;
   show.showAlertType = 'success';
   show.showAlertMessage = `Année choisi ${item.annee}`
@@ -270,7 +273,7 @@ function voirDetails(item) {
   height: 40px;
   border-radius: 100%;
   position: absolute;
-  right: 150px;
+  right: 160px;
   top: 90px;
   align-items: center;
   display: flex;
@@ -439,6 +442,10 @@ function voirDetails(item) {
   color: #fafbfd;
   background-color: #3c4c6d09;
 
+}
+
+.p {
+  background-color: red;
 }
 
 .input1 {

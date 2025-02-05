@@ -405,6 +405,10 @@ const filteredCandidats = computed(() => {
     align-items: center;
 }
 
+option {
+    background-color: rgba(53, 48, 48, 0.452);
+}
+
 .scroll-container {
     max-height: 100%;
     /* Limite la hauteur */
@@ -526,7 +530,7 @@ const filteredCandidats = computed(() => {
     right: 70px;
     bottom: 2px;
 
-   
+
 }
 
 .subtitle {

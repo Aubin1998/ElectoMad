@@ -12,6 +12,11 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 	const user = ref({})
 
 
+	const anneeSelected = ref('')
+	const regionSelected = ref('')
+	const districtSelected = ref('')
+
+
 	const nom = ref('xxxxxxx')
 	const prenom = ref('xxxxxxx')
 	const nomComplet = ref('xxxxxxx');
@@ -36,6 +41,7 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 
 	const user_id = ref('')
 	const utilisateurId = ref('')
+	const allElecteurs = ref()
 
 
 	function getUserInfo(userId) {
@@ -128,7 +134,6 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 		};
 
 
-		
 		axios.put(`${URL}/api/electeur/${
 			userId
 		}`, formData, {
@@ -165,6 +170,92 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 		});
 	}
 
+	async function createUtilisateur(formData) {
+		show.showSpinner = true;
+
+		try {
+			const response = await axios.post(`${URL}/api/electeur/user`, formData, {
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+
+			if (response.status === 201) {
+				show.showAlertType = 'success';
+				show.showAlertMessage = 'Utilisateur et électeur créés avec succès';
+				await getElecteur(formData.annee_electorale_id)
+			} else {
+				show.showAlertType = 'warning';
+				show.showAlertMessage = 'Échec de la création de l\'utilisateur et de l\'électeur';
+			}
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		} catch (err) {
+			show.showAlertType = 'danger';
+			show.showAlertMessage = 'Erreur lors de la création de l\'utilisateur et de l\'électeur';
+			console.error(err);
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		} finally {
+			show.showSpinner = false;
+		}
+	}
+
+
+	async function getElecteur(anneeId) {
+		show.showSpinner = true;
+
+		try {
+			const response = await axios.get(`${URL}/api/electeurs/annee/${anneeId}`, {
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+
+			if (response.status === 200) {
+				const data = response.data;
+				console.log('data', data);
+				allElecteurs.value = Object.values(response.data.electeurs)
+				
+
+
+				show.showAlert = true;
+				show.showAlertType = 'success';
+				show.showAlertMessage = 'Informations récupérées avec succès';
+			} else {
+				show.showAlert = true;
+				show.showAlertType = 'warning';
+				show.showAlertMessage = 'Échec de la récupération des informations';
+			}
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		} catch (err) {
+			show.showAlertType = 'danger';
+			show.showAlertMessage = 'Erreur lors de la récupération des informations';
+			console.error(err);
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		} finally {
+			show.showSpinner = false;
+		}
+	}
+
 
 	onMounted(() => {
 
@@ -176,6 +267,9 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 	});
 
 	return {
+		anneeSelected,
+		regionSelected,
+		districtSelected,
 
 		region,
 		district,
@@ -194,12 +288,15 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 		dateDelivreCIN,
 		lieuDelivreCIN,
 		carteElecteur,
+		createUtilisateur,
+		getElecteur,
 		sexe,
 		lieuNaissance,
 		filiation,
 		dateNaissance,
 		telephone,
 		dateInscription,
+		allElecteurs,
 		getUserInfo,
 		updateUserInfo
 	};

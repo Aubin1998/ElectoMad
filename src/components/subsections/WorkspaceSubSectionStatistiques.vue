@@ -6,12 +6,12 @@
 <div class="subItem" @click="show.setOption('Nombre total inscrit des électeurs')">
     <h4>Vérification des électeurs</h4>
 </div>
-<div class="subItem" @click="show.setOption('Nombre de bureaux de vote actifs')">
+<!-- <div class="subItem" @click="show.setOption('Nombre de bureaux de vote actifs')">
     <h4>Nombre de bureaux de vote actifs</h4>
-</div>
-<div class="subItem" @click="show.setOption('Taux de participation global')">
+</div> -->
+<!-- <div class="subItem" @click="show.setOption('Taux de participation global')">
     <h4>Taux de participation global</h4>
-</div>
+</div> -->
 <div class="subItem" @click="show.setOption('Nombre total de votes enregistrés')">
     <h4>Nombre total de votes enregistrés</h4>
 </div>

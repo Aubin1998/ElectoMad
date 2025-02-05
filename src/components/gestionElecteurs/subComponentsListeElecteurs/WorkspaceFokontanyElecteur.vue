@@ -12,6 +12,15 @@
       </div>
     </div>
 
+
+    <!-- <div v-if="listeElecteur?.electeurs.length === 0">
+      <h1>Aucun electeur trouvé</h1>
+    </div> -->
+
+    <div v-if="filteredElecteurs.length === 0" class="no-results">
+      <h4 class="message">Aucune année trouvée.</h4>
+    </div>
+
     <div class="scroll-container">
       <div class="item" v-for="(item, index) in filteredElecteurs" :key="index">
         <h4>{{ item?.id }}</h4>
@@ -36,7 +45,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted  } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useShow } from "@/stores/show";
 import { uselisteElecteur } from "@/stores/listeElecteur";
 
@@ -65,8 +74,14 @@ const modifier = (item) => {
 }
 
 const supprimer = (item) => {
-  show.showModalSupprimer = !show.showModalSupprimer;
+  show.showModalSupprimerElecteur = !show.showModalSupprimerElecteur;
   listeElecteur.supprimerElecteurData = item;
+  console.log("sup",  listeElecteur.supprimerElecteurData);
+
+
+
+
+
 }
 
 // Filtrer les électeurs par nom complet basé sur la recherche
@@ -76,7 +91,9 @@ const filteredElecteurs = computed(() => {
   );
 });
 
-
+onMounted(() => {
+  listeElecteur.getElecteurs();
+});
 </script>
 
 <style scoped>
@@ -199,6 +216,24 @@ const filteredElecteurs = computed(() => {
   background-color: rgb(241, 169, 74)
 }
 
+.message {
+  display: flex;
+  justify-content: center;
+  /* Centre horizontalement */
+  align-items: center;
+  /* Centre verticalement */
+  height: 100%;
+  /* Assure que le conteneur prend toute la hauteur disponible */
+  text-align: center;
+  /* Centre le texte à l'intérieur de l'élément */
+  margin: 20px 0;
+  /* Ajoute un espacement au-dessus et en dessous */
+  color: rgb(231, 216, 216);
+  /* Couleur du texte pour le message */
+  font-size: 18px;
+  /* Taille de la police */
+}
+
 .red {
   background-color: rgb(241, 74, 74)
 }
@@ -209,7 +244,7 @@ const filteredElecteurs = computed(() => {
   border-radius: 5px;
   border: 1px solid #aaaac5;
   background-color: #3c4c6d09;
-  color: #2c2b2b;
+  color: #aca5a5;
 }
 
 input-placeholder {

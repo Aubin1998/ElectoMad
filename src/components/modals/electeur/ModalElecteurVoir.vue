@@ -11,87 +11,97 @@
 
             <div class="contenaireModal">
               <h1 class="tritreModal">INFORMATION PERSONNEL DE L'ELECTEUR</h1>
-
+              <!-- {{ listeElecteur.voirElecteurData}} -->
 
               <div class="contenaire">
 
                 <div class="inputCard">
                 <h3 class="label">Nom et prénom</h3>
-                <input type="text" placeholder="Ajoutez un nom" class="input"
-                 v-model="listeElecteur.voirElecteurData.nomComplet" />
+                <h3 class="val">{{  listeElecteur.voirElecteurData.nomComplet}}</h3>
+
+            
+                
+
+               
               </div>
 
               <div class="inputCard">
                 <h3 class="label">Email</h3>
-                <input type="text" placeholder="Insérez une date de naissance" class="input"
-                  v-model="listeElecteur.voirElecteurData.email" />
+                <h3 class="val">{{  listeElecteur.voirElecteurData.email}}</h3>
+                
               </div>
 
               <div class="inputCard">
                 <h3 class="label">Date de naissance</h3>
-                <input type="text" placeholder="Insérez une date de naissance" class="input"
-                  v-model="listeElecteur.voirElecteurData.dateNaissance" />
+                <h3 class="val">{{  listeElecteur.voirElecteurData.dateNaissance}}</h3>
+      
               </div>
               <div class="inputCard">
                 <h3 class="label">Lieu de naissance</h3>
-                <input type="text" placeholder="Insérez un lieu de naissance" class="input"
-                  v-model="listeElecteur.voirElecteurData.lieuNaissance" />
+                <h3 class="val">{{  listeElecteur.voirElecteurData.lieuNaissance}}</h3>
               </div>
               <div class="inputCard">
                 <h3 class="label">Sexe</h3>
-                <input type="text" placeholder="Ajoutez un sexe" class="input" 
-                v-model="listeElecteur.voirElecteurData.sexe" />
+                <h3 class="val">{{  listeElecteur.voirElecteurData.sexe}}</h3>
+
               </div>
               <div class="inputCard">
                 <h3 class="label">Filiation</h3>
-                <input type="text" placeholder="Nom du père et de la mère" class="input"
-                  v-model="listeElecteur.voirElecteurData.filiation" />
+                <h3 class="val">{{  listeElecteur.voirElecteurData.filiation}}</h3>
+
               </div>
               <div class="inputCard">
                 <h3 class="label">Téléphone</h3>
-                <input type="text" placeholder="Nom du père et de la mère" class="input"
-                  v-model="listeElecteur.voirElecteurData.telephone" />
+                <h3 class="val">{{  listeElecteur.voirElecteurData.telephone}}</h3>
+
               </div>
               <div class="inputCard">
                 <h3 class="label">Numéro de la CIN</h3>
-                <input type="text" placeholder="Insérez un numéro de la CIN" class="input"
-                  v-model="listeElecteur.voirElecteurData.numeroCIN" />
+                <h3 class="val">{{  listeElecteur.voirElecteurData.numeroCIN}}</h3>
+
               </div>
               <div class="inputCard">
                 <h3 class="label">Date de délivrance</h3>
-                <input type="text" placeholder="Insérez une date de délivrance de la CIN" class="input"
-                  v-model="listeElecteur.voirElecteurData.dateDelivreCIN" />
+                <h3 class="val">{{  listeElecteur.voirElecteurData.dateDelivreCIN}}</h3>
+
               </div>
               <div class="inputCard">
                 <h3 class="label">Lieu de délivrance CIN</h3>
-                <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input"
-                  v-model="listeElecteur.voirElecteurData.lieuDelivreCIN" />
+                <h3 class="val">{{  listeElecteur.voirElecteurData.lieuDelivreCIN}}</h3>
+         
+
               </div>
               <div class="inputCard">
                 <h3 class="label">Adresse ou le lieu de résidence</h3>
-                <input type="text" placeholder="Insérez une adresse ou le lieu de résidence" class="input"
-                  v-model="listeElecteur.voirElecteurData.adresse" />
+          
+                <h3 class="val">{{  listeElecteur.voirElecteurData.adresse}}</h3>
+
 
               </div>
               <div class="inputCard">
                 <h3 class="label">Profession</h3>
-                <input type="text" placeholder="Ajoutez un profession" class="input"
-                  v-model="listeElecteur.voirElecteurData.profession" />
+                <h3 class="val">{{  listeElecteur.voirElecteurData.profession}}</h3>
+
+
               </div>
               <div class="inputCard">
                 <h3 class="label">Date d'inscription</h3>
-                <input type="text" placeholder="Ajoutez une date d'inscription" class="input"
-                  v-model="listeElecteur.voirElecteurData.dateInscription" />
+
+                <h3 class="val">{{  listeElecteur.voirElecteurData.dateInscription}}</h3>
+
               </div>
               <div class="inputCard">
                 <h3 class="label">Carte d'électeur</h3>
-                <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
-                  v-model="listeElecteur.voirElecteurData.carteElecteur" />
+              
+                <h3 class="val">{{  listeElecteur.voirElecteurData.carteElecteur}}</h3>
+
               </div>
               <div class="inputCard">
                 <h3 class="label">Année électorale</h3>
-                <input type="text" placeholder="Ajoutez une année électorale" class="input"
-                  v-model="listeElecteur.voirElecteurData.annee_electorale_id" />
+              
+
+                <h3 class="val">{{  listeElecteur.voirElecteurData.annee_electorale_id}}</h3>
+
               </div>
              
               <div class="btn">
@@ -118,6 +128,7 @@
 </template>
 
 <script setup>
+import {onMounted } from 'vue'
 import { useShow } from "@/stores/show";
 const show = useShow();
 
@@ -131,7 +142,6 @@ const auth = useAuth();
 const utilisateur = useUtilisateur();
 const anneeElectorale = useAnneeElectorale();
 const listeElecteur = uselisteElecteur();
-
 
 function Ajout() {
   listeElecteur.createElecteur()
@@ -155,6 +165,13 @@ function voirDetails(item) {
 
 }
 
+onMounted(()=>{
+
+  anneeElectorale.getAnnees() 
+
+  let test = ['a','b','c']
+})
+
 function modifier() {
 
   //listeElecteur.updateElecteur(listeElecteur.modifierElecteurData.electeur.id, listeElecteur.modifierElecteurData)
@@ -176,6 +193,9 @@ function modifier() {
     right: 70px;
     bottom: 2px;
 
+}
+.val{
+  padding:10px
 }
 .btnAdd {
     color: #fff;

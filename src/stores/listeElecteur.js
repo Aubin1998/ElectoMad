@@ -11,7 +11,7 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 	const URL = useUrl().url;
 	const auth = useAuth();
 	const utilisateur = useUtilisateur();
-
+	const supprimerElecteurData = ref()
 	const electeur_id = ref();
 	const nomComplet = ref('');
 	const dateNaissance = ref('');
@@ -77,63 +77,66 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 
 	function getElecteurs() {
 		const anneeData = JSON.parse(localStorage.getItem('anneeSelectionne'));
-		console.log('anneeData', anneeData);
 
 
-			const anneeElectoraleId = anneeData.id;
-			show.showSpinner = true;
+		const anneeElectoraleId = anneeData ?. id;
+		show.showSpinner = true;
 
-			axios.get(`${URL}/api/electeurs/${anneeElectoraleId}`, {
-				headers: {
-					"Content-Type": "application/json"
-				},
-				params: {
-					annee_electorale_id: anneeElectoraleId,
-					region: localStorage.getItem('region'),
-					district: localStorage.getItem('district'),
-					commune: localStorage.getItem('commune'),
-					fokontany: localStorage.getItem('fokontany')
-				}
-			}).then((response) => {
-				console.log('responseData', response.data);
-				electeurs.value = response.data;
+		axios.get(`${URL}/api/electeurs/${anneeElectoraleId}`, {
+			headers: {
+				"Content-Type": "application/json"
+			},
+			params: {
+				annee_electorale_id: anneeElectoraleId,
+				region: localStorage.getItem('region'),
+				district: localStorage.getItem('district'),
+				commune: localStorage.getItem('commune'),
+				fokontany: localStorage.getItem('fokontany')
+			}
+		}).then((response) => {
+			electeurs.value = response.data;
 
-				if (response.status === 200) {
-					allElecteurData.value = response.data;
-					show.showAlert = true;
-					allListeElecteur.value = response.data.electeurs;
+			if (response.status === 200) {
+				allElecteurData.value = response.data;
+				show.showAlert = true;
+				allListeElecteur.value = response.data.electeurs;
 
-					show.showAlertType = 'success';
-					show.showAlertMessage = 'Données des électeurs récupérées avec succès';
-				} else {
-					show.showAlert = true;
-					show.showAlertType = 'warning';
-					show.showAlertMessage = 'Échec de la récupération des données des électeurs';
-				}
+				show.showAlertType = 'success';
+				show.showAlertMessage = 'Données des électeurs récupérées avec succès';
+			} else {
+				show.showAlert = true;
+				show.showAlertType = 'warning';
+				show.showAlertMessage = 'Échec de la récupération des données des électeurs';
+			}
 
-				setTimeout(() => {
-					show.showAlert = false;
-					show.showAlertType = '';
-					show.showAlertMessage = '';
-				}, 3000);
-			}).catch((err) => {
-				show.showAlertType = 'danger';
-				show.showAlertMessage = 'Erreur lors de la récupération des données des électeurs';
-				console.error(err);
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}).catch((err) => {
+			show.showAlertType = 'danger';
+			show.showAlertMessage = 'Erreur lors de la récupération des données des électeurs';
+			console.error(err);
 
-				setTimeout(() => {
-					show.showAlert = false;
-					show.showAlertType = '';
-					show.showAlertMessage = '';
-				}, 3000);
-			}). finally(() => {
-				show.showSpinner = false;
-			});
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}). finally(() => {
+			show.showSpinner = false;
+		});
 
 	}
 
 	function createElecteur() {
-		console.log("localStorage.getItem('region')", localStorage.getItem('region'));
+	
+
+		let anneeselect = JSON.parse(localStorage.getItem('anneeSelectionne')).id
+
+
+		// listeElecteur.annee_electorale_id
 
 		let formData = {
 			nomComplet: nomComplet.value,
@@ -149,7 +152,7 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			dateNaissance: dateNaissance.value,
 			telephone: telephone.value,
 			dateInscription: dateInscription.value,
-			annee_electorale_id: annee_electorale_id.value,
+			annee_electorale_id: anneeselect,
 			email: email.value,
 
 			region: JSON.parse(localStorage.getItem('selectRegion')),
@@ -158,7 +161,6 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			fokontany: JSON.parse(localStorage.getItem('selectFokontany'))
 		};
 
-		console.log('formDataElecteur Electeur', formData);
 
 		show.showSpinner = true;
 		axios.post(`${URL}/api/electeur`, formData, {
@@ -168,7 +170,6 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 				}`
 			}
 		}).then((response) => {
-			console.log('responseData', response.data);
 			if (response.status === 201) {
 				email.value = '';
 				getElecteurs();
@@ -251,7 +252,6 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			fokontany: Modifierfokontany.value
 		};
 
-		console.log('updatedData', updatedData);
 
 		show.showSpinner = true;
 		axios.put(`${URL}/api/electeur/${id}`, updatedData, {
@@ -262,7 +262,6 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			}
 		}).then((response) => {
 			if (response.status === 200) {
-				console.log('responseData', response.data);
 
 				show.showAlert = true;
 				show.showModalModifierElecteur = false;
@@ -302,9 +301,10 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 				"Content-Type": "application/json"
 			}
 		}).then((response) => {
-			console.log('responseData', response.status);
 
 			if (response.status === 200) {
+				getElecteurs();
+				show.showModalSupprimerElecteur = false
 				show.showAlert = true;
 				show.showModalSupprimer = false;
 				show.showAlertType = 'success';
@@ -397,6 +397,7 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 		allElecteurData,
 
 		electeur_id,
+		supprimerElecteurData,
 		getElecteurs,
 		createElecteur,
 		updateElecteur,

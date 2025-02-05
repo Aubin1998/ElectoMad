@@ -11,6 +11,7 @@ export const useShow = defineStore('Show', () => {
 	const showDashboard = ref(false)
 	const showDesc = ref(false)
 	const showElection = ref(false)
+	const showModalSupprimerElecteur = ref(false)
 	const showCandidat = ref(false)
 	const showElecteur = ref(false)
 	const showBureau = ref(false)
@@ -33,6 +34,12 @@ export const useShow = defineStore('Show', () => {
 	const showModalModifierElecteur = ref(false)
 	const showModalElecteurSupprimer = ref(false)
 	const showModalAjoutElecteur = ref(false)
+	const showHomePage = ref(false)
+
+	const showUser = ref(false)
+	const showAdmin = ref(false)
+
+
 
 	
 
@@ -1052,7 +1059,14 @@ function showModalVoirElecteurFunc() {
 		showAjoutCandidat.value = false
 
 	}
+
+	const showModalAjoutUtilisateur = ref(false)
 	return {
+		showModalAjoutUtilisateur,
+		showAdmin,
+		showUser,
+
+		showHomePage,
 		showModalAjoutElecteur,
 		showModalElecteurSupprimer,
 		showModalModifierElecteur,
@@ -1342,6 +1356,7 @@ function showModalVoirElecteurFunc() {
 		showCommuneElecteurManjakandriana2,
 		showCommuneElecteurMantasoa1Func,
 		showCommuneElecteurMantasoa1,
+		showModalSupprimerElecteur,
 
 
 		// vao2

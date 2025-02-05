@@ -3,13 +3,13 @@
         <div class="closeForm" @click="show.showBureau = !show.showBureau">
             <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
         </div>
-<div class="subItem" @click="show.setOption('Création')">
-    <h4>Création</h4>
-</div>
+
 <div class="subItem" @click="show.setOption('Liste des bureaux de votes')">
     <h4>Liste des bureaux de votes</h4>
 </div>
-
+<!--<div class="subItem" @click="show.setOption('Création')">
+    <h4>Création</h4>
+</div>-->
 
 </div>
 </template>

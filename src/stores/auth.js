@@ -80,6 +80,8 @@ export const useAuth = defineStore('Auth', () => {
 	}
 
 	function login() {
+
+		
 		show.showSpinner = true
 		let formData = {
 			email: email.value,
@@ -92,16 +94,21 @@ export const useAuth = defineStore('Auth', () => {
 
 		axios.post(`${URL}/api/login`, formData, {
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${
+					document.cookie.split("=")[1]
+				}`
 			}
 		}).then((response) => {
 			if (response.status === 200) {
+				console.log('responseLogin', response.data);
+				
 				show.showAlert = true
 				show.showAlertType = 'success'
 				show.showAlertMessage = 'connecté'
 
 				userId.value = response.data.user.id
-				utilisateurId.value = response.data.utilisateur[0].id
+				utilisateurId.value = response.data.utilisateur[0]?.id
 
 
 

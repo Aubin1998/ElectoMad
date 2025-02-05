@@ -6,7 +6,10 @@
 <div class="subItem" @click="show.setOption('Liste complète des électeurs')"> 
     <h4>Liste complète des électeurs</h4>
 </div>
-<div class="subItem" @click="show.setOption('Filtrage et recherche')">
+
+
+<!--
+    <div class="subItem" @click="show.setOption('Filtrage et recherche')">
     <h4>Filtrage et recherche</h4>
 </div>
 <div class="subItem" @click="show.setOption('Actions de gestion')">
@@ -14,7 +17,8 @@
 </div>
 <div class="subItem" @click="show.setOption('Surveillance')">
     <h4>Surveillance</h4>
-</div>
+</div>    
+        </div>-->  
 
 </div>
 </template>

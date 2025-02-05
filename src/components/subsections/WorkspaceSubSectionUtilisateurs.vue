@@ -1,4 +1,4 @@
-<template>
+    <template>
     <div class="subsection">
         <div class="closeForm" @click="show.showUtilisateur = !show.showUtilisateur">
             <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
@@ -9,11 +9,12 @@
         <div class="subItem"  @click="show.setOption('Liste des utilisateurs')">
             <h4>Liste des utilisateurs</h4>
         </div>
-        <div class="subItem" @click="show.setOption('Changer')">
+       
+
+<!--
+         <div class="subItem" @click="show.setOption('Changer')">
             <h4>Changer</h4>
-        </div>
-
-
+        </div>-->
     </div>
 </template>
 

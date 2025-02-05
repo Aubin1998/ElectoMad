@@ -6,12 +6,15 @@
         <div class="subItem" @click="show.setOption('Année électorale')">
             <h4>Année électorale</h4>
         </div>
+        
+      <!--
         <div class="subItem" @click="show.setOption('Genre élection')">
             <h4>Genre élection</h4>
         </div>
         <div class="subItem">
             <h4>AAAAAA</h4>
-        </div>
+        </div>-->  
+         
 
     </div>
 </template>

@@ -1,11 +1,11 @@
 <template>
     <div class="form1">
-        <div class="form" >
-            <h4>Création  élection</h4>
+        <div class="form">
+            <h4>Création élection</h4>
             <div class="formulaire">
                 <div class="itemContainer">
-                    <input type="text" placeholder="Date d'élection" class="input2 dateElectionInput" 
-                    v-model="anneeElectorale.annee" />
+                    <input type="text" placeholder="Date d'élection" class="input2 dateElectionInput"
+                        v-model="anneeElectorale.annee" />
                 </div>
                 <div class="itemContainer">
                     <input type="text" placeholder="Description" class="input2 descriptionInput"
@@ -28,8 +28,7 @@
             <div class="itemContainer1">
                 <i class="pi pi-search icon1"></i>
 
-                <input type="text" placeholder="Recherche par année"
-                v-model="searchTerm" class="input1" />
+                <input type="text" placeholder="Recherche par année" v-model="searchTerm" class="input1" />
             </div>
 
 
@@ -242,7 +241,8 @@
                 </h4>
                 <div class="flex">
                     <h3 class="btnAdd add" @click="accepter()">Oui</h3>
-                    <h3 class="btnAdd cancel" @click="show.showModalAnneSupprimer = !show.showModalAnneSupprimer">Non</h3>
+                    <h3 class="btnAdd cancel" @click="show.showModalAnneSupprimer = !show.showModalAnneSupprimer">Non
+                    </h3>
                 </div>
             </div>
         </div>
@@ -402,7 +402,7 @@ const dataListePersonne = [
 </script>
 
 <style scoped>
-.form1{
+.form1 {
     width: 100%;
     margin-bottom: 0px;
     display: flex;
@@ -411,10 +411,11 @@ const dataListePersonne = [
 
 
 }
+
 .form {
     width: 98%;
     margin-bottom: 0px;
-   background-color: #414b5e;
+    background-color: #414b5e;
     align-items: center;
     border-radius: 6px 6px 0px 0px;
     margin-top: 5px;
@@ -552,7 +553,7 @@ const dataListePersonne = [
 .itemContainer {
     width: 30%;
     margin: 10px 2px;
-    
+
 }
 
 .itemContainer1 {
@@ -650,7 +651,7 @@ const dataListePersonne = [
 
 .input {
     padding: 10px;
-    width: 100%!important;
+    width: 100% !important;
     border-radius: 5px;
     border: 1px solid #aaaac5;
     background-color: #3c4c6d09;
@@ -669,20 +670,24 @@ const dataListePersonne = [
     padding: 5px;
     max-width: 200px;
 }
+
 .input2 {
-    width: 100%!important;
+    width: 100% !important;
     border-radius: 5px;
     border: 1px solid #aaaac5;
     background-color: #3c4c6d09;
     color: #faf7f7;
     font-weight: 600;
     padding: 5px;
-    max-width: 400px; /* Augmenter la largeur maximale */
+    max-width: 400px;
+    /* Augmenter la largeur maximale */
 }
-.dateElectionInput{
+
+.dateElectionInput {
     margin-right: 10px;
 }
-.descriptionInput{
+
+.descriptionInput {
     margin-left: 20px;
 }
 
@@ -694,12 +699,12 @@ input-placeholder {
 .formulaire {
     display: flex;
     justify-content: space-around;
-   background-color: #1F2937;
+    background-color: #1F2937;
     align-items: center;
     border-radius: 0px 0px 6px 6px;
     padding: 5px 10px;
 
-    
+
 }
 
 
@@ -716,6 +721,7 @@ input-placeholder {
     border-radius: 5px;
 
 }
+
 .cancel {
     width: 100px !important;
     background-color: rgb(192, 190, 190);
@@ -732,6 +738,7 @@ input-placeholder {
 .btnAdd h3:hover {
     background-color: rgb(101, 230, 140);
 }
+
 .message {
     display: flex;
     justify-content: center;

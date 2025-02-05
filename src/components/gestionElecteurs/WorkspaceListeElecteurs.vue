@@ -10,7 +10,7 @@
             <div class="itemForm">
                 <div class="formulaire" v-for="(item, index) in filteredData" :key="index">
                     <div class="cercle">
-                       
+
                         <h1>{{ item.listeDistrict.length }}</h1>
                     </div>
                     <h4>{{ item.region }}</h4>
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    
+
     <WorkspaceProvinceElecteur v-if="show.showProvinceElecteur" />
     <WorkspaceDistrictElecteur v-if="show.listeCommune" />
     <WorkspaceCommuneElecteur v-if="show.listeFokontany" />
@@ -48,7 +48,7 @@ const searchQuery = ref('');
 function select(item) {
     show.showOptionProvince(item.region, item.listeDistrict)
     localStorage.setItem('selectRegion', JSON.stringify(item.region))
-    
+
 }
 
 
@@ -79,9 +79,16 @@ const data = computed(() => {
 
 });
 
+onMounted(() => {
+    listeFokontanyDistrictStore.get
+})
+
 // Filtrer les données en fonction de la recherche
 const filteredData = computed(() => {
-    let filtered = data.value; if (searchQuery.value) { filtered = data.value.filter(item => item.region.toLowerCase().includes(searchQuery.value.toLowerCase())); } return filtered.slice(1); // Ignorer le premier élément 
+    let filtered = data.value;
+    if (searchQuery.value) {
+        filtered = data.value.filter(item => item.region.toLowerCase().includes(searchQuery.value.toLowerCase()));
+    } return filtered.slice(1); // Ignorer le premier élément 
 });
 
 const dataJSON = computed(() => {

@@ -3,7 +3,7 @@
     <div class="listeCard">
         <div class="card" v-for="(item, index) in dataListePersonne" :key="index">
             <div class="photo">
-                <img src="/bg1.jpg" alt="" style="width: 100%; height: 70%;">
+                <img src="/profil.png" alt="" style="width: 100%; height: 90%;">
 
 
             </div>

@@ -54,12 +54,13 @@ const utilisateur = useUtilisateur();
 const anneeElectorale = useAnneeElectorale();
 
 function voirDetails(item) {
-  
+
   show.showAlert = true;
   show.showAlertType = 'success';
   show.showAlertMessage = `Année choisi ${item.annee}`
   anneeElectorale.anneeElectoraleChoisi = item
   localStorage.setItem('anneeSelectionne', JSON.stringify(item));
+  console.log('localStorage', localStorage.getItem('anneeSelectionne'));
 
 
   setTimeout(() => {
@@ -198,6 +199,7 @@ function voirDetails(item) {
   border-radius: 8px;
   padding: 16px;
   width: 30%;
+  height: 200px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
 }

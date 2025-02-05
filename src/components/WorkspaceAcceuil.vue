@@ -1,8 +1,8 @@
 <template>
   <div class="acceuil">
     <div class="content">
-      <h1 class="title">Bienvenue aux Élections</h1>
-      <p class="message">Préparez-vous pour les élections à venir.</p>
+      <h1 class="title">Bienvenue sur VoteVision</h1>
+      <p class="message"> Votre plateforme électorale moderne.</p>
       <button class="cta-button" @click="voirelection()">Voir les années électorales</button>
     </div>
   </div>
@@ -23,7 +23,7 @@ function voirelection() {
   background-color: rgb(182, 190, 190);
   min-height: 80vh;
   border-radius: 10px;
-  background-image: url('../image.png');
+  background-image: url('../fokontany.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

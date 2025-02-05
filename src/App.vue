@@ -1,81 +1,54 @@
 <script setup>
-import WorkspaceLogin from "./views/WorkspaceLogin.vue";
-import WorkspaceSignUp from "./views/WorkspaceSignUp.vue";
-import WorkspaceDashboard from "./views/WorkspaceDashboard.vue";
+
 import { useShow } from "./stores/show";
-import SpinnerComponent from "./components/modals/SpinnerComponent.vue";
-import AlertComponent from "./components/modals/AlertComponent.vue";
+
 import { Cookies } from "./plugins/cookies";
-import ModalCompte from "./components/modals/ModalCompte.vue";
-import ModalLogout from "./components/modals/ModalLogout.vue";
-import VoirCandidat from "./components/modals/VoirCandidat.vue";
-import ModifierCandidat from "./components/modals/ModifierCandidat.vue";
-import SupprimerCandidat from "./components/modals/SupprimerCandidat.vue";
-import VoirAnnee from "./components/modals/VoirAnnee.vue";
-import ModalAcceuil from "./components/modals/ModalAcceuil.vue";
-import ModalElecteurAjout from "./components/modals/electeur/ModalElecteurAjout.vue";
-import ModalElecteurVoir from "./components/modals/electeur/ModalElecteurVoir.vue";
-import ModalElecteurModifier from "./components/modals/electeur/ModalElecteurModifier.vue";
-import ModalElecteurSupprimer from "./components/modals/electeur/ModalElecteurSupprimer.vue";
 
-const show = useShow(); // call Show in show.js
+import User from "./views/User.vue";
+import Admin from "./views/Admin.vue";
 
+const show = useShow();
 const cookies = new Cookies();
-if (document.cookie.includes("access_token") && localStorage.getItem("user") && localStorage.getItem("user") !== "") {
+if (localStorage.getItem("user")) {
   show.showDashboard = true;
+  show.showAdmin = true;
   show.showLogin = false;
+  show.showUser = false;
+
 } else {
+  show.showAdmin = true;
   show.showDashboard = false;
-  show.showLogin = true;
+  show.showLogin = false;
+  show.showHomePage = true;
+  show.showUser = true;
 }
+
+import { useRoute } from 'vue-router';
+import { watch } from 'vue';
+
+const route = useRoute();
+
+watch(
+  () => route.path,
+  (newPath, oldPath) => {
+    console.log('Nouvelle route:', newPath);
+    console.log('Ancienne route:', oldPath);
+    // Vous pouvez ajouter votre logique ici
+    if (newPath != "/admin") {
+      show.showUser = true;
+    } else {
+      show.showUser = false;
+      show.showAdmin = true
+    }
+
+  }
+);
 </script>
 
 <template>
   <div class="app">
-    <WorkspaceLogin v-if="show.showLogin" />
-    <WorkspaceSignUp v-if="show.showSingUp" />
-    <WorkspaceDashboard v-if="show.showDashboard" />
-    <Teleport to="body">
-      <SpinnerComponent />
-    </Teleport>
-    <Teleport to="body">
-      <AlertComponent />
-    </Teleport>
-    <Teleport to="body">
-      <ModalCompte />
-    </Teleport>
-    <Teleport to="body">
-      <ModalLogout />
-    </Teleport>
-    <Teleport to="body">
-      <VoirCandidat />
-    </Teleport>
-    <Teleport to="body">
-      <ModifierCandidat />
-    </Teleport>
-    <Teleport to="body">
-      <ModalAcceuil />
-    </Teleport>
-    <Teleport to="body">
-      <SupprimerCandidat />
-    </Teleport>
-    <Teleport to="body">
-      <VoirAnnee />
-    </Teleport>
-
-    <Teleport to="body">
-      <ModalElecteurAjout />
-    </Teleport>
-    <Teleport to="body">
-      <ModalElecteurVoir />
-    </Teleport>
-    <Teleport to="body">
-      <ModalElecteurModifier />
-    </Teleport>
-    <Teleport to="body">
-      <ModalElecteurSupprimer />
-    </Teleport>
-    
+    <User v-if="show.showUser" />
+    <Admin v-if="show.showAdmin" />
   </div>
 </template>
 

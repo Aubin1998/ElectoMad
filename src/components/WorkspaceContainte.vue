@@ -37,13 +37,13 @@
             <WorkspaceSurveillance v-if="show.showSurveillance" />
             <WorkspaceCreation v-if="show.showCreation" />
          <!--   <WorkspaceListe v-if="show.showListe" /> -->
-            <WorkspaceAjoutUtilisateur v-if="show.showAjoutUtilisateur" />
-            <WorkspaceListeUtilisateurs v-if="show.showListeUtilisateurs" />
+            <WorkspaceAjoutUtilisateurListe v-if="show.showAjoutUtilisateur" />
+            <WorkspaceListeUtilisateursListe v-if="show.showListeUtilisateurs" />
             <WorkspaceChanger v-if="show.showChanger" />
-            <WorkspaceVerificationElecteur v-if="show.showElecteurInscrit" />
+            <WorkspaceVerificationElecteurListe v-if="show.showElecteurInscrit" />
             <WorkspaceBureauActifs v-if="show.showBureauActifs" />
             <WorkspaceTauxParticipationGlobal v-if="show.showTauxParticipation" />
-            <WorkspaceBulletinVotes v-if="show.showNombreTotalVotes" />
+            <WorkspaceBulletinVotesListe v-if="show.showNombreTotalVotes" />
             <WorkspaceMesTaches v-if="show.showMesTaches" />
             <WorkspaceAutres v-if="show.showAutres" />
             <WorkspaceListeCandidat v-if="show.showListeCandidat" />
@@ -71,14 +71,13 @@ import WorkspaceSurveillance from "@/components/gestionElecteurs/WorkspaceSurvei
 import WorkspaceCreation from "@/components/gestionBureaux/WorkspaceCreation.vue";
 import WorkspaceListe from "@/components/gestionBureaux/WorkspaceListe.vue";
 //gestion utilisateur
-import WorkspaceAjoutUtilisateur from "@/components/gestionUtilisateur/WorkspaceAjoutUtilisateur.vue";
-import WorkspaceListeUtilisateurs from "@/components/gestionUtilisateur/WorkspaceListeUtilisateurs.vue";
+import WorkspaceAjoutUtilisateurListe from "@/components/gestionUtilisateur/WorkspaceAjoutUtilisateurListe.vue";
+import WorkspaceListeUtilisateursListe from "@/components/gestionUtilisateur/WorkspaceListeUtilisateursListe.vue";
 import WorkspaceChanger from "@/components/gestionUtilisateur/WorkspaceChanger.vue";
 //statistiques
-import WorkspaceVerificationElecteur from "@/components/Statistiques/WorkspaceVerificationElecteur.vue";
-import WorkspaceBureauActifs from "@/components/Statistiques/WorkspaceBulletinVotes.vue";
+import WorkspaceVerificationElecteurListe from "@/components/Statistiques/WorkspaceVerificationElecteurListe.vue";
 import WorkspaceTauxParticipationGlobal from "@/components/Statistiques/WorkspaceTauxParticipationGlobal.vue";
-import WorkspaceBulletinVotes from "@/components/Statistiques/WorkspaceBulletinVotes.vue";
+import WorkspaceBulletinVotesListe from "@/components/Statistiques/WorkspaceBulletinVotesListe.vue";
 //historiques
 import WorkspaceMesTaches from "@/components/historiques/WorkspaceMesTaches.vue";
 import WorkspaceAutres from "@/components/historiques/WorkspaceAutres.vue";
