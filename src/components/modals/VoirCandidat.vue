@@ -3,6 +3,23 @@
     <div class="modal" v-if="show.showModalOeilCandidat">
       <div class="contenaireModal">
         <h1 class="tritreModal">INFORMATION PERSONNEL CANDIDAT(E)</h1>
+        <!-- {{listeCandidat.voirCandidatData.candidat}} -->
+
+
+        <div class="w-full h-[40vh] bg-[#b2b0b030] flex items-center justify-center">
+          <img v-if=" listeCandidat.voirCandidatData.candidat?.file?.titre" :src=" listeCandidat.voirCandidatData.candidat.file?.titre"
+            alt="" class="w-full h-full rounded-t-lg object-cover" />
+
+          <div class="relative w-[50px] h-[50px]" v-else>
+            <input type="file" @change="(event) => onFileChange(event,  listeCandidat.voirCandidatData.candidat.id)"
+              id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
+            <label for="file-upload"
+              class="flex items-center justify-center w-full h-full bg-[#e1dada] rounded-full cursor-pointer text-[24px]">
+              <i class="pi pi-camera text-red-500"></i>
+            </label>
+          </div>
+        </div>
+
 
         <div class="scrollable-content"></div>
         <div class="flex">
@@ -12,42 +29,44 @@
 
             <div class="inputCard">
               <h3 class="label">Nom et prénom</h3>
-              <input type="text" placeholder="Ajoutez un nom" class="input"
+              <input disabled type="text" placeholder="Ajoutez un nom" class="input"
                 v-model="listeCandidat.voirCandidatData.electeur.nomComplet" />
+
+
             </div>
-            
-            
+
+
 
             <div class="flexCard">
-            
+
 
               <div class="inputCard">
-              <h3 class="label">Date </h3>
-              <input type="text" placeholder="Ajoutez un nom" class="input"
-                v-model="listeCandidat.voirCandidatData.electeur.dateNaissance" />
-            </div>
+                <h3 class="label">Date </h3>
+                <input disabled type="text" placeholder="Ajoutez un nom" class="input"
+                  v-model="listeCandidat.voirCandidatData.electeur.dateNaissance" />
+              </div>
 
               <div class="inputCard">
                 <h3 class="label">Lieu de naissance</h3>
-                <input type="text" placeholder="Insérez un lieu de naissance" class="input"
+                <input disabled type="text" placeholder="Insérez un lieu de naissance" class="input"
                   v-model="listeCandidat.voirCandidatData.electeur.lieuNaissance" />
               </div>
             </div>
             <div class="inputCard">
               <h3 class="label">Sexe</h3>
-              <input type="text" placeholder="Ajoutez un sexe" class="input"
+              <input disabled type="text" placeholder="Ajoutez un sexe" class="input"
                 v-model="listeCandidat.voirCandidatData.electeur.sexe" />
             </div>
             <div class="inputCard">
               <h3 class="label">Filiation</h3>
-              <input type="text" placeholder="Nom du père et de la mère" class="input"
+              <input disabled type="text" placeholder="Nom du père et de la mère" class="input"
                 v-model="listeCandidat.voirCandidatData.electeur.filiation" />
             </div>
 
 
             <div class="inputCard">
               <h3 class="label">Email</h3>
-              <input type="text" placeholder="Nom du père et de la mère" class="input"
+              <input disabled type="text" placeholder="Nom du père et de la mère" class="input"
                 v-model="listeCandidat.voirCandidatData.user.email" />
             </div>
 
@@ -56,7 +75,8 @@
 
             <div class="inputCard">
               <h3 class="label"> Déclaration honneur des biens</h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.declarationHonneurBiens" id="">
+              <select disabled class="annee" v-model="listeCandidat.voirCandidatData.candidat.declarationHonneurBiens"
+                id="">
                 <option disabled value="">Obtention</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
@@ -67,7 +87,8 @@
 
             <div class="inputCard">
               <h3 class="label"> Certificat de nationalité</h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.certificatNationalite" id="">
+              <select disabled class="annee" v-model="listeCandidat.voirCandidatData.candidat.certificatNationalite"
+                id="">
                 <option disabled value="">Obtention</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
@@ -77,7 +98,8 @@
 
             <div class="inputCard">
               <h3 class="label"> Déclaration honneur des impôts</h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.declarationHonneurImpôts" id="">
+              <select disabled class="annee" v-model="listeCandidat.voirCandidatData.candidat.declarationHonneurImpôts"
+                id="">
                 <option disabled value="">Obtention</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
@@ -88,7 +110,7 @@
 
             <div class="inputCard">
               <h3 class="label"> Copie d'acte de naissance</h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.copieActeNaissance" id="">
+              <select disabled class="annee" v-model="listeCandidat.voirCandidatData.candidat.copieActeNaissance" id="">
                 <option disabled value="">Obtention</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
@@ -101,8 +123,8 @@
 
             <div class="inputCard">
               <h3 class="label"> Certificat d'administration fiscale</h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.certificatAdministrationFiscale"
-                id="">
+              <select disabled class="annee"
+                v-model="listeCandidat.voirCandidatData.candidat.certificatAdministrationFiscale" id="">
                 <option disabled value="">Obtention</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
@@ -112,7 +134,7 @@
 
             <div class="inputCard">
               <h3 class="label"> Copie de carte électeur</h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.copieCarteElecteur" id="">
+              <select disabled class="annee" v-model="listeCandidat.voirCandidatData.candidat.copieCarteElecteur" id="">
                 <option disabled value="">Obtention</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
@@ -122,7 +144,7 @@
 
             <div class="inputCard">
               <h3 class="label"> Déclaration de probite</h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.declarationProbite" id="">
+              <select disabled class="annee" v-model="listeCandidat.voirCandidatData.candidat.declarationProbite" id="">
                 <option disabled value="">Obtention</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
@@ -132,7 +154,8 @@
 
             <div class="inputCard">
               <h3 class="label"> Copie de récipissé patrimoine</h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.copieRecipissePatrimoine" id="">
+              <select disabled class="annee" v-model="listeCandidat.voirCandidatData.candidat.copieRecipissePatrimoine"
+                id="">
                 <option disabled value="">Obtention</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
@@ -143,37 +166,37 @@
 
             <div class="inputCard">
               <h3 class="label">Numéro de la CIN</h3>
-              <input type="text" placeholder="Insérez un numéro de la CIN" class="input"
+              <input disabled type="text" placeholder="Insérez un numéro de la CIN" class="input"
                 v-model="listeCandidat.voirCandidatData.electeur.numeroCIN" />
             </div>
 
             <div class="flexCard">
               <div class="inputCard">
                 <h3 class="label">Date </h3>
-                <input type="text" placeholder="Insérez une date de délivrance de la CIN" class="input"
+                <input disabled type="text" placeholder="Insérez une date de délivrance de la CIN" class="input"
                   v-model="listeCandidat.voirCandidatData.electeur.dateDelivreCIN" />
               </div>
               <div class="inputCard">
                 <h3 class="label">Lieu de délivrance CIN</h3>
-                <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input"
+                <input disabled type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input"
                   v-model="listeCandidat.voirCandidatData.electeur.lieuDelivreCIN" />
               </div>
             </div>
 
             <div class="inputCard">
               <h3 class="label">Adresse ou le lieu de résidence</h3>
-              <input type="text" placeholder="Insérez une adresse ou le lieu de résidence" class="input"
+              <input disabled type="text" placeholder="Insérez une adresse ou le lieu de résidence" class="input"
                 v-model="listeCandidat.voirCandidatData.electeur.adresse" />
             </div>
             <div class="inputCard">
               <h3 class="label">Profession</h3>
-              <input type="text" placeholder="Ajoutez un profession" class="input"
+              <input disabled type="text" placeholder="Ajoutez un profession" class="input"
                 v-model="listeCandidat.voirCandidatData.electeur.profession" />
             </div>
 
             <div class="inputCard">
               <h3 class="label"> Casier judiciaire</h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.casierJudiciaire" id="">
+              <select disabled class="annee" v-model="listeCandidat.voirCandidatData.candidat.casierJudiciaire" id="">
                 <option disabled value="">Obtention</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
@@ -194,25 +217,26 @@
 
             <div class="inputCard">
               <h3 class="label">Carte d'électeur</h3>
-              <input type="text" placeholder="Ecrire le numéro de la Carte électeur" class="input"
+              <input disabled type="text" placeholder="Ecrire le numéro de la Carte électeur" class="input"
                 v-model="listeCandidat.voirCandidatData.electeur.carteElecteur" />
             </div>
 
             <div class="inputCard">
               <h3 class="label">Téléphone</h3>
-              <input type="text" placeholder="Ecrire votre numéro de téléphone" class="input"
+              <input disabled type="text" placeholder="Ecrire votre numéro de téléphone" class="input"
                 v-model="listeCandidat.voirCandidatData.electeur.telephone" />
             </div>
             <div class="inputCard">
               <h3 class="label">Date d'inscription</h3>
-              <input type="text" placeholder="Ecrire la date d'inscription" class="input"
+              <input disabled type="text" placeholder="Ecrire la date d'inscription" class="input"
                 v-model="listeCandidat.voirCandidatData.electeur.dateInscription" />
             </div>
 
 
             <div class="inputCard">
               <h3 class="label"> Année électorale</h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.annee_electorale_id" id="">
+              <select disabled class="annee" v-model="listeCandidat.voirCandidatData.candidat.annee_electorale_id"
+                id="">
                 <option disabled value="">Sélectionner une année</option>
                 <option v-for="annee in anneeElectorale.allanneeData" :key=annee.id :value="annee.id">
                   {{ annee.annee }}
@@ -225,7 +249,8 @@
 
             <div class="inputCard">
               <h3 class="label"> Matrice support électronique</h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.matriceSupportElectronique" id="">
+              <select disabled class="annee"
+                v-model="listeCandidat.voirCandidatData.candidat.matriceSupportElectronique" id="">
                 <option disabled value="">Obtention</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
@@ -236,17 +261,7 @@
 
             <div class="inputCard">
               <h3 class="label">Quittance de contribution</h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.quittanceContribution" id="">
-                <option disabled value="">Obtention</option>
-                <option value="oui">Oui</option>
-                <option value="non">Non</option>
-
-              </select>
-            </div>
-
-            <div class="inputCard">
-              <h3 class="label">Déclaration d'honneur de constitution</h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.declarationHonneurConstitution"
+              <select disabled class="annee" v-model="listeCandidat.voirCandidatData.candidat.quittanceContribution"
                 id="">
                 <option disabled value="">Obtention</option>
                 <option value="oui">Oui</option>
@@ -256,8 +271,20 @@
             </div>
 
             <div class="inputCard">
+              <h3 class="label">Déclaration d'honneur de constitution</h3>
+              <select disabled class="annee"
+                v-model="listeCandidat.voirCandidatData.candidat.declarationHonneurConstitution" id="">
+                <option disabled value="">Obtention</option>
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+
+              </select>
+            </div>
+
+            <div class="inputCard">
               <h3 class="label">Attestation d'investiture </h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.attestationInvestiture" id="">
+              <select disabled class="annee" v-model="listeCandidat.voirCandidatData.candidat.attestationInvestiture"
+                id="">
                 <option disabled value="">Obtention</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
@@ -268,7 +295,8 @@
 
             <div class="inputCard">
               <h3 class="label">Certificat de résidence </h3>
-              <select class="annee" v-model="listeCandidat.voirCandidatData.candidat.certificatResidence" id="">
+              <select disabled class="annee" v-model="listeCandidat.voirCandidatData.candidat.certificatResidence"
+                id="">
                 <option disabled value="">Obtention</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
@@ -296,10 +324,12 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useShow } from "@/stores/show";
 const show = useShow(); //call Show in show.js
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
+import axios from "axios";
 
 import { useAuth } from "@/stores/auth";
 import { useUtilisateur } from "@/stores/utilisateur";
@@ -312,7 +342,40 @@ const auth = useAuth();
 const utilisateur = useUtilisateur();
 const listeCandidat = uselisteCandidat();
 const anneeElectorale = useAnneeElectorale();
+const filer = ref()
+const onFileChange = async (event, electeurId) => {
+  const file = event.target.files[0];
+  if (!file) return;
 
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const response = await axios.post(
+      `http://localhost:8000/api/electeur/candidat/${electeurId}/upload`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+    // Update the file information after successful upload
+    console.log('zzzzzzzzzzzzzzzzz', response.data);
+
+    filer.value = {
+      id: 1,
+      titre: response.data.url,
+      file_name: response.data.url,
+    }
+
+
+    listeCandidat.voirCandidatData.candidat.file = filer.value
+
+  } catch (error) {
+    console.error('Erreur lors de l\'upload de l\'image :', error);
+  }
+};
 
 </script>
 
@@ -363,6 +426,7 @@ const anneeElectorale = useAnneeElectorale();
   left: 0;
   overflow-y: hidden;
   align-items: center;
+  z-index: 100;
 }
 
 .contenaireModalSupp {
@@ -687,13 +751,18 @@ input-placeholder {
 
 }
 
+option {
+  background-color: rgba(67, 67, 79, 0.83);
+  color: #f0f3f6;
+}
+
 .annee {
   width: 100%;
   padding: 5px;
   background-color: #3c4c6d09;
   border-radius: 5px;
   border: 1px solid #aaaac5;
-  color: #fafbfd;
+  color: white;
 }
 
 .message {

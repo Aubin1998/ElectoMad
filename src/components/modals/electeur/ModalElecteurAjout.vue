@@ -5,15 +5,26 @@
         <div class="closeForm" @click="show.showModalAjoutElecteur = !show.showModalAjoutElecteur">
           <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
         </div>
+        <div class="closeForm1"  @click="show.see = !show.see" v-if="!show.see">
+          <i class="pi pi-arrow-left" style="font-size: 18px; color: white"></i>
+        </div>
+       
         <div class="contenaireModal">
           <div class="content">
 
 
-            <div class="contenaireModal">
+
+
+
+
+            <div class="contenaireModal" v-if="show.see">
+
               <h1 class="tritreModal">AJOUT NOUVEAU ELECTEUR</h1>
 
 
               <div class="contenaire">
+
+
 
                 <div class="inputCard">
                   <h3 class="label">Nom et prénom</h3>
@@ -64,7 +75,7 @@
                 </div>
 
 
-                
+
                 <div class="inputCard">
                   <h3 class="label">Lieu de délivrance CIN</h3>
                   <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input"
@@ -96,18 +107,18 @@
 
 
 
-                  <!-- <div class="inputCard">
-                    <h3 class="label">Année électorale</h3>
-                    <h3>{{  }}</h3>
+                <div class="inputCard">
+                  <h3 class="label">Année électorale</h3>
+                  <h3>{{ }}</h3>
 
 
-                    <select class="annee" v-model="listeElecteur.annee_electorale_id">
-                      <option selected disabled value=""> sélectionner une année électorale</option>
-                      <option v-for="annee in anneeElectorale.allanneeData" :key="annee.id" :value="annee.id">
-                        {{ annee.annee }} - {{ annee.descriptionAnnee }}
-                      </option>
-                    </select>
-                  </div> -->
+                  <select class="annee" v-model="listeElecteur.annee_electorale_id">
+                    <option selected disabled value=""> sélectionner une année électorale</option>
+                    <option v-for="annee in anneeElectorale.allanneeData" :key="annee.id" :value="annee.id">
+                      {{ annee.annee }} - {{ annee.descriptionAnnee }}
+                    </option>
+                  </select>
+                </div>
 
                 <!-- <div class="inputCard">
                   <h3 class="label">Région</h3>
@@ -140,7 +151,7 @@
                   <h3 class="label">Année électorale</h3>
                   <input type="text" placeholder="Ajoutez une année électorale" class="input"
                    />
-                </div>-->
+                </div> -->
 
                 <div class="btn">
                   <h3 class="btnAdd add"></h3>
@@ -148,12 +159,28 @@
               </div>
 
               <div class="modalFooter">
-                <h3 class="btnAdd add" @click="Ajout()">Ajouter</h3>
+                <h3 class="btnAdd add" @click="show.see = !show.see">Suivant</h3>
               </div>
 
 
 
             </div>
+
+
+            <div class="contenaireModal" v-if="!show.see">
+             
+
+              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload
+                file</label>
+              <input
+                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                id="file_input" type="file" @change="(event) => upload(event)">
+              <div class="modalFooter">
+                <h3 class="btnAdd add" @click="Ajout()">Ajouter</h3>
+              </div>
+            </div>
+
+
 
           </div>
         </div>
@@ -176,6 +203,9 @@ import { ref } from 'vue';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 
+
+
+
 const auth = useAuth();
 const utilisateur = useUtilisateur();
 const anneeElectorale = useAnneeElectorale();
@@ -186,6 +216,12 @@ function Ajout() {
   listeElecteur.createElecteur()
 
   console.log('ajoutElecteur');
+
+}
+
+function upload(event) {
+  console.log('izy ty ai', event.target.files[0]);
+  listeElecteur.fileUpload = event.target.files[0]
 
 }
 function voirDetails(item) {
@@ -207,6 +243,7 @@ function voirDetails(item) {
 </script>
 
 <style scoped>
+
 .modalFooter {
   background-color: rgb(34, 199, 83);
   width: 170px;
@@ -215,6 +252,7 @@ function voirDetails(item) {
   padding: 10px;
   border-radius: 10px;
   text-align: center;
+  margin-top: 20px;
 }
 
 .btn {
@@ -280,6 +318,19 @@ function voirDetails(item) {
   justify-content: center;
 }
 
+.closeForm1 {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  position: absolute;
+  left: 160px;
+  top: 90px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
 .closeForm:hover {
   background-color: rgba(222, 41, 41, 0.753);
   transform: scale(1.1);
@@ -290,12 +341,13 @@ function voirDetails(item) {
   top: 0;
   width: 100%;
   background-color: rgba(216, 213, 213, 0.326);
-  z-index: 2;
+  z-index: 100;
   height: 100%;
   display: flex;
   background: rgba(43, 38, 38, 0.801);
   justify-content: center;
   align-items: center;
+
 }
 
 .modal {

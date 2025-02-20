@@ -7,15 +7,18 @@
             <h4 class="number">{{ }}</h4>
             <div class="itemContainer"> <i class="pi pi-search icon1"></i>
                 <input type="text" v-model="searchTerm" placeholder="Recherche nom candidat" class="input" />
-                <h3 class="btnAdd add" @click="show.showModalAjoutFunc">
+                <h3 class="btnAdd add" @click="show.showChoixElection = !show.showChoixElection">
                     <i class="pi pi-plus" style="font-size: 16px; color: white;left: 0;"></i>
                 </h3>
             </div>
         </div>
-        <div class="scroll-container">
+
+
+        <div class="scroll-container ">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg down">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <table class="w-full  text-sm  text-left rtl:text-right text-gray-500 dark:text-gray-400">
+
+                    <thead class="text-xs   !z- text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
                                 Nom
@@ -39,6 +42,7 @@
 
                     <tbody>
                         <div v-if="filteredCandidats.length === 0" class="no-results">
+                            
                             <h4 class="message">Aucun candidat trouvé.</h4>
                         </div>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
@@ -73,10 +77,93 @@
             </div>
 
         </div>
+        <!-- 
+        <div class="showProfil" v-if="show.showChoixElection">
+            <div class="sectionItem">
+                <div class="closeForm" @click="show.showChoixElection = false">
+                    <i class="pi pi-times text-gray-700 text-lg"></i>
+                </div>
+                <h4 class="textSection text-lg font-semibold">Choisir une élection</h4>
+            </div>
+
+            <div class="items flex flex-col gap-4 mt-4">
+                <div class="option bg-blue-500 text-white p-3 rounded-lg cursor-pointer hover:bg-blue-600 transition"
+                     @click="show.showModalAjout = !show.showModalAjout"> 
+                    <h5 class="text-center font-semibold" @click="presidentiel()">Élection Présidentielle</h5>
+                </div>
+
+                <div class="option bg-green-500 text-white p-3 rounded-lg cursor-pointer hover:bg-green-600 transition"
+                    @click="choisirElection('parlementaire')">
+                    <h5 class="text-center font-semibold">Élection Parlementaire</h5>
+                </div>
+
+                <div class="option bg-orange-400 text-white p-3 rounded-lg cursor-pointer hover:bg-orange-600 transition"
+                    @click="choisirElection('municipale')">
+                    <h5 class="text-center font-semibold">Élection Municipale</h5>
+                </div>
+            </div>
+        </div> -->
+
+
+        <div class="showProfil" v-if="show.showChoixElection">
+            <div class="sectionItem">
+                <div class="closeForm" @click="show.showChoixElection = false">
+                    <i class="pi pi-times text-gray-700 text-lg"></i>
+                </div>
+                <h4 class="textSection text-lg font-semibold">Choisir une élection</h4>
+            </div>
+
+            <div class="items flex flex-col gap-4 mt-4">
+                <!-- Élection Présidentielle -->
+                <div class="option bg-blue-500 text-white p-3 rounded-lg cursor-pointer hover:bg-blue-600 transition"
+                    @click="show.showModalAjout = !show.showModalAjout">
+                    <h5 class="text-center font-semibold" @click="presidentiel()">Élection Présidentielle</h5>
+                </div>
+
+                <!-- Élection Parlementaire (avec sous-options) -->
+                <div class="option bg-green-500 text-white p-3 rounded-lg cursor-pointer hover:bg-green-600 transition"
+                    @click="toggleParlementaire">
+                    <h5 class="text-center font-semibold">Élection Parlementaire</h5>
+                </div>
+
+                <!-- Sous-options pour Parlementaire -->
+                <div v-if="showParlementaire" class="ml-6 flex flex-col gap-2">
+                    <div class="option bg-green-400 text-white p-2 rounded-lg cursor-pointer hover:bg-green-500 transition"
+                        @click="show.showTypeElection('district')">
+                        <h5 class="text-center font-semibold">Élection Député</h5>
+                    </div>
+                    <div class="option bg-green-400 text-white p-2 rounded-lg cursor-pointer hover:bg-green-500 transition"
+                    @click="show.showTypeElection('province')">
+                    <h5 class="text-center font-semibold">Élection Sénateur</h5>
+                    </div>
+                </div>
+
+                <!-- Élection Municipale (avec sous-options) -->
+                <div class="option bg-orange-500 text-white p-3 rounded-lg cursor-pointer hover:bg-orange-600 transition"
+                    @click="toggleMunicipale">
+                    <h5 class="text-center font-semibold">Élection Municipale</h5>
+                </div>
+
+                <!-- Sous-options pour Municipale -->
+                <div v-if="showMunicipale" class="ml-6 flex flex-col gap-2">
+                    <div class="option bg-orange-400 text-white p-2 rounded-lg cursor-pointer hover:bg-orange-500 transition"
+                    @click="show.showTypeElection('commune')">
+                    <h5 class="text-center font-semibold">Élection Conseiller Municipal</h5>
+                    </div>
+                    <div class="option bg-orange-400 text-white p-2 rounded-lg cursor-pointer hover:bg-orange-500 transition"
+                        @click="choisirElection('commune')">
+                        <h5 class="text-center font-semibold">Élection Maire</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
         <div class="modal" v-if="show.showModalAjout">
+
             <div class="contenaireModal">
-                <h1 class="tritreModal">AJOUT NOUVEAU CANDIDAT</h1>
+                <h1 class="tritreModal">AJOUT NOUVEAU CANDIDATnnnnnnnnnnn</h1>
                 <div class="flex">
                     <div class="section">
                         <div class="inputCard">
@@ -297,12 +384,14 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 
 </template>
 
-<script setup>
-import { ref, computed } from 'vue'
+<!-- <script setup>
+import { ref, computed, onMounted,watch } from 'vue'
 import { useShow } from "@/stores/show";
 import { useAuth } from "@/stores/auth";
 import { useUtilisateur } from "@/stores/utilisateur";
@@ -372,14 +461,271 @@ function modifier(item) {
 }
 
 const searchTerm = ref('');
+const anneeSelect = ref()
+
+
+
+const anneeVerifier = computed(() => anneeSelect.value);
+
+const listeCandidatVerifier = ref([])
+
+watch(anneeVerifier, (newList, oldList) => {
+  console.log('niova ai', newList);
+
+  listeCandidat.allListeCandidat.map((candidat)=>{
+    if (candidat.candidat.annee_electorale.annee === newList ) {
+        console.log('ato ai', candidat);
+        listeCandidatVerifier.value.push(candidat)
+    }
+  })
+
+  
+});
+
 const filteredCandidats = computed(() => {
     if (!searchTerm.value) {
-        return listeCandidat.allListeCandidat;
-    } return listeCandidat.allListeCandidat.filter(item => {
+        return listeCandidatVerifier.value;
+    } return listeCandidatVerifier.value.filter(item => {
         return item.electeur.nomComplet.toLowerCase().includes(searchTerm.value.toLowerCase());
     });
 });
+
+
+onMounted(()=>{
+    anneeSelect.value=JSON.parse(localStorage.getItem('anneeSelectionne')).annee
+    console.log('anneeSelect.value', anneeSelect.value);
+    
+})
+</script> -->
+
+
+<script setup>
+import { ref, computed, onMounted, watch } from 'vue';
+import { useShow } from "@/stores/show";
+import { useAuth } from "@/stores/auth";
+import { useUtilisateur } from "@/stores/utilisateur";
+import { uselisteCandidat } from "@/stores/listeCandidat";
+import { useAnneeElectorale } from "@/stores/anneeElectorale";
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
+import ElectionPresidentiel from '@/views/ElectionPresidentiel.vue';
+
+const show = useShow();
+const auth = useAuth();
+const utilisateur = useUtilisateur();
+const listeCandidat = uselisteCandidat();
+const anneeElectorale = useAnneeElectorale();
+
+const searchTerm = ref('');
+const anneeSelect = ref();
+const listeCandidatVerifier = ref([]);
+
+const anneeVerifier = computed(() => anneeSelect.value);
+
+function presidentiel() {
+    show.showChoixElection = !show.showChoixElection
+}
+
+
+watch(anneeVerifier, (newList, oldList) => {
+    listeCandidat.allListeCandidat.map((candidat) => {
+        if (candidat.candidat.annee_electorale.annee === newList) {
+            listeCandidatVerifier.value.push(candidat);
+        }
+    });
+});
+
+const filteredCandidats = computed(() => {
+    if (!searchTerm.value) {
+        return listeCandidatVerifier.value;
+    }
+    return listeCandidatVerifier.value.filter(item => {
+        return item.electeur.nomComplet.toLowerCase().includes(searchTerm.value.toLowerCase());
+    });
+});
+
+onMounted(() => {
+    anneeSelect.value = JSON.parse(localStorage.getItem('anneeSelectionne')).annee;
+    remplirFormulaireAleatoires();
+});
+
+
+function depute() {
+    show.setOption('Liste location élection')
+    show.depute = true
+
+}
+
+function remplirFormulaireAleatoires() {
+    listeCandidat.nomComplet = genererNomAleatoire();
+    listeCandidat.dateNaissance = genererDateAleatoire();
+    listeCandidat.lieuNaissance = genererLieuAleatoire();
+    listeCandidat.sexe = genererSexeAleatoire();
+    listeCandidat.filiation = genererFiliationAleatoire();
+    listeCandidat.email = genererEmailAleatoire();
+    listeCandidat.declarationHonneurBiens = genererObtentionAleatoire();
+    listeCandidat.certificatNationalite = genererObtentionAleatoire();
+    listeCandidat.declarationHonneurImpôts = genererObtentionAleatoire();
+    listeCandidat.certificatAdministrationFiscale = genererObtentionAleatoire();
+    listeCandidat.copieCarteElecteur = genererObtentionAleatoire();
+    listeCandidat.declarationProbite = genererObtentionAleatoire();
+    listeCandidat.copieRecipissePatrimoine = genererObtentionAleatoire();
+    listeCandidat.numeroCIN = genererNumeroCINAleatoire();
+    listeCandidat.dateDelivreCIN = genererDateAleatoire();
+    listeCandidat.lieuDelivreCIN = genererLieuAleatoire();
+    listeCandidat.adresse = genererAdresseAleatoire();
+    listeCandidat.profession = genererProfessionAleatoire();
+    listeCandidat.casierJudiciaire = genererObtentionAleatoire();
+    listeCandidat.copieActeNaissance = genererObtentionAleatoire();
+    listeCandidat.annee_electorale_id = genererAnneeElectoraleAleatoire();
+    listeCandidat.carteElecteur = genererCarteElecteurAleatoire();
+    listeCandidat.telephone = genererTelephoneAleatoire();
+    listeCandidat.dateInscription = genererDateAleatoire();
+    listeCandidat.matriceSupportElectronique = genererObtentionAleatoire();
+    listeCandidat.quittanceContribution = genererObtentionAleatoire();
+    listeCandidat.declarationHonneurConstitution = genererObtentionAleatoire();
+    listeCandidat.attestationInvestiture = genererObtentionAleatoire();
+    listeCandidat.certificatResidence = genererObtentionAleatoire();
+}
+
+
+// États réactifs
+const showModalAjout = ref(false);
+const showParlementaire = ref(false);
+const showMunicipale = ref(false);
+
+// Fonctions
+const choisirElection = (type) => {
+    console.log("Élection sélectionnée :", type);
+    showModalAjout.value = false; // Fermer la modale après sélection
+};
+
+const toggleParlementaire = () => {
+    showParlementaire.value = !showParlementaire.value;
+};
+
+const toggleMunicipale = () => {
+    showMunicipale.value = !showMunicipale.value;
+};
+
+function genererNomAleatoire() {
+    const prenoms = ['Jean', 'Marie', 'Paul', 'Sophie', 'Pierre', 'Julie'];
+    const noms = ['Dupont', 'Martin', 'Bernard', 'Thomas', 'Petit', 'Robert'];
+    return `${prenoms[Math.floor(Math.random() * prenoms.length)]} ${noms[Math.floor(Math.random() * noms.length)]}`;
+}
+
+function genererDateAleatoire() {
+    const start = new Date(1950, 0, 1);
+    const end = new Date();
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
+
+function genererLieuAleatoire() {
+    const lieux = ['Paris', 'Lyon', 'Marseille', 'Toulouse', 'Nice', 'Nantes'];
+    return lieux[Math.floor(Math.random() * lieux.length)];
+}
+
+function genererSexeAleatoire() {
+    return Math.random() < 0.5 ? 'Homme' : 'Femme';
+}
+
+function genererFiliationAleatoire() {
+    const filiations = ['Fils de X et Y', 'Fille de X et Y', 'Fils de A et B', 'Fille de A et B'];
+    return filiations[Math.floor(Math.random() * filiations.length)];
+}
+
+function genererEmailAleatoire() {
+    const chars = 'abcdefghijklmnopqrstuvwxyz';
+    let email = '';
+    for (let i = 0; i < 7; i++) {
+        email += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return `${email}@gmail.com`;
+}
+
+function genererObtentionAleatoire() {
+    return Math.random() < 0.5 ? 'oui' : 'non';
+}
+
+function genererNumeroCINAleatoire() {
+    return Math.floor(10000000 + Math.random() * 90000000).toString();
+}
+
+function genererAdresseAleatoire() {
+    const adresses = ['1 rue de la Paix', '2 avenue des Champs-Élysées', '3 boulevard Saint-Germain'];
+    return adresses[Math.floor(Math.random() * adresses.length)];
+}
+
+function genererProfessionAleatoire() {
+    const professions = ['Ingénieur', 'Médecin', 'Avocat', 'Enseignant', 'Artiste'];
+    return professions[Math.floor(Math.random() * professions.length)];
+}
+
+function genererCarteElecteurAleatoire() {
+    return Math.floor(1000000 + Math.random() * 9000000).toString();
+}
+
+function genererTelephoneAleatoire() {
+    return '06' + Math.floor(10000000 + Math.random() * 90000000).toString();
+}
+
+function genererAnneeElectoraleAleatoire() {
+    const annees = anneeElectorale.allanneeData.map(annee => annee.id);
+    return annees[Math.floor(Math.random() * annees.length)];
+}
+
+function voir(item) {
+    listeCandidat.voirCandidatData = item;
+    show.showModalOeilCandidat = !show.showModalOeilCandidat;
+}
+
+function ajouter() {
+    listeCandidat.createCandidat();
+}
+
+function supprimer(item) {
+    show.showModalSupprimer = true;
+    listeCandidat.supprimerData = item;
+}
+
+function modifier(item) {
+    listeCandidat.modifierCandidatData = item;
+    show.showModalModifierCandidat = !show.showModalModifierCandidat;
+    listeCandidat.ModifierIdCandidat = item.candidat.id;
+    listeCandidat.ModifierdeclarationHonneurBiens = item.candidat.declarationHonneurBiens;
+    listeCandidat.ModifiercertificatNationalite = item.candidat.certificatNationalite;
+    listeCandidat.ModifierdeclarationHonneurImpôts = item.candidat.declarationHonneurImpôts;
+    listeCandidat.ModifiercertificatAdministrationFiscale = item.candidat.certificatAdministrationFiscale;
+    listeCandidat.ModifiercopieCarteElecteur = item.candidat.copieCarteElecteur;
+    listeCandidat.ModifierdeclarationProbite = item.candidat.declarationProbite;
+    listeCandidat.ModifiercopieRecipissePatrimoine = item.candidat.copieRecipissePatrimoine;
+    listeCandidat.ModifiermatriceSupportElectronique = item.candidat.matriceSupportElectronique;
+    listeCandidat.ModifierquittanceContribution = item.candidat.quittanceContribution;
+    listeCandidat.ModifierdeclarationHonneurConstitution = item.candidat.declarationHonneurConstitution;
+    listeCandidat.ModifierattestationInvestiture = item.candidat.attestationInvestiture;
+    listeCandidat.ModifiercertificatResidence = item.candidat.certificatResidence;
+    listeCandidat.ModifiercasierJudiciaire = item.candidat.casierJudiciaire;
+    listeCandidat.ModifiercopieActeNaissance = item.candidat.copieActeNaissance;
+    listeCandidat.Modifierannee_electorale_id = item.candidat.annee_electorale_id;
+    listeCandidat.Modifierelecteur_id = item.candidat.electeur_id;
+    listeCandidat.ModifiernomComplet = item.electeur.nomComplet;
+    listeCandidat.Modifierprofession = item.electeur.profession;
+    listeCandidat.Modifieradresse = item.electeur.adresse;
+    listeCandidat.ModifiernumeroCIN = item.electeur.numeroCIN;
+    listeCandidat.ModifierdateDelivreCIN = item.electeur.dateDelivreCIN;
+    listeCandidat.ModifierlieuDelivreCIN = item.electeur.lieuDelivreCIN;
+    listeCandidat.ModifiercarteElecteur = item.electeur.carteElecteur;
+    listeCandidat.Modifiersexe = item.electeur.sexe;
+    listeCandidat.ModifierlieuNaissance = item.electeur.lieuNaissance;
+    listeCandidat.Modifierfiliation = item.electeur.filiation;
+    listeCandidat.ModifierdateNaissance = item.electeur.dateNaissance;
+    listeCandidat.Modifiertelephone = item.electeur.telephone;
+    listeCandidat.ModifierdateInscription = item.electeur.dateInscription;
+    listeCandidat.Modifieremail = item.user.email;
+    listeCandidat.Modifieruser_id = item.user.id;
+}
 </script>
+
 
 <style scoped>
 .form {
@@ -406,7 +752,8 @@ const filteredCandidats = computed(() => {
 }
 
 option {
-    background-color: rgba(53, 48, 48, 0.452);
+    background-color: rgba(67, 67, 79, 0.83);
+    color: #f0f3f6;
 }
 
 .scroll-container {
@@ -432,6 +779,7 @@ option {
     left: 0;
     overflow-y: hidden;
     align-items: center;
+    z-index: 100;
 }
 
 .contenaireModalSupp {
@@ -478,6 +826,7 @@ option {
     align-items: center;
     padding: 0 20px;
     margin-bottom: 10px;
+
 }
 
 .section {
@@ -536,6 +885,65 @@ option {
 .subtitle {
     width: 60%;
     font-weight: 700;
+}
+
+.textSection {
+    font-weight: 700;
+}
+
+.pi {
+    transition: transform 0.2s ease-in-out;
+}
+
+.closeForm {
+    background-color: rgb(232, 226, 226);
+    width: 17px;
+    height: 17px;
+    border-radius: 100%;
+    position: absolute;
+    right: 8px;
+    /* Ajusté pour être à droite */
+    top: 6px;
+    /* Ajusté pour être en haut */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    /* Ajoute un curseur pointeur pour indiquer qu'il est cliquable */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.showProfil {
+    position: absolute;
+    background-color: #545C6B;
+    color: rgb(221, 214, 214);
+    width: 20%;
+    top: 200px;
+    right: 60px;
+    border-radius: 5px;
+    text-align: left;
+    z-index: 99;
+
+}
+
+.container {
+    padding: 5px 5px;
+    display: flex;
+    overflow: hidden;
+    justify-content: space-around;
+}
+
+.imageProfil {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.sectionItem {
+    background-color: #4e525b;
+    border-radius: 5px 5px 0px 0px;
+    padding: 5px 20px;
+
 }
 
 .icon {
@@ -699,7 +1107,7 @@ input-placeholder {
     border-radius: 5px;
 
     display: inline-block;
-    position: relative;
+    /* position: relative; */
     margin-left: 0;
     /* Positionne l'élément à gauche */
 
@@ -755,32 +1163,34 @@ input-placeholder {
     justify-content: space-between;
     width: 90%;
 
+
 }
 
 .annee {
     width: 100%;
     padding: 5px;
-    background-color: #3c4c6d09;
+    background-color: #eceef209;
     border-radius: 5px;
     border: 1px solid #aaaac5;
     color: #fafbfd;
 }
 
+
 .message {
-    display: flex;
-    justify-content: center;
-    /* Centre horizontalement */
-    align-items: center;
-    /* Centre verticalement */
-    height: 100%;
-    /* Assure que le conteneur prend toute la hauteur disponible */
-    text-align: center;
-    /* Centre le texte à l'intérieur de l'élément */
-    margin: 20px 0;
-    /* Ajoute un espacement au-dessus et en dessous */
-    color: rgb(231, 216, 216);
-    /* Couleur du texte pour le message */
-    font-size: 18px;
-    /* Taille de la police */
+  display: flex;
+  justify-content: center;
+  /* Centre horizontalement */
+  align-items: center;
+  /* Centre verticalement */
+  height: 100%;
+  /* Assure que le conteneur prend toute la hauteur disponible */
+  text-align: center;
+  /* Centre le texte à l'intérieur de l'élément */
+  margin: 20px 0;
+  /* Ajoute un espacement au-dessus et en dessous */
+  color: rgb(231, 216, 216);
+  /* Couleur du texte pour le message */
+  font-size: 18px;
+  /* Taille de la police */
 }
 </style>

@@ -2,7 +2,6 @@ import {createRouter, createWebHistory} from 'vue-router';
 import Accueil from '@/views/Acceuil.vue';
 import Elections from '@/views/Elections.vue';
 import Resultats from '@/views/Resultats.vue';
-import ListeElectorale from '@/views/ListeElectorale.vue';
 import Actualite from '@/views/Actualite.vue';
 import APropos from '@/views/Apropos.vue';
 import Admin from '@/views/Admin.vue';
@@ -27,6 +26,37 @@ import ActualiteDepeche from '@/components/user/actualite/ActualiteDepeche.vue';
 import ActualiteCommuniquePresse from '@/components/user/actualite/ActualiteCommuniquePresse.vue';
 import ActualiteDecision from '@/components/user/actualite/ActualiteDecision.vue';
 import ActualiteGenreInclusion from '@/components/user/actualite/ActualiteGenreInclusion.vue';
+// import ActualiteComponent from '@/components/ActualiteComponent.vue';
+import ListeElectorale from '@/views/ListeElectorale.vue';
+import PdfTest from '@/views/PdfTest.vue';
+import Carte from '@/views/Carte.vue';
+import TypeElection from '@/views/TypeElection.vue';
+import ModalPhotoId from '@/views/ModalPhotoId.vue';
+import ModalRectoCIN from '@/views/ModalRectoCIN.vue';
+import ModalVersoCIN from '@/views/ModalVersoCIN.vue';
+import ElectionPresidentiel from '@/views/ElectionPresidentiel.vue';
+import ElectionParlementaire from '@/views/ElectionParlementaire.vue';
+import AnneeDepute from '@/views/AnneeDepute.vue';
+import AnneeSenateur from '@/views/AnneeSenateur.vue';
+import ElectionMunicipale from '@/views/ElectionMunicipale.vue';
+import AnneeConseilleMunicipaux from '@/views/AnneeConseilleMunicipaux.vue';
+import AnneeMaire from '@/views/AnneeMaire.vue';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const routes = [
@@ -34,105 +64,95 @@ const routes = [
 		path: '/',
 		component: Accueil
 	},
-	//Elections
+	// Elections
 	{
-		path: '/elections/communale',
-		component: ElectionsCommunale
+		path: '/elections/listeElectorale',
+		component: ListeElectorale
+	},
+	// {
+	// path: '/elections/actualite',
+	// component: ActualiteComponent
+	// },
+	{
+		path: '/elections/Pdf',
+		component: PdfTest
 	},
 	{
-		path: '/elections/legislative',
-		component: ElectionsLegislative
+		path: '/elections/carte',
+		component: Carte
+	}, {
+		path: '/elections/typeElection',
+		component: TypeElection
+	}, {
+		path: '/elections/photoIdentite',
+		component: ModalPhotoId
+	}, {
+		path: '/elections/rectoCIN',
+		component: ModalRectoCIN
+	}, {
+		path: '/elections/versoCIN',
+		component: ModalVersoCIN
 	},
 	{
-		path: '/elections/presidentiel',
-		component: ElectionsPresidentiel
-	},
-	{
-		path: '/elections/etapeSuivie',
-		component: ElectionsEtapesSuivie
-	},
-	{
-		path: '/elections/textsElection',
-		component: ElectionsTextsElection
-	},
-	{
-		path: '/elections/verificationNom',
-		component: ElectionsVerificationNom
-	},
-	{
-		path: '/elections/piecesAFournir',
-		component: ElectionsPiecesAFounir
-	},
-	
+		path: '/elections/electionPresidentiel',
+		component: ElectionPresidentiel
+	}, 
 
-	//Resultats
+	// Resultats
 	{
-		path: '/resultats/communale',
-		component: ResultatsCommunale
+		path: '/elections/electionParlementaire',
+		component: ElectionParlementaire
+	}, {
+		path: '/elections/anneeDepute',
+		component: AnneeDepute
+	}, {
+		path: '/elections/anneeSenateur',
+		component: AnneeSenateur
 	},
+	// Liste électorale
 	{
-		path: '/resultats/legislative',
-		component: ResultatsLegislative
-	},
-	{
-		path: '/resultats/presidentiel',
-		component: ResultatsPresidentiel
-	},
-	{
-		path: '/resultats/archivesElections',
-		component: ResultatsArchivesElections
-	},
-	//Liste électorale
-	{
-		path: '/liste-electorale/noms',
-		component: ListeElectoraleNoms
-	},
-	{
-		path: '/liste-electorale/legislative',
-		component: ListeElectoraleLegislative
-	},
-	{
-		path: '/liste-electorale/presidentiel',
-		component: ListeElectoralePresidentiel
-	},
-	{
+		path: '/elections/electionMunicipale',
+		component: ElectionMunicipale
+	}, {
+		path: '/elections/anneeConseilleMunicipaux',
+		component: AnneeConseilleMunicipaux
+	}, {
+		path: '/elections/anneeMaire',
+		component: AnneeMaire
+	}, {
 		path: '/liste-electorale/archives',
 		component: ListeElectoraleArchives
 	},
-	
 
-	//Actualité
+
+	// Actualité
 	{
 		path: '/actualite/alaune',
 		component: ActualiteALaUne
-	}, 
-	{
+	}, {
 		path: '/actualite/depeche',
 		component: ActualiteDepeche
-	},
-	{
+	}, {
 		path: '/actualite/communiquePresse',
 		component: ActualiteCommuniquePresse
-	},
-	{
+	}, {
 		path: '/actualite/decision',
 		component: ActualiteDecision
-	},
-	{
+	}, {
 		path: '/actualite/genreInclusion',
 		component: ActualiteGenreInclusion
 	},
-	//A propos
+	// A propos
 	{
 		path: '/apropos',
 		component: APropos
-	}, 
-	//admin
+	},
+	// admin
 	{
 		path: '/admin',
 		component: Admin
-	}, 
-	//test
+	},
+	// test
 	{
 		path: '/test',
 		component: Test

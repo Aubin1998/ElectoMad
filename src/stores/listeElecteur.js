@@ -75,6 +75,72 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 
 	const electeurs = ref([]);
 
+	const electeurFind = ref()
+
+
+	const fileUpload = ref()
+
+
+	function searchElecteur(numeroCIN, nomComplet) {
+
+		show.showSpinner = true;
+
+		let formData = {
+			numeroCIN: numeroCIN,
+			nomComplet: nomComplet
+		}
+
+
+		axios.post(`${URL}/api/search-electeur`, formData, {
+			headers: {
+				Authorization: `Bearer ${
+					auth.token
+				}`
+			}
+		}).then((response) => {
+
+
+
+			console.log('recherche', response.data);
+			
+			if (response.data.status === 'success') { // Stockage des données dans l'état du store si la recherche est réussie
+				electeurFind.value = response.data.data;
+				console.log('Electeur trouvé:', response.data.data);
+
+				// Afficher un message de succès
+				show.showAlert = true;
+				show.showAlertType = 'success';
+				show.showAlertMessage = 'Électeur trouvé avec succès';
+			} else { // Si l'électeur n'est pas trouvé ou une autre erreur, afficher un message d'avertissement
+				show.showAlert = true;
+				show.showAlertType = 'warning';
+				show.showAlertMessage = response.data.message;
+			}
+
+			// Masquer l'alerte après 3 secondes
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+
+		}).catch((err) => { // Gestion des erreurs
+			show.showAlertType = 'danger';
+			show.showAlertMessage = 'Erreur lors de la récupération des données de l\'électeur';
+			console.error(err);
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+
+		}). finally(() => { // Masquer le spinner après la fin de la requête
+			show.showSpinner = false;
+		});
+	}
+
+
 	function getElecteurs() {
 		const anneeData = JSON.parse(localStorage.getItem('anneeSelectionne'));
 
@@ -97,6 +163,30 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			electeurs.value = response.data;
 
 			if (response.status === 200) {
+				// let data = []
+
+
+				// console.log('ty isy', response.data);
+				// response.data.map((item) => {
+				// 	let data1
+				// 	if (item.file) {
+				// 		data1 = item
+
+				// 		console.log('peee', item.file ?. titre)
+				// 		data1.file.titre = "http://127.0.0.1:8000/" + item.file.titre
+
+				// 	} else {
+				// 		data1 = item
+				// 	}
+
+				// 	//
+				// 	data.push(data1)
+				// })
+
+
+				// console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', data)
+
+
 				allElecteurData.value = response.data;
 				show.showAlert = true;
 				allListeElecteur.value = response.data.electeurs;
@@ -131,7 +221,7 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 	}
 
 	function createElecteur() {
-	
+
 
 		let anneeselect = JSON.parse(localStorage.getItem('anneeSelectionne')).id
 
@@ -171,6 +261,15 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			}
 		}).then((response) => {
 			if (response.status === 201) {
+
+
+				console.log('yes', response);
+				if (fileUpload.value) {
+					console.log('ato ^poury');
+					onFileChange(fileUpload.value, response.data.electeur.id)
+				}
+
+
 				email.value = '';
 				getElecteurs();
 
@@ -189,6 +288,7 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 				sexe.value = '';
 				lieuNaissance.value = '';
 				filiation.value = '';
+
 				dateNaissance.value = '';
 				telephone.value = '';
 				dateInscription.value = '';
@@ -225,32 +325,91 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 		});
 	}
 
-	function updateElecteur(id, data) {
+
+	const onFileChange = async (event, electeur_id) => {
+		const file = event;
+		if (! file) 
+			return;
+		
+
+
+		const formData = new FormData();
+		formData.append("file", file);
+
+		try {
+			const response = await axios.post(` ${URL}/api/electeur/${electeur_id}/upload`, formData, {
+				headers: {
+					"Content-Type": "multipart/form-data"
+				}
+			});
+			console.log('response uploadImage', response.data);
+
+		} catch (error) {
+			console.error("Erreur lors de l'upload de l'image :", error);
+		}
+	};
+	function updateElecteur(id) {
+
+		// adresse: "uijo"
+		// annee_electorale_id: 2
+		// carteElecteur: "io"
+		// commune: "AMBALAHONKO"
+		// created_at : "2025-02-07T13:59:40.000000Z"
+		// dateDelivreCIN: "2025-02-15T13:59:00.000Z"
+		// dateInscription: "2025-02-14T13:59:00.000Z"
+		// dateNaissance: "2025-02-05T13:59:00.000Z"
+		// district: "AMBANJA"
+		// filiation: "ui"
+		// fokontany: "AMBALAHONKO"
+		// id: 13
+		// lieuDelivreCIN: "uio"
+		// lieuNaissance: "tyu"
+		// nomComplet: "sdrf"
+		// numeroCIN: "yu"
+		// profession: "uijo"
+		// region: "DIANA"
+		// sexe: "yui"
+		// status : null
+		// telephone: "tyu"
+		// updated_at : "2025-02-07T13:59:40.000000Z"
+		// user : created_at : "2025-02-07T13:59:40.000000Z"
+		// email: "rfcfhhhhhhhhh@gmail.com"
+		// email_verified_at : null
+		// id: 13
+		// showPasswords : "0"
+		// updated_at : "2025-02-07T13:59:40.000000Z"
+		// username: "sdrf"
+		// [[Prototype]] : Object
+		// user_id: 13
+
 		let updatedData = {
-			electeur_id: Modifierelecteur_id.value,
-			nomComplet: ModifiernomComplet.value,
-			profession: Modifierprofession.value,
-			adresse: Modifieradresse.value,
-			numeroCIN: ModifiernumeroCIN.value,
-			dateDelivreCIN: ModifierdateDelivreCIN.value,
-			lieuDelivreCIN: ModifierlieuDelivreCIN.value,
-			carteElecteur: ModifiercarteElecteur.value,
-			sexe: Modifiersexe.value,
-			lieuNaissance: ModifierlieuNaissance.value,
-			filiation: Modifierfiliation.value,
-			dateNaissance: ModifierdateNaissance.value,
-			telephone: Modifiertelephone.value,
-			dateInscription: ModifierdateInscription.value,
-			annee_electorale_id: annee_electorale_id.value,
-			email: email.value,
+			electeur_id: modifierElecteurData.value.id,
+			nomComplet: modifierElecteurData.value.nomComplet,
+			profession: modifierElecteurData.value.profession,
+			adresse: modifierElecteurData.value.adresse,
+			numeroCIN: modifierElecteurData.value.numeroCIN,
+			dateDelivreCIN: modifierElecteurData.value.dateDelivreCIN,
+			lieuDelivreCIN: modifierElecteurData.value.lieuDelivreCIN,
+			carteElecteur: modifierElecteurData.value.carteElecteur,
+			sexe: modifierElecteurData.value.sexe,
+			lieuNaissance: modifierElecteurData.value.lieuNaissance,
+			filiation: modifierElecteurData.value.filiation,
+			dateNaissance: modifierElecteurData.value.dateNaissance,
+			telephone: modifierElecteurData.value.telephone,
+			dateInscription: modifierElecteurData.value.dateInscription,
+			annee_electorale_id: modifierElecteurData.value.annee_electorale_id,
+			email: modifierElecteurData.value.user.email,
 
-			user_id: Modifieruser_id.value,
+			user_id: modifierElecteurData.value.user_id,
 
-			region: Modifierregion.value,
-			district: Modifierdistrict.value,
-			commune: Modifiercommune.value,
-			fokontany: Modifierfokontany.value
+			region: modifierElecteurData.value.region,
+			district: modifierElecteurData.value.district,
+			commune: modifierElecteurData.value.commune,
+			fokontany: modifierElecteurData.value.fokontany,
+			verifier: false
 		};
+
+		console.log('updatedData', updatedData);
 
 
 		show.showSpinner = true;
@@ -261,6 +420,9 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 				}`
 			}
 		}).then((response) => {
+
+			console.log('cfvbnnj,k;lcfvbnnj,k;', response.data);
+
 			if (response.status === 200) {
 
 				show.showAlert = true;
@@ -293,7 +455,6 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			show.showSpinner = false;
 		});
 	}
-
 	function deleteElecteur(id) {
 		show.showSpinner = true;
 		axios.delete(`${URL}/api/electeur/${id}`, {
@@ -334,12 +495,11 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			show.showSpinner = false;
 		});
 	}
-
 	onMounted(() => {
 		getElecteurs();
 	});
-
 	return {
+		searchElecteur,
 		electeurs,
 		Modifierregion,
 		Modifierdistrict,
@@ -361,6 +521,8 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 		sexe,
 		filiation,
 		numeroCIN,
+
+		electeurFind,
 		dateDelivreCIN,
 		lieuDelivreCIN,
 		adresse,
@@ -389,6 +551,8 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 		Modifiertelephone,
 		ModifierdateInscription,
 		Modifieruser_id,
+		fileUpload,
+
 
 		supprimerData,
 		enregistrerData,

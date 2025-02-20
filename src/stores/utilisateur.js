@@ -9,6 +9,8 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 	const show = useShow();
 	const auth = useAuth();
 	const URL = useUrl().url;
+
+	const newUtilisateur = ref()
 	const user = ref({})
 
 
@@ -170,6 +172,10 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 		});
 	}
 
+	function getRandomInt(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
 	async function createUtilisateur(formData) {
 		show.showSpinner = true;
 
@@ -184,6 +190,11 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Utilisateur et électeur créés avec succès';
 				await getElecteur(formData.annee_electorale_id)
+
+
+				// Exemple : nombre entier aléatoire entre 1 et 100
+				newUtilisateur.value = getRandomInt(1, 100);
+
 			} else {
 				show.showAlertType = 'warning';
 				show.showAlertMessage = 'Échec de la création de l\'utilisateur et de l\'électeur';
@@ -224,7 +235,6 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 				const data = response.data;
 				console.log('data', data);
 				allElecteurs.value = Object.values(response.data.electeurs)
-				
 
 
 				show.showAlert = true;
@@ -294,6 +304,7 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 		lieuNaissance,
 		filiation,
 		dateNaissance,
+		newUtilisateur,
 		telephone,
 		dateInscription,
 		allElecteurs,

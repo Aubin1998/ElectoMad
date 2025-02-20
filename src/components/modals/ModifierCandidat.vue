@@ -5,11 +5,39 @@
                 <h1 class="tritreModal">MODIFIER INFORMATION PERSONNEL</h1>
                 <div class="flex">
 
+
+
                     <div class="section">
+
+                        <div class="w-full h-[40vh] bg-[#b2b0b030] flex items-center justify-center">
+                            <img v-if="listeCandidat.modifierCandidatData.candidat?.file?.titre"
+                                :src="listeCandidat.modifierCandidatData.candidat.file?.titre" alt=""
+                                class="w-full h-full rounded-t-lg object-cover" />
+
+                            <div class="relative w-[50px] h-[50px]" v-else>
+                                <input type="file"
+                                    @change="(event) => onFileChange(event, listeCandidat.modifierCandidatData.candidat.id)"
+                                    id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
+                                <label for="file-upload"
+                                    class="flex items-center justify-center w-full h-full bg-[#e1dada] rounded-full cursor-pointer text-[24px]">
+                                    <i class="pi pi-camera text-red-500"></i>
+                                </label>
+                            </div>
+                            <div class="absolute w-[50px] h-[50px] t-0" v-if="listeCandidat.modifierCandidatData.candidat?.file?.titre">
+                                <input type="file"
+                                    @change="(event) => onFileChange(event, listeCandidat.modifierCandidatData.candidat.id)"
+                                    id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
+                                <label for="file-upload"
+                                    class="flex items-center justify-center w-full h-full  rounded-full cursor-pointer text-[24px]">
+                                    <i class="pi pi-camera "></i>
+                                </label>
+                            </div>
+                        </div>
+
                         <div class="inputCard">
                             <h3 class="label">Nom et prénom</h3>
-                            <input type="text" placeholder="Ajoutez un nom" 
-                            class="input" v-model="listeCandidat.ModifiernomComplet" />
+                            <input type="text" placeholder="Ajoutez un nom" class="input"
+                                v-model="listeCandidat.ModifiernomComplet" />
                         </div>
 
                         <div class="flexCard">
@@ -51,8 +79,7 @@
 
                         <div class="inputCard">
                             <h3 class="label"> Déclaration honneur des biens</h3>
-                            <select class="annee"
-                                v-model="listeCandidat.ModifierdeclarationHonneurBiens" id="">
+                            <select class="annee" v-model="listeCandidat.ModifierdeclarationHonneurBiens" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -63,8 +90,7 @@
 
                         <div class="inputCard">
                             <h3 class="label"> Certificat de nationalité</h3>
-                            <select class="annee"
-                                v-model="listeCandidat.ModifiercertificatNationalite" id="">
+                            <select class="annee" v-model="listeCandidat.ModifiercertificatNationalite" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -74,8 +100,7 @@
 
                         <div class="inputCard">
                             <h3 class="label"> Déclaration honneur des impôts</h3>
-                            <select class="annee"
-                                v-model="listeCandidat.ModifierdeclarationHonneurImpôts" id="">
+                            <select class="annee" v-model="listeCandidat.ModifierdeclarationHonneurImpôts" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -86,8 +111,7 @@
 
                         <div class="inputCard">
                             <h3 class="label"> Copie d'acte de naissance</h3>
-                            <select class="annee"
-                                v-model="listeCandidat.ModifiercopieActeNaissance" id="">
+                            <select class="annee" v-model="listeCandidat.ModifiercopieActeNaissance" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -100,9 +124,7 @@
 
                         <div class="inputCard">
                             <h3 class="label"> Certificat d'administration fiscale</h3>
-                            <select class="annee"
-                                v-model="listeCandidat.ModifiercertificatAdministrationFiscale"
-                                id="">
+                            <select class="annee" v-model="listeCandidat.ModifiercertificatAdministrationFiscale" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -112,8 +134,7 @@
 
                         <div class="inputCard">
                             <h3 class="label"> Copie de carte électeur</h3>
-                            <select class="annee"
-                                v-model="listeCandidat.ModifiercopieCarteElecteur" id="">
+                            <select class="annee" v-model="listeCandidat.ModifiercopieCarteElecteur" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -123,8 +144,7 @@
 
                         <div class="inputCard">
                             <h3 class="label"> Déclaration de probite</h3>
-                            <select class="annee"
-                                v-model="listeCandidat.ModifierdeclarationProbite" id="">
+                            <select class="annee" v-model="listeCandidat.ModifierdeclarationProbite" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -134,8 +154,7 @@
 
                         <div class="inputCard">
                             <h3 class="label"> Copie de récipissé patrimoine</h3>
-                            <select class="annee"
-                                v-model="listeCandidat.ModifiercopieRecipissePatrimoine" id="">
+                            <select class="annee" v-model="listeCandidat.ModifiercopieRecipissePatrimoine" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -176,8 +195,7 @@
 
                         <div class="inputCard">
                             <h3 class="label"> Casier judiciaire</h3>
-                            <select class="annee" v-model="listeCandidat.ModifiercasierJudiciaire"
-                                id="">
+                            <select class="annee" v-model="listeCandidat.ModifiercasierJudiciaire" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -216,8 +234,7 @@
 
                         <div class="inputCard">
                             <h3 class="label"> Année électorale</h3>
-                            <select class="annee"
-                                v-model="listeCandidat.Modifierannee_electorale_id" id="">
+                            <select class="annee" v-model="listeCandidat.Modifierannee_electorale_id" id="">
                                 <option disabled value="">Sélectionner une année</option>
                                 <option v-for="annee in anneeElectorale.allanneeData" :key=annee.id :value="annee.id">
                                     {{ annee.annee }}
@@ -230,8 +247,7 @@
 
                         <div class="inputCard">
                             <h3 class="label"> Matrice support électronique</h3>
-                            <select class="annee"
-                                v-model="listeCandidat.ModifiermatriceSupportElectronique" id="">
+                            <select class="annee" v-model="listeCandidat.ModifiermatriceSupportElectronique" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -242,8 +258,7 @@
 
                         <div class="inputCard">
                             <h3 class="label">Quittance de contribution</h3>
-                            <select class="annee"
-                                v-model="listeCandidat.ModifierquittanceContribution" id="">
+                            <select class="annee" v-model="listeCandidat.ModifierquittanceContribution" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -253,9 +268,7 @@
 
                         <div class="inputCard">
                             <h3 class="label">Déclaration d'honneur de constitution</h3>
-                            <select class="annee"
-                                v-model="listeCandidat.ModifierdeclarationHonneurConstitution"
-                                id="">
+                            <select class="annee" v-model="listeCandidat.ModifierdeclarationHonneurConstitution" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -265,8 +278,7 @@
 
                         <div class="inputCard">
                             <h3 class="label">Attestation d'investiture </h3>
-                            <select class="annee"
-                                v-model="listeCandidat.ModifierattestationInvestiture" id="">
+                            <select class="annee" v-model="listeCandidat.ModifierattestationInvestiture" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -277,8 +289,7 @@
 
                         <div class="inputCard">
                             <h3 class="label">Certificat de résidence </h3>
-                            <select class="annee"
-                                v-model="listeCandidat.ModifiercertificatResidence" id="">
+                            <select class="annee" v-model="listeCandidat.ModifiercertificatResidence" id="">
                                 <option disabled value="">Obtention</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -311,6 +322,8 @@
 import { useShow } from "@/stores/show";
 const show = useShow(); //call Show in show.js
 import { ref } from "vue";
+import axios from "axios";
+
 import { useAuth } from "@/stores/auth";
 import { useUtilisateur } from "@/stores/utilisateur";
 import { uselisteCandidat } from "@/stores/listeCandidat";
@@ -324,7 +337,52 @@ const listeCandidat = uselisteCandidat();
 const anneeElectorale = useAnneeElectorale();
 
 
+const filer = ref()
+const onFileChange = async (event, electeurId) => {
+    const file = event.target.files[0];
+    if (!file) return;
 
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+        console.log('rrrrrrrrrrrrr',listeCandidat.modifierCandidatData.candidat?.file?.titre);
+        
+        
+        const response = await axios.post(
+            `http://localhost:8000/api/electeur/candidat/${electeurId}/upload`,
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            }
+        );
+      
+
+        if (listeCandidat.modifierCandidatData.candidat?.file?.titre) {
+            listeCandidat.modifierCandidatData.candidat.file.titre = response.data.url;
+        } else {
+
+            filer.value = {
+                id: 1,
+                titre: response.data.url,
+                file_name: response.data.url,
+            }
+
+
+            listeCandidat.modifierCandidatData.candidat.file = filer.value
+        }
+
+
+
+
+
+
+    } catch (error) {
+        console.error('Erreur lors de l\'upload de l\'image :', error);
+    }
+};
 
 function modifier() {
     listeCandidat.updateCandidat(listeCandidat.modifierCandidatData.candidat.id, listeCandidat.modifierCandidatData)
@@ -381,6 +439,7 @@ function modifier() {
     left: 0;
     overflow-y: hidden;
     align-items: center;
+    z-index: 100;
 }
 
 .contenaireModalSupp {
@@ -612,14 +671,19 @@ function modifier() {
 input-placeholder {
     color: red;
 }
+
 .input::placeholder {
-    color: #8b8787;  /* Couleur initiale du placeholder */
-    font-style: italic;  /* Optionnel: pour ajouter un style en italique */
-    transition: color 0.3s ease;  /* Transition fluide quand la couleur change */
+    color: #8b8787;
+    /* Couleur initiale du placeholder */
+    font-style: italic;
+    /* Optionnel: pour ajouter un style en italique */
+    transition: color 0.3s ease;
+    /* Transition fluide quand la couleur change */
 }
 
 .input:focus::placeholder {
-    color: #bebaba;  /* Couleur du placeholder quand l'input est focusé */
+    color: #bebaba;
+    /* Couleur du placeholder quand l'input est focusé */
 }
 
 
@@ -707,6 +771,11 @@ input-placeholder {
     border-radius: 5px;
     border: 1px solid #aaaac5;
     color: #fafbfd;
+}
+
+option {
+    background-color: rgba(67, 67, 79, 0.83);
+    color: #f0f3f6;
 }
 
 .message {

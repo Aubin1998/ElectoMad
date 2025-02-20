@@ -316,7 +316,7 @@ function modifier() {
   top: 0;
   width: 100%;
   background-color: rgba(216, 213, 213, 0.326);
-  z-index: 2;
+  z-index: 100;
   width: 100%;
   height: 100%;
   display: flex;

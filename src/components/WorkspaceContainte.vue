@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="flex" v-if="show.showListeElecteurs || show.showListe || show.showAjoutUtilisateur || show.showListeUtilisateurs || show.showElecteurInscrit || show.showNombreTotalVotes">
+        <div class="flex"
+            v-if="show.showListeElecteurs || show.showListe || show.showAjoutUtilisateur || show.showListeUtilisateurs || show.showElecteurInscrit || show.showNombreTotalVotes">
             <div class="nav button">
 
 
@@ -19,29 +20,32 @@
                 <h4 v-if="show.isProvince"> {{ show.selectedProvince }}</h4>
                 <h4 v-if="show.isDistrict"> {{ show.selectedProvince }}/{{ show.selectedDistrict }}</h4>
                 <h4 v-if="show.isCommune"> {{ show.selectedProvince }}/{{ show.selectedDistrict }}/{{
-                    show.selectedCommune}}</h4>
+                    show.selectedCommune }}</h4>
                 <h4 v-if="show.isFokontany"> {{ show.selectedProvince }}/{{ show.selectedDistrict }}/{{
-                    show.selectedCommune}}/{{ show.selectedFokontany }}</h4>
+                    show.selectedCommune }}/{{ show.selectedFokontany }}</h4>
 
             </div>
         </div>
 
         <div class="card">
-        <WorkspaceAcceuil v-if="show.acceuil" />
+            <WorkspaceAcceuil v-if="show.acceuil" />
+
 
             <WorkspaceAnneeElectorale v-if="show.showAnneElectoral" />
             <WorkspaceGenreElection v-if="show.showGenreElection" />
             <WorkspaceListeElecteurs v-if="show.showListeElecteurs || show.showListe" />
+            <WorkspaceLocalisationElection v-if="show.showLocalisationElection " />
+
             <WorkspaceFiltrageRecherche v-if="show.showFiltrageRecherche" />
             <WorkspaceActionsGestion v-if="show.showActionsGestion" />
             <WorkspaceSurveillance v-if="show.showSurveillance" />
             <WorkspaceCreation v-if="show.showCreation" />
-         <!--   <WorkspaceListe v-if="show.showListe" /> -->
+            <!--   <WorkspaceListe v-if="show.showListe" /> -->
             <WorkspaceAjoutUtilisateurListe v-if="show.showAjoutUtilisateur" />
             <WorkspaceListeUtilisateursListe v-if="show.showListeUtilisateurs" />
             <WorkspaceChanger v-if="show.showChanger" />
             <WorkspaceVerificationElecteurListe v-if="show.showElecteurInscrit" />
-            <WorkspaceBureauActifs v-if="show.showBureauActifs" />
+            <!-- <WorkspaceBureauActifs v-if="show.showBureauActifs" /> -->
             <WorkspaceTauxParticipationGlobal v-if="show.showTauxParticipation" />
             <WorkspaceBulletinVotesListe v-if="show.showNombreTotalVotes" />
             <WorkspaceMesTaches v-if="show.showMesTaches" />
@@ -83,6 +87,7 @@ import WorkspaceMesTaches from "@/components/historiques/WorkspaceMesTaches.vue"
 import WorkspaceAutres from "@/components/historiques/WorkspaceAutres.vue";
 //Election En Cours
 import WorkspaceAcceuil from "@/components/WorkspaceAcceuil.vue";
+import WorkspaceLocalisationElection from "@/components/gestionElecteurs/WorkspaceLocalisationElection.vue";
 
 
 
@@ -95,7 +100,7 @@ const show = useShow(); //call Show in show.js
 .card {
     background-color: #434955;
     width: 96%;
-    height: 76vh;
+    height: 80vh;
     margin: 0 auto;
     align-content: center;
     border-radius: 10px;

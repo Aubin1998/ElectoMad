@@ -11,103 +11,166 @@
 
             <div class="contenaireModal">
               <h1 class="tritreModal">MODIFIER L'INFORMATION PERSONNEL</h1>
+<!-- {{ listeElecteur.modifierElecteurData }} -->
+
+
 
 
               <div class="contenaire">
+                
+                <div class="w-full h-[40vh] bg-[#b2b0b030] flex items-center justify-center">
+                            <img v-if="listeElecteur.modifierElecteurData.file?.titre"
+                                :src="listeElecteur.modifierElecteurData.file?.titre" alt=""
+                                class="w-full h-full rounded-t-lg object-cover" />
+
+                            <div class="relative w-[50px] h-[50px]" v-else>
+                                <input type="file"
+                                    @change="(event) => onFileChange(event, listeElecteur.modifierElecteurData.id)"
+                                    id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
+                                <label for="file-upload"
+                                    class="flex items-center justify-center w-full h-full bg-[#e1dada] rounded-full cursor-pointer text-[24px]">
+                                    <i class="pi pi-camera text-red-500"></i>
+                                </label>
+                            </div>
+                            <div class="absolute w-[50px] h-[50px] t-0" v-if="listeElecteur.modifierElecteurData.file?.titre">
+                                <input type="file"
+                                    @change="(event) => onFileChange(event, listeElecteur.modifierElecteurData.id)"
+                                    id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
+                                <label for="file-upload"
+                                    class="flex items-center justify-center w-full h-full  rounded-full cursor-pointer text-[24px]">
+                                    <i class="pi pi-camera "></i>
+                                </label>
+                            </div>
+                        </div>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+                        <div class="inputCard">
+                  <h3 class="label">Nom et prénom</h3>
+                  <input type="text" placeholder="Ajoutez un nom" class="input"
+                    v-model="listeElecteur.modifierElecteurData.nomComplet" />
+                </div>
 
                 <div class="inputCard">
-                <h3 class="label">Nom et prénom</h3>
-                <input type="text" placeholder="Ajoutez un nom" class="input"
-                 v-model="listeElecteur.ModifiernomComplet" />
-              </div>
+                  <h3 class="label">Email</h3>
+                  <input type="text" placeholder="Insérez une date de naissance" class="input"
+                    v-model="listeElecteur.modifierElecteurData.user.email" />
+                </div>
 
-              <div class="inputCard">
-                <h3 class="label">Email</h3>
-                <input type="text" placeholder="Insérez une date de naissance" class="input"
-                  v-model="listeElecteur.Modifieremail" />
-              </div>
+                <div class="inputCard">
+                  <h3 class="label">Date de naissance</h3>
+                  <VueDatePicker v-model="listeElecteur.modifierElecteurData.dateNaissance"
+                    placeholder="Insérez une date de naissance" class="input" />
+                </div>
 
-              <div class="inputCard">
-                <h3 class="label">Date de naissance</h3>
-                <input type="text" placeholder="Insérez une date de naissance" class="input"
-                  v-model="listeElecteur.ModifierdateNaissance" />
-              </div>
-              <div class="inputCard">
-                <h3 class="label">Lieu de naissance</h3>
-                <input type="text" placeholder="Insérez un lieu de naissance" class="input"
-                  v-model="listeElecteur.ModifierlieuNaissance" />
-              </div>
-              <div class="inputCard">
-                <h3 class="label">Sexe</h3>
-                <input type="text" placeholder="Ajoutez un sexe" class="input" 
-                v-model="listeElecteur.Modifiersexe" />
-              </div>
-              <div class="inputCard">
-                <h3 class="label">Filiation</h3>
-                <input type="text" placeholder="Nom du père et de la mère" class="input"
-                  v-model="listeElecteur.Modifierfiliation" />
-              </div>
-              <div class="inputCard">
-                <h3 class="label">Téléphone</h3>
-                <input type="text" placeholder="Nom du père et de la mère" class="input"
-                  v-model="listeElecteur.Modifiertelephone" />
-              </div>
-              <div class="inputCard">
-                <h3 class="label">Numéro de la CIN</h3>
-                <input type="text" placeholder="Insérez un numéro de la CIN" class="input"
-                  v-model="listeElecteur.ModifiernumeroCIN" />
-              </div>
-              <div class="inputCard">
-                <h3 class="label">Date de délivrance</h3>
-                <input type="text" placeholder="Insérez une date de délivrance de la CIN" class="input"
-                  v-model="listeElecteur.ModifierdateDelivreCIN" />
-              </div>
-              <div class="inputCard">
-                <h3 class="label">Lieu de délivrance CIN</h3>
-                <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input"
-                  v-model="listeElecteur.ModifierlieuDelivreCIN" />
-              </div>
-              <div class="inputCard">
-                <h3 class="label">Adresse ou le lieu de résidence</h3>
-                <input type="text" placeholder="Insérez une adresse ou le lieu de résidence" class="input"
-                  v-model="listeElecteur.Modifieradresse" />
 
-              </div>
-              <div class="inputCard">
-                <h3 class="label">Profession</h3>
-                <input type="text" placeholder="Ajoutez un profession" class="input"
-                  v-model="listeElecteur.Modifierprofession" />
-              </div>
-              <div class="inputCard">
+
+                <div class="inputCard">
+                  <h3 class="label">Lieu de naissance</h3>
+                  <input type="text" placeholder="Insérez un lieu de naissance" class="input"
+                    v-model="listeElecteur.modifierElecteurData.lieuNaissance" />
+                </div>
+                <div class="inputCard">
+                  <h3 class="label">Sexe</h3>
+                  <input type="text" placeholder="Ajoutez un sexe" class="input"
+                    v-model="listeElecteur.modifierElecteurData.sexe" />
+                </div>
+                <div class="inputCard">
+                  <h3 class="label">Filiation</h3>
+                  <input type="text" placeholder="Nom du père et de la mère" class="input"
+                    v-model="listeElecteur.modifierElecteurData.filiation" />
+                </div>
+                <div class="inputCard">
+                  <h3 class="label">Téléphone</h3>
+                  <input type="text" placeholder="Nom du père et de la mère" class="input"
+                    v-model="listeElecteur.modifierElecteurData.telephone" />
+                </div>
+                <div class="inputCard">
+                  <h3 class="label">Numéro de la CIN</h3>
+                  <input type="text" placeholder="Insérez un numéro de la CIN" class="input"
+                    v-model="listeElecteur.modifierElecteurData.numeroCIN" />
+                </div>
+               
+
+
+
+                <div class="inputCard">
+                  <h3 class="label">Date de délivrance</h3>
+                  <VueDatePicker v-model="listeElecteur.modifierElecteurData.dateDelivreCIN"
+                    placeholder="Insérez une date de naissance" class="input" />
+                </div>
+
+
+
+                <div class="inputCard">
+                  <h3 class="label">Lieu de délivrance CIN</h3>
+                  <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input"
+                    v-model="listeElecteur.modifierElecteurData.lieuDelivreCIN" />
+                </div>
+                <div class="inputCard">
+                  <h3 class="label">Adresse ou le lieu de résidence</h3>
+                  <input type="text" placeholder="Insérez une adresse ou le lieu de résidence" class="input"
+                    v-model="listeElecteur.modifierElecteurData.adresse" />
+
+                </div>
+                <div class="inputCard">
+                  <h3 class="label">Profession</h3>
+                  <input type="text" placeholder="Ajoutez un profession" class="input"
+                    v-model="listeElecteur.modifierElecteurData.profession" />
+                </div>
+
+                <div class="inputCard">
+                  <h3 class="label">Date d'inscription</h3>
+                  <VueDatePicker v-model="listeElecteur.modifierElecteurData.dateInscription"
+                    placeholder="Insérez une date de naissance" class="input" />
+                </div>
+
+                <div class="inputCard">
+                  <h3 class="label">Carte d'électeur</h3>
+                  <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
+                    v-model="listeElecteur.modifierElecteurData.carteElecteur" />
+                </div>
+                <!-- <div class="inputCard">
                 <h3 class="label">Date d'inscription</h3>
                 <input type="text" placeholder="Ajoutez une date d'inscription" class="input"
-                  v-model="listeElecteur.ModifierdateInscription" />
-              </div>
-              <div class="inputCard">
-                <h3 class="label">Carte d'électeur</h3>
-                <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
-                  v-model="listeElecteur.ModifiercarteElecteur" />
-              </div>
-              <div class="inputCard">
+                  v-model="listeElecteur.modifierElecteurData.dateInscription" />
+              </div> -->
+
+
+                <!-- <div class="inputCard">
                 <h3 class="label">Année électorale</h3>
                 <input type="text" placeholder="Ajoutez une année électorale" class="input"
-                  v-model="listeElecteur.Modifierannee_electorale_id" />
-              </div>
-              <div class="inputCard">
+                  v-model="listeElecteur.modifierElecteurData.annee_electorale_id" />
+              </div> -->
+                <!-- <div class="inputCard">
                 <h3 class="label">User</h3>
                 <input type="text" placeholder="Ajoutez une année électorale" class="input"
-                  v-model="listeElecteur.Modifieruser_id" />
-              </div>
-              <div class="btn">
-                <h3 class="" ></h3>
-              </div>
+                  v-model="listeElecteur.modifierElecteurData.user_id" />
+              </div> -->
+                <!-- <div class="btn">
+                  <h3 class=""></h3>
+                </div> -->
+                 <!-- <div class="inputCard">
+                <h3 class="label">Date de délivrance</h3>
+                <input type="text" placeholder="Insérez une date de délivrance de la CIN" class="input"
+                  v-model="listeElecteur.modifierElecteurData.dateDelivreCIN" />
+              </div> -->
               </div>
 
               <div class="modalFooter">
-                    <h3 class="btnAdd add" @click="modifier()">modifier</h3>
-                    <h3 class="btnAdd cancel" @click="show.showModalModifierElecteur = !show.showModalModifierElecteur">
-                        Annuler</h3>
-                </div>
+                <h3 class="btnAdd add" @click="modifier()">modifier</h3>
+                <!-- <h3 class="btnAdd cancel" @click="show.showModalModifierElecteur = !show.showModalModifierElecteur">
+                  Annuler</h3> -->
+              </div>
 
 
 
@@ -129,21 +192,23 @@ import { useAuth } from "@/stores/auth";
 import { useUtilisateur } from "@/stores/utilisateur";
 import { useAnneeElectorale } from "@/stores/anneeElectorale";
 import { uselisteElecteur } from "@/stores/listeElecteur";
-
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 
 const auth = useAuth();
 const utilisateur = useUtilisateur();
 const anneeElectorale = useAnneeElectorale();
 const listeElecteur = uselisteElecteur();
 
-
+import { ref } from "vue";
+import axios from "axios";
 function Ajout() {
   listeElecteur.createElecteur()
 
 
 }
 function voirDetails(item) {
- 
+
   show.showAlert = true;
   show.showAlertType = 'success';
   show.showAlertMessage = `Année choisi ${item.annee}`
@@ -159,9 +224,58 @@ function voirDetails(item) {
 
 }
 
+
+const filer = ref()
+const onFileChange = async (event, electeurId) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+        console.log('rrrrrrrrrrrrr',listeElecteur.modifierElecteurData?.file?.titre);
+        
+        
+        const response = await axios.post(
+            `http://localhost:8000/api/electeur/${electeurId}/upload`,
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            }
+        );
+      
+
+        if (listeElecteur.modifierElecteurData.file?.titre) {
+          listeElecteur.modifierElecteurData.file.titre = response.data.url;
+        } else {
+
+            filer.value = {
+                id: 1,
+                titre: response.data.url,
+                file_name: response.data.url,
+            }
+
+
+            listeElecteur.modifierElecteurData.file = filer.value
+        }
+
+
+
+
+
+
+    } catch (error) {
+        console.error('Erreur lors de l\'upload de l\'image :', error);
+    }
+};
+
+
 function modifier() {
 
-  //listeElecteur.updateElecteur(listeElecteur.modifierElecteurData.electeur.id, listeElecteur.modifierElecteurData)
+  listeElecteur.updateElecteur(listeElecteur.modifierElecteurData.id)
 
 
 }
@@ -169,57 +283,65 @@ function modifier() {
 
 <style scoped>
 .modalFooter {
-    width: 20%;
-    display: flex;
-    justify-content: space-around;
-    padding-top: 10px;
-    align-items: center;
-    position: absolute;
-
-    right: 70px;
-    bottom: 2px;
+  width: 20%;
+  display: flex;
+  justify-content: space-around;
+  /* padding-top: 2px; */
+  align-items: center;
+  position: absolute;
+  top: 480px;
+  right: 200px;
+  bottom: 300px;
 
 }
+
 .btnAdd {
-    color: #fff;
-    font-weight: 600;
-    width: 50%;
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    background-color: rgb(34, 199, 83);
-    padding: 5px 20px;
-    border-radius: 5px;
+  color: #fff;
+  font-weight: 600;
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  background-color: rgb(34, 199, 83);
+  padding: 5px 20px;
+  border-radius: 5px;
 
 }
+
 .cancel {
-    width: 100px !important;
-    background-color: #fff !important;
-    border: 2px solid rgb(34, 199, 83);
-    color: rgb(34, 199, 83) !important;
+  width: 100px !important;
+  background-color: #fff !important;
+  border: 2px solid rgb(34, 199, 83);
+  color: rgb(34, 199, 83) !important;
 }
+
 .add {
-    width: 100px !important;
+  width: 100px !important;
 
 }
-.btn{
+
+.btn {
   width: 200px;
 }
-.label{
+
+.label {
   font-size: 12px;
   font-weight: 600;
 }
-.inputCard{
-  width: 200px!important;
-  margin:10px 2px !important;
+
+.inputCard {
+  width: 200px !important;
+  margin: 10px 2px !important;
 }
-.contenaire{
+
+.contenaire {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
 
 }
+
 .contenaireModal {
   width: 90%;
   border-radius: 10px;
@@ -250,7 +372,7 @@ function modifier() {
   top: 0;
   width: 100%;
   background-color: rgba(216, 213, 213, 0.326);
-  z-index: 2;
+  z-index: 100;
   height: 100%;
   display: flex;
   background: rgba(43, 38, 38, 0.801);
@@ -393,12 +515,14 @@ function modifier() {
 
 .input {
   width: 100%;
-  padding:5px 10px;
+  padding: 5px 10px;
   font-size: 14px;
   border: 2px solid #ccc;
   border-radius: 4px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: rgb(84, 80, 80);
+  color: rgb(250, 246, 246);
 }
 
 .input:focus {

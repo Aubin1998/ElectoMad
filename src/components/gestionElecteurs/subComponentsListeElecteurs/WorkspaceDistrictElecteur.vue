@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-//import WorkspaceDistrictElecteur from "@/components/gestionElecteurs/subComponentsProvince/ProvinceAntananarivo/DistrictAntananarivo/Ambohidratrimo/WorkspaceDistrictElecteur.vue";
+// import WorkspaceDistrictElecteur from "@/components/gestionElecteurs/subComponentsProvince/ProvinceAntananarivo/DistrictAntananarivo/Ambohidratrimo/WorkspaceDistrictElecteur.vue";
 import { ref, computed, onMounted, watch } from "vue";
 import { useShow } from "@/stores/show";
 

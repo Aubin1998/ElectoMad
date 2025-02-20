@@ -12,7 +12,7 @@
           </div>
           <div class="containerBtn">
             <button class="btn fermer" @click="show.showModalLogout = !show.showModalLogout">
-              Annuller
+              Annuler
             </button>
             <button
               class="btn enregistrer"

@@ -4,6 +4,8 @@ import {ref} from "vue";
 import {useShow} from "@/stores/show";
 import {useUrl} from "@/stores/url";
 import axios from "axios";
+import { useRouter } from 'vue-router';
+
 
 export const useAuth = defineStore('Auth', () => {
 
@@ -29,7 +31,6 @@ export const useAuth = defineStore('Auth', () => {
 			role_id: role_id.value
 
 		}
-
 
 
 		axios.post(`${URL}/api/register`, formData, {
@@ -81,7 +82,7 @@ export const useAuth = defineStore('Auth', () => {
 
 	function login() {
 
-		
+
 		show.showSpinner = true
 		let formData = {
 			email: email.value,
@@ -89,8 +90,6 @@ export const useAuth = defineStore('Auth', () => {
 
 		}
 
-
-		
 
 		axios.post(`${URL}/api/login`, formData, {
 			headers: {
@@ -102,14 +101,13 @@ export const useAuth = defineStore('Auth', () => {
 		}).then((response) => {
 			if (response.status === 200) {
 				console.log('responseLogin', response.data);
-				
+
 				show.showAlert = true
 				show.showAlertType = 'success'
 				show.showAlertMessage = 'connecté'
 
 				userId.value = response.data.user.id
-				utilisateurId.value = response.data.utilisateur[0]?.id
-
+				utilisateurId.value = response.data.utilisateur[0] ?. id
 
 
 				document.cookie = `access_token=${
@@ -118,7 +116,7 @@ export const useAuth = defineStore('Auth', () => {
 					response.data.expires_in
 				}`;
 				localStorage.setItem("user", JSON.stringify(response.data.user));
-				localStorage.setItem("usersRole", JSON.stringify(response.data.usersRole));
+				localStorage.setItem("usersRole", JSON.stringify(response.data.usersRole[0].role.nomRole));
 				localStorage.setItem("utilisateur", JSON.stringify(response.data.utilisateur));
 				show.showDashboard = true
 				show.showLogin = false
@@ -153,6 +151,9 @@ export const useAuth = defineStore('Auth', () => {
 	}
 
 
+
+	const router = useRouter();
+
 	function logout() {
 		show.showSpinner = true;
 		axios.post(`${URL}/api/logout`, {}, {
@@ -167,18 +168,23 @@ export const useAuth = defineStore('Auth', () => {
 				show.showModalLogout = false;
 
 				show.showDashboard = false;
-				show.showLogin = true;
+				show.showLogin = false;
 				show.showAlert = true;
 				show.showModalDeconnexion = false
 				show.showAlertType = "success";
 				show.showAlertMessage = "Déconnexion réussie";
 				document.cookie = `access_token=;path=/;max-age=0`;
-				
+
 				localStorage.removeItem("usersRole");
 				localStorage.removeItem("user");
 				localStorage.removeItem("anneeSelectionne");
 				localStorage.removeItem("utilisateur");
+				show.showAdmin=false
+				show.showLogin = false
+window.location.reload();
 
+router.push('/');
+window.location.reload();
 
 
 			} else {

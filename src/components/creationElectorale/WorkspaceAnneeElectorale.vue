@@ -4,17 +4,49 @@
             <h4>Création élection</h4>
             <div class="formulaire">
                 <div class="itemContainer">
-                    <input type="text" placeholder="Date d'élection" class="input2 dateElectionInput"
-                        v-model="anneeElectorale.annee" />
+                    <p>Veuillez sélectionner une année </p>
+
+                    <select class="annee" v-model="anneeElectorale.annee" id="">
+                        <option disabled value="">Année électorale :</option>
+                        <option v-for="item in anneeData" :key="item.id" :value=item>{{ item }}</option>
+                    </select>
+
                 </div>
                 <div class="itemContainer">
-                    <input type="text" placeholder="Description" class="input2 descriptionInput"
-                        v-model="anneeElectorale.descriptionAnnee" />
+                    <p>Type électoral </p>
+
+                    <select class="annee" v-model="type" id="">
+                        <option disabled value="">Types :</option>
+                        <option v-for="item in descriptionAnneeData" :key="item.id" :value=item>{{ item }}</option>
+                    </select>
                 </div>
+
+                <div class="itemContainer" v-if="'Parlémentaire' === type">
+                    <p>Type électoral Parlémentaire </p>
+
+                    <select class="annee" v-model="parlementSelected" id="">
+                        <option disabled value="">Types :</option>
+                        <option v-for="item in listParlementaire" :key="item.id" :value=item>{{ item }}</option>
+                    </select>
+                </div>
+
+                <div class="itemContainer" v-if="'Municipale' === type">
+                    <p>Type électoral Municipale </p>
+
+                    <select class="annee" v-model="municipaleSelected" id="">
+                        <option disabled value="">Types :</option>
+                        <option v-for="item in listMunicipale" :key="item.id" :value=item>{{ item }}</option>
+                    </select>
+                </div>
+
                 <h3 class="btnAdd add" @click="creer()">Créer</h3>
             </div>
         </div>
     </div>
+
+
+
+
 
 
 
@@ -172,8 +204,11 @@
 
 
         <div class="modal" v-if="show.showModalOeil">
+
             <div class="contenaireModal">
                 <h1 class="tritreModal">INFORMATION ELECTORALE</h1>
+
+                <h1 class="tritreModal"> </h1>
                 <div class="flex">
 
                     <div class="section">
@@ -204,22 +239,39 @@
 
         <div class="modal" v-if="show.showModalModifier">
             <div class="contenaireModal">
-                <h1 class="tritreModal">MODIFIER INFORMATION ELECTION</h1>
+                <h1 class="tritreModal">MODIFIER INFORMATION ELECTORALE</h1>
                 <div class="flex">
+
+
+
                     <div class="section">
-                        <div class="inputCard">
+                        <!-- <div class="inputCard">
                             <h3 class="label">Année</h3>
                             <input type="text" placeholder="Ajoutez un nom" class="input"
                                 v-model="anneeElectorale.annee" />
-                        </div>
+                        </div> -->
+                        <p>Sélectionner une année </p>
+
+                        <select class="annee" v-model="anneeElectorale.annee" id="">
+                            <option disabled value="">Année électorale :</option>
+                            <option v-for="item in anneeData" :key="item.id" :value=item>{{ item }}</option>
+                        </select>
                     </div>
 
+
+
+
+
+
+
+
                     <div class="section">
-                        <div class="inputCard">
-                            <h3 class="label">Description</h3>
-                            <input type="text" placeholder="Ecrire le numéro de la Carte électeur" class="input"
-                                v-model="anneeElectorale.descriptionAnnee" />
-                        </div>
+                        <p>Type électoral </p>
+
+                        <select class="annee" v-model="anneeElectorale.descriptionAnnee" id="">
+                            <option disabled value="">Types :</option>
+                            <option v-for="item in descriptionAnneeData" :key="item.id" :value=item>{{ item }}</option>
+                        </select>
                     </div>
 
                 </div>
@@ -229,6 +281,8 @@
                 </div>
             </div>
         </div>
+
+
 
         <div class="modal" v-if="show.showModalAnneSupprimer">
             <div class="contenaireModalSupp">
@@ -266,6 +320,11 @@ const auth = useAuth();
 const utilisateur = useUtilisateur();
 const anneeElectorale = useAnneeElectorale();
 
+const type = ref('')
+const parlementSelected = ref('')
+const municipaleSelected = ref('')
+
+
 
 const searchTerm = ref('');
 const filteredCandidats = computed(() => {
@@ -277,8 +336,26 @@ const filteredCandidats = computed(() => {
 });
 
 function creer() {
-    anneeElectorale.createAnnee()
+    if (anneeElectorale.annee) {
 
+        if (type.value == 'Parlémentaire') {
+            anneeElectorale.descriptionAnnee = type.value + ' : ' + parlementSelected.value
+            console.log('ppppppppppp', anneeElectorale.descriptionAnnee);
+        }
+
+        if (type.value == 'Municipale') {
+            anneeElectorale.descriptionAnnee = type.value + ' : ' + municipaleSelected.value
+            console.log('ppppppppppp', anneeElectorale.descriptionAnnee);
+        }
+
+        if (type.value == 'Présidentiel') {
+            anneeElectorale.descriptionAnnee = type.value
+            console.log('ppppppppppp', anneeElectorale.descriptionAnnee);
+        }
+        anneeElectorale.createAnnee();
+    } else {
+        alert("Veuillez sélectionner une date.");
+    }
 }
 function voir(item) {
     show.showModalOeil = !show.showModalOeil
@@ -313,92 +390,26 @@ function accepter() {
 
 
 
-
-
-
-
-const dataListePersonne = [
-    {
-        "id": "01",
-        "nom": "2023",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "02",
-        "nom": "2018",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "03",
-        "nom": "2013",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "04",
-        "nom": "2009",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "05",
-        "nom": "2004",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "06",
-        "nom": "1999",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "07",
-        "nom": "1999",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "08",
-        "nom": "1999",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "09",
-        "nom": "1999",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "10",
-        "nom": "1999",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "11",
-        "nom": "1999",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "12",
-        "nom": "1999",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "13",
-        "nom": "1999",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "14",
-        "nom": "1999",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "15",
-        "nom": "1999",
-        "sex": "Présidentiel"
-    },
-    {
-        "id": "16",
-        "nom": "1999",
-        "sex": "Présidentiel"
-    }
+const anneeData = [
+    2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
+    2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019,
+    2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029,
+    2030, 2031, 2032, 2033, 2034, 2035
 ];
+const descriptionAnneeData = [
+    'Présidentiel', 'Parlémentaire', 'Municipale'
+];
+
+const listParlementaire = [
+    'Député', 'Sénateur'
+];
+
+const listMunicipale = [
+    'Maires', 'Conseillé municipaux'
+];
+
+
+
 </script>
 
 <style scoped>
@@ -484,15 +495,17 @@ const dataListePersonne = [
 
 .contenaireModal {
     width: 60%;
-    height: 30vh;
-    background-color: white;
+    height: 25vh;
+    background-color: rgb(84, 81, 81);
     border-radius: 10px;
     margin: 0 auto;
+    color: white;
+    /* position: relative; */
     padding: 10px;
 }
 
 .tritreModal {
-    color: #2c2b2b;
+    color: white;
     font-weight: 600;
     font-size: 20px;
     text-align: center;
@@ -517,32 +530,55 @@ const dataListePersonne = [
 }
 
 .label {
-    color: rgb(56, 55, 55);
+    color: #ffffff80;
+
     font-weight: bold;
     font-size: 15px;
     padding-left: 5px;
 
 }
 
+.annee {
+    width: 100%;
+    padding: 5px;
+    background-color: #3c4c6d09;
+    border-radius: 5px;
+    border: 1px solid #aaaac5;
+    color: #d4d4e3;
+}
+
+.annee option {
+    height: 200px !important;
+    /* Cela peut ne pas fonctionner dans tous les navigateurs */
+    padding: 5px;
+    color: #f2f2f2;
+    background-color: #1F2937;
+
+}
+
+
 .contenu {
-    color: #57565680;
+    color: #e1dddd;
     font-weight: bold;
-    background-color: #302f2f13;
+    background-color: #d2cece13;
     padding: 10px 5px 5px 20px;
     border-radius: 5px;
     margin: 0;
 }
 
+/* .modalFooter {
+   display: flex;
+background-color: red;
+width: 35%;
+position: absolute;
+right: 0;
+} */
 .modalFooter {
-    width: 20%;
     display: flex;
-    justify-content: space-around;
-    padding-top: 10px;
-    align-items: center;
-    position: absolute;
-    right: 320px;
-    top: 200px;
-
+    width: 35%;
+    position: relative;
+    float: right;
+    /* Ajoutez cette ligne */
 }
 
 .subtitle {
@@ -551,13 +587,13 @@ const dataListePersonne = [
 }
 
 .itemContainer {
-    width: 30%;
+    width: 20%;
     margin: 10px 2px;
 
 }
 
 .itemContainer1 {
-    width: 30%;
+    width: 20%;
     margin: 10px 2px;
 
     flex: 1;
@@ -655,7 +691,7 @@ const dataListePersonne = [
     border-radius: 5px;
     border: 1px solid #aaaac5;
     background-color: #3c4c6d09;
-    color: #635b5b;
+    color: white;
     font-weight: 600;
 }
 
@@ -727,6 +763,7 @@ input-placeholder {
     background-color: rgb(192, 190, 190);
     border: 2px solid rgb(34, 199, 83);
     color: rgb(7, 185, 60) !important;
+
 }
 
 .add {

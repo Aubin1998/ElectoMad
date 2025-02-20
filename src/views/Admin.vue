@@ -42,7 +42,7 @@
     <Teleport to="body">
         <ModalUtilisateurAjout />
     </Teleport>
-    
+
     <Teleport to="body">
         <ModalElecteurVoir />
     </Teleport>
@@ -56,6 +56,17 @@
     <Teleport to="body">
         <SupprimerElecteur />
     </Teleport>
+
+    
+    <Teleport to="body">
+        <ModaleCIN />
+    </Teleport>
+
+     
+    <Teleport to="body">
+        <ModalAreas />
+    </Teleport>
+    
 </template>
 
 <script setup>
@@ -79,6 +90,12 @@ import ModalElecteurSupprimer from "../components/modals/electeur/ModalElecteurS
 import { Cookies } from "../plugins/cookies";
 import { useShow } from "../stores/show";
 import ModalUtilisateurAjout from "@/components/modals/utilisateur/ModalUtilisateurAjout.vue";
+import { onMounted } from "vue";
+import ModaleCIN from "./ModaleCIN.vue";
+import ModalAreas from "@/components/gestionCandidats/ModalAreas.vue";
+
+
+
 
 const show = useShow();
 const cookies = new Cookies();
@@ -91,6 +108,8 @@ if (localStorage.getItem("user")) {
     show.showHomePage = true;
 
 }
+
+
 </script>
 
 <style scoped></style>

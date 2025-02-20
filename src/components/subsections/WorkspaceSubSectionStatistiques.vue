@@ -3,18 +3,23 @@
         <div class="closeForm" @click="show.showStatistique = !show.showStatistique">
             <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
         </div>
-<div class="subItem" @click="show.setOption('Nombre total inscrit des électeurs')">
+<!-- <div class="subItem" @click="show.setOption('Nombre total inscrit des électeurs')"  v-if="show.user == 'Controlleur'" >
+    <h4>Vérification des électeurs</h4>
+</div> -->
+<div class="subItem" @click="show.setOption('Nombre total inscrit des électeurs')" >
     <h4>Vérification des électeurs</h4>
 </div>
+
 <!-- <div class="subItem" @click="show.setOption('Nombre de bureaux de vote actifs')">
     <h4>Nombre de bureaux de vote actifs</h4>
 </div> -->
-<!-- <div class="subItem" @click="show.setOption('Taux de participation global')">
-    <h4>Taux de participation global</h4>
+<!-- <div class="subItem" @click="show.setOption('Nombre total de votes enregistrés')">
+    <h4>Voter</h4>
 </div> -->
-<div class="subItem" @click="show.setOption('Nombre total de votes enregistrés')">
-    <h4>Nombre total de votes enregistrés</h4>
-</div>
+<!-- <div class="subItem" @click="show.setOption('Taux de participation global')">
+    <h4>Résultats</h4>
+</div> -->
+
 
 </div>
 </template>

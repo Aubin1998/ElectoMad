@@ -24,7 +24,7 @@
     <WorkspaceProvinceElecteur v-if="show.showProvinceElecteur" />
     <WorkspaceDistrictElecteur v-if="show.listeCommune" />
     <WorkspaceCommuneElecteur v-if="show.listeFokontany" />
-    <WorkspaceFokontanyElecteur v-if="show.listePersonne" />
+    <WorkspaceFokontanyElecteur v-if="show.listePersonne"  />
 </template>
 
 
@@ -50,7 +50,6 @@ function select(item) {
     localStorage.setItem('selectRegion', JSON.stringify(item.region))
 
 }
-
 
 
 // Transformation des données
@@ -134,6 +133,7 @@ watch(data, (newData) => {
     /* Ajouter une ombre lors du focus */
     outline: none;
     /* Enlever le contour par défaut */
+    
 
 }
 

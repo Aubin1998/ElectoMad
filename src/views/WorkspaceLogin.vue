@@ -1,5 +1,5 @@
 <template>
-  <div class="login ">
+  <div class="login " v-if="show.showLogin">
     <button @click="goToAcceuil()" class="bg-blue-500 text-white absolute top-2 right-5 px-5 rounded py-2">
       Acceuil
     </button>
@@ -11,7 +11,7 @@
           <input type="text" placeholder="Votre email" class="input !w-80" v-model="auth.email" />
         </div>
         <div class="itemContainer">
-          <input type="text" placeholder="Votre Mot de passe" class="input !w-80" v-model="auth.mdp" />
+          <input type="password" placeholder="Votre Mot de passe" class="input !w-80" v-model="auth.mdp" />
         </div>
 
       </div>

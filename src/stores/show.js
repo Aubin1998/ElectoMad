@@ -5,6 +5,7 @@ import {useAuth} from "@/stores/auth";
 
 export const useShow = defineStore('Show', () => {
 	const auth = useAuth()
+	const user = ref()
 	const showLogin = ref(true)
 	const showSingUp = ref(false)
 	const showAcceuilModala = ref(false)
@@ -30,6 +31,7 @@ export const useShow = defineStore('Show', () => {
 	const showModalOeilCandidat = ref(false)
 	const showModalAnneSupprimer = ref(false)
 	const showVoirAnnee = ref(false)
+	const showModal = ref(false)
 	const showModalVoirElecteur = ref(false)
 	const showModalModifierElecteur = ref(false)
 	const showModalElecteurSupprimer = ref(false)
@@ -38,16 +40,8 @@ export const useShow = defineStore('Show', () => {
 
 	const showUser = ref(false)
 	const showAdmin = ref(false)
-
-
-
-	
-
-	
-
-	
-	
-
+	const showModalCIN = ref(false)
+	const see = ref(true)
 
 	function showLoginFunc() {
 		showLogin.value = true
@@ -225,8 +219,19 @@ export const useShow = defineStore('Show', () => {
 			showAnneElectoral.value = true
 			acceuil.value = false
 
+
 		} else {
 			showAnneElectoral.value = false
+
+		}
+
+
+		if (option === 'Liste location élection') { // showElectionFunc()
+			showLocalisationElection.value = true
+			// acceuil.value = false
+
+
+		} else { // showAnneElectoral.value = false
 
 		}
 		if (option === 'Genre élection') {
@@ -903,9 +908,7 @@ export const useShow = defineStore('Show', () => {
 	}
 
 	const isProvinceSpecial = ref(false)
-	function showOption(option) {
-
-		// Réinitialisation des états
+	function showOption(option) { // Réinitialisation des états
 		showProvinceElecteur.value = false;
 		showProvince.value = false;
 		listeCommune.value = false;
@@ -941,7 +944,7 @@ export const useShow = defineStore('Show', () => {
 		}
 
 		// Debugging des valeurs après mise à jour
-		
+
 
 		// Mise à jour de l'état spécial
 		isProvinceSpecial.value = ! isDistrict.value && ! isCommune.value && ! isFokontany.value && ! isProvince.value;
@@ -951,6 +954,10 @@ export const useShow = defineStore('Show', () => {
 	const showModalAjout = ref(false)
 	function showModalAjoutFunc() {
 		showModalAjout.value = ! showModalAjout.value
+	}
+	const showChoixElection = ref(false)
+	function showChoixElectionFunc() {
+		showChoixElection.value = ! showChoixElection.value
 	}
 	const showModalAjout1 = ref(false)
 	function showModalAjout1Func() {
@@ -980,8 +987,8 @@ export const useShow = defineStore('Show', () => {
 	function acceuilFunc() {
 		acceuil.value = ! acceuil.value
 	}
-function showModalVoirElecteurFunc() {
-	showModalVoirElecteur.value = ! showModalVoirElecteur.value
+	function showModalVoirElecteurFunc() {
+		showModalVoirElecteur.value = ! showModalVoirElecteur.value
 	}
 
 	const showPresident = ref(true)
@@ -1061,7 +1068,61 @@ function showModalVoirElecteurFunc() {
 	}
 
 	const showModalAjoutUtilisateur = ref(false)
+
+	const depute = ref(false)
+	const showLocalisationElection = ref(false)
+
+	const showAreas = ref(false)
+
+	const typeProvince = ref(false)
+	const typeRegion = ref(false)
+	const typeDistrict = ref(false)
+	const typeCommune = ref(false)
+	const afterTypeCandidat = ref(false)
+
+
+
+
+
+	function showTypeElection(itemName) {
+		showAreas.value = true
+
+
+		const itemMap = {
+			"province": typeProvince,
+			"region": typeRegion,
+			"district": typeDistrict,
+			"commune": typeCommune,
+			"afterTypeCandidat": afterTypeCandidat
+
+		};
+
+		// Réinitialiser toutes les valeurs à false
+		for (const key in itemMap) {
+			itemMap[key].value = false;
+			
+		}
+
+		// Activer l'élément sélectionné
+		if (itemMap[itemName]) {
+			itemMap[itemName].value = true;
+			console.log('1', itemName );
+			console.log('2', itemMap[itemName].value );
+			
+		}
+	}
+
+
 	return {
+
+		typeProvince,
+		typeRegion,
+		typeDistrict,
+		typeCommune,
+		afterTypeCandidat,
+		showTypeElection,
+		showAreas,
+		depute,
 		showModalAjoutUtilisateur,
 		showAdmin,
 		showUser,
@@ -1070,6 +1131,7 @@ function showModalVoirElecteurFunc() {
 		showModalAjoutElecteur,
 		showModalElecteurSupprimer,
 		showModalModifierElecteur,
+		showModalCIN,
 		showModalVoirElecteur,
 		showModalVoirElecteurFunc,
 		showVoirAnnee,
@@ -1176,7 +1238,7 @@ function showModalVoirElecteurFunc() {
 		showHistoriqueFunc,
 		selectSideBar,
 		setSelectSideBar,
-
+		showChoixElection,
 		// active
 		showElectionActive,
 		showCandidatActive,
@@ -1191,6 +1253,7 @@ function showModalVoirElecteurFunc() {
 		setOption,
 		showAnneElectoral,
 		showGenreElection,
+		showLocalisationElection,
 		showListeElecteurs,
 		showFiltrageRecherche,
 		showActionsGestion,
@@ -1356,7 +1419,9 @@ function showModalVoirElecteurFunc() {
 		showCommuneElecteurManjakandriana2,
 		showCommuneElecteurMantasoa1Func,
 		showCommuneElecteurMantasoa1,
+		user,
 		showModalSupprimerElecteur,
+		see,
 
 
 		// vao2
@@ -1378,7 +1443,7 @@ function showModalVoirElecteurFunc() {
 
 		showOptionCommune,
 		fokontanyData*/
-
+		showChoixElectionFunc
 
 	}
 

@@ -1,7 +1,7 @@
 <template>
     <div class="sideBar">
         <div class="logo">
-            <img src="/vote.png" alt="Logo" class="logo-image" />
+            <img src="/logo.svg" alt="Logo" class="logo-image" />
             <div class="logo-name">VoteVision</div>
         </div>
         <div class="container">
@@ -20,7 +20,7 @@
                         <WorkspaceSubSectionElections v-if="show.showElection" />
                     </div> -->
 
-                    <div class="itemSection" @click="show.setOption('Année électorale')">
+                    <div class="itemSection" @click="show.setOption('Année électorale')" v-if="show.user == 'admin'">
                         <i class="pi pi-id-card" style="font-size: 18px; color: white;"></i>
                         <h4>Création</h4>
                     </div>
@@ -33,7 +33,7 @@
                         <WorkspaceSubSectionCandidats v-if="show.showCandidat" />
                     </div> -->
 
-                    <div class="itemSection" @click="show.setOption('Liste totale des candidats')">
+                    <div class="itemSection" @click="show.setOption('Liste totale des candidats')"  v-if="show.user == 'admin'">
                         <i class="pi pi-user" style="font-size: 18px; color: white;"></i>
                         <h4>Gestion des candidats</h4>
                     </div>
@@ -46,11 +46,12 @@
                         <WorkspaceSubSectionElecteurs v-if="show.showElecteur" />
                     </div> -->
 
-                    <div class="itemSection" @click="show.setOption('Liste complète des électeurs')">
+                    <div class="itemSection" @click="show.setOption('Liste complète des électeurs')" >
                         <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
                         <h4>Suivi des électeurs</h4>
                     </div>
-
+                 
+                   
                     <!-- For offices -->
                     <!-- <div class="itemSection" :class="{ active: show.showBureauxActive }">
                         <i class="pi pi-building" style="font-size: 18px; color: white;"></i>
@@ -58,10 +59,12 @@
                         <WorkspaceSubSectionBureaux v-if="show.showBureau" />
                     </div> -->
 
-                    <div class="itemSection" @click="show.setOption('Liste des bureaux de votes')">
+                    <div class="itemSection" @click="show.setOption('Liste des bureaux de votes')"  >
                         <i class="pi pi-building" style="font-size: 18px; color: white;"></i>
                         <h4>Bureaux de votes</h4>
                     </div>
+                    
+                 
 
                     <!-- For users -->
                     <!-- <div class="itemSection" :class="{ active: show.showUtilisateurActive }">
@@ -71,24 +74,30 @@
                         </div> -->
 
                     <!-- For users -->
-                    <div class="itemSection" @click="show.setOption('Liste des utilisateurs')">
+                    <div class="itemSection" @click="show.setOption('Liste des utilisateurs')"  v-if="show.user == 'admin'">
                         <i class="pi pi-sitemap" style="font-size: 18px; color: white;"></i>
 
                         <h4 class="text">Utilisateurs</h4>
                     </div>
 
                     <!-- For statistics -->
-                    <div class="itemSection" :class="{ active: show.showStatistiquesActive }">
+                    <div class="itemSection" :class="{ active: show.showStatistiquesActive }"  v-if="show.user == 'admin'">
                         <i class="pi pi-clock" style="font-size: 18px; color: white;"></i>
-                        <h4 class="text" @click="show.setSelectSideBar('Statistiques')">Statistiques</h4>
+                        <h4 class="text" @click="show.setSelectSideBar('Statistiques')">Statistiques</h4 >
+                        <WorkspaceSubSectionStatistiques v-if="show.showStatistique" />
+                    </div>
+                    <div class="itemSection" :class="{ active: show.showStatistiquesActive }"  v-if="show.user == 'Controlleur'">
+                        <i class="pi pi-clock" style="font-size: 18px; color: white;"></i>
+                        <h4 class="text" @click="show.setSelectSideBar('Statistiques')">Statistiques</h4 >
                         <WorkspaceSubSectionStatistiques v-if="show.showStatistique" />
                     </div>
                     <!-- For history -->
-                    <div class="itemSection" :class="{ active: show.showHistoriqueActive }">
+                    <div class="itemSection" :class="{ active: show.showHistoriqueActive }"  v-if="show.user == 'admin'">
                         <i class="pi pi-history" style="font-size: 18px; color: white;"></i>
                         <h4 class="text" @click="show.setSelectSideBar('Historique')">Historique</h4>
                         <WorkspaceSubSectionHistoriques v-if="show.showHistorique" />
                     </div>
+                 
                     <!-- For current election -->
                     <!-- <div class="itemSection" :class="{ active: show.showElectionEnCoursActive }">
                         <i class="pi pi-clock" style="font-size: 18px; color: white;"></i>
@@ -118,7 +127,14 @@ import { useShow } from "@/stores/show";
 const show = useShow(); // call Show in show.js
 
 
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+
+onMounted(() => {
+    show.user = JSON.parse(localStorage.getItem('usersRole'))
+
+    console.log('aaaaaaaaaaaaa', show.user);
+
+})
 
 // Gérez l'état de la section active
 const activeSection = ref(null);

@@ -3,14 +3,16 @@
     <div class="navBar">
         <div class="link">
             <h3 class="liking" @click="show.showacceuilFunc">Acceuil</h3>
-            <h3 class="liking"   @click="show.setOption('Liste des utilisateurs')">Utilisateurs</h3>
+
+            <h3 class="liking" @click="show.setOption('Liste des utilisateurs')" v-if="show.user == 'admin'">
+                Utilisateurs</h3>
             <!--<h3 class="liking">Paramètre</h3>-->
-            
+
         </div>
 
 
-         <!-- For users -->
-         <!-- <div class="itemSection" @click="show.setOption('Liste des utilisateurs')">
+        <!-- For users -->
+        <!-- <div class="itemSection" @click="show.setOption('Liste des utilisateurs')">
                         <i class="pi pi-sitemap" style="font-size: 18px; color: white;"></i>
 
                         <h4 class="text">Utilisateurs</h4>
@@ -21,7 +23,7 @@
                 anneeElectorale?.anneeElectoraleChoisi?.descriptionAnnee }}</span>
         </div>
 
-        <div class="profil">
+        <div class="profil ">
             <div class="notif">
                 <!-- <div class="notification show">
                     <i class="pi pi-bell " style="font-size: 18px; color: white;"></i>
@@ -34,15 +36,15 @@
 
             </div>
             <div class="profile-container">
-                <span class="admin-title">Administrateur</span>
+                <span class="admin-title">{{ utilisateurrole }}</span>
                 <div class="photo" @click="show.showDescFunc()">
                     <img src="/profil.png" alt="Photo de profil" class="photo-profile">
                 </div>
             </div>
 
 
-            <div class="showProfil" v-if="show.showDesc">
-                <div class="sectionItem">
+            <div class="showProfil  " v-if="show.showDesc">
+                <div class="sectionItem ">
                     <div class="closeForm" @click="show.showDesc = !show.showDesc">
                         <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
                     </div>
@@ -51,8 +53,8 @@
 
                 <div class="container">
                     <div class="imageProfil">
-                        <img src="/profil.png" alt="Photo de profil"
-                            style="width: 50px; height: 50px; border-radius: 100%;">
+                        <img src="/profil.png" alt="Photo de profil" style="width: 50px; height: 50px; border-radius: 100%; cursor: pointer;
+    transition: transform 0.3s ease;" @click="show.showModalCompteFunc">
                     </div>
                     <div class="info">
                         <h4>{{ utilisateur.user.username }}</h4>
@@ -61,14 +63,20 @@
                 </div>
                 <div class="items">
 
-                    <div class="option">
-                        <h5 class="item" @click="show.showModalCompteFunc">Gérer le compte</h5>
-                        <i class="pi pi-user-edit" style="font-size: 16px; color: white;"></i>
+                    <div class="option" style="cursor: pointer;
+    transition: transform 0.3s ease;" @click="show.showModalCompteFunc">
+                        <h5 class="item " style="cursor: pointer;
+    transition: transform 0.3s ease;">Gérer le compte</h5>
+                        <i class="pi pi-user-edit" style="font-size: 16px; color: white; cursor: pointer;
+    transition: transform 0.3s ease;"></i>
                     </div>
 
-                    <div class="option">
-                        <h5 class="item" @click="show.showModalLogout = !show.showModalLogout">Déconnexion</h5>
-                        <i class="pi pi-sign-out" style="font-size: 14px; color: white;"></i>
+                    <div class="option" style="cursor: pointer;
+    transition: transform 0.3s ease;" @click="show.showModalLogout = !show.showModalLogout">
+                        <h5 class="item" style="cursor: pointer;
+    transition: transform 0.3s ease;">Déconnexion</h5>
+                        <i class="pi pi-sign-out" style="font-size: 14px; color: white; cursor: pointer;
+    transition: transform 0.3s ease;"></i>
                     </div>
                 </div>
             </div>
@@ -90,10 +98,15 @@ const show = useShow(); //call Show in show.js
 const utilisateur = useUtilisateur(); //call Show in show.js
 const anneeElectorale = useAnneeElectorale();
 utilisateur.user = JSON.parse(localStorage.getItem("user"));
-
+const utilisateurrole = ref()
 
 onMounted(() => {
     anneeElectorale.anneeElectoraleChoisi = JSON.parse(localStorage.getItem('anneeSelectionne'))
+    if (show.user == 'admin') {
+        utilisateurrole.value = 'Administrateur'
+    } else {
+        utilisateurrole.value = show.user
+    }
 
 
 })
@@ -159,6 +172,7 @@ onMounted(() => {
     right: 12px;
     border-radius: 5px;
     text-align: left;
+    z-index: 99;
 
 }
 
@@ -295,16 +309,20 @@ onMounted(() => {
 
 .admin-title {
     position: relative;
-    left: -30px;
+    left: -20px;
     /* Ajustez cette valeur selon vos besoins */
     font-size: 16px;
     /* Ajustez la taille de la police selon vos besoins */
     font-weight: bold;
     /* Pour rendre le texte en gras */
+    white-space: nowrap;
+    /* Empêche le texte de se mettre à la ligne */
 }
+
+
 .profile-container {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 

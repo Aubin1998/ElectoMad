@@ -1,7 +1,7 @@
 <template>
   <Transition>
-    <div class="showModal" v-if="show.showModalElecteurSupprimer">
-      <div class="modal" v-if="show.showModalElecteurSupprimer">
+    <div class="showModal" v-if="show.showModalSupprimerElecteur">
+      <div class="modal" >
       <div class="contenaireModalSupp">
         <h4 class="supp">
           Voulez vous vraiment supprimer
@@ -10,8 +10,8 @@
           Cet électeur ?
         </h4>
         <div class="flex">
-          <h3 class="btnAdd add" @click="show.showModalElecteurSupprimer">Oui</h3>
-          <h3 class="btnAdd cancel" @click="show.showModalElecteurSupprimer =! show.showModalElecteurSupprimer">Non</h3>
+          <h3 class="btnAdd add" @click="supprimerElec()">Oui</h3>
+          <h3 class="btnAdd cancel" @click="show.showModalSupprimerElecteur =! show.showModalSupprimerElecteur">Non</h3>
         </div>
       </div>
     </div>
@@ -27,10 +27,20 @@ const show = useShow();
 import { useAuth } from "@/stores/auth";
 import { useUtilisateur } from "@/stores/utilisateur";
 import { useAnneeElectorale } from "@/stores/anneeElectorale";
+import { uselisteElecteur } from "@/stores/listeElecteur";
 
 const auth = useAuth();
 const utilisateur = useUtilisateur();
 const anneeElectorale = useAnneeElectorale();
+const listeElecteur = uselisteElecteur();
+
+
+
+
+function supprimerElec() {
+  listeElecteur.deleteElecteur(listeElecteur.supprimerElecteurData.id)
+  
+}
 
 function voirDetails(item) {
  

@@ -46,10 +46,11 @@ watch(
 </script>
 
 <template>
-  <div class="app">
+  <div class="app bg-white">
     <User v-if="show.showUser" />
     <Admin v-if="show.showAdmin" />
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>
