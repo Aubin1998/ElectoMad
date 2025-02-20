@@ -6,8 +6,7 @@
         <h2 class="text-xl font-bold mb-2.5">Gestion des utilisateurs</h2>
 
 
-        <button @click="ajout()" type="button" v-if="seeAjout"
-          class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg 
+        <button @click="ajout()" type="button" v-if="seeAjout" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg 
           hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 
           focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white 
           dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
@@ -28,8 +27,7 @@
           <button @click="toggleDropdown('year')"
             class="inline-flex items-center justify-between text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 
             focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 
-            dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-full"
-            type="button">
+            dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-full" type="button">
             <span class="sr-only">Action button</span>
             {{ selectedAnnee ? selectedAnnee.annee : 'Année' }}
             <svg class="w-2.5 h-2.5 ml-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -268,6 +266,7 @@
                   </li>
                 </ul>
               </div>
+
             </td>
           </tr>
         </tbody>
@@ -316,6 +315,16 @@ const nomRole = ref('');
 const selectedAnnee = ref(null);
 const selectedDistrict = ref(null);
 const selectedRegion = ref(null);
+
+
+
+const user = { id: 1 }; // Exemple d'objet utilisateur
+
+const fermerDropdown = () => {
+  showDropdown.value = false;
+};
+
+
 
 
 
