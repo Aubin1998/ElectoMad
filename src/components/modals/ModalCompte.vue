@@ -1,6 +1,6 @@
 <template>
   <Transition>
-    <div class="showModal" v-if="show.showModalCompte">
+    <div class="showModal backdrop-blur p-2px" v-if="show.showModalCompte">
 
       <div class="modal">
         <div class="closeForm" @click="show.showModalCompte = !show.showModalCompte">
@@ -315,12 +315,12 @@ function modifier() {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: rgba(216, 213, 213, 0.326);
+  background-color: rgba(216, 213, 213, 0.052);
   z-index: 100;
   width: 100%;
   height: 100%;
   display: flex;
-  background: rgba(43, 38, 38, 0.801);
+  background: rgba(43, 38, 38, 0.053)!important;
   justify-content: center;
   align-items: center;
 }

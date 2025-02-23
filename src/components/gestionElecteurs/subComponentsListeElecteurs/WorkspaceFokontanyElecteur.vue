@@ -319,6 +319,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   scroll-behavior: auto;
+  overflow-y: auto;
 }
 
 .titre {

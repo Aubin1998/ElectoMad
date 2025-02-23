@@ -1,13 +1,13 @@
 <template>
     <Transition>
         <div class="modal w-full h-screen bg-gray-400 bg-opacity-40 absolute inset-0 overflow-y-hidden flex items-center z-50 backdrop-blur-[2px]"
-            v-if="show.showAreas">
+            v-if="show.senateur">
             <div class="contenaireModal">
                 <div class="flex justify-between">
-                    <h1 class="tritreModal">Recherche</h1>
+                    <h1 class="tritreModal">Recherche senateur</h1>
                     <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-20 
             py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        @click="close()">
+                        @click="show.senateur=!show.senateur">
                         <h3>
                             Annuler</h3>
                     </button>

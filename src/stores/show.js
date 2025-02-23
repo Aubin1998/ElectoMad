@@ -5,8 +5,11 @@ import {useAuth} from "@/stores/auth";
 
 export const useShow = defineStore('Show', () => {
 	const auth = useAuth()
+	const municipaux = ref(false)
 	const user = ref()
+	const senateur = ref(false)
 	const showLogin = ref(true)
+	const deputes = ref(false)
 	const showSingUp = ref(false)
 	const showAcceuilModala = ref(false)
 	const showDashboard = ref(false)
@@ -1122,6 +1125,7 @@ export const useShow = defineStore('Show', () => {
 		afterTypeCandidat,
 		showTypeElection,
 		showAreas,
+		municipaux,
 		depute,
 		showModalAjoutUtilisateur,
 		showAdmin,
@@ -1412,6 +1416,8 @@ export const useShow = defineStore('Show', () => {
 		showCommuneElecteurAndranonahoatraFunc,
 		showCommuneElecteurAndranonahoatra,
 		showCommuneElecteurAnosizatoFunc,
+		deputes,
+	senateur,
 		showCommuneElecteurAnosizato,
 		showCommuneElecteurIvato1Func,
 		showCommuneElecteurIvato1,

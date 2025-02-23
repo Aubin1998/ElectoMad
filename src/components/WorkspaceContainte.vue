@@ -1,6 +1,6 @@
-<template>
-    <div>
-        <div class="flex"
+<template >
+    <!-- <div  class="flex  justify-center items-center w-full h-full bg-red-500 " > -->
+        <!-- <div class="flex justify-center items-center h-[20px] bg-green-500"
             v-if="show.showListeElecteurs || show.showListe || show.showAjoutUtilisateur || show.showListeUtilisateurs || show.showElecteurInscrit || show.showNombreTotalVotes">
             <div class="nav button">
 
@@ -25,9 +25,12 @@
                     show.selectedCommune }}/{{ show.selectedFokontany }}</h4>
 
             </div>
-        </div>
+        </div> -->
 
-        <div class="card">
+        <div class="bg-[#434955] w-full h-[87vh] flex justify-center items-center rounded-xl shadow-md p-4 
+        my-auto mx-0 ">        
+
+    
             <WorkspaceAcceuil v-if="show.acceuil" />
 
 
@@ -56,7 +59,7 @@
 
 
         </div>
-    </div>
+    <!-- </div> -->
 </template>
 
 <script setup>
@@ -97,16 +100,7 @@ const show = useShow(); //call Show in show.js
 </script>
 
 <style scoped>
-.card {
-    background-color: #434955;
-    width: 96%;
-    height: 80vh;
-    margin: 0 auto;
-    align-content: center;
-    border-radius: 10px;
-    box-shadow: 0px 0px 2px rgb(134, 132, 132);
 
-}
 
 .nav {
     background-color: #4349553a;
@@ -124,12 +118,6 @@ const show = useShow(); //call Show in show.js
     padding: 10px 20px;
 }
 
-.flex {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-}
 
 .button {
     display: flex;

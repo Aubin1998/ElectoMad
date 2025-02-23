@@ -53,6 +53,7 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 			headers: {
 				"Content-Type": "application/json"
 			}
+
 		}).then((response) => {
 			if (response.status === 200) {
 				const data = response.data;
@@ -83,9 +84,11 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Informations récupérées avec succès';
 			} else {
-				show.showAlert = true;
-				show.showAlertType = 'warning';
-				show.showAlertMessage = 'Échec de la récupération des informations';
+				// show.showAlert = true;
+				// show.showAlertType = 'warning';
+				// // show.showAlertMessage = 'Échec de la récupération des informations';
+				console.log('erreur de récupération d\'utilisateur');
+				
 			}
 
 			setTimeout(() => {

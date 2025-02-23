@@ -1,308 +1,338 @@
 <template>
-    <div class="form1">
-        <div class="form">
-            <h4>Création élection</h4>
-            <div class="formulaire">
-                <div class="itemContainer">
-                    <p>Veuillez sélectionner une année </p>
+    <div class="flex flex-col  w-full h-full">
 
-                    <select class="annee" v-model="anneeElectorale.annee" id="">
+
+        <div class="w-full  mb-5 mt-0 bg-[#414b5e]   items-center rounded-t-lg ">
+            <h4 class="p-2">Création élection</h4>
+            <div class=" flex justify-around items-center">
+
+
+
+                <!-- .formulaire {
+    display: flex;
+    justify-content: space-around;
+    background-color: #1F2937;
+    align-items: center;
+    border-radius: 0px 0px 6px 6px;
+    padding: 5px 10px;
+
+
+} -->
+                <!-- .itemContainer {
+    width: 20%;
+    margin: 10px 2px;
+
+} -->
+
+                <div class=" mx-4 w-[25%]">
+                    <p class="p-2">Veuillez sélectionner une année </p>
+
+                    <select class="annee focus:outline-none" v-model="anneeElectorale.annee" id="">
                         <option disabled value="">Année électorale :</option>
                         <option v-for="item in anneeData" :key="item.id" :value=item>{{ item }}</option>
                     </select>
 
                 </div>
-                <div class="itemContainer">
-                    <p>Type électoral </p>
+                <div class="w-[60%] flex  items-center">
+                    <div class="mx-2 w-[45%] ">
+                        <p class="p-2">Type électoral </p>
 
-                    <select class="annee" v-model="type" id="">
-                        <option disabled value="">Types :</option>
-                        <option v-for="item in descriptionAnneeData" :key="item.id" :value=item>{{ item }}</option>
-                    </select>
-                </div>
+                        <select class="annee" v-model="type" id="">
 
-                <div class="itemContainer" v-if="'Parlémentaire' === type">
-                    <p>Type électoral Parlémentaire </p>
-
-                    <select class="annee" v-model="parlementSelected" id="">
-                        <option disabled value="">Types :</option>
-                        <option v-for="item in listParlementaire" :key="item.id" :value=item>{{ item }}</option>
-                    </select>
-                </div>
-
-                <div class="itemContainer" v-if="'Municipale' === type">
-                    <p>Type électoral Municipale </p>
-
-                    <select class="annee" v-model="municipaleSelected" id="">
-                        <option disabled value="">Types :</option>
-                        <option v-for="item in listMunicipale" :key="item.id" :value=item>{{ item }}</option>
-                    </select>
-                </div>
-
-                <h3 class="btnAdd add" @click="creer()">Créer</h3>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-    <div class="list">
-        <div class="titre">
-            <h4 class="subtitle">
-                Liste des élections
-            </h4>
-            <h4 class="number1">{{ anneeElectorale?.allanneeData?.length }}</h4>
-
-            <div class="itemContainer1">
-                <i class="pi pi-search icon1"></i>
-
-                <input type="text" placeholder="Recherche par année" v-model="searchTerm" class="input1" />
-            </div>
-
-
-
-        </div>
-
-        <div class="scroll-container">
-
-
-
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg down">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                Année
-                            </th>
-
-                            <th scope="col" class="px-6 py-3">
-                                Genre
-                            </th>
-
-                            <th scope="col" class="px-6 py-3">
-
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <div v-if="filteredCandidats.length === 0" class="no-results">
-                            <h4 class="message">Aucune année trouvée.</h4>
-                        </div>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                            v-for="(item, index) in filteredCandidats" :key="index">
-
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ item.annee }}
-                            </th>
-
-                            <td class="px-6 py-4">
-                                {{ item.descriptionAnnee }}
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="btn">
-                                    <div class="icon blue" @click="voir(item)">
-                                        <i class="pi pi-eye" style="font-size: 18px; color: white;"></i>
-                                    </div>
-                                    <div class="icon orange" @click="modifier(item)">
-                                        <i class="pi pi-pencil" style="font-size: 18px; color: white;"></i>
-                                    </div>
-                                    <div class="icon red" @click="supprimer(item)">
-                                        <i class="pi pi-trash" style="font-size: 18px; color: white;"></i>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-
-
-
-
-
-
-        <div class="modal" v-if="show.showModalAjout">
-            <div class="contenaireModal">
-                <h1 class="tritreModal">AJOUT NOUVEAU ELECTION</h1>
-                <div class="flex">
-                    <div class="section">
-                        <div class="inputCard">
-                            <h3 class="label">Nom</h3>
-                            <input type="text" placeholder="Ajoutez un nom" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Prénom</h3>
-                            <input type="text" placeholder="Ajoutez un prénom" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Date de naissance</h3>
-                            <input type="text" placeholder="Insérez une date de naissance" class="input" />
-
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Lieu de naissance</h3>
-                            <input type="text" placeholder="Insérez un lieu de naissance" class="input" />
-
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Sexe</h3>
-                            <input type="text" placeholder="Ajoutez un sexe" class="input" />
-
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Filiation</h3>
-                            <input type="text" placeholder="Nom du père et de la mère" class="input" />
-                        </div>
-
-                    </div>
-                    <div class="section">
-                        <div class="inputCard">
-                            <h3 class="label">Numéro de la CIN</h3>
-                            <input type="text" placeholder="Insérez un numéro de la CIN" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Date de délivrance de la CIN</h3>
-                            <input type="text" placeholder="Insérez une date de délivrance de la CIN" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Lieu de délivrance de la CIN</h3>
-                            <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Adresse ou le lieu de résidence</h3>
-                            <input type="text" placeholder="Insérez une adresse ou le lieu de résidence"
-                                class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Profession</h3>
-                            <input type="text" placeholder="Ajoutez un profession" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Carte d'électeur</h3>
-                            <input type="text" placeholder="Ecrire le numéro de la Carte électeur" class="input" />
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modalFooter">
-                    <h3 class="btnAdd add" @click="show.showModalAjoutFunc">Ajouter</h3>
-                    <h3 class="btnAdd cancel" @click="show.showModalAjoutFunc">Annuler</h3>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-        <div class="modal" v-if="show.showModalOeil">
-
-            <div class="contenaireModal">
-                <h1 class="tritreModal">INFORMATION ELECTORALE</h1>
-
-                <h1 class="tritreModal"> </h1>
-                <div class="flex">
-
-                    <div class="section">
-                        <div class="inputCard">
-                            <h3 class="label">Année</h3>
-                            <h4 class="contenu">{{ anneeElectorale.voirData.annee }}</h4>
-                        </div>
-                    </div>
-
-                    <div class="section">
-                        <div class="inputCard">
-                            <h3 class="label">Description</h3>
-                            <h4 class="contenu">{{ anneeElectorale.voirData.descriptionAnnee }}</h4>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modalFooter">
-                    <h3 class="btnAdd cancel" @click="show.showModalOeilFunc">Fermer</h3>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-        <div class="modal" v-if="show.showModalModifier">
-            <div class="contenaireModal">
-                <h1 class="tritreModal">MODIFIER INFORMATION ELECTORALE</h1>
-                <div class="flex">
-
-
-
-                    <div class="section">
-                        <!-- <div class="inputCard">
-                            <h3 class="label">Année</h3>
-                            <input type="text" placeholder="Ajoutez un nom" class="input"
-                                v-model="anneeElectorale.annee" />
-                        </div> -->
-                        <p>Sélectionner une année </p>
-
-                        <select class="annee" v-model="anneeElectorale.annee" id="">
-                            <option disabled value="">Année électorale :</option>
-                            <option v-for="item in anneeData" :key="item.id" :value=item>{{ item }}</option>
-                        </select>
-                    </div>
-
-
-
-
-
-
-
-
-                    <div class="section">
-                        <p>Type électoral </p>
-
-                        <select class="annee" v-model="anneeElectorale.descriptionAnnee" id="">
-                            <option disabled value="">Types :</option>
                             <option v-for="item in descriptionAnneeData" :key="item.id" :value=item>{{ item }}</option>
                         </select>
                     </div>
 
+                    <div class="mx-2 w-[45%] " v-if="'Parlémentaire' === type">
+                        <p class="p-2">Type électoral Parlémentaire </p>
+
+                        <select class="annee" v-model="parlementSelected" id="">
+
+                            <option v-for="item in listParlementaire" :key="item.id" :value=item>{{ item }}</option>
+                        </select>
+                    </div>
+                    <div class="mx-2 w-[45%] " v-if="'Municipale' === type">
+                    <p class="p-2">Type électoral Municipale </p>
+
+                    <select class="annee" v-model="municipaleSelected" id="">
+
+                        <option v-for="item in listMunicipale" :key="item.id" :value=item>{{ item }}</option>
+                    </select>
                 </div>
-                <div class="modalFooter">
-                    <h3 class="btnAdd add" @click="enregistrer()">Enregistrer</h3>
-                    <h3 class="btnAdd cancel" @click="show.showModalModifierFunc">Annuler</h3>
                 </div>
+
+             
+
+                <h3 class="btnAdd add" @click="creer()">Créer</h3>
             </div>
         </div>
 
 
 
-        <div class="modal" v-if="show.showModalAnneSupprimer">
-            <div class="contenaireModalSupp">
-                <h4 class="supp">
-                    Voulez vous vraiment supprimer
+        <div class="list">
+            <div class="titre">
+                <h4 class="subtitle">
+                    Liste des élections
                 </h4>
-                <h4 class="suppNom">
-                    Cette année {{ anneeElectorale.supprimerData.annee }} ?
+                <h4 class="number1">{{ anneeElectorale?.allanneeData?.length }}</h4>
 
-                </h4>
-                <div class="flex">
-                    <h3 class="btnAdd add" @click="accepter()">Oui</h3>
-                    <h3 class="btnAdd cancel" @click="show.showModalAnneSupprimer = !show.showModalAnneSupprimer">Non
-                    </h3>
+                <div class="itemContainer1">
+                    <i class="pi pi-search icon1"></i>
+
+                    <input type="text" placeholder="Recherche par année" v-model="searchTerm" class="input1" />
+                </div>
+
+
+
+            </div>
+
+            <div class="scroll-container">
+
+
+
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg down">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Année
+                                </th>
+
+                                <th scope="col" class="px-6 py-3">
+                                    Genre
+                                </th>
+
+                                <th scope="col" class="px-6 py-3">
+
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <div v-if="filteredCandidats.length === 0" class="no-results">
+                                <h4 class="message">Aucune année trouvée.</h4>
+                            </div>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                                v-for="(item, index) in filteredCandidats" :key="index">
+
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ item.annee }}
+                                </th>
+
+                                <td class="px-6 py-4">
+                                    {{ item.descriptionAnnee }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="btn">
+                                        <div class="icon blue" @click="voir(item)">
+                                            <i class="pi pi-eye" style="font-size: 18px; color: white;"></i>
+                                        </div>
+                                        <div class="icon orange" @click="modifier(item)">
+                                            <i class="pi pi-pencil" style="font-size: 18px; color: white;"></i>
+                                        </div>
+                                        <div class="icon red" @click="supprimer(item)">
+                                            <i class="pi pi-trash" style="font-size: 18px; color: white;"></i>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+
+
+
+
+            <div class="modal" v-if="show.showModalAjout">
+                <div class="contenaireModal">
+                    <h1 class="tritreModal">AJOUT NOUVEAU ELECTION</h1>
+                    <div class="flex">
+                        <div class="section">
+                            <div class="inputCard">
+                                <h3 class="label">Nom</h3>
+                                <input type="text" placeholder="Ajoutez un nom" class="input" />
+                            </div>
+                            <div class="inputCard">
+                                <h3 class="label">Prénom</h3>
+                                <input type="text" placeholder="Ajoutez un prénom" class="input" />
+                            </div>
+                            <div class="inputCard">
+                                <h3 class="label">Date de naissance</h3>
+                                <input type="text" placeholder="Insérez une date de naissance" class="input" />
+
+                            </div>
+                            <div class="inputCard">
+                                <h3 class="label">Lieu de naissance</h3>
+                                <input type="text" placeholder="Insérez un lieu de naissance" class="input" />
+
+                            </div>
+                            <div class="inputCard">
+                                <h3 class="label">Sexe</h3>
+                                <input type="text" placeholder="Ajoutez un sexe" class="input" />
+
+                            </div>
+                            <div class="inputCard">
+                                <h3 class="label">Filiation</h3>
+                                <input type="text" placeholder="Nom du père et de la mère" class="input" />
+                            </div>
+
+                        </div>
+                        <div class="section">
+                            <div class="inputCard">
+                                <h3 class="label">Numéro de la CIN</h3>
+                                <input type="text" placeholder="Insérez un numéro de la CIN" class="input" />
+                            </div>
+                            <div class="inputCard">
+                                <h3 class="label">Date de délivrance de la CIN</h3>
+                                <input type="text" placeholder="Insérez une date de délivrance de la CIN"
+                                    class="input" />
+                            </div>
+                            <div class="inputCard">
+                                <h3 class="label">Lieu de délivrance de la CIN</h3>
+                                <input type="text" placeholder="Insérez un lieu de délivrance de la CIN"
+                                    class="input" />
+                            </div>
+                            <div class="inputCard">
+                                <h3 class="label">Adresse ou le lieu de résidence</h3>
+                                <input type="text" placeholder="Insérez une adresse ou le lieu de résidence"
+                                    class="input" />
+                            </div>
+                            <div class="inputCard">
+                                <h3 class="label">Profession</h3>
+                                <input type="text" placeholder="Ajoutez un profession" class="input" />
+                            </div>
+                            <div class="inputCard">
+                                <h3 class="label">Carte d'électeur</h3>
+                                <input type="text" placeholder="Ecrire le numéro de la Carte électeur" class="input" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modalFooter">
+                        <h3 class="btnAdd add" @click="show.showModalAjoutFunc">Ajouter</h3>
+                        <h3 class="btnAdd cancel" @click="show.showModalAjoutFunc">Annuler</h3>
+                    </div>
                 </div>
             </div>
+
+
+
+
+
+            <div class="modal backdrop-blur-[2px]" v-if="show.showModalOeil">
+
+                <div class="contenaireModal">
+                    <h1 class="tritreModal">INFORMATION ELECTORALE</h1>
+
+                    <h1 class="tritreModal"> </h1>
+                    <div class="flex">
+
+                        <div class="section">
+                            <div class="inputCard">
+                                <h3 class="label">Année</h3>
+                                <h4 class="contenu">{{ anneeElectorale.voirData.annee }}</h4>
+                            </div>
+                        </div>
+
+                        <div class="section">
+                            <div class="inputCard">
+                                <h3 class="label">Description</h3>
+                                <h4 class="contenu">{{ anneeElectorale.voirData.descriptionAnnee }}</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modalFooter">
+                        <h3 class="btnAdd cancel" @click="show.showModalOeilFunc">Fermer</h3>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="modal backdrop-blur-[2px]" v-if="show.showModalModifier">
+                <div class="contenaireModal">
+                    <h1 class="tritreModal">MODIFIER INFORMATION ELECTORALE</h1>
+                    <div class="flex">
+
+
+
+                        <div class="section">
+                            <!-- <div class="inputCard">
+                            <h3 class="label">Année</h3>
+                            <input type="text" placeholder="Ajoutez un nom" class="input"
+                                v-model="anneeElectorale.annee" />
+                        </div> -->
+                            <p>Sélectionner une année </p>
+
+                            <select class="annee" v-model="anneeElectorale.annee" id="">
+                                <option disabled value="">Année électorale :</option>
+                                <option v-for="item in anneeData" :key="item.id" :value=item>{{ item }}</option>
+                            </select>
+                        </div>
+
+
+
+
+
+
+
+
+                        <div class="section">
+                            <p>Type électoral </p>
+
+                            <select class="annee" v-model="anneeElectorale.descriptionAnnee" id="">
+                                <option disabled value="">Types :</option>
+                                <option v-for="item in descriptionAnneeData" :key="item.id" :value=item>{{ item }}
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modalFooter">
+                        <h3 class="btnAdd add" @click="enregistrer()">Enregistrer</h3>
+                        <h3 class="btnAdd cancel" @click="show.showModalModifierFunc">Annuler</h3>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal backdrop-blur-[2px]" v-if="show.showModalAnneSupprimer">
+                <div class="contenaireModalSupp">
+                    <h4 class="supp">
+                        Voulez vous vraiment supprimer
+                    </h4>
+                    <h4 class="suppNom">
+                        Cette année {{ anneeElectorale.supprimerData.annee }} ?
+
+                    </h4>
+                    <div class="flex">
+                        <h3 class="btnAdd add" @click="accepter()">Oui</h3>
+                        <h3 class="btnAdd cancel" @click="show.showModalAnneSupprimer = !show.showModalAnneSupprimer">
+                            Non
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-
-
     </div>
+
+
+
+
+
+
 
 </template>
 
@@ -423,14 +453,7 @@ const listMunicipale = [
 
 }
 
-.form {
-    width: 98%;
-    margin-bottom: 0px;
-    background-color: #414b5e;
-    align-items: center;
-    border-radius: 6px 6px 0px 0px;
-    margin-top: 5px;
-}
+
 
 .form h4 {
     font-weight: 600;
@@ -512,13 +535,13 @@ const listMunicipale = [
     padding-bottom: 10px;
 }
 
-.flex {
+/* .flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
     margin-bottom: 10px;
-}
+} */
 
 .section {
     width: 45%;
@@ -586,11 +609,7 @@ right: 0;
     font-weight: 700;
 }
 
-.itemContainer {
-    width: 20%;
-    margin: 10px 2px;
 
-}
 
 .itemContainer1 {
     width: 20%;
@@ -732,16 +751,6 @@ input-placeholder {
     color: red;
 }
 
-.formulaire {
-    display: flex;
-    justify-content: space-around;
-    background-color: #1F2937;
-    align-items: center;
-    border-radius: 0px 0px 6px 6px;
-    padding: 5px 10px;
-
-
-}
 
 
 

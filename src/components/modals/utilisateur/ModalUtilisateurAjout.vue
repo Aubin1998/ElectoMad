@@ -1,10 +1,12 @@
 <template>
   <Transition>
-    <div class="showModal" v-if="show.showModalAjoutUtilisateur">
+    <div class="showModal backdrop-blur p-2px" v-if="show.showModalAjoutUtilisateur">
       <div class="modal">
         <div class="content">
+
           <div class="titre">
-            <h1 class="tritreModal">AJOUT NOUVEAU UTILISATEUR {{ isFirst ? '1' : '2' }}</h1>
+
+            <h1 class="tritreModal">AJOUT NOUVEAU UTILISATEUR {{ page }}</h1>
             <div class="closeForm" @click="show.showModalAjoutUtilisateur = !show.showModalAjoutUtilisateur">
               <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
             </div>
@@ -12,6 +14,7 @@
 
 
           <div class="contenaire" v-if="isFirst">
+
             <div class="inputCard">
               <h3 class="label">Nom et prénom</h3>
               <input type="text" placeholder="Ajoutez un nom" class="input" v-model="nomComplet" />
@@ -58,6 +61,7 @@
                       </a>
                     </li>
                   </ul>
+
                   <InputComposant v-model="nomRole" placeholder="Rôle" v-if="isInput" />
                   <a href="#" @click="Confirmer()" v-if="isInput"
                     class="flex items-center p-3 text-sm font-medium text-blue-600 border-t border-gray-200 rounded-b-lg bg-gray-50 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-blue-500 hover:underline">
@@ -76,7 +80,7 @@
               <input type="text" placeholder="Sa fonction" class="input" v-model="profession" />
             </div>
             <div class="modalFooter" v-if="areFieldsFilled">
-              <h3 class="btnAdd add" @click="suivant2()">Suivant</h3>
+              <h3 class="btnAdd add" @click="suivant2('2')">Suivant</h3>
             </div>
           </div>
 
@@ -84,6 +88,7 @@
 
 
           <div class="contenaire" v-if="isSeconde">
+            <i class="pi pi-arrow-left" style="font-size: 18px; color: white;" @click="suivant2('1')"></i>
 
             <div class="inputCard">
               <h3 class="label">Adresse</h3>
@@ -101,11 +106,19 @@
               <h3 class="label">Date de délivrance CIN</h3>
               <input type="text" placeholder="Délivré le" class="input" v-model="dateDelivreCIN" />
             </div> -->
+
             <div class="inputCard">
+              <h3 class="label">Date de délivrance </h3>
+              <Datepicker v-model="dateDelivreCIN" placeholder="Insérez une date de délivrance"
+                style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;"
+                class="input" format="dd-MM-yyyy"   :format="formatDate" :model-config="modelConfig" />
+            </div>
+
+            <!-- <div class="inputCard">
               <h3 class="label">Date de délivrance</h3>
               <VueDatePicker v-model="dateDelivreCIN" placeholder="Insérez une date de naissance" class="input"
                 :format="formatDate" :model-config="modelConfig" />
-            </div>
+            </div> -->
 
 
             <div class="inputCard">
@@ -121,14 +134,31 @@
               <input type="text" placeholder="Son sexe" class="input" v-model="sexe" />
             </div>
             <div class="modalFooter" v-if="areFieldsFilled2">
-              <h3 class="btnAdd add" @click="suivant3()">Suivant</h3>
+              <h3 class="btnAdd add" @click="suivant2('3')">Suivant</h3>
             </div>
           </div>
 
 
 
-
           <div class="contenaire" v-if="isThird">
+            <i class="pi pi-arrow-left" style="font-size: 18px; color: white;" @click="suivant2('2')"></i>
+
+
+            <div class="inputCard">
+              <h3 class="label">Date d'inscription </h3>
+              <Datepicker v-model="dateInscription" placeholder="Insérez une date d'inscription"
+                style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;"
+                class="input" format="dd-MM-yyyy"   />
+            </div>
+            
+            <div class="inputCard">
+              <h3 class="label">Date de naissance </h3>
+              <Datepicker v-model="dateNaissance" placeholder="Insérez une date de naissance"
+                style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;"
+                class="input" format="dd-MM-yyyy"   />
+            </div>
+
+            
 
 
             <div class="inputCard">
@@ -145,11 +175,6 @@
             </div> -->
 
 
-            <div class="inputCard">
-                  <h3 class="label">Date de naissance</h3>
-                  <VueDatePicker v-model="dateNaissance" placeholder="Insérez une date de naissance"
-                    class="input" />
-                </div>
 
             <div class="inputCard">
               <h3 class="label">Téléphone</h3>
@@ -160,11 +185,14 @@
               <input type="text" placeholder="Sa date d'inscription" class="input" v-model="dateInscription" />
             </div> -->
 
-            <div class="inputCard">
-                  <h3 class="label">Date d'inscription</h3>
-                  <VueDatePicker v-model="dateInscription" placeholder="Insérez une date de naissance"
-                    class="input1" />
-                </div>
+
+            
+
+         
+            <!-- <div class="inputCard">
+              <h3 class="label">Date d'inscription</h3>
+              <VueDatePicker v-model="dateInscription" placeholder="Insérez une date de naissance" class="input1" />
+            </div> -->
 
 
             <div class="modalFooter" v-if="areFieldsFilled3">
@@ -179,8 +207,9 @@
 </template>
 
 <script setup>
-import VueDatePicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css';
+
+import Datepicker from "vue3-datepicker";
+import InputComposant from "@/components/InputComposant.vue"
 
 
 import { defineStore } from "pinia";
@@ -191,6 +220,7 @@ import { useAnneeElectorale } from "@/stores/anneeElectorale";
 import { uselisteElecteur } from "@/stores/listeElecteur";
 import { useUtilisateur } from "@/stores/utilisateur";
 const isFirst = ref(true)
+const isSecond = ref(true)
 
 const utilisateur = useUtilisateur()
 import { onMounted, ref, computed } from 'vue';
@@ -203,17 +233,53 @@ const listeElecteur = uselisteElecteur();
 
 const isSeconde = ref(false)
 const isThird = ref(false)
-function suivant2() {
-  isFirst.value = false
-  isSeconde.value = true
+const page = ref('1')
+function suivant2(item) {
+  // Initialiser toutes les valeurs à false
+  isFirst.value = false;
+  isSeconde.value = false;
+  isThird.value = false;
 
+  // Mettre à jour les valeurs en fonction de l'item
+  if (item === '1') {
+    page.value = item;
+    isFirst.value = true;
+  } else if (item === '2') {
+    page.value = item;
+    isSeconde.value = true;
+  } else if (item === '3') {
+    page.value = item;
+    isThird.value = true;
+  }
 }
+
+
+
+
 function suivant3() {
   isFirst.value = false
   isSeconde.value = false
-  isThird.value = true
 
 
+
+}
+function backtoSecond() {
+  isFirst.value = false
+  isSeconde.value = true
+  isThird.value = false
+
+
+}
+
+function backtoFirst() {
+  isFirst.value = true
+  isSeconde.value = false
+
+}
+function ajout() {
+  show.showModalAjoutUtilisateur = !show.showModalAjoutUtilisateur;
+  const password = generatePassword(12);
+  role.mdpGenerate = password;
 }
 
 const nomComplet = ref('');
@@ -542,11 +608,11 @@ function voirDetails(item) {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: rgba(216, 213, 213, 0.326);
+  background-color: rgba(216, 213, 213, 0.035) !important;
   z-index: 2;
   height: 100%;
   display: flex;
-  background: rgba(43, 38, 38, 0.801);
+  background: rgba(43, 38, 38, 0.063) !important;
   justify-content: center;
   align-items: center;
 }

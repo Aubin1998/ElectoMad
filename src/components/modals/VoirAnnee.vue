@@ -1,6 +1,7 @@
 <template>
   <Transition>
-    <div class="acceuil" v-if="show.showAcceuilModala">
+    <div class="acceuil" v-if="false">
+      <h1>Tsy miasa ity composant ity</h1>
       <div class="content">
         <h1 class="title">Bienvenue aux Élections</h1>
         <p class="message">Préparez-vous pour les élections à venir.</p>

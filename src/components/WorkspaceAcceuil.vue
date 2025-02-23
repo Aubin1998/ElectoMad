@@ -1,6 +1,8 @@
 <template>
-  <div class="acceuil" v-if="show.user == 'admin'">
+  <div class="w-full h-full ">
+    <div class="acceuil" v-if="show.user == 'admin'">
     <div class="content">
+     
       <h1 class="title">Bienvenue sur VoteVision</h1>
       <p class="message"> Votre plateforme électorale moderne.</p>
       <button class="cta-button" @click="voirelection()">Voir les années électorales</button>
@@ -22,6 +24,7 @@
       <button class="cta-button" @click="voirelection()">Voir les années électorales</button>
     </div>
   </div>
+  </div>
 
 </template>
 
@@ -38,7 +41,7 @@ function voirelection() {
 <style scoped>
 .acceuil {
   background-color: rgb(182, 190, 190);
-  min-height: 80vh;
+  min-height: 100%;
   border-radius: 10px;
   background-image: url('../fokontany.jpg');
   background-size: cover;

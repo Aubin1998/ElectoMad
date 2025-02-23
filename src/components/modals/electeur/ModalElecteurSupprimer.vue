@@ -1,6 +1,6 @@
 <template>
   <Transition>
-    <div class="showModal" v-if="show.showModalSupprimerElecteur">
+    <div class="showModal backdrop-blur p-2px" v-if="show.showModalSupprimerElecteur">
       <div class="modal" >
       <div class="contenaireModalSupp">
         <h4 class="supp">
@@ -83,19 +83,20 @@ function voirDetails(item) {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: rgba(216, 213, 213, 0.326);
-  z-index: 2;
+  background-color: rgba(216, 213, 213, 0) !important;
+  z-index: 100;
   height: 100%;
   display: flex;
-  background: rgba(43, 38, 38, 0.801);
+  background: rgba(43, 38, 38, 0) !important;
   justify-content: center;
   align-items: center;
+
 }
 
 .modal {
   width: 100%;
   height: 100vh;
-  background-color: rgba(196, 190, 190, 0.452);
+  background-color: rgba(170, 162, 162, 0.361);
   position: absolute;
   top: 0;
   left: 0;

@@ -1,15 +1,11 @@
 <template>
-  <div class="relative overflow-x-auto shadow-md sm:rounded-lg  utili">
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg utili">
     <div
       class="flex flex-col md:flex-row items-center rounded-lg justify-between p-3 space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
       <div>
         <h2 class="text-xl font-bold mb-2.5">Gestion des utilisateurs</h2>
-
-
-        <button @click="ajout()" type="button" v-if="seeAjout" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg 
-          hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 
-          focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white 
-          dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+        <button @click="ajout()" type="button" v-if="seeAjout"
+          class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
           <svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
             viewBox="0 0 20 20">
             <path
@@ -17,17 +13,14 @@
           </svg>
           Ajouter utilisateur
         </button>
-
       </div>
 
-
-      <div class="relative space-y-4  forme">
+      <div class="relative space-y-4 forme">
         <!-- Dropdown 1: Année -->
         <div class="droper">
           <button @click="toggleDropdown('year')"
-            class="inline-flex items-center justify-between text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 
-            focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 
-            dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-full" type="button">
+            class="inline-flex items-center justify-between text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-full"
+            type="button">
             <span class="sr-only">Action button</span>
             {{ selectedAnnee ? selectedAnnee.annee : 'Année' }}
             <svg class="w-2.5 h-2.5 ml-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -36,8 +29,6 @@
                 d="m1 1 4 4 4-4" />
             </svg>
           </button>
-
-          <!-- Dropdown menu -->
           <div v-if="isYearDropdownOpen"
             class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-full dark:bg-gray-700 dark:divide-gray-600 mt-2">
             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
@@ -64,23 +55,20 @@
                 d="m1 1 4 4 4-4" />
             </svg>
           </button>
-
-          <!-- Dropdown menu -->
           <div v-if="isRegionDropdownOpen"
             class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-full dark:bg-gray-700 dark:divide-gray-600 mt-2 droperlist">
             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
-
-
               <li v-for="region in transformedData" :key="region.id" @click="selectRegion(region.region)">
-                <!-- {{ region.region }} -->
-                <a href="#"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">
-                  {{ region.region }}
-                </a>
+                <template v-if="region.region !== 'Region'">
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">
+                    {{ region.region }}
+                  </a>
+                </template>
               </li>
             </ul>
-
           </div>
+
         </div>
 
         <!-- Dropdown 3: District -->
@@ -96,13 +84,9 @@
                 d="m1 1 4 4 4-4" />
             </svg>
           </button>
-
-
           <div v-if="isDistrictDropdownOpen"
             class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-full dark:bg-gray-700 dark:divide-gray-600 mt-2 droperlist">
             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
-
-
               <li v-for="district in districtData" :key="district.id" @click="selectDistrict(district)">
                 <a href="#"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">
@@ -110,12 +94,8 @@
                 </a>
               </li>
             </ul>
-
           </div>
         </div>
-
-
-
       </div>
 
       <div class="flex items-center space-x-4">
@@ -145,8 +125,6 @@
                 d="m1 1 4 4 4-4" />
             </svg>
           </button>
-
-          <!-- Dropdown menu -->
           <div v-if="isDropdownOpenRole"
             class="z-10 bg-white rounded-lg shadow-sm w-60 dark:bg-gray-700 absolute right-0 mt-2">
             <ul class="h-48 py-2 overflow-y-auto text-gray-700 dark:text-gray-200"
@@ -159,9 +137,7 @@
                 </a>
               </li>
             </ul>
-
             <InputComposant v-model="nomRole" placeholder="Rôle" v-if="isInput" />
-
             <a href="#" @click="ajoutRole()" v-if="!isInput"
               class="flex items-center p-3 text-sm font-medium text-blue-600 border-t border-gray-200 rounded-b-lg bg-gray-50 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-blue-500 hover:underline">
               <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -171,7 +147,6 @@
               </svg>
               Ajout rôle
             </a>
-
             <a href="#" @click="Confirmer()" v-if="isInput"
               class="flex items-center p-3 text-sm font-medium text-blue-600 border-t border-gray-200 rounded-b-lg bg-gray-50 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-blue-500 hover:underline">
               <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -184,12 +159,9 @@
           </div>
         </div>
       </div>
-
-
     </div>
 
-
-    <div class="overflow-y-auto max-h-[55vh]">
+    <div class="overflow-y max-h-[55vh]">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -214,12 +186,13 @@
             <td class="px-6 py-4">
               <div class="flex items-center">
                 <div class="h-2.5 w-2.5 rounded-full"
-                  :class="user.status === 'Permanent' ? 'bg-green-500' : 'bg-red-500'"></div>
+                  :class="user.status === 'Permanent' ? 'bg-green-500' : 'bg-red-500'">
+                </div>
                 {{ user.status }}
               </div>
             </td>
             <td class="px-6 py-4">
-              <div class="font-medium text-blue-600 dark:text-blue-500 " @click="togglePasswordVisibility(user.id)">
+              <div class="font-medium text-blue-600 dark:text-blue-500" @click="togglePasswordVisibility(user.id)">
                 <span class="pi pi-eye ms-2" v-if="!isPasswordVisible[user.id]"></span>
                 <span class="pi pi-eye-slash ms-2 voirMdp" v-else>
                   <div v-if="isPasswordVisible[user.id]" class="mt-2">
@@ -227,10 +200,8 @@
                   </div>
                 </span>
               </div>
-
             </td>
             <td class="px-6 py-4 relative">
-              <!-- Button for vertical dots dropdown -->
               <button @click="toggleDropdown('dots', user.id)"
                 class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 type="button">
@@ -240,8 +211,6 @@
                     d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
                 </svg>
               </button>
-
-              <!-- Dropdown menu -->
               <div v-if="showDropdown && currentUserId === user.id"
                 class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600 absolute right-0"
                 :style="{ bottom: dropdownBottomPosition }">
@@ -266,7 +235,6 @@
                   </li>
                 </ul>
               </div>
-
             </td>
           </tr>
         </tbody>
@@ -283,29 +251,24 @@ import { useAnneeElectorale } from "@/stores/anneeElectorale";
 import { useRole } from "@/stores/role";
 import { useListeCommuneDistrictStore } from "@/stores/jsonData/liste_commune_par_district";
 import { useListeFokontanyDistrictStore } from "@/stores/jsonData/liste_fokontany_par_district";
-
 import { useUtilisateur } from "@/stores/utilisateur";
-const seeMdp = ref(false)
+import { useDataRegion } from "@/service/dataLocation";
 
-const utilisateur = useUtilisateur()
-
-const listeFokontanyDistrictStore = useListeFokontanyDistrictStore()
+const seeMdp = ref(false);
+const utilisateur = useUtilisateur();
+const listeFokontanyDistrictStore = useListeFokontanyDistrictStore();
 const anneeElectorale = useAnneeElectorale();
 const listeCommuneDistrictStore = useListeCommuneDistrictStore();
 const role = useRole();
 const show = useShow();
-
+const { data, transform, transformedData, regionData } = useDataRegion();
 
 // États réactifs
 const isYearDropdownOpen = ref(false);
 const isElectionTypeDropdownOpen = ref(false);
 const isDistrictDropdownOpen = ref(false);
 const isRegionDropdownOpen = ref(false);
-
-
-
-const isDropdownOpenRole = ref(false)
-
+const isDropdownOpenRole = ref(false);
 const isDropdownOpen = ref(false);
 const showDropdown = ref(false);
 const currentUserId = ref(null);
@@ -315,32 +278,18 @@ const nomRole = ref('');
 const selectedAnnee = ref(null);
 const selectedDistrict = ref(null);
 const selectedRegion = ref(null);
-
-
-
-const user = { id: 1 }; // Exemple d'objet utilisateur
+const districtData = ref([]);
+const seeRegion = ref(false);
+const seeDistrict = ref(false);
+const seeAjout = ref(false);
+const listUtilisateur = ref([]);
+const isPasswordVisible = ref({});
 
 const fermerDropdown = () => {
   showDropdown.value = false;
 };
 
-
-
-
-
-
-
-const users = ref([
-  { id: 9, name: 'Neil Sims', email: 'neil.sims@flowbite.com', role: 'Opérateur de saisie', status: 'Journalier', image: '/admin.png' },
-  { id: 10, name: 'Bonnie Green', email: 'bonnie@flowbite.com', role: 'Opérateur de saisie', status: 'Journalier', image: '/admin.png' },
-  { id: 11, name: 'Jese Leos', email: 'jese@flowbite.com', role: 'Controller', status: 'Permanent', image: '/admin.png' },
-  { id: 12, name: 'Thomas Lean', email: 'thomes@flowbite.com', role: 'Opérateur de saisie', status: 'Journalier', image: '/admin.png' },
-  { id: 13, name: 'Leslie Livingston', email: 'leslie@flowbite.com', role: 'Opérateur de saisie', status: 'Journalier', image: '/admin.png' },
-]);
-
-// Fonctions
 const toggleDropdown = (dropdown, userId = null) => {
-
   // Réinitialiser tous les états de dropdown
   isElectionTypeDropdownOpen.value = false;
   isDistrictDropdownOpen.value = false;
@@ -362,13 +311,7 @@ const toggleDropdown = (dropdown, userId = null) => {
       break;
     case 'users':
       isDropdownOpenRole.value = !isDropdownOpenRole.value;
-      if (isDropdownOpen.value == true) {
-        isDropdownOpen.value = false
-
-      } else {
-        isDropdownOpen.value = true
-      }
-
+      isDropdownOpen.value = !isDropdownOpen.value;
       break;
     case 'dots':
       showDropdown.value = !showDropdown.value;
@@ -383,9 +326,6 @@ const toggleDropdown = (dropdown, userId = null) => {
 
   adjustDropdownPosition();
 };
-
-
-
 
 const adjustDropdownPosition = () => {
   const dropdownButton = document.querySelector(`button[data-user-id="${currentUserId.value}"]`);
@@ -402,10 +342,12 @@ const adjustDropdownPosition = () => {
 
 const voir = () => {
   show.showModalOeil = !show.showModalOeil;
+  fermerDropdown();
 };
 
 const modifier = () => {
   show.showModalModifier = !show.showModalModifier;
+  fermerDropdown();
 };
 
 const supprimer = () => {
@@ -413,7 +355,7 @@ const supprimer = () => {
   const item = {}; // Assurez-vous que item est défini correctement
   anneeElectoraleData.supprimerData = item;
   show.showModalAnneSupprimer = true;
-  // anneeElectorale.deleteAnnee(anneeElectoraleData.supprimerData.id);
+  fermerDropdown();
 };
 
 const ajoutRole = () => {
@@ -425,46 +367,31 @@ const Confirmer = () => {
   role.createRole(nomRole.value);
 };
 
-const listUtilisateur = ref([])
-const seeRegion = ref(false)
-
 watch(() => utilisateur.newUtilisateur, (newVal, oldVal) => {
   if (newVal !== oldVal) {
     selectAnnee(selectedAnnee.value);
   }
 });
+
 const selectAnnee = async (annee) => {
-  seeRegion.value = true
+  seeRegion.value = true;
   selectedAnnee.value = annee;
   isYearDropdownOpen.value = false; // Fermez le menu déroulant après la sélection
 
-  utilisateur.anneeSelected = annee.id
+  utilisateur.anneeSelected = annee.id;
 
-  await utilisateur.getElecteur(annee.id)
+  await utilisateur.getElecteur(annee.id);
 
-  console.log('electeur  ,,,,', utilisateur.allElecteurs?.length);
-
+  listUtilisateur.value = [];
   for (let i = 0; i < utilisateur.allElecteurs?.length; i++) {
     const electeur = utilisateur.allElecteurs[i];
     if (utilisateur.allElecteurs[i].user.roles.length !== 0) {
       if (utilisateur.allElecteurs[i].user.roles[0].nomRole !== 'admin') {
-        console.log('electeur', electeur);
-        listUtilisateur.value.push(electeur)
-        console.log('listUtilisateur.value', listUtilisateur.value);
-
+        listUtilisateur.value.push(electeur);
       }
     }
-
   }
-
-
-
-
-
-
 };
-
-const isPasswordVisible = ref({});
 
 const togglePasswordVisibility = (userId) => {
   if (isPasswordVisible.value[userId] === undefined) {
@@ -474,138 +401,65 @@ const togglePasswordVisibility = (userId) => {
   }
 };
 
-const confirmerSelection = () => {
-  if (selectedAnnee.value) {
-    // Ajoutez ici la logique pour confirmer la sélection
-  }
-  isYearDropdownOpen.value = false;
-};
-
 const selectDistrict = (district) => {
-
   selectedDistrict.value = district;
-  utilisateur.districtSelected = district
-  console.log(utilisateur.districtSelected);
-
+  utilisateur.districtSelected = district;
   isDistrictDropdownOpen.value = false; // Fermez le menu déroulant après la sélection
-  seeAjout.value = true
+  seeAjout.value = true;
 };
-
-const seeDistrict = ref(false)
 
 const selectRegion = (region) => {
-  selectedDistrict.value = ''
-  seeDistrict.value = true
+  selectedDistrict.value = '';
+  seeDistrict.value = true;
   selectedRegion.value = region;
-  utilisateur.regionSelected = region
-
+  utilisateur.regionSelected = region;
   isRegionDropdownOpen.value = false; // Fermez le menu déroulant après la sélection
-  let data = transformedData.value
 
-
+  const data = transformedData.value;
   for (let i = 0; i < data.length; i++) {
     if (data[i].region == region) {
-
-      districtData.value = data[i].listeDistrict.map(e => e[0])
-
-    } else {
-
+      districtData.value = data[i].listeDistrict.map(e => e[0]);
     }
-
-
-
-
-
   }
 };
 
-import { useDataRegion } from "@/service/dataLocation"
-const { data, transform, transformedData, regionData } = useDataRegion();
-
-const districtData = ref([])
-
 function ajout() {
-  show.showModalAjoutUtilisateur = !show.showModalAjoutUtilisateur
+  show.showModalAjoutUtilisateur = !show.showModalAjoutUtilisateur;
   const password = generatePassword(12);
-  console.log('Generated Password:', password);
-  role.mdpGenerate = password
-
+  role.mdpGenerate = password;
 }
-
-const seeAjout = ref(false)
-
-
 
 function generatePassword(length = 12) {
   const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   let password = '';
-
   for (let i = 0; i < length; i++) {
     const randomIndex = Math.floor(Math.random() * charset.length);
     password += charset[randomIndex];
   }
-
   return password;
 }
 
-// Exemple d'utilisation
-
-
-
-
-
-
 onMounted(async () => {
-  await listeFokontanyDistrictStore.get(); // Assurez-vous que cette méthode est correctement définie dans votre store
+  await listeFokontanyDistrictStore.get();
   transform();
+  anneeElectorale.getAnnees();
+  listeCommuneDistrictStore.get;
 });
-
-// Filtrer les données en fonction de la recherche
-const filteredData = computed(() => {
-  let filtered = data.value;
-  if (searchQuery.value) {
-    filtered = data.value.filter(item => item.region.toLowerCase().includes(searchQuery.value.toLowerCase()));
-  } return filtered.slice(1); // Ignorer le premier élément 
-});
-
-const dataJSON = computed(() => {
-  return JSON.stringify(data.value, null, 2);
-});
-
-watch(dataJSON, (newDataJSON) => {
-}, { immediate: true });
-
-
-watch(data, (newData) => {
-}, { immediate: true });
-
 
 // Hooks
 onMounted(() => {
   anneeElectorale.getAnnees();
-
   listeCommuneDistrictStore.get;
-
 });
 </script>
 
-
 <style scoped>
-/* Ajoutez des styles spécifiques si nécessaire */
-
-
-
 .subtitle {
   width: 100%;
   font-weight: 700;
-  /* Correction de la valeur à 700 pour la propriété font-weight */
   padding-right: 60px;
-  /* Ajout d'espace à droite */
   text-align: center;
-  /* Centrer le texte */
-
   box-sizing: border-box;
-  /* Inclure le padding dans la largeur totale */
 }
 
 .droper {
@@ -640,19 +494,18 @@ onMounted(() => {
 
 .icon:hover {
   background-color: rgb(168, 169, 230);
-
 }
 
 .blue {
-  background-color: rgb(74, 74, 241)
+  background-color: rgb(74, 74, 241);
 }
 
 .orange {
-  background-color: rgb(241, 169, 74)
+  background-color: rgb(241, 169, 74);
 }
 
 .red {
-  background-color: rgb(241, 74, 74)
+  background-color: rgb(241, 74, 74);
 }
 
 .custom-padding {

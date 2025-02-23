@@ -1,6 +1,6 @@
 <template>
   <Transition>
-    <div class="showModal" v-if="show.showModalAjoutElecteur">
+    <div class="showModal backdrop-blur p-2px" v-if="show.showModalAjoutElecteur">
       <div class="modal">
         <div class="closeForm" @click="show.showModalAjoutElecteur = !show.showModalAjoutElecteur">
           <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
@@ -344,7 +344,7 @@ function voirDetails(item) {
   z-index: 100;
   height: 100%;
   display: flex;
-  background: rgba(43, 38, 38, 0.801);
+  background: rgba(43, 38, 38, 0);
   justify-content: center;
   align-items: center;
 

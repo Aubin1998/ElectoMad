@@ -6,33 +6,19 @@
 
             <h3 class="liking" @click="show.setOption('Liste des utilisateurs')" v-if="show.user == 'admin'">
                 Utilisateurs</h3>
-            <!--<h3 class="liking">Paramètre</h3>-->
-
+           
         </div>
 
 
-        <!-- For users -->
-        <!-- <div class="itemSection" @click="show.setOption('Liste des utilisateurs')">
-                        <i class="pi pi-sitemap" style="font-size: 18px; color: white;"></i>
 
-                        <h4 class="text">Utilisateurs</h4>
-                    </div> -->
-
-        <div class="selected-year">
+        <div class="selected-year w-[40%] ">
             <span class="annee">{{ anneeElectorale?.anneeElectoraleChoisi?.annee }}</span> <span class="description">{{
                 anneeElectorale?.anneeElectoraleChoisi?.descriptionAnnee }}</span>
         </div>
 
         <div class="profil ">
             <div class="notif">
-                <!-- <div class="notification show">
-                    <i class="pi pi-bell " style="font-size: 18px; color: white;"></i>
-                    <h4 class="text">Notification</h4>
-                </div>
-                <div class="Mail show">
-                    <i class="pi pi-envelope" style="font-size: 18px; color: white;"></i>
-                    <h4 class="text">Mail</h4>
-                </div>-->
+               
 
             </div>
             <div class="profile-container">
@@ -99,7 +85,7 @@ const utilisateur = useUtilisateur(); //call Show in show.js
 const anneeElectorale = useAnneeElectorale();
 utilisateur.user = JSON.parse(localStorage.getItem("user"));
 const utilisateurrole = ref()
-
+import Datepicker from "vue3-datepicker";
 onMounted(() => {
     anneeElectorale.anneeElectoraleChoisi = JSON.parse(localStorage.getItem('anneeSelectionne'))
     if (show.user == 'admin') {

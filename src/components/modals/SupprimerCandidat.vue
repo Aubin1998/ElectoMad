@@ -1,6 +1,6 @@
 <template>
   <Transition>
-    <div class="modal" v-if="show.showModalSupprimer">
+    <div class="modal backdrop-blur-[2px]" v-if="show.showModalSupprimer">
             <div class="contenaireModalSupp">
                 <h4 class="supp">
                     Voulez vous vraiment supprimer

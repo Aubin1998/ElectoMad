@@ -96,7 +96,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 	const ModifierIdCandidat = ref('')
 
 
-	function getCandidats() {
+	async function getCandidats() {
 		show.showSpinner = true;
 		axios.get(`${URL}/api/allcandidat`, {
 			headers: {
@@ -108,6 +108,8 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				allCandidatData.value = response.data;
 				show.showAlert = true;
 				allListeCandidat.value = response.data.candidats;
+		
+				
 
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Données des candidats récupérées avec succès';
@@ -174,7 +176,6 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			email: email.value
 		};
 
-		console.log('candidat', formData);
 
 
 		show.showSpinner = true;
@@ -190,7 +191,6 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				email.value = ''
 				getCandidats();
 
-				console.log('ytydtyd');
 
 
 				show.showAlert = true;
@@ -305,16 +305,18 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 		});
 	}
 
-	function deleteCandidat(id) {
+	async function deleteCandidat(id) {
 		show.showSpinner = true;
-		axios.delete(`${URL}/api/candidat/${id}`, {
-			headers: {
-				"Content-Type": "application/json"
-			}
-		}).then((response) => {
-
+		try {
+			const response = await axios.delete(`${URL}/api/candidat/${id}`, {
+				headers: {
+					"Content-Type": "application/json"
+				}
+			});
+	
 			if (response.status === 200) {
-				getCandidats();
+	
+				await getCandidats();
 				show.showAlert = true;
 				show.showModalSupprimer = false;
 				show.showAlertType = 'success';
@@ -324,26 +326,27 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				show.showAlertType = 'warning';
 				show.showAlertMessage = 'Échec de la suppression du candidat';
 			}
-
+	
 			setTimeout(() => {
 				show.showAlert = false;
 				show.showAlertType = '';
 				show.showAlertMessage = '';
 			}, 3000);
-		}).catch((err) => {
+		} catch (err) {
 			show.showAlertType = 'danger';
 			show.showAlertMessage = 'Erreur lors de la suppression du candidat';
 			console.error(err);
-
+	
 			setTimeout(() => {
 				show.showAlert = false;
 				show.showAlertType = '';
 				show.showAlertMessage = '';
 			}, 3000);
-		}). finally(() => {
+		} finally {
 			show.showSpinner = false;
-		});
+		}
 	}
+	
 
 	onMounted(() => {
 		getCandidats();

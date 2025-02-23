@@ -5,7 +5,7 @@
 
 
             <WorkspaceNavigation />
-            <div class="containte">
+            <div class="p-4 w-full">
                 <WorkspaceContainte />
             </div>
         </div>
@@ -91,16 +91,11 @@ html, body {
 
 .cont {
     width: 80%;
-    background-color: #434955;
+    background-color: #060827;
 }
 
 .containte {
-    background-color: #1D222B;
-    height: 90vh;
-    padding: 20px;
-    box-shadow: 0px 0px 2px rgb(134, 132, 132);
-    border-radius: 4px;
-    overflow: hidden; /* Ajouté pour empêcher le défilement */
+    
 }
 
 </style>

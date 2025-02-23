@@ -33,9 +33,10 @@
       </div>
   
       <div class="modal" v-if="show.showModalAjout">
-        <div class="contenaireModal">
+        <div class="contenaireModal" >
+
           <h1 class="tritreModal">AJOUT NOUVEAU UTILISATEUR</h1>
-          <div class="flex">
+          <div class="flex" >
             <div class="section">
               <div class="inputCard">
                 <h3 class="label">Nom</h3>

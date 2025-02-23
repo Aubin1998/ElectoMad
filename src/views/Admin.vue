@@ -66,6 +66,16 @@
     <Teleport to="body">
         <ModalAreas />
     </Teleport>
+    <Teleport to="body">
+        <ModalAreasCommune />
+    </Teleport>
+
+    <Teleport to="body">
+        <ModalAreasDeputes />
+    </Teleport>
+    <Teleport to="body">
+        <ModalAreasSenateur />
+    </Teleport>
     
 </template>
 
@@ -93,6 +103,9 @@ import ModalUtilisateurAjout from "@/components/modals/utilisateur/ModalUtilisat
 import { onMounted } from "vue";
 import ModaleCIN from "./ModaleCIN.vue";
 import ModalAreas from "@/components/gestionCandidats/ModalAreas.vue";
+import ModalAreasCommune from "@/components/gestionCandidats/ModalAreasCommune.vue";
+import ModalAreasDeputes from "@/components/gestionCandidats/ModalAreasDeputes.vue";
+import ModalAreasSenateur from "@/components/gestionCandidats/ModalAreasSenateur.vue";
 
 
 

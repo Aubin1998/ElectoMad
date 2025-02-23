@@ -1,7 +1,7 @@
 <template>
   <Transition>
     <div class="showModal" v-if="show.showAcceuilModala">
-      <div class="modal">
+      <div class="modal backdrop-blur ">
         <div class="closeForm" @click="show.showAcceuilModala = !show.showAcceuilModala">
           <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
         </div>
@@ -13,12 +13,12 @@
               <template v-if="anneeElectorale.allanneeData && anneeElectorale.allanneeData.length > 0">
                 <div class="card" v-for="(item, index) in anneeElectorale.allanneeData" :key="index">
                   <div class="anneeElectorale">
-                    <h2> {{ item.annee }}</h2>
+                    <h2 class="text-bold"> {{ item.annee }}</h2>
                   </div>
-                  <div class="genreElection">
-                    <h3>{{ item.descriptionAnnee }}</h3>
+                  <div class="h-[40%]">
+                    <h3 class="text-[#555]">{{ item.descriptionAnnee }}</h3>
                   </div>
-                  <div class="bouton">
+                  <div class="flex justify-center items-center px-4 py-2 rounded-lg bg-green-600 ">
                     <h4 @click="voirDetails(item)">Voir</h4>
                   </div>
                 </div>
@@ -109,7 +109,7 @@ function voirDetails(item) {
 .modal {
   width: 100%;
   height: 100vh;
-  background-color: rgba(196, 190, 190, 0.452);
+  background-color: rgba(246, 237, 237, 0);
   position: absolute;
   top: 0;
   left: 0;
@@ -216,13 +216,7 @@ function voirDetails(item) {
   padding: 8px 0;
 }
 
-.genreElection h3 {
-  font-size: 24px;
-  /* Taille moyenne pour le genre d'élection */
-  color: #555;
-  margin: 0;
-  padding: 8px 0;
-}
+
 
 .bouton h4 {
   font-size: 18px;

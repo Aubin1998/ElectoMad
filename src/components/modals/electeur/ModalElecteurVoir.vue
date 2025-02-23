@@ -1,6 +1,6 @@
 <template>
   <Transition>
-    <div class="showModal" v-if="show.showModalVoirElecteur">
+    <div class="showModal backdrop-blur p-2px" v-if="show.showModalVoirElecteur">
       <div class="modal">
         <div class="closeForm" @click="show.showModalVoirElecteur = !show.showModalVoirElecteur">
           <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>

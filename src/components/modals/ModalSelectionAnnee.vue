@@ -7,7 +7,7 @@
         </div>
         <div class="contenaireModal">
           <div class="content">
-            <h1 class="title">Choisir une année</h1>
+            <h1 class="title">Choisir une mmmmmmmmmmmmmannée</h1>
 
             <div class="cards-container">
               <div class="card" v-for="(item, index) in anneeElectorale.allanneeData" :key="index">
@@ -15,7 +15,7 @@
                   <h2> {{ item.annee }}</h2>
                 </div>
                 <div class="genreElection">
-                  <h3>{{ item.descriptionAnnee }}</h3>
+                  <h3 class="text-[#555]">{{ item.descriptionAnnee }}</h3>
                 </div>
                 <div class="bouton">
                   <h4 @click="voirDetails(item)">Voir</h4>
@@ -190,12 +190,7 @@ function voirDetails(item) {
   padding: 8px 0;
 }
 
-.genreElection h3 {
-  font-size: 24px; /* Taille moyenne pour le genre d'élection */
-  color: #555;
-  margin: 0;
-  padding: 8px 0;
-}
+
 
 .bouton h4 {
   font-size: 18px; /* Plus petit pour "Voir" */

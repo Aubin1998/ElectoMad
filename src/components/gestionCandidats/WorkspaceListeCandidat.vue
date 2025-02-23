@@ -1,20 +1,22 @@
 <template>
-    <div class="list">
-        <div class="titre">
-            <h4 class="subtitle">
+    <div class=" w-full h-full">
+        <div class="flex justify-around items-center">
+
+
+            <h4 class="font-bold">
                 Liste des candidats
             </h4>
             <h4 class="number">{{ }}</h4>
             <div class="itemContainer"> <i class="pi pi-search icon1"></i>
                 <input type="text" v-model="searchTerm" placeholder="Recherche nom candidat" class="input" />
-                <h3 class="btnAdd add" @click="show.showChoixElection = !show.showChoixElection">
+                <h3 class="btnAdd add" @click="adds()">
                     <i class="pi pi-plus" style="font-size: 16px; color: white;left: 0;"></i>
                 </h3>
             </div>
         </div>
 
 
-        <div class="scroll-container ">
+        <div class="overflow-y-auto h-[500px] ">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg down">
                 <table class="w-full  text-sm  text-left rtl:text-right text-gray-500 dark:text-gray-400">
 
@@ -42,7 +44,7 @@
 
                     <tbody>
                         <div v-if="filteredCandidats.length === 0" class="no-results">
-                            
+
                             <h4 class="message">Aucun candidat trouvé.</h4>
                         </div>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
@@ -77,32 +79,6 @@
             </div>
 
         </div>
-        <!-- 
-        <div class="showProfil" v-if="show.showChoixElection">
-            <div class="sectionItem">
-                <div class="closeForm" @click="show.showChoixElection = false">
-                    <i class="pi pi-times text-gray-700 text-lg"></i>
-                </div>
-                <h4 class="textSection text-lg font-semibold">Choisir une élection</h4>
-            </div>
-
-            <div class="items flex flex-col gap-4 mt-4">
-                <div class="option bg-blue-500 text-white p-3 rounded-lg cursor-pointer hover:bg-blue-600 transition"
-                     @click="show.showModalAjout = !show.showModalAjout"> 
-                    <h5 class="text-center font-semibold" @click="presidentiel()">Élection Présidentielle</h5>
-                </div>
-
-                <div class="option bg-green-500 text-white p-3 rounded-lg cursor-pointer hover:bg-green-600 transition"
-                    @click="choisirElection('parlementaire')">
-                    <h5 class="text-center font-semibold">Élection Parlementaire</h5>
-                </div>
-
-                <div class="option bg-orange-400 text-white p-3 rounded-lg cursor-pointer hover:bg-orange-600 transition"
-                    @click="choisirElection('municipale')">
-                    <h5 class="text-center font-semibold">Élection Municipale</h5>
-                </div>
-            </div>
-        </div> -->
 
 
         <div class="showProfil" v-if="show.showChoixElection">
@@ -133,8 +109,8 @@
                         <h5 class="text-center font-semibold">Élection Député</h5>
                     </div>
                     <div class="option bg-green-400 text-white p-2 rounded-lg cursor-pointer hover:bg-green-500 transition"
-                    @click="show.showTypeElection('province')">
-                    <h5 class="text-center font-semibold">Élection Sénateur</h5>
+                        @click="show.showTypeElection('province')">
+                        <h5 class="text-center font-semibold">Élection Sénateur</h5>
                     </div>
                 </div>
 
@@ -147,8 +123,8 @@
                 <!-- Sous-options pour Municipale -->
                 <div v-if="showMunicipale" class="ml-6 flex flex-col gap-2">
                     <div class="option bg-orange-400 text-white p-2 rounded-lg cursor-pointer hover:bg-orange-500 transition"
-                    @click="show.showTypeElection('commune')">
-                    <h5 class="text-center font-semibold">Élection Conseiller Municipal</h5>
+                        @click="show.showTypeElection('commune')">
+                        <h5 class="text-center font-semibold">Élection Conseiller Municipal</h5>
                     </div>
                     <div class="option bg-orange-400 text-white p-2 rounded-lg cursor-pointer hover:bg-orange-500 transition"
                         @click="choisirElection('commune')">
@@ -163,7 +139,7 @@
         <div class="modal" v-if="show.showModalAjout">
 
             <div class="contenaireModal">
-                <h1 class="tritreModal">AJOUT NOUVEAU CANDIDATnnnnnnnnnnn</h1>
+                <h1 class="tritreModal">AJOUT NOUVEAU CANDIDAT</h1>
                 <div class="flex">
                     <div class="section">
                         <div class="inputCard">
@@ -174,11 +150,18 @@
                         <div class="flexCard">
 
 
+
+
+
                             <div class="inputCard">
                                 <h3 class="label">Date </h3>
-                                <VueDatePicker v-model="listeCandidat.dateNaissance"
-                                    placeholder="Insérez une date de naissance" class="input" />
+                                <Datepicker v-model="listeCandidat.dateNaissance"
+                                    placeholder="Insérez une date de naissance"
+                                    style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;"
+                                    class="input" format="dd-MM-yyyy" />
                             </div>
+
+
 
                             <div class="inputCard">
                                 <h3 class="label">Lieu de naissance</h3>
@@ -236,6 +219,8 @@
                             </select>
                         </div>
                     </div>
+
+
                     <div class="section">
                         <div class="inputCard">
                             <h3 class="label"> Certificat d'administration fiscale</h3>
@@ -275,14 +260,16 @@
                                 v-model="listeCandidat.numeroCIN" />
                         </div>
                         <div class="flexCard">
+
+
+
                             <div class="inputCard">
                                 <h3 class="label">Date </h3>
-                                <VueDatePicker v-model="listeCandidat.dateDelivreCIN"
-                                    placeholder="Insérez une date de délivrance de la CIN" class="input" />
+                                <Datepicker v-model="listeCandidat.dateDelivreCIN"
+                                    placeholder="Insérez une date de naissance"
+                                    style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;"
+                                    class="input" format="dd-MM-yyyy" />
                             </div>
-
-
-
                             <div class="inputCard">
                                 <h3 class="label">Lieu de délivrance CIN</h3>
                                 <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input"
@@ -308,6 +295,8 @@
                             </select>
                         </div>
                     </div>
+
+
                     <div class="section">
                         <div class="inputCard">
                             <h3 class="label">Carte d'électeur</h3>
@@ -321,11 +310,15 @@
                         </div>
 
 
+
                         <div class="inputCard">
-                            <h3 class="label">Date d'inscription </h3>
-                            <VueDatePicker v-model="listeCandidat.dateInscription"
-                                placeholder="Ecrire la date d'inscription" class="input" />
+                            <h3 class="label">Date d'inscription</h3>
+                            <Datepicker v-model="listeCandidat.dateInscription"
+                                placeholder="Insérez une date de naissance"
+                                style="padding: 5px 10px;width: 390px;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;"
+                                format="dd-MM-yyyy" />
                         </div>
+
 
                         <div class="inputCard">
                             <h3 class="label"> Année électorale</h3>
@@ -390,114 +383,6 @@
 
 </template>
 
-<!-- <script setup>
-import { ref, computed, onMounted,watch } from 'vue'
-import { useShow } from "@/stores/show";
-import { useAuth } from "@/stores/auth";
-import { useUtilisateur } from "@/stores/utilisateur";
-import { uselisteCandidat } from "@/stores/listeCandidat";
-import { useAnneeElectorale } from "@/stores/anneeElectorale";
-import VueDatePicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css';
-
-
-const show = useShow(); //call Show in show.js
-const auth = useAuth();
-const utilisateur = useUtilisateur();
-const listeCandidat = uselisteCandidat();
-const anneeElectorale = useAnneeElectorale();
-
-
-
-
-
-function voir(item) {
-    listeCandidat.voirCandidatData = item
-    show.showModalOeilCandidat = !show.showModalOeilCandidat
-}
-function ajouter() {
-    listeCandidat.createCandidat()
-}
-function supprimer(item) {
-    show.showModalSupprimer = true
-    listeCandidat.supprimerData = item
-}
-function modifier(item) {
-    listeCandidat.modifierCandidatData = item
-    show.showModalModifierCandidat = !show.showModalModifierCandidat
-    listeCandidat.ModifierIdCandidat = item.candidat.id
-    listeCandidat.ModifierdeclarationHonneurBiens = item.candidat.declarationHonneurBiens
-    listeCandidat.ModifiercertificatNationalite = item.candidat.certificatNationalite
-    listeCandidat.ModifierdeclarationHonneurImpôts = item.candidat.declarationHonneurImpôts
-    listeCandidat.ModifiercertificatAdministrationFiscale = item.candidat.certificatAdministrationFiscale
-    listeCandidat.ModifiercopieCarteElecteur = item.candidat.copieCarteElecteur
-    listeCandidat.ModifierdeclarationProbite = item.candidat.declarationProbite
-    listeCandidat.ModifiercopieRecipissePatrimoine = item.candidat.copieRecipissePatrimoine
-    listeCandidat.ModifiermatriceSupportElectronique = item.candidat.matriceSupportElectronique
-    listeCandidat.ModifierquittanceContribution = item.candidat.quittanceContribution
-    listeCandidat.ModifierdeclarationHonneurConstitution = item.candidat.declarationHonneurConstitution
-    listeCandidat.ModifierattestationInvestiture = item.candidat.attestationInvestiture
-    listeCandidat.ModifiercertificatResidence = item.candidat.certificatResidence
-    listeCandidat.ModifiercasierJudiciaire = item.candidat.casierJudiciaire
-    listeCandidat.ModifiercopieActeNaissance = item.candidat.copieActeNaissance
-    listeCandidat.Modifierannee_electorale_id = item.candidat.annee_electorale_id
-
-    listeCandidat.Modifierelecteur_id = item.candidat.electeur_id
-    listeCandidat.ModifiernomComplet = item.electeur.nomComplet
-    listeCandidat.Modifierprofession = item.electeur.profession
-    listeCandidat.Modifieradresse = item.electeur.adresse
-    listeCandidat.ModifiernumeroCIN = item.electeur.numeroCIN
-    listeCandidat.ModifierdateDelivreCIN = item.electeur.dateDelivreCIN
-    listeCandidat.ModifierlieuDelivreCIN = item.electeur.lieuDelivreCIN
-    listeCandidat.ModifiercarteElecteur = item.electeur.carteElecteur
-    listeCandidat.Modifiersexe = item.electeur.sexe
-    listeCandidat.ModifierlieuNaissance = item.electeur.lieuNaissance
-    listeCandidat.Modifierfiliation = item.electeur.filiation
-    listeCandidat.ModifierdateNaissance = item.electeur.dateNaissance
-    listeCandidat.Modifiertelephone = item.electeur.telephone
-    listeCandidat.ModifierdateInscription = item.electeur.dateInscription
-    listeCandidat.Modifieremail = item.user.email
-    listeCandidat.Modifieruser_id = item.user.id
-}
-
-const searchTerm = ref('');
-const anneeSelect = ref()
-
-
-
-const anneeVerifier = computed(() => anneeSelect.value);
-
-const listeCandidatVerifier = ref([])
-
-watch(anneeVerifier, (newList, oldList) => {
-  console.log('niova ai', newList);
-
-  listeCandidat.allListeCandidat.map((candidat)=>{
-    if (candidat.candidat.annee_electorale.annee === newList ) {
-        console.log('ato ai', candidat);
-        listeCandidatVerifier.value.push(candidat)
-    }
-  })
-
-  
-});
-
-const filteredCandidats = computed(() => {
-    if (!searchTerm.value) {
-        return listeCandidatVerifier.value;
-    } return listeCandidatVerifier.value.filter(item => {
-        return item.electeur.nomComplet.toLowerCase().includes(searchTerm.value.toLowerCase());
-    });
-});
-
-
-onMounted(()=>{
-    anneeSelect.value=JSON.parse(localStorage.getItem('anneeSelectionne')).annee
-    console.log('anneeSelect.value', anneeSelect.value);
-    
-})
-</script> -->
-
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue';
@@ -506,8 +391,9 @@ import { useAuth } from "@/stores/auth";
 import { useUtilisateur } from "@/stores/utilisateur";
 import { uselisteCandidat } from "@/stores/listeCandidat";
 import { useAnneeElectorale } from "@/stores/anneeElectorale";
-import VueDatePicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css';
+
+import Datepicker from "vue3-datepicker";
+
 import ElectionPresidentiel from '@/views/ElectionPresidentiel.vue';
 
 const show = useShow();
@@ -520,19 +406,75 @@ const searchTerm = ref('');
 const anneeSelect = ref();
 const listeCandidatVerifier = ref([]);
 
+const anneeSelectData = ref()
+const president = ref(false)
+
+// const senateur = ref(false)
+const maire = ref(false)
+
+
+
+
 const anneeVerifier = computed(() => anneeSelect.value);
 
-function presidentiel() {
-    show.showChoixElection = !show.showChoixElection
+function adds() {
+    const description = anneeSelectData.value.descriptionAnnee;
+
+    // Mapping des descriptions aux actions
+    const actions = {
+        "Présidentiel": () => {
+            console.log('Présidentiel');
+            show.showModalAjout = !show.showModalAjout;
+        },
+        "Municipale : Conseillé municipaux": () => {
+            console.log('conseillerMunicipaux');
+            show.municipaux = true;
+        },
+        "Municipale": () => {
+            console.log('conseillerMunicipaux');
+            show.municipaux = true;
+        },
+        "Parlémentaire : Député": () => {
+            show.deputes = true;
+        },
+        "Parlémentaire : Sénateur": () => {
+            show.senateur = true;
+        }
+    };
+
+    // Exécuter l'action correspondante si elle existe
+    if (actions[description]) {
+        actions[description]();
+    }
 }
 
 
+
 watch(anneeVerifier, (newList, oldList) => {
+    console.log("zzzzzzzzzzzzzzzzz", newList);
+
     listeCandidat.allListeCandidat.map((candidat) => {
         if (candidat.candidat.annee_electorale.annee === newList) {
             listeCandidatVerifier.value.push(candidat);
         }
     });
+});
+
+
+watch(() => anneeSelectData.value, (newList, oldList) => {
+    console.log('niova', newList);
+    if ("Présidentiel" === newList.descriptionAnnee) {
+
+    }
+
+
+
+});
+
+watch(() => listeCandidat.allListeCandidat, (newList, oldList) => {
+
+    listeCandidatVerifier.value = newList
+
 });
 
 const filteredCandidats = computed(() => {
@@ -544,8 +486,33 @@ const filteredCandidats = computed(() => {
     });
 });
 
+
+
+
+
+
+// Define a reactive reference for anneeSelect
+
+
 onMounted(() => {
-    anneeSelect.value = JSON.parse(localStorage.getItem('anneeSelectionne')).annee;
+    try {
+        // Retrieve the item from localStorage
+        const anneeSelectionne = localStorage.getItem('anneeSelectionne');
+
+        if (anneeSelectionne) {
+            // Parse the JSON string and assign the 'annee' property to anneeSelect
+            const parsedData = JSON.parse(anneeSelectionne);
+            anneeSelect.value = parsedData.annee;
+            anneeSelectData.value = parsedData
+        } else {
+            console.log('No "anneeSelectionne" item found in localStorage.');
+        }
+    } catch (error) {
+        // Handle potential JSON parsing errors
+        console.error('Error parsing "anneeSelectionne" from localStorage:', error);
+    }
+
+    // Call the function to fill the form with random values
     remplirFormulaireAleatoires();
 });
 
@@ -741,30 +708,16 @@ function modifier(item) {
 .list {
     /* background-color: green;*/
     width: 100%;
-    height: 60vh;
+    height: 100vh;
 }
 
-.titre {
-    display: flex;
-    justify-content: space-around;
-    padding: 5px;
-    align-items: center;
-}
 
 option {
     background-color: rgba(67, 67, 79, 0.83);
     color: #f0f3f6;
 }
 
-.scroll-container {
-    max-height: 100%;
-    /* Limite la hauteur */
-    overflow-y: auto;
-    /* Ajoute un défilement vertical si nécessaire */
-    padding: 10px;
-    height: 50vh;
-    /* Espacement interne */
-}
+
 
 .down {
     z-index: 0 !important;
@@ -882,10 +835,7 @@ option {
 
 }
 
-.subtitle {
-    width: 60%;
-    font-weight: 700;
-}
+
 
 .textSection {
     font-weight: 700;
@@ -913,12 +863,19 @@ option {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+.closeForm :hover {
+    background-color: rgb(125, 51, 51);
+
+
+    /* Ajoute un curseur pointeur pour indiquer qu'il est cliquable */
+}
+
 .showProfil {
     position: absolute;
     background-color: #545C6B;
     color: rgb(221, 214, 214);
     width: 20%;
-    top: 200px;
+    top: 150px;
     right: 60px;
     border-radius: 5px;
     text-align: left;
@@ -1177,20 +1134,20 @@ input-placeholder {
 
 
 .message {
-  display: flex;
-  justify-content: center;
-  /* Centre horizontalement */
-  align-items: center;
-  /* Centre verticalement */
-  height: 100%;
-  /* Assure que le conteneur prend toute la hauteur disponible */
-  text-align: center;
-  /* Centre le texte à l'intérieur de l'élément */
-  margin: 20px 0;
-  /* Ajoute un espacement au-dessus et en dessous */
-  color: rgb(231, 216, 216);
-  /* Couleur du texte pour le message */
-  font-size: 18px;
-  /* Taille de la police */
+    display: flex;
+    justify-content: center;
+    /* Centre horizontalement */
+    align-items: center;
+    /* Centre verticalement */
+    height: 100%;
+    /* Assure que le conteneur prend toute la hauteur disponible */
+    text-align: center;
+    /* Centre le texte à l'intérieur de l'élément */
+    margin: 20px 0;
+    /* Ajoute un espacement au-dessus et en dessous */
+    color: rgb(231, 216, 216);
+    /* Couleur du texte pour le message */
+    font-size: 18px;
+    /* Taille de la police */
 }
 </style>
