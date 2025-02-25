@@ -2,7 +2,7 @@
   <Transition>
     <div class="showModal backdrop-blur p-2px" v-if="show.showModalCompte">
 
-      <div class="modal">
+      <div class="modal  backdrop-blur p-2px">
         <div class="closeForm" @click="show.showModalCompte = !show.showModalCompte">
           <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
         </div>
@@ -19,12 +19,44 @@
 
                   <div class="space-y-2">
                     <div class="flex space-x-4">
-                      <img class="h-16 w-16 rounded-lg object-cover" src="/profil.png" alt="Helene avatar" />
+                      <!-- <img class="h-16 w-16 rounded-lg object-cover" src="/profil.png" alt="Helene avatar" /> -->
+
+
+
+                      <div class=" w-[30%] flex justify-center items-center   ">
+                        <img v-if="utilisateur.user.file?.titre" :src="utilisateur.user.file?.titre" alt=""
+                          class="object-cover  mt-8   h-16 w-16 rounded-lg object-cover" />
+
+                        <div class="file-input-container" v-else>
+                          <input type="file" @change="(event) => onFileChange(event, utilisateur.user.id)"
+                            id="file-upload" class="file-input-label" />
+                          <label for="file-upload"
+                            class="flex items-center justify-center w-full h-full bg-[#e1dada] rounded-full cursor-pointer text-[24px]">
+                            <i class="pi pi-camera text-red-500"></i>
+                          </label>
+                        </div>
+
+
+
+                        <div class="absolute w-[50px] h-[50px] t-0">
+                          <input type="file" @change="(event) => onFileChange(event, utilisateur.user.id)"
+                            id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
+                          <label for="file-upload"
+                            class="flex items-center justify-center w-full h-full  rounded-full cursor-pointer text-[24px]">
+                            <i class="pi pi-camera "></i>
+                          </label>
+                        </div>
+                      </div>
+
+
+
+
 
                       <div>
                         <span
                           class="inline-block rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
                           Compte administrateur</span>
+
 
                         <template v-if="!isEditing">
                           <div class="info">
@@ -43,6 +75,21 @@
 
 
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <dl class="">
                       <dt class="font-semibold text-gray-900 dark:text-white">Email Address</dt>
                       <template v-if="!isEditing">
@@ -58,6 +105,7 @@
 
 
                     <dl>
+
                       <dt class="font-semibold text-gray-900 dark:text-white">Nom et Prénom</dt>
                       <template v-if="!isEditing">
                         <div class="info">
@@ -66,9 +114,7 @@
 
                       </template>
                       <template v-else>
-                        <input type="text" placeholder="Votre pseudo"
-                          :value="utilisateur.nomComplet === '' ? 'Aucun donnée' : utilisateur.nomComplet"
-                          @input="utilisateur.nomComplet = $event.target.value" class="input" />
+                        <input type="text" placeholder="Votre pseudo" v-model="utilisateur.nomComplet" class="input" />
                       </template>
                     </dl>
 
@@ -82,39 +128,38 @@
                       <template v-if="!isEditing">
                         <div class="info">
                           <h2 style="margin-bottom: 10px; display: block;">{{ utilisateur.dateNaissance }}</h2>
-                          <br>
+
+
+                        </div>
+
+                      </template>
+                      <template v-else>
+                        <MyDateInput label="" placeholder="Insérez une date de naissance" v-model="dateOfBirth"
+                          format="dd-MM-yyyy" />
+
+
+                      </template>
+                    </dl>
+
+
+                    <dl>
+                      <dt class="font-semibold text-gray-900 dark:text-white">lieu de naissance</dt>
+                      <template v-if="!isEditing">
+                        <div class="info">
+
                           <h2 style="margin-bottom: 10px;">{{ utilisateur.lieuNaissance }}</h2>
 
                         </div>
 
                       </template>
                       <template v-else>
-                        <input type="text" placeholder="Votre pseudo" style="margin-bottom: 10px;"
-                          :value="utilisateur.dateNaissance === '' ? 'Aucun donnée' : utilisateur.dateNaissance"
-                          @input="utilisateur.dateNaissance = $event.target.value" class="input" />
-                        <input type="text" placeholder="Votre pseudo"
-                          :value="utilisateur.lieuNaissance === '' ? 'Aucun donnée' : utilisateur.lieuNaissance"
-                          @input="utilisateur.lieuNaissance = $event.target.value" class="input" />
+                        <input type="text" placeholder="Votre pseudo" v-model="utilisateur.lieuNaissance"
+                          class="input" />
                       </template>
                     </dl>
 
 
-                    <dl>
-                      <dt class="mb-1 font-semibold text-gray-900 dark:text-white">Sexe</dt>
 
-                      <template v-if="!isEditing">
-                        <div class="info">
-                          <h2>{{ utilisateur.sexe }}</h2>
-                        </div>
-
-                      </template>
-                      <template v-else>
-                        <input type="text" placeholder="Votre pseudo"
-                          :value="utilisateur.sexe === '' ? 'Aucun donnée' : utilisateur.sexe"
-                          @input="utilisateur.sexe = $event.target.value" class="input" />
-                      </template>
-
-                    </dl>
                   </div>
 
 
@@ -127,11 +172,13 @@
                           <h2>{{ utilisateur.telephone }}</h2>
                         </div>
 
+
+
                       </template>
                       <template v-else>
-                        <input type="text" placeholder="Votre pseudo"
-                          :value="utilisateur.telephone === '' ? 'Aucun donnée' : utilisateur.telephone"
-                          @input="utilisateur.telephone = $event.target.value" class="input" />
+
+                        <MyInput label="" placeholder="Ecrire votre numéro de téléphone"
+                          v-model="utilisateur.telephone" />
                       </template>
                     </dl>
 
@@ -146,9 +193,9 @@
 
                       </template>
                       <template v-else>
-                        <input type="text" placeholder="Votre pseudo"
-                          :value="utilisateur.numeroCIN === '' ? 'Aucun donnée' : utilisateur.numeroCIN"
-                          @input="utilisateur.numeroCIN = $event.target.value" class="input" />
+
+                        <MyInput label="" placeholder="Ecrire votre numéro de téléphone"
+                          v-model="utilisateur.numeroCIN" />
                       </template>
                     </dl>
 
@@ -163,9 +210,10 @@
 
                       </template>
                       <template v-else>
-                        <input type="text" placeholder="Votre pseudo"
-                          :value="utilisateur.dateDelivreCIN === '' ? 'Aucun donnée' : utilisateur.dateDelivreCIN"
-                          @input="utilisateur.dateDelivreCIN = $event.target.value" class="input" />
+
+                        <MyDateInput label="" placeholder="Insérez une date de naissance" v-model="dateOfDelivercy"
+                          format="dd-MM-yyyy" />
+
                       </template>
                     </dl>
 
@@ -178,16 +226,31 @@
                         <div class="info">
                           <h2>{{ utilisateur.lieuDelivreCIN }}</h2>
                         </div>
+                      </template>
+
+                      <template v-else>
+                        <MyInput label="" placeholder="Ecrire votre numéro de téléphone"
+                          v-model="utilisateur.lieuDelivreCIN" />
+                      </template>
+                    </dl>
+
+                    <dl>
+                      <dt class="mb-1 font-semibold text-gray-900 dark:text-white">Sexe</dt>
+
+                      <template v-if="!isEditing">
+                        <div class="info">
+                          <h2>{{ utilisateur.sexe }}</h2>
+                        </div>
 
                       </template>
                       <template v-else>
-                        <input type="text" placeholder="Votre pseudo"
-                          :value="utilisateur.lieuDelivreCIN === '' ? 'Aucun donnée' : utilisateur.lieuDelivreCIN"
-                          @input="utilisateur.lieuDelivreCIN = $event.target.value" class="input" />
+                        <SelectInput label="" defaultOption="" :options="[
+                          { text: 'Masculin', value: 'Masculin' },
+                          { text: 'Femme', value: 'Femme' }
+                        ]" v-model="utilisateur.sexe" />
                       </template>
 
                     </dl>
-
 
                     <dl>
                       <dt class="font-semibold text-gray-900 dark:text-white">Adresse</dt>
@@ -198,9 +261,8 @@
 
                       </template>
                       <template v-else>
-                        <input type="text" placeholder="Votre pseudo"
-                          :value="utilisateur.adresse === '' ? 'Aucun donnée' : utilisateur.adresse"
-                          @input="utilisateur.adresse = $event.target.value" class="input" />
+                        <MyInput label="" placeholder="Ecrire votre numéro de téléphone"
+                          v-model="utilisateur.adresse" />
                       </template>
                     </dl>
 
@@ -215,7 +277,7 @@
 
                 <button @click="modifier()" type="button" data-modal-target="accountInformationModal2"
                   data-modal-toggle="accountInformationModal2"
-                  class="inline-flex w-full items-center justify-center rounded-lg  px-5 py-2.5 text-sm font-medium text-white  focus:outline-none focus:ring-4 focus:ring-primary-300  "
+                  class="    inline-flex w-full items-center justify-center   rounded-lg  px-5 py-2.5 text-sm font-medium text-white hover:text-blue-500  focus:outline-none focus:ring-4 focus:ring-primary-300  "
                   :classs="!isEditing ? '' : 'enregistrer'">
 
                   <svg class="-ms-0.5 me-1.5 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -246,10 +308,15 @@
 </template>
 
 <script setup>
+import axios from "axios";
+
 import { useShow } from "@/stores/show";
 import { useUtilisateur } from "@/stores/utilisateur";
 import { useAuth } from "@/stores/auth";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
+import MyDateInput from "../date/MyDateInput.vue";
+import SelectInput from "../selects/SelectInput.vue";
+import MyInput from "../InputComponets/MyInput.vue";
 
 const show = useShow();
 const utilisateur = useUtilisateur();
@@ -257,23 +324,99 @@ const auth = useAuth();
 const isEditing = ref(false)
 
 
+
+const filer = ref()
+const onFileChange = async (event, userId) => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+
+
+    const response = await axios.post(
+      `http://localhost:8000/api/user/${userId}/upload`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+
+
+    if (utilisateur.user.file?.titre) {
+      utilisateur.user.file.titre = response.data.url;
+    } else {
+
+      filer.value = {
+        id: 1,
+        titre: response.data.url,
+        file_name: response.data.url,
+      }
+
+
+      utilisateur.user.file = filer.value
+    }
+
+
+
+
+
+
+  } catch (error) {
+    console.error('Erreur lors de l\'upload de l\'image :', error);
+  }
+};
+const dateOfBirth = computed({
+  get() {
+    // Convert the string to a Date object
+    return new Date(utilisateur.dateNaissance);
+  },
+  set(value) {
+    // Update the original data property with the new Date value
+    utilisateur.dateNaissance = value.toISOString().split('T')[0];
+  }
+});
+
+const dateOfDelivercy = computed({
+  get() {
+    // Convert the string to a Date object
+    return new Date(utilisateur.dateDelivreCIN);
+  },
+  set(value) {
+    // Update the original data property with the new Date value
+    utilisateur.dateDelivreCIN = value.toISOString().split('T')[0];
+  }
+});
 function modifier() {
+
+
+  if (isEditing.value) {
+    auth.utilisateurId = JSON.parse(localStorage.getItem("user")).id
+
+    auth.userId = auth.utilisateurId
+
+    utilisateur.profession = 'administrateur'
+    utilisateur.filiation = 'xxxxxx'
+    utilisateur.carteElecteur = 'xxxxx',
+      utilisateur.dateInscription = new Date()
+
+    utilisateur.usernameAdmin = utilisateur.user.username
+    utilisateur.emailAdmin = utilisateur.user.email
+
+
+
+
+    utilisateur.updateUserInfo(auth.utilisateurId)
+
+  }
+
   isEditing.value = !isEditing.value
 
-  auth.utilisateurId = JSON.parse(localStorage.getItem("utilisateur"))[0].id
-  const user = JSON.parse(localStorage.getItem("user"))
 
-  auth.userId = user.id
-
-  utilisateur.profession = 'administrateur'
-  utilisateur.filiation = 'xxxxxx'
-  utilisateur.carteElecteur = 'xxxxx',
-    utilisateur.dateInscription = 'xxxxx'
-
-
-
-
-  utilisateur.updateUserInfo(auth.utilisateurId)
 }
 
 
@@ -298,17 +441,30 @@ function modifier() {
 </script>
 
 <style scoped>
+.button {
+  background-color: white;
+}
+
+.button:hover {
+  background-color: white;
+}
+
 .closeForm {
   background-color: rgb(231, 230, 230);
   width: 40px;
   height: 40px;
   border-radius: 100%;
   position: absolute;
-  right: 210px;
-  top: 90px;
+  right: 190px;
+  top: 50px;
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+.closeForm:hover {
+  background-color: red;
+  cursor: pointer;
 }
 
 .showModal {
@@ -320,7 +476,7 @@ function modifier() {
   width: 100%;
   height: 100%;
   display: flex;
-  background: rgba(43, 38, 38, 0.053)!important;
+  background: rgba(43, 38, 38, 0.053) !important;
   justify-content: center;
   align-items: center;
 }
@@ -361,13 +517,9 @@ function modifier() {
 .modal {
   width: 100%;
   height: 100vh;
-  background-color: rgba(196, 190, 190, 0.452);
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow-y: hidden;
+
   align-items: center;
-  padding: 10vh;
+  padding: 5vh;
 }
 
 .contenaireModalSupp {
@@ -395,7 +547,6 @@ function modifier() {
   width: 80%;
   border-radius: 10px;
   margin: 0 auto;
-  padding: 10px;
 
 
 }

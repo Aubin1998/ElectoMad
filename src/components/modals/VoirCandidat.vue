@@ -1,13 +1,14 @@
 <template>
   <Transition>
 
-    <div class="modal" v-if="show.showModalOeilCandidat">
+    <div class="modal backdrop-blur" v-if="show.showModalOeilCandidat">
+
       <div class="contenaireModal">
         <div class="flex justify-between">
           <h1 class="tritreModal">INFORMATION PERSONNEL CANDIDAT(E)</h1>
           <Cancel @toggle="show.showModalOeilCandidat = !show.showModalOeilCandidat" />
-          
-          
+          <!-- {{ listeCandidat.voirCandidatData }} -->
+
         </div>
         <div class="flex w-full  justify-between">
           <div class="w-[300px] h-[200px] bg-[#b2b0b030] flex items-center justify-center rounded-lg">
@@ -16,8 +17,7 @@
               class="w-full h-full rounded-lg object-contain" />
 
             <div class="relative w-[50px] h-[50px]" v-else>
-              <input type="file"
-                @change="(event) => onFileChange(event, listeCandidat.voirCandidatData.candidat.id)"
+              <input type="file" @change="(event) => onFileChange(event, listeCandidat.voirCandidatData.candidat.id)"
                 id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
               <label for="file-upload"
                 class="flex items-center justify-center w-full h-full bg-[#e1dada] rounded-full cursor-pointer text-[24px]">
@@ -26,8 +26,7 @@
             </div>
             <div class="absolute w-[50px] h-[50px] t-0 position"
               v-if="listeCandidat.voirCandidatData.candidat?.file?.titre">
-              <input type="file"
-                @change="(event) => onFileChange(event, listeCandidat.voirCandidatData.candidat.id)"
+              <input type="file" @change="(event) => onFileChange(event, listeCandidat.voirCandidatData.candidat.id)"
                 id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
               <label for="file-upload"
                 class="flex items-center justify-center w-full h-full  rounded-full cursor-pointer text-[24px]">
@@ -35,44 +34,45 @@
               </label>
             </div>
           </div>
-
+          <!-- {{ listeCandidat.voirCandidatData }} -->
           <div class=" w-[74%] h-[200px] flex justify-between flex-wrap ">
-            <MyInput disabled="true" label="Nom et prénom" placeholder="Ajoutez un nom" 
-            v-model="listeCandidat.ModifiernomComplet" />
+            <MyInput :disabled="true" label="Nom et prénom" placeholder="Ajoutez un nom"
+              v-model="listeCandidat.voirCandidatData.electeur.nomComplet" />
 
-            <MyDateInput disabled="true"  label="Date de naissance" placeholder="Insérez une date de naissance" v-model="dateOfBirth"
-              format="dd-MM-yyyy" />
-
-
-            <MyInput disabled="true" label="Lieu de naissance" placeholder="Insérez un lieu de naissance"
-              v-model="listeCandidat.ModifierlieuNaissance" />
+            <MyDateInput :disabled="true" label="Date de naissance" placeholder="Insérez une date de naissance"
+              v-model="dateNaissanceAsDate" format="dd-MM-yyyy" />
 
 
-            <SelectInput disabled="true" label="Sexe" defaultOption="" :options="[
+            <MyInput :disabled="true" label="Lieu de naissance" placeholder="Insérez un lieu de naissance"
+              v-model="listeCandidat.voirCandidatData.electeur.lieuNaissance" />
+            <!-- {{ listeCandidat.voirCandidatData.electeur.sexe }} -->
+
+            <SelectInput :disabled="true" label="Sexe" defaultOption="" :options="[
               { text: 'Masculin', value: 'Masculin' },
               { text: 'Femme', value: 'Femme' }
-            ]" v-model="listeCandidat.Modifiersexe" />
+            ]" v-model="listeCandidat.voirCandidatData.electeur.sexe" />
 
-            <MyInput disabled="true" label="Filiation" placeholder="Nom du père et de la mère"
-              v-model="listeCandidat.Modifierfiliation" />
+            <MyInput :disabled="true" label="Filiation" placeholder="Nom du père et de la mère"
+              v-model="listeCandidat.voirCandidatData.electeur.filiation" />
 
-            <MyInput disabled="true" label="Email" placeholder="Ajouter un email" v-model="listeCandidat.Modifieremail" />
+            <MyInput :disabled="true" label="Email" placeholder="Ajouter un email"
+              v-model="listeCandidat.voirCandidatData.electeur.user.email" />
 
-            <SelectInput disabled="true" label="Déclaration honneur des biens" defaultOption="" :options="[
+            <SelectInput :disabled="true" label="Déclaration honneur des biens" defaultOption="" :options="[
               { text: 'Oui', value: 'oui' },
               { text: 'Non', value: 'non' }
-            ]" v-model="listeCandidat.ModifierdeclarationHonneurBiens" />
+            ]" v-model="listeCandidat.voirCandidatData.candidat.declarationHonneurBiens" />
 
-            <SelectInput disabled="true" label="Certificat de nationalité" defaultOption="" :options="[
+            <SelectInput :disabled="true" label="Certificat de nationalité" defaultOption="" :options="[
               { text: 'Oui', value: 'oui' },
               { text: 'Non', value: 'non' }
-            ]" v-model="listeCandidat.ModifiercertificatNationalite" />
+            ]" v-model="listeCandidat.voirCandidatData.candidat.certificatNationalite" />
 
 
-            <SelectInput disabled="true" label="Déclaration honneur des impôts" defaultOption="" :options="[
+            <SelectInput :disabled="true" label="Déclaration honneur des impôts" defaultOption="" :options="[
               { text: 'Oui', value: 'oui' },
               { text: 'Non', value: 'non' }
-            ]" v-model="listeCandidat.ModifierdeclarationHonneurImpôts" />
+            ]" v-model="listeCandidat.voirCandidatData.candidat.declarationHonneurImpôts" />
 
           </div>
 
@@ -80,105 +80,106 @@
 
 
 
-
-
-
         <div class="w-full  my-2 flex justify-between flex-wrap">
+          <MyDateInput :disabled="true" label="Date d'inscription" placeholder="Ecrire la date d'inscription"
+            v-model="dateInscriptionAsDate" format="dd-MM-yyyy" />
 
 
 
-
-          <MyDateInput disabled="true" label="Date d'inscription" placeholder="Ecrire la date d'inscription" v-model="dateOfBirth"
-            format="dd-MM-yyyy" />
-          <SelectInput disabled="true" label="Copie d'acte de naissance" defaultOption="" :options="[
+          <SelectInput :disabled="true" label="Copie d'acte de naissance" defaultOption="" :options="[
             { text: 'Oui', value: 'oui' },
             { text: 'Non', value: 'non' }
-          ]" v-model="listeCandidat.ModifiercopieActeNaissance" />
+          ]" v-model="listeCandidat.voirCandidatData.candidat.copieActeNaissance" />
 
-          <SelectInput disabled="true" label="Certificat d'administration fiscale" defaultOption="" :options="[
+          <SelectInput :disabled="true" label="Certificat d'administration fiscale" defaultOption="" :options="[
             { text: 'Oui', value: 'oui' },
             { text: 'Non', value: 'non' }
-          ]" v-model="listeCandidat.ModifiercertificatAdministrationFiscale" />
+          ]" v-model="listeCandidat.voirCandidatData.candidat.certificatAdministrationFiscale" />
 
 
-          <SelectInput disabled="true" label=" Copie de carte électeur" defaultOption="" :options="[
+          <SelectInput :disabled="true" label=" Copie de carte électeur" defaultOption="" :options="[
             { text: 'Oui', value: 'oui' },
             { text: 'Non', value: 'non' }
-          ]" v-model="listeCandidat.ModifiercopieCarteElecteur" />
+          ]" v-model="listeCandidat.voirCandidatData.candidat.copieCarteElecteur" />
 
-          <SelectInput disabled="true" label=" Déclaration de probite" defaultOption="" :options="[
+          <SelectInput :disabled="true" label=" Déclaration de probite" defaultOption="" :options="[
             { text: 'Oui', value: 'oui' },
             { text: 'Non', value: 'non' }
-          ]" v-model="listeCandidat.ModifierdeclarationProbite" />
-          <SelectInput disabled="true" label=" Copie de récipissé patrimoine" defaultOption="" :options="[
+          ]" v-model="listeCandidat.voirCandidatData.candidat.declarationProbite" />
+          <SelectInput :disabled="true" label=" Copie de récipissé patrimoine" defaultOption="" :options="[
             { text: 'Oui', value: 'oui' },
             { text: 'Non', value: 'non' }
-          ]" v-model="listeCandidat.ModifiercopieRecipissePatrimoine" />
+          ]" v-model="listeCandidat.voirCandidatData.candidat.copieRecipissePatrimoine" />
 
-          <MyInput disabled="true" label="Numéro de la CIN" placeholder="Insérez un numéro de la CIN"
-            v-model="listeCandidat.ModifiernumeroCIN" />
-
-
-          <MyDateInput disabled="true" label="Date de délivrance" placeholder="Insérez une date de délivrance de la CIN"
-            v-model="dateOfBirth" format="dd-MM-yyyy" />
+          <MyInput :disabled="true" label="Numéro de la CIN" placeholder="Insérez un numéro de la CIN"
+            v-model="listeCandidat.voirCandidatData.electeur.numeroCIN" />
 
 
-          <MyInput disabled="true" label="Lieu de délivrance CIN" placeholder="Insérez un lieu de délivrance de la CIN"
-            v-model="listeCandidat.ModifierlieuDelivreCIN" />
+          <MyDateInput :disabled="true" label="Date de délivrance"
+            placeholder="Insérez une date de délivrance de la CIN" v-model="dateDelivranceAsDate" format="dd-MM-yyyy" />
 
 
-          <MyInput disabled="true" label="Adresse" placeholder="Insérez une adresse ou le lieu de résidence"
-            v-model="listeCandidat.Modifieradresse" />
 
 
-          <MyInput disabled="true" label="Profession" placeholder="Ajoutez un profession" v-model="listeCandidat.Modifierprofession" />
+          <MyInput :disabled="true" label="Lieu de délivrance CIN" placeholder="Insérez un lieu de délivrance de la CIN"
+            v-model="listeCandidat.voirCandidatData.electeur.lieuDelivreCIN" />
 
-          <SelectInput disabled="true" label=" Casier judiciaire" defaultOption="" :options="[
+
+          <MyInput :disabled="true" label="Adresse" placeholder="Insérez une adresse ou le lieu de résidence"
+            v-model="listeCandidat.voirCandidatData.electeur.adresse" />
+
+
+          <MyInput :disabled="true" label="Profession" placeholder="Ajoutez un profession"
+            v-model="listeCandidat.voirCandidatData.electeur.profession" />
+
+
+          <SelectInput :disabled="true" label=" Casier judiciaire" defaultOption="" :options="[
             { text: 'Oui', value: 'oui' },
             { text: 'Non', value: 'non' }
-          ]" v-model="listeCandidat.ModifiercasierJudiciaire" />
+          ]" v-model="listeCandidat.voirCandidatData.candidat.casierJudiciaire" />
 
-          <MyInput disabled="true" label="Carte d'électeur" placeholder="Ecrire le numéro de la Carte électeur"
-            v-model="listeCandidat.ModifiercarteElecteur" />
+          <MyInput :disabled="true" label="Carte d'électeur" placeholder="Ecrire le numéro de la Carte électeur"
+            v-model="listeCandidat.voirCandidatData.electeur.carteElecteur" />
 
-          <MyInput disabled="true" label="Téléphone" placeholder="Ecrire le numéro de la Carte électeur"
-            v-model="listeCandidat.Modifiertelephone" />
+          <MyInput :disabled="true" label="Téléphone" placeholder="Ecrire le numéro de la Carte électeur"
+            v-model="listeCandidat.voirCandidatData.electeur.telephone" />
 
-          <SelectInput disabled="true" label=" Année électorale" defaultOption="" :options="anneeElectorale.allanneeData"
-            v-model="listeCandidat.ModifiercasierJudiciaire" />
+          <SelectInput :disabled="true" label=" Année électorale" defaultOption=""
+            :options="anneeElectorale.allanneeData"
+            v-model="listeCandidat.voirCandidatData.candidat.annee_electorale_id" />
 
 
-          <SelectInput disabled="true" label=" Matrice support électronique" defaultOption="" :options="[
+          <SelectInput :disabled="true" label=" Matrice support électronique" defaultOption="" :options="[
             { text: 'Oui', value: 'oui' },
             { text: 'Non', value: 'non' }
-          ]" v-model="listeCandidat.ModifiermatriceSupportElectronique" />
+          ]" v-model="listeCandidat.voirCandidatData.candidat.matriceSupportElectronique" />
 
 
 
-          <SelectInput disabled="true" label=" Quittance de contribution" defaultOption="" :options="[
+          <SelectInput :disabled="true" label=" Quittance de contribution" defaultOption="" :options="[
             { text: 'Oui', value: 'oui' },
             { text: 'Non', value: 'non' }
-          ]" v-model="listeCandidat.ModifierquittanceContribution" />
+          ]" v-model="listeCandidat.voirCandidatData.candidat.quittanceContribution" />
 
 
-          <SelectInput disabled="true" label=" Déclaration d'honneur de constitution" defaultOption="" :options="[
+          <SelectInput :disabled="true" label=" Déclaration d'honneur de constitution" defaultOption="" :options="[
             { text: 'Oui', value: 'oui' },
             { text: 'Non', value: 'non' }
-          ]" v-model="listeCandidat.ModifierdeclarationHonneurConstitution" />
+          ]" v-model="listeCandidat.voirCandidatData.candidat.declarationHonneurConstitution" />
 
 
-          <SelectInput disabled="true" label=" Attestation d'investiture" defaultOption="" :options="[
+          <SelectInput :disabled="true" label=" Attestation d'investiture" defaultOption="" :options="[
             { text: 'Oui', value: 'oui' },
             { text: 'Non', value: 'non' }
-          ]" v-model="listeCandidat.ModifierattestationInvestiture" />
+          ]" v-model="listeCandidat.voirCandidatData.candidat.attestationInvestiture" />
 
 
 
 
-          <SelectInput disabled="true" label=" Certificat de résidence " defaultOption="" :options="[
+          <SelectInput :disabled="true" label=" Certificat de résidence " defaultOption="" :options="[
             { text: 'Oui', value: 'oui' },
             { text: 'Non', value: 'non' }
-          ]" v-model="listeCandidat.ModifiercertificatResidence" />
+          ]" v-model="listeCandidat.voirCandidatData.candidat.certificatResidence" />
 
 
 
@@ -189,6 +190,7 @@
 
 
       </div>
+
     </div>
 
   </Transition>
@@ -217,6 +219,22 @@ const auth = useAuth();
 const utilisateur = useUtilisateur();
 const listeCandidat = uselisteCandidat();
 const anneeElectorale = useAnneeElectorale();
+
+
+
+
+const dateNaissanceAsDate = computed(() => {
+  return new Date(listeCandidat.voirCandidatData.electeur.dateNaissance);
+});
+const dateInscriptionAsDate = computed(() => {
+  return new Date(listeCandidat.voirCandidatData.electeur.dateInscription);
+});
+const dateDelivranceAsDate = computed(() => {
+  return new Date(listeCandidat.voirCandidatData.electeur.dateDelivreCIN);
+});
+
+
+
 
 const dateOfBirth = computed({
   get() {
@@ -332,13 +350,14 @@ function modifier() {
 .modal {
   width: 100%;
   height: 100vh;
-  background-color: rgba(196, 190, 190, 0.452);
+  background-color: rgba(196, 190, 190, 0);
   position: absolute;
   top: 0;
   left: 0;
   overflow-y: hidden;
   align-items: center;
   z-index: 100;
+  display: flex;
 }
 
 .contenaireModalSupp {
@@ -363,8 +382,8 @@ function modifier() {
 }
 
 .contenaireModal {
-  width: 100%;
-  height: 100vh;
+  width: 98%;
+  height: 92vh;
   background-color: #414752;
   border-radius: 10px;
   margin: 0 auto;

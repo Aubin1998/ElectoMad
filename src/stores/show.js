@@ -7,6 +7,7 @@ export const useShow = defineStore('Show', () => {
 	const auth = useAuth()
 	const municipaux = ref(false)
 	const user = ref()
+	const showModalAjoutImage = ref(false)
 	const senateur = ref(false)
 	const showLogin = ref(true)
 	const deputes = ref(false)
@@ -1115,7 +1116,7 @@ export const useShow = defineStore('Show', () => {
 		}
 	}
 
-
+const showCandidatDataImage = ref()
 	return {
 
 		typeProvince,
@@ -1251,6 +1252,8 @@ export const useShow = defineStore('Show', () => {
 		showUtilisateurActive,
 		showStatistiquesActive,
 		showHistoriqueActive,
+		showModalAjoutImage, 
+		showCandidatDataImage,
 
 		// importation subsection list
 		optionText,

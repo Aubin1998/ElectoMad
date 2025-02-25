@@ -6,7 +6,7 @@
 
             <h3 class="liking" @click="show.setOption('Liste des utilisateurs')" v-if="show.user == 'admin'">
                 Utilisateurs</h3>
-           
+
         </div>
 
 
@@ -18,15 +18,23 @@
 
         <div class="profil ">
             <div class="notif">
-               
+
 
             </div>
             <div class="profile-container">
                 <span class="admin-title">{{ utilisateurrole }}</span>
                 <div class="photo" @click="show.showDescFunc()">
-                    <img src="/profil.png" alt="Photo de profil" class="photo-profile">
+                    <template v-if="!utilisateur.user.file?.titre">
+                        <img src="/profileVoid.jpg" alt="Photo de profil" class="photo-profile">
+                    </template>
+                    <template v-else>
+                        <img :src="utilisateur.user.file?.titre" alt="Photo de profil" class="photo-profile">
+                    </template>
                 </div>
             </div>
+
+
+
 
 
             <div class="showProfil  " v-if="show.showDesc">
@@ -39,8 +47,36 @@
 
                 <div class="container">
                     <div class="imageProfil">
-                        <img src="/profil.png" alt="Photo de profil" style="width: 50px; height: 50px; border-radius: 100%; cursor: pointer;
+
+
+                        <template v-if="!utilisateur.user.file?.titre">
+
+                            <img src="/profileVoid.jpg" alt="Photo de profil" style="width: 50px; height: 50px; border-radius: 10px!important; cursor: pointer;
     transition: transform 0.3s ease;" @click="show.showModalCompteFunc">
+                        </template>
+                        <template v-else>
+                            <img :src="utilisateur.user.file?.titre" alt="Photo de profil" style="width: 50px; height: 50px; border-radius: 100%; cursor: pointer;
+    transition: transform 0.3s ease;" @click="show.showModalCompteFunc">
+                        </template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
                     <div class="info">
                         <h4>{{ utilisateur.user.username }}</h4>
@@ -208,7 +244,6 @@ onMounted(() => {
 .imageProfil {
     width: 50px;
     height: 50px;
-    border-radius: 100%;
 }
 
 .info {

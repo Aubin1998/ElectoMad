@@ -9,174 +9,137 @@
           <div class="content">
 
 
-            <div class="contenaireModal">
-              <h1 class="tritreModal">MODIFIER L'INFORMATION PERSONNEL</h1>
-<!-- {{ listeElecteur.modifierElecteurData }} -->
+            <h1 class="tritreModal">MODIFIER L'INFORMATION PERSONNEL</h1>
 
 
 
 
-              <div class="contenaire">
-                
-                <div class="w-full h-[40vh] bg-[#b2b0b030] flex items-center justify-center">
-                            <img v-if="listeElecteur.modifierElecteurData.file?.titre"
-                                :src="listeElecteur.modifierElecteurData.file?.titre" alt=""
-                                class="w-full h-full rounded-t-lg object-cover" />
+            <div class="contenaire">
 
-                            <div class="relative w-[50px] h-[50px]" v-else>
-                                <input type="file"
-                                    @change="(event) => onFileChange(event, listeElecteur.modifierElecteurData.id)"
-                                    id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
-                                <label for="file-upload"
-                                    class="flex items-center justify-center w-full h-full bg-[#e1dada] rounded-full cursor-pointer text-[24px]">
-                                    <i class="pi pi-camera text-red-500"></i>
-                                </label>
-                            </div>
-                            <div class="absolute w-[50px] h-[50px] t-0" v-if="listeElecteur.modifierElecteurData.file?.titre">
-                                <input type="file"
-                                    @change="(event) => onFileChange(event, listeElecteur.modifierElecteurData.id)"
-                                    id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
-                                <label for="file-upload"
-                                    class="flex items-center justify-center w-full h-full  rounded-full cursor-pointer text-[24px]">
-                                    <i class="pi pi-camera "></i>
-                                </label>
-                            </div>
-                        </div>
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-                        <div class="inputCard">
-                  <h3 class="label">Nom et prénom</h3>
-                  <input type="text" placeholder="Ajoutez un nom" class="input"
-                    v-model="listeElecteur.modifierElecteurData.nomComplet" />
+              <div class="flex justify-between   flex-col mt-4">
+
+                <div class=" flex justify-around  h-[200px]  ">
+
+
+                  <div class=" w-[30%] flex justify-center items-center   ">
+                    <img v-if="listeElecteur.modifierElecteurData.file?.titre"
+                      :src="listeElecteur.modifierElecteurData.file?.titre" alt=""
+                      class="object-cover  mt-8   h-full w-full rounded-t-xl" />
+
+
+                    <div class="file-input-container" v-else>
+                      <input type="file" @change="(event) => onFileChange(event, listeElecteur.modifierElecteurData.id)"
+                        id="file-upload" class="file-input-label" />
+                      <label for="file-upload"
+                        class="flex items-center justify-center w-full h-full bg-[#e1dada] rounded-full cursor-pointer text-[24px]">
+                        <i class="pi pi-camera text-red-500"></i>
+                      </label>
+                    </div>
+
+
+
+                    <div class="absolute w-[50px] h-[50px] t-0" v-if="listeElecteur.modifierElecteurData.file?.titre">
+                      <input type="file" @change="(event) => onFileChange(event, listeElecteur.modifierElecteurData.id)"
+                        id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
+                      <label for="file-upload"
+                        class="flex items-center justify-center w-full h-full  rounded-full cursor-pointer text-[24px]">
+                        <i class="pi pi-camera "></i>
+                      </label>
+                    </div>
+                  </div>
+
+
+
+
+
+                  <div class=" w-[65%]  grid grid-cols-2 gap-4  ">
+                    <MyInput label="Nom et prénom" placeholder="Ajoutez un nom"
+                      v-model="listeElecteur.modifierElecteurData.nomComplet" />
+
+                    <MyInput label="Email" placeholder="Ajouter un email"
+                      v-model="listeElecteur.modifierElecteurData.user.email" />
+
+                    <MyDateInput label="Date de naissance" placeholder="Insérez une date de naissance"
+                      v-model="dateOfBirth" format="dd-MM-yyyy" />
+                    <MyInput label="Lieu de naissance" placeholder="Insérez un lieu de naissance"
+                      v-model="listeElecteur.modifierElecteurData.lieuNaissance" />
+
+
+                    <SelectInput label="Sexe" defaultOption="" :options="[
+                      { text: 'Masculin', value: 'Masculin' },
+                      { text: 'Femme', value: 'Femme' }
+                    ]" v-model="listeElecteur.modifierElecteurData.sexe" />
+                    <MyInput label="Filiation" placeholder="Nom du père et de la mère"
+                      v-model="listeElecteur.modifierElecteurData.filiation" />
+                  </div>
+
+
+
+
                 </div>
 
-                <div class="inputCard">
-                  <h3 class="label">Email</h3>
-                  <input type="text" placeholder="Insérez une date de naissance" class="input"
-                    v-model="listeElecteur.modifierElecteurData.user.email" />
-                </div>
-
-                <div class="inputCard">
-                  <h3 class="label">Date de naissance</h3>
-                  <VueDatePicker v-model="listeElecteur.modifierElecteurData.dateNaissance"
-                    placeholder="Insérez une date de naissance" class="input" />
-                </div>
 
 
 
-                <div class="inputCard">
-                  <h3 class="label">Lieu de naissance</h3>
-                  <input type="text" placeholder="Insérez un lieu de naissance" class="input"
-                    v-model="listeElecteur.modifierElecteurData.lieuNaissance" />
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Sexe</h3>
-                  <input type="text" placeholder="Ajoutez un sexe" class="input"
-                    v-model="listeElecteur.modifierElecteurData.sexe" />
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Filiation</h3>
-                  <input type="text" placeholder="Nom du père et de la mère" class="input"
-                    v-model="listeElecteur.modifierElecteurData.filiation" />
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Téléphone</h3>
-                  <input type="text" placeholder="Nom du père et de la mère" class="input"
+
+
+
+
+
+
+
+
+
+
+
+                <div class="m-2 mt-8 grid grid-cols-3 gap-4">
+
+                  <MyInput label="Téléphone" placeholder="Ecrire le numéro de la Carte électeur"
                     v-model="listeElecteur.modifierElecteurData.telephone" />
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Numéro de la CIN</h3>
-                  <input type="text" placeholder="Insérez un numéro de la CIN" class="input"
+
+
+                  <MyInput label="Numéro de la CIN" placeholder="Insérez un numéro de la CIN"
                     v-model="listeElecteur.modifierElecteurData.numeroCIN" />
-                </div>
-               
+
+
+                  <MyDateInput label="Date de délivrance" placeholder="Insérez une date de délivrance de la CIN"
+                    v-model="dateOfDelivrance" format="dd-MM-yyyy" />
 
 
 
-                <div class="inputCard">
-                  <h3 class="label">Date de délivrance</h3>
-                  <VueDatePicker v-model="listeElecteur.modifierElecteurData.dateDelivreCIN"
-                    placeholder="Insérez une date de naissance" class="input" />
-                </div>
-
-
-
-                <div class="inputCard">
-                  <h3 class="label">Lieu de délivrance CIN</h3>
-                  <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input"
+                  <MyInput label="Lieu de délivrance CIN" placeholder="Insérez un lieu de délivrance de la CIN"
                     v-model="listeElecteur.modifierElecteurData.lieuDelivreCIN" />
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Adresse ou le lieu de résidence</h3>
-                  <input type="text" placeholder="Insérez une adresse ou le lieu de résidence" class="input"
+
+                  <MyInput label="Adresse" placeholder="Insérez une adresse ou le lieu de résidence"
                     v-model="listeElecteur.modifierElecteurData.adresse" />
 
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Profession</h3>
-                  <input type="text" placeholder="Ajoutez un profession" class="input"
+
+
+                  <MyInput label="Profession" placeholder="Ajoutez un profession"
                     v-model="listeElecteur.modifierElecteurData.profession" />
+
+                  <MyDateInput label="Date d'inscription" placeholder="Ecrire la date d'inscription"
+                    v-model="dateOfInscription" format="dd-MM-yyyy" />
+
+
+                  <MyDateInput label="Carte d'électeur" placeholder="Ecrire la date d'inscription"
+                    v-model="listeElecteur.modifierElecteurData.carteElecteur" format="dd-MM-yyyy" />
+
+
+
+
+
                 </div>
 
-                <div class="inputCard">
-                  <h3 class="label">Date d'inscription</h3>
-                  <VueDatePicker v-model="listeElecteur.modifierElecteurData.dateInscription"
-                    placeholder="Insérez une date de naissance" class="input" />
+                <div class="modalFooter">
+                  <h3 class="btnAdd add" @click="modifier()">modifier</h3>
+
                 </div>
 
-                <div class="inputCard">
-                  <h3 class="label">Carte d'électeur</h3>
-                  <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
-                    v-model="listeElecteur.modifierElecteurData.carteElecteur" />
-                </div>
-                <!-- <div class="inputCard">
-                <h3 class="label">Date d'inscription</h3>
-                <input type="text" placeholder="Ajoutez une date d'inscription" class="input"
-                  v-model="listeElecteur.modifierElecteurData.dateInscription" />
-              </div> -->
-
-
-                <!-- <div class="inputCard">
-                <h3 class="label">Année électorale</h3>
-                <input type="text" placeholder="Ajoutez une année électorale" class="input"
-                  v-model="listeElecteur.modifierElecteurData.annee_electorale_id" />
-              </div> -->
-                <!-- <div class="inputCard">
-                <h3 class="label">User</h3>
-                <input type="text" placeholder="Ajoutez une année électorale" class="input"
-                  v-model="listeElecteur.modifierElecteurData.user_id" />
-              </div> -->
-                <!-- <div class="btn">
-                  <h3 class=""></h3>
-                </div> -->
-                 <!-- <div class="inputCard">
-                <h3 class="label">Date de délivrance</h3>
-                <input type="text" placeholder="Insérez une date de délivrance de la CIN" class="input"
-                  v-model="listeElecteur.modifierElecteurData.dateDelivreCIN" />
-              </div> -->
               </div>
-
-              <div class="modalFooter">
-                <h3 class="btnAdd add" @click="modifier()">modifier</h3>
-                <!-- <h3 class="btnAdd cancel" @click="show.showModalModifierElecteur = !show.showModalModifierElecteur">
-                  Annuler</h3> -->
-              </div>
-
-
-
             </div>
-
           </div>
+
         </div>
       </div>
     </div>
@@ -200,8 +163,50 @@ const utilisateur = useUtilisateur();
 const anneeElectorale = useAnneeElectorale();
 const listeElecteur = uselisteElecteur();
 
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import axios from "axios";
+import MyDateInput from "@/components/date/MyDateInput.vue";
+import MyInput from "@/components/InputComponets/MyInput.vue";
+import SelectInput from "@/components/selects/SelectInput.vue";
+
+const dateOfBirth = computed({
+  get() {
+    // Convert the string to a Date object
+    return new Date(listeElecteur.modifierElecteurData.dateNaissance);
+  },
+  set(value) {
+    // Update the original data property with the new Date value
+    listeElecteur.modifierElecteurData.dateNaissance = value.toISOString().split('T')[0];
+  }
+});
+const dateOfDelivrance = computed({
+  get() {
+    // Convert the string to a Date object
+    return new Date(listeElecteur.modifierElecteurData.dateDelivreCIN
+    );
+  },
+  set(value) {
+    // Update the original data property with the new Date value
+    listeElecteur.modifierElecteurData.dateDelivreCIN
+      = value.toISOString().split('T')[0];
+  }
+
+});
+const dateOfInscription = computed({
+  get() {
+    // Convert the string to a Date object
+    return new Date(listeElecteur.modifierElecteurData.dateInscription
+
+    );
+  },
+  set(value) {
+    // Update the original data property with the new Date value
+    listeElecteur.modifierElecteurData.dateInscription
+      = value.toISOString().split('T')[0];
+  }
+
+});
+
 function Ajout() {
   listeElecteur.createElecteur()
 
@@ -227,49 +232,49 @@ function voirDetails(item) {
 
 const filer = ref()
 const onFileChange = async (event, electeurId) => {
-    const file = event.target.files[0];
-    if (!file) return;
+  const file = event.target.files[0];
+  if (!file) return;
 
-    const formData = new FormData();
-    formData.append('file', file);
+  const formData = new FormData();
+  formData.append('file', file);
 
-    try {
-        console.log('rrrrrrrrrrrrr',listeElecteur.modifierElecteurData?.file?.titre);
-        
-        
-        const response = await axios.post(
-            `http://localhost:8000/api/electeur/${electeurId}/upload`,
-            formData,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            }
-        );
-      
-
-        if (listeElecteur.modifierElecteurData.file?.titre) {
-          listeElecteur.modifierElecteurData.file.titre = response.data.url;
-        } else {
-
-            filer.value = {
-                id: 1,
-                titre: response.data.url,
-                file_name: response.data.url,
-            }
+  try {
+    console.log('rrrrrrrrrrrrr', listeElecteur.modifierElecteurData?.file?.titre);
 
 
-            listeElecteur.modifierElecteurData.file = filer.value
-        }
+    const response = await axios.post(
+      `http://localhost:8000/api/electeur/${electeurId}/upload`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
 
 
+    if (listeElecteur.modifierElecteurData.file?.titre) {
+      listeElecteur.modifierElecteurData.file.titre = response.data.url;
+    } else {
+
+      filer.value = {
+        id: 1,
+        titre: response.data.url,
+        file_name: response.data.url,
+      }
 
 
-
-
-    } catch (error) {
-        console.error('Erreur lors de l\'upload de l\'image :', error);
+      listeElecteur.modifierElecteurData.file = filer.value
     }
+
+
+
+
+
+
+  } catch (error) {
+    console.error('Erreur lors de l\'upload de l\'image :', error);
+  }
 };
 
 
@@ -286,12 +291,11 @@ function modifier() {
   width: 20%;
   display: flex;
   justify-content: space-around;
-  /* padding-top: 2px; */
   align-items: center;
   position: absolute;
-  top: 480px;
-  right: 200px;
-  bottom: 300px;
+  top: 496px;
+  right: 180px;
+  bottom: 0px;
 
 }
 
@@ -342,6 +346,27 @@ function modifier() {
 
 }
 
+.file-input-container {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  /* background-color: #f5572c; */
+}
+
+.file-input-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #e1dada;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+
+
 .contenaireModal {
   width: 90%;
   border-radius: 10px;
@@ -355,7 +380,7 @@ function modifier() {
   height: 40px;
   border-radius: 100%;
   position: absolute;
-  right: 150px;
+  right: 210px;
   top: 90px;
   align-items: center;
   display: flex;
@@ -383,7 +408,7 @@ function modifier() {
 .modal {
   width: 100%;
   height: 100vh;
-  background-color: rgba(196, 190, 190, 0.452);
+  background-color: rgba(196, 190, 190, 0);
   position: absolute;
   top: 0;
   left: 0;
@@ -396,7 +421,10 @@ function modifier() {
   color: white;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 30px;
+  margin-right: 0px;
   border-radius: 10px;
+  width: 95%;
+
 }
 
 .title {
@@ -483,7 +511,6 @@ function modifier() {
 
 .anneeElectorale h2 {
   font-size: 36px;
-  /* Plus grand pour l'année */
   color: #333;
   margin: 0;
   padding: 8px 0;
@@ -491,7 +518,6 @@ function modifier() {
 
 .genreElection h3 {
   font-size: 24px;
-  /* Taille moyenne pour le genre d'élection */
   color: #555;
   margin: 0;
   padding: 8px 0;
@@ -499,7 +525,6 @@ function modifier() {
 
 .bouton h4 {
   font-size: 18px;
-  /* Plus petit pour "Voir" */
   color: white;
   background-color: rgb(15, 117, 15);
   padding: 10px;

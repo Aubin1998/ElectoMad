@@ -52,16 +52,16 @@
                         </select>
                     </div>
                     <div class="mx-2 w-[45%] " v-if="'Municipale' === type">
-                    <p class="p-2">Type électoral Municipale </p>
+                        <p class="p-2">Type électoral Municipale </p>
 
-                    <select class="annee" v-model="municipaleSelected" id="">
+                        <select class="annee" v-model="municipaleSelected" id="">
 
-                        <option v-for="item in listMunicipale" :key="item.id" :value=item>{{ item }}</option>
-                    </select>
+                            <option v-for="item in listMunicipale" :key="item.id" :value=item>{{ item }}</option>
+                        </select>
+                    </div>
                 </div>
-                </div>
 
-             
+
 
                 <h3 class="btnAdd add" @click="creer()">Créer</h3>
             </div>
@@ -225,21 +225,23 @@
 
 
             <div class="modal backdrop-blur-[2px]" v-if="show.showModalOeil">
-
+                <div class="closeForm" @click="show.showModalOeil = !show.showModalOeil">
+                    <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
+                </div>
                 <div class="contenaireModal">
                     <h1 class="tritreModal">INFORMATION ELECTORALE</h1>
 
                     <h1 class="tritreModal"> </h1>
-                    <div class="flex">
+                    <div class="flex justify-between ">
 
-                        <div class="section">
+                        <div class="section ml-4">
                             <div class="inputCard">
                                 <h3 class="label">Année</h3>
                                 <h4 class="contenu">{{ anneeElectorale.voirData.annee }}</h4>
                             </div>
                         </div>
 
-                        <div class="section">
+                        <div class="section mr-4">
                             <div class="inputCard">
                                 <h3 class="label">Description</h3>
                                 <h4 class="contenu">{{ anneeElectorale.voirData.descriptionAnnee }}</h4>
@@ -247,9 +249,7 @@
                         </div>
 
                     </div>
-                    <div class="modalFooter">
-                        <h3 class="btnAdd cancel" @click="show.showModalOeilFunc">Fermer</h3>
-                    </div>
+
                 </div>
             </div>
 
@@ -259,18 +259,14 @@
 
 
             <div class="modal backdrop-blur-[2px]" v-if="show.showModalModifier">
+                <div class="closeForm" @click="show.showModalModifier = !show.showModalModifier">
+                    <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
+                </div>
                 <div class="contenaireModal">
                     <h1 class="tritreModal">MODIFIER INFORMATION ELECTORALE</h1>
-                    <div class="flex">
+                    <div class="flex justify-between">
 
-
-
-                        <div class="section">
-                            <!-- <div class="inputCard">
-                            <h3 class="label">Année</h3>
-                            <input type="text" placeholder="Ajoutez un nom" class="input"
-                                v-model="anneeElectorale.annee" />
-                        </div> -->
+                        <div class="section ml-4">
                             <p>Sélectionner une année </p>
 
                             <select class="annee" v-model="anneeElectorale.annee" id="">
@@ -280,13 +276,7 @@
                         </div>
 
 
-
-
-
-
-
-
-                        <div class="section">
+                        <div class="section mr-4">
                             <p>Type électoral </p>
 
                             <select class="annee" v-model="anneeElectorale.descriptionAnnee" id="">
@@ -299,7 +289,6 @@
                     </div>
                     <div class="modalFooter">
                         <h3 class="btnAdd add" @click="enregistrer()">Enregistrer</h3>
-                        <h3 class="btnAdd cancel" @click="show.showModalModifierFunc">Annuler</h3>
                     </div>
                 </div>
             </div>
@@ -483,6 +472,25 @@ const listMunicipale = [
     /* Espacement interne */
 }
 
+.closeForm {
+    background-color: rgb(231, 230, 230);
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    position: absolute;
+    right: 320px;
+    top: 75px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.closeForm:hover {
+    background-color: rgb(186, 27, 27);
+    transform: scale(1.1);
+    /* Ajoute un effet de zoom au survol */
+}
+
 .modal {
     width: 100%;
     height: 100vh;
@@ -601,6 +609,8 @@ right: 0;
     width: 35%;
     position: relative;
     float: right;
+    top: 20px;
+    left: 40px;
     /* Ajoutez cette ligne */
 }
 

@@ -12,6 +12,11 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 	const URL = useUrl().url;
 	const auth = useAuth();
 	const utilisateur = useUtilisateur();
+	const regionCandidat = ref('')
+	const districtCandidat = ref('')
+	const communeCandidat = ref('')
+	const provinceCandidat = ref('')
+
 
 	const declarationHonneurBiens = ref();
 	const certificatNationalite = ref();
@@ -108,8 +113,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				allCandidatData.value = response.data;
 				show.showAlert = true;
 				allListeCandidat.value = response.data.candidats;
-		
-				
+
 
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Données des candidats récupérées avec succès';
@@ -171,11 +175,14 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			dateNaissance: dateNaissance.value,
 			telephone: telephone.value,
 			dateInscription: dateInscription.value,
+			email: email.value,
+			region: regionCandidat.value,
+			district: districtCandidat.value,
+			commune: communeCandidat.value,
+			province: provinceCandidat.value
 
 
-			email: email.value
 		};
-
 
 
 		show.showSpinner = true;
@@ -186,11 +193,18 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				}`
 			}
 		}).then((response) => {
+			console.log('responseData', response.data);
+
 
 			if (response.status === 201) {
 				email.value = ''
-				getCandidats();
+				show.showModalAjout = false
+				show.municipaux = false
+				show.senateur = false
 
+				show.showModalAjoutImage = true
+				show.showCandidatDataImage = response.data
+				getCandidats();
 
 
 				show.showAlert = true;
@@ -313,9 +327,9 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 					"Content-Type": "application/json"
 				}
 			});
-	
+
 			if (response.status === 200) {
-	
+
 				await getCandidats();
 				show.showAlert = true;
 				show.showModalSupprimer = false;
@@ -326,7 +340,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				show.showAlertType = 'warning';
 				show.showAlertMessage = 'Échec de la suppression du candidat';
 			}
-	
+
 			setTimeout(() => {
 				show.showAlert = false;
 				show.showAlertType = '';
@@ -336,7 +350,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			show.showAlertType = 'danger';
 			show.showAlertMessage = 'Erreur lors de la suppression du candidat';
 			console.error(err);
-	
+
 			setTimeout(() => {
 				show.showAlert = false;
 				show.showAlertType = '';
@@ -346,7 +360,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 			show.showSpinner = false;
 		}
 	}
-	
+
 
 	onMounted(() => {
 		getCandidats();
@@ -358,6 +372,10 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 		modifierCandidatData,
 		allListeCandidat,
 		annee_electorale_id,
+		provinceCandidat,
+		regionCandidat,
+		districtCandidat,
+		communeCandidat,
 		nomComplet,
 		dateNaissance,
 		lieuNaissance,

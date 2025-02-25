@@ -9,112 +9,129 @@
           <div class="content">
 
 
-            <div class="contenaireModal">
+            <div class="contenaireModal ">
               <h1 class="tritreModal">INFORMATION PERSONNEL DE L'ELECTEUR</h1>
 
-              <div class="contenaire">
+              <div class="flex flex-col mt-4">
+                <div class=" flex justify-between ">
+                  <div class=" flex justify-center items-center   ">
+                    <img v-if="listeElecteur.voirElecteurData?.file?.titre"
+                      :src="listeElecteur.voirElecteurData.file?.titre" alt="" class="card-image w-full rounded-2" />
 
-                <div class="cardFile">
-                  <!-- Display image if file_id exists -->
-                  <img v-if="listeElecteur.voirElecteurData?.file?.titre"
-                    :src="listeElecteur.voirElecteurData.file?.titre" alt="" class="card-image" />
 
-                  <!-- Display file input if file_id does not exist -->
-                  <div class="file-input-container" v-else>
-                    <input type="file" @change="(event) => onFileChange(event, listeElecteur.voirElecteurData.id)"
-                      id="file-upload" />
-                    <label for="file-upload" class="file-input-label">
-                      <i class="pi pi-camera text-red-500"></i>
-                    </label>
+
+
+                    <div class="file-input-container" v-else>
+                      <input type="file" @change="(event) => onFileChange(event, listeElecteur.voirElecteurData.id)"
+                        id="file-upload" />
+                      <label for="file-upload" class="file-input-label">
+                        <i class="pi pi-camera text-red-500"></i>
+                      </label>
+                    </div>
+
+                  </div>
+
+
+
+
+
+
+
+                  <div class="flex flex-wrap justify-between w-[890px] pr-0 ">
+                    <div class="inputCard">
+                      <h3 class="label">Nom et prénom</h3>
+                      <h3 class="val">{{ listeElecteur.voirElecteurData.nomComplet }}</h3>
+
+                    </div>
+
+                    <div class="inputCard">
+                      <h3 class="label">Email</h3>
+                      <h3 class="val">{{ listeElecteur.voirElecteurData.user.email }}</h3>
+
+                    </div>
+
+                    <div class="inputCard">
+                      <h3 class="label">Date de naissance</h3>
+                      <h3 class="val">{{ listeElecteur.voirElecteurData.dateNaissance }}</h3>
+
+                    </div>
+                    <div class="inputCard">
+                      <h3 class="label">Lieu de naissance</h3>
+                      <h3 class="val">{{ listeElecteur.voirElecteurData.lieuNaissance }}</h3>
+                    </div>
+                    <div class="inputCard">
+                      <h3 class="label">Sexe</h3>
+                      <h3 class="val">{{ listeElecteur.voirElecteurData.sexe }}</h3>
+
+                    </div>
+                    <div class="inputCard">
+                      <h3 class="label">Filiation</h3>
+                      <h3 class="val">{{ listeElecteur.voirElecteurData.filiation }}</h3>
+
+                    </div>
                   </div>
                 </div>
 
 
 
-                <div class="inputCard">
-                  <h3 class="label">Nom et prénom</h3>
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.nomComplet }}</h3>
 
+                <div class="  flex flex-wrap justify-between">
+
+                  <div class="inputCard">
+                    <h3 class="label">Téléphone</h3>
+                    <h3 class="val">{{ listeElecteur.voirElecteurData.telephone }}</h3>
+
+                  </div>
+                  <div class="inputCard">
+                    <h3 class="label">Numéro de la CIN</h3>
+                    <h3 class="val">{{ listeElecteur.voirElecteurData.numeroCIN }}</h3>
+
+                  </div>
+                  <div class="inputCard ">
+                    <h3 class="label">Date de délivrance</h3>
+                    <h3 class="val">{{ listeElecteur.voirElecteurData.dateDelivreCIN }}</h3>
+
+                  </div>
+                  <div class="inputCard">
+                    <h3 class="label">Lieu de délivrance CIN</h3>
+                    <h3 class="val">{{ listeElecteur.voirElecteurData.lieuDelivreCIN }}</h3>
+
+
+                  </div>
+                  <div class="inputCard">
+                    <h3 class="label">Adresse ou le lieu de résidence</h3>
+
+                    <h3 class="val">{{ listeElecteur.voirElecteurData.adresse }}</h3>
+
+
+                  </div>
+                  <div class="inputCard">
+                    <h3 class="label">Profession</h3>
+                    <h3 class="val">{{ listeElecteur.voirElecteurData.profession }}</h3>
+
+
+                  </div>
+                  <div class="inputCard">
+                    <h3 class="label">Date d'inscription</h3>
+
+                    <h3 class="val">{{ listeElecteur.voirElecteurData.dateInscription }}</h3>
+
+                  </div>
+                  <div class="inputCard">
+                    <h3 class="label">Carte d'électeur</h3>
+
+                    <h3 class="val">{{ listeElecteur.voirElecteurData.carteElecteur }}</h3>
+
+                  </div>
+                  <div class="inputCard">
+                    <h3 class="label">Année électorale</h3>
+
+
+                    <h3 class="val">{{ listeElecteur.voirElecteurData.annee_electorale.annee }}</h3>
+
+                  </div>
                 </div>
 
-                <div class="inputCard">
-                  <h3 class="label">Email</h3>
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.user.email }}</h3>
-
-                </div>
-
-                <div class="inputCard">
-                  <h3 class="label">Date de naissance</h3>
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.dateNaissance }}</h3>
-
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Lieu de naissance</h3>
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.lieuNaissance }}</h3>
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Sexe</h3>
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.sexe }}</h3>
-
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Filiation</h3>
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.filiation }}</h3>
-
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Téléphone</h3>
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.telephone }}</h3>
-
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Numéro de la CIN</h3>
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.numeroCIN }}</h3>
-
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Date de délivrance</h3>
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.dateDelivreCIN }}</h3>
-
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Lieu de délivrance CIN</h3>
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.lieuDelivreCIN }}</h3>
-
-
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Adresse ou le lieu de résidence</h3>
-
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.adresse }}</h3>
-
-
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Profession</h3>
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.profession }}</h3>
-
-
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Date d'inscription</h3>
-
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.dateInscription }}</h3>
-
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Carte d'électeur</h3>
-
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.carteElecteur }}</h3>
-
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Année électorale</h3>
-
-
-                  <h3 class="val">{{ listeElecteur.voirElecteurData.annee_electorale.annee }}</h3>
-
-                </div>
 
                 <div class="btn">
                   <h3 class=""></h3>
@@ -289,20 +306,23 @@ function modifier() {
 
 <style scoped>
 .cardFile {
-  width: 100%;
-  height: 40vh;
-  background-color: #b2b0b030;
+  height: 30vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  margin-left: 0px;
+
 }
 
 .card-image {
-  width: 100%;
+  width: 250px;
   height: 100%;
-  border-radius: 5px 5px 0px 0px;
+  margin-left: 10px;
+  border-radius: 20px 20px 0px 0px;
   box-sizing: border-box;
   object-fit: cover;
+  justify-content: center;
+  align-items: center;
   /* Cette propriété permet de conserver le ratio de l'image tout en la remplissant */
 }
 
@@ -396,23 +416,25 @@ input[type="file"] {
 }
 
 .inputCard {
-  width: 200px !important;
+  width: 250px !important;
   margin: 10px 2px !important;
 }
 
-.contenaire {
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-
-}
 
 .contenaireModal {
-  width: 90%;
   border-radius: 10px;
-  margin: 0 auto;
-  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  bottom: 40px;
+  overflow-y: hidden;
+  align-items: center;
+  padding: 10vh;
 }
 
 .closeForm {
@@ -421,8 +443,8 @@ input[type="file"] {
   height: 40px;
   border-radius: 100%;
   position: absolute;
-  right: 150px;
-  top: 90px;
+  right: 90px;
+  top: 85px;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -446,17 +468,6 @@ input[type="file"] {
   align-items: center;
 }
 
-.modal {
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(196, 190, 190, 0.452);
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow-y: hidden;
-  align-items: center;
-  padding: 10vh;
-}
 
 .content {
   color: white;

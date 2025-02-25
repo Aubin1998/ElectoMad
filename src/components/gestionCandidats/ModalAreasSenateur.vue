@@ -7,7 +7,7 @@
                     <h1 class="tritreModal">Recherche senateur</h1>
                     <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-20 
             py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        @click="show.senateur=!show.senateur">
+                        @click="show.senateur = !show.senateur">
                         <h3>
                             Annuler</h3>
                     </button>
@@ -36,70 +36,6 @@
                     </form>
 
 
-                    <form class="max-w-md mx-[5px]" v-if="formdistrict">
-
-                        <div class="relative w-[250px]">
-
-                            <input type="search" id="default-search" v-model="searchQueryDistrict"
-                                class="block w-full p-2  text-sm text-gray-900 border border-gray-300
-                                 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 
-                                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Rechecher district"
-                                required />
-                            <button type="submit"
-                                class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800
-                                 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm
-                                  px-2   py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-full">
-                                <svg class="w-3 h-3 text-gray-500 text-white" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg></button>
-                        </div>
-                    </form>
-
-
-                    <form class="max-w-md mx-[5px]" v-if="formcommune">
-
-                        <div class="relative w-[250px]">
-
-                            <input type="search" id="default-search" v-model="searchQueryCommune"
-                                class="block w-full p-2  text-sm text-gray-900 border border-gray-300
-                                 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 
-                                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Rechecher commune"
-                                required />
-                            <button type="submit"
-                                class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800
-                                 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm
-                                  px-2   py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-full">
-                                <svg class="w-3 h-3 text-gray-500 text-white" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg></button>
-                        </div>
-                    </form>
-                    <!-- <form class="max-w-md mx-[5px]" v-if="district">
-
-                        <div class="relative w-[250px]">
-
-                            <input type="search" id="default-search"
-                                class="block w-full p-2  text-sm text-gray-900 border border-gray-300
-                                 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 
-                                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Rechecher commune" required />
-                            <button type="submit"
-                                class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800
-                                 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm
-                                  px-2   py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-full">
-                                <svg class="w-3 h-3 text-gray-500 text-white" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg></button>
-                        </div>
-                    </form> -->
-
-
 
 
 
@@ -111,212 +47,168 @@
                     <a class="inline-block w-[200px] flex justify-center items-center
                      rounded-sm border border-current px-2 py-3 my-3 mx-2 text-sm font-medium
                      text-white transition hover:scale-110 hover:rotate-2 focus:ring-3 focus:outline-hidden" href="#"
-                        v-for="(item, index) in filteredData" :key="index" @click="setQuery(item.region, item)"
-                        v-if="region">
-                        {{ item.region }}
-                    </a>
-                </div>
-                <div class="flex flex-row flex-wrap   px-5" v-if="district">
-                    <a class="inline-block w-[200px] flex justify-center items-center
-                     rounded-sm border border-current px-2 py-3 my-3 mx-2 text-sm font-medium
-                     text-white transition hover:scale-110 hover:rotate-2 focus:ring-3 focus:outline-hidden" href="#"
-                        v-for="(item, index) in filteredDataDistrict" :key="index"
-                        @click="setQueryDistrict(item.district, item)">
-                        {{ item.district }}
-                    </a>
-                </div>
-                <div class="flex flex-row flex-wrap   px-5" v-if="commune">
-                    <a class="inline-block w-[200px] flex justify-center items-center
-                     rounded-sm border border-current px-2 py-3 my-3 mx-2 text-sm font-medium
-                     text-white transition hover:scale-110 hover:rotate-2 focus:ring-3 focus:outline-hidden" href="#"
-                        v-for="(item, index) in filteredDataCommune" :key="index"
-                        @click="setQueryCommune(item.commune, item)">
-                        {{ item.commune }}
+                        v-for="(item, index) in filteredData" :key="index" @click="setQuery(item)" v-if="region">
+                        {{ item }}
                     </a>
                 </div>
 
-                <div class="flex flex-row flex-wrap   px-5" v-if="formulaire">
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Nom et prénom</h3>
-                        <input type="text" placeholder="Ajoutez un nom" class="input"
-                            v-model="listeCandidat.nomComplet" />
-                    </div>
+
+                <div class="flex flex-row flex-wrap justify-between   px-5" v-if="formulaire">
+
+
+
+                    <MyDateInput label="Date de naissance" placeholder="Insérez une date de naissance"
+                        v-model="listeCandidat.dateNaissance" format="dd-MM-yyyy" />
+
+
+                    <MyInput label="Lieu de naissance" placeholder="Insérez un lieu de naissance"
+                        v-model="listeCandidat.lieuNaissance" />
+
+
+                    <SelectInput label="Déclaration honneur des biens" defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.declarationHonneurBiens" />
+
+
+                    <MyInput label="Nom et prénom" placeholder="Ajoutez un nom" v-model="listeCandidat.nomComplet" />
+
+
+
+
+                    <SelectInput label="Sexe" defaultOption="" :options="[
+                        { text: 'Masculin', value: 'Masculin' },
+                        { text: 'Femme', value: 'Femme' }
+                    ]" v-model="listeCandidat.sexe" />
+
+
+
+                    <MyInput label="Filiation" placeholder="Nom du père et de la mère"
+                        v-model="listeCandidat.filiation" />
+
+                    <MyInput label="Email" placeholder="Nom du père et de la mère" v-model="listeCandidat.email" />
+
+                    <SelectInput label="Déclaration honneur des biens" defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.declarationHonneurBiens" />
+
+                    <SelectInput label="Certificat de nationalité" defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.certificatNationalite" />
+
+
+
+                    <SelectInput label="Déclaration honneur des impôts" defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.declarationHonneurImpôts" />
+
+
+
+                    <SelectInput label="Copie d'acte de naissance" defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.copieActeNaissance" />
+
+                    <SelectInput label="Certificat d'administration fiscale" defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.certificatAdministrationFiscale" />
 
 
 
 
 
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Date de naissance</h3>
-                        <Datepicker v-model="listeCandidat.dateNaissance" placeholder="Insérez une date de naissance"
-                            style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;" 
-                            class="input" format="dd-MM-yyyy" />
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Lieu de naissance</h3>
-                        <input type="text" placeholder="Insérez un lieu de naissance" class="input"
-                            v-model="listeCandidat.lieuNaissance" />
-                    </div>
-
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Sexe</h3>
-                        <input type="text" placeholder="Ajoutez un sexe" class="input" v-model="listeCandidat.sexe" />
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Filiation</h3>
-                        <input type="text" placeholder="Nom du père et de la mère" class="input"
-                            v-model="listeCandidat.filiation" />
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Email</h3>
-                        <input type="text" placeholder="Entrez son email" class="input" v-model="listeCandidat.email" />
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label"> Formulaire de Candidature</h3>
-                        <select class="annee" v-model="listeCandidat.declarationHonneurBiens" id="">
-                            <option disabled value="">Obtention</option>
-                            <option value="oui">Oui</option>
-                            <option value="non">Non</option>
-
-                        </select>
-                    </div>
-
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Numéro de la CIN</h3>
-                        <input type="text" placeholder="Insérez un numéro de la CIN" class="input"
-                            v-model="listeCandidat.numeroCIN" />
-                    </div>
-
-                    
+                    <SelectInput label=" Copie de carte électeur" defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.copieCarteElecteur" />
 
 
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Date de délivrance CIN</h3>
-                        <Datepicker v-model="listeCandidat.dateDelivreCIN" placeholder="Insérez une date de naissance"
-                            style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;" 
-                            class="input" format="dd-MM-yyyy" />
-                    </div>
-
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Lieu de délivrance CIN</h3>
-                        <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input"
-                            v-model="listeCandidat.lieuDelivreCIN" />
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Adresse </h3>
-                        <input type="text" placeholder="Insérez une adresse ou le lieu de résidence" class="input"
-                            v-model="listeCandidat.adresse" />
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Profession</h3>
-                        <input type="text" placeholder="Ajoutez un profession" class="input"
-                            v-model="listeCandidat.profession" />
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label"> Casier judiciaire</h3>
-                        <select class="annee" v-model="listeCandidat.casierJudiciaire" id="">
-                            <option disabled value="">Obtention</option>
-                            <option value="oui">Oui</option>
-                            <option value="non">Non</option>
-                        </select>
-                    </div>
-
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Carte d'électeur</h3>
-                        <input type="text" placeholder="Ecrire le numéro de la Carte électeur" class="input"
-                            v-model="listeCandidat.carteElecteur" />
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Téléphone</h3>
-                        <input type="text" placeholder="Ecrire votre numéro de téléphone" class="input"
-                            v-model="listeCandidat.telephone" />
-                    </div>
+                    <SelectInput label=" Déclaration de probite" defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.declarationProbite" />
 
 
 
-                    
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Date d'inscription </h3>
-                        <Datepicker v-model="listeCandidat.dateInscription" placeholder="Insérez une date de naissance"
-                            style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;" 
-                            class="input" format="dd-MM-yyyy" />
-                    </div>
-                   
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label"> Année électorale</h3>
-                        <select class="annee" v-model="listeCandidat.annee_electorale_id" id="">
-                            <option disabled value="">Sélectionner une année</option>
-                            <option v-for="annee in anneeElectorale.allanneeData" :key=annee.id :value="annee.id">
-                                {{ annee.annee }}
-                                {{ annee.descriptionAnnee }}</option>
-                        </select>
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label">Certificat de résidence </h3>
-                        <select class="annee" v-model="listeCandidat.certificatResidence" id="">
-                            <option disabled value="">Obtention</option>
-                            <option value="oui">Oui</option>
-                            <option value="non">Non</option>
-                        </select>
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label"> Certificat de nationalité</h3>
-                        <select class="annee" v-model="listeCandidat.certificatNationalite" id="">
-                            <option disabled value="">Obtention</option>
-                            <option value="oui">Oui</option>
-                            <option value="non">Non</option>
-                        </select>
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label"> Preuve de Paiement </h3>
-                        <select class="annee" v-model="listeCandidat.declarationHonneurImpôts" id="">
-                            <option disabled value="">Obtention</option>
-                            <option value="oui">Oui</option>
-                            <option value="non">Non</option>
+                    <SelectInput label="  Copie de récipissé patrimoine" defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.copieRecipissePatrimoine" />
 
-                        </select>
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label"> Récipissé patrimoine</h3>
-                        <select class="annee" v-model="listeCandidat.copieRecipissePatrimoine" id="">
-                            <option disabled value="">Obtention</option>
-                            <option value="oui">Oui</option>
-                            <option value="non">Non</option>
-                        </select>
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label"> Lettre de Démission</h3>
-                        <select class="annee" v-model="listeCandidat.declarationProbite" id="">
-                            <option disabled value="">Obtention</option>
-                            <option value="oui">Oui</option>
-                            <option value="non">Non</option>
-                        </select>
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label"> Copie d'acte de naissance</h3>
-                        <select class="annee" v-model="listeCandidat.copieActeNaissance" id="">
-                            <option disabled value="">Obtention</option>
-                            <option value="oui">Oui</option>
-                            <option value="non">Non</option>
-                        </select>
-                    </div>
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label"> Certificat fiscale</h3>
-                        <select class="annee" v-model="listeCandidat.certificatAdministrationFiscale" id="">
-                            <option disabled value="">Obtention</option>
-                            <option value="oui">Oui</option>
-                            <option value="non">Non</option>
-                        </select>
+
+
+                    <MyInput label="Numéro de la CIN" placeholder="Insérez un numéro de la CIN"
+                        v-model="listeCandidat.numeroCIN" />
+
+
+
+
+
+                    <MyDateInput label="Date de délivrance CIN" placeholder="Insérez une date de naissance"
+                        v-model="listeCandidat.dateDelivreCIN" format="dd-MM-yyyy" />
+
+                    <MyInput label="Lieu de délivrance CIN" placeholder="Insérez un lieu de délivrance de la CIN"
+                        v-model="listeCandidat.lieuDelivreCIN" />
+
+
+                    <MyInput label="Adresse ou le lieu de résidence"
+                        placeholder="Insérez une adresse ou le lieu de résidence" v-model="listeCandidat.adresse" />
+
+
+                    <MyInput label="Profession" placeholder="Ajoutez un profession"
+                        v-model="listeCandidat.profession" />
+
+                    <SelectInput label=" Casier judiciaire" defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.casierJudiciaire" />
+
+                    <MyInput label="Carte d'électeur" placeholder="Ecrire le numéro de la Carte électeur"
+                        v-model="listeCandidat.carteElecteur" />
+
+
+                    <MyInput label="Téléphone" placeholder="Ecrire votre numéro de téléphone"
+                        v-model="listeCandidat.telephone" />
+
+                    <MyDateInput label="Date d'inscription" placeholder="Insérez une date d'inscription"
+                        v-model="listeCandidat.dateInscription" format="dd-MM-yyyy" />
+
+
+                    <SelectInput label=" Matrice support électronique" defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.matriceSupportElectronique" />
+
+
+                    <SelectInput label="Quittance de contribution" defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.quittanceContribution" />
+
+
+                    <SelectInput label="Déclaration d'honneur de constitution" defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.declarationHonneurConstitution" />
+
+                    <SelectInput label="Attestation d'investiture " defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.attestationInvestiture" />
+
+                    <SelectInput label="Certificat de résidence " defaultOption="" :options="[
+                        { text: 'Oui', value: 'oui' },
+                        { text: 'Non', value: 'non' }
+                    ]" v-model="listeCandidat.certificatResidence" />
+                    <div class="flex w-[20%] mr-2 ">
+                        <Cancel @toggle="show.senateur = !show.senateur" />
+                        <Confirm @toggle="ajouter()" buttonText="Ajouter" />
                     </div>
 
-                    <div class="w-[20%] p-2 flex flex-col items-center">
-                        <h3 class="label"> Copie de carte électeur</h3>
-                        <select class="annee" v-model="listeCandidat.copieCarteElecteur" id="">
-                            <option disabled value="">Obtention</option>
-                            <option value="oui">Oui</option>
-                            <option value="non">Non</option>
-                        </select>
-                    </div>
                 </div>
 
             </div>
@@ -349,8 +241,16 @@ import { useAnneeElectorale } from "@/stores/anneeElectorale";
 import { useListeFokontanyDistrictStore } from "@/stores/jsonData/liste_fokontany_par_district";
 
 
-import Datepicker from "vue3-datepicker";
 
+
+import Datepicker from "vue3-datepicker";
+import Cancel from "@/components/btnComponents/Cancel.vue";
+import Confirm from "@/components/btnComponents/Confirm.vue";
+import ModalUploadFile from "@/components/UploadFile/ModalUploadFile.vue";
+
+import MyInput from "../InputComponets/MyInput.vue";
+import MyDateInput from "../date/MyDateInput.vue";
+import SelectInput from "../selects/SelectInput.vue";
 
 
 const show = useShow(); //call Show in show.js
@@ -391,13 +291,23 @@ function close() {
     searchQueryCommune.value = ''
 
 }
+function ajouter() {
+    console.log('lllllllllllll', anneeElectorale?.anneeElectoraleChoisi);
 
-function setQuery(query, item) {
-    searchQuery.value = query
+
+    listeCandidat.annee_electorale_id = anneeElectorale?.anneeElectoraleChoisi.id
+
+    listeCandidat.provinceCandidat = searchQuery.value
+
+
+
+    listeCandidat.createCandidat();
+}
+
+function setQuery(item) {
+    searchQuery.value = item
     region.value = false
-    district.value = true
-    formdistrict.value = true
-    dataDistrict.value = item.listeDistrict
+    formulaire.value = true
 }
 
 function setQueryDistrict(query, item) {
@@ -456,10 +366,11 @@ onMounted(() => {
 
 // Filtrer les données en fonction de la recherche
 const filteredData = computed(() => {
-    let filtered = data.value;
+    let filtered = ["ANTANANARIVO", "FIANARATSOA", "MAHAJANGA", "TOAMASINA", "ANTSIRANANA", "TOLIARA"
+    ]
 
     if (searchQuery.value) {
-        filtered = data.value.filter(item => item.region.toLowerCase().includes(searchQuery.value.toLowerCase()));
+        filtered = filtered.value.filter(item => item.toLowerCase().includes(searchQuery.value.toLowerCase()));
     } return filtered; // Ignorer le premier élément 
 });
 

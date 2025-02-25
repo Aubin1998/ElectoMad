@@ -1,6 +1,6 @@
 <template>
   <Transition>
-    <div class="showModal" v-if="show.showModalLogout">
+    <div class="showModal backdrop-blur" v-if="show.showModalLogout">
 
       <div class="modal">
         <div class="formModal">
@@ -90,12 +90,12 @@ function modifier() {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: rgba(92, 90, 90, 0.927);
+  background-color: rgba(92, 90, 90, 0);
   z-index: 1005;
   width: 100%;
   height: 100%;
   display: flex;
-  background: rgba(43, 38, 38, 0.801);
+  background: rgba(43, 38, 38, 0.045);
   justify-content: center;
   align-items: center;
 }

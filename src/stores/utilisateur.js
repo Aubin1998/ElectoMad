@@ -42,6 +42,10 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 
 
 	const user_id = ref('')
+	const usernameAdmin = ref('')
+	const emailAdmin = ref('')
+
+
 	const utilisateurId = ref('')
 	const allElecteurs = ref()
 
@@ -56,7 +60,10 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 
 		}).then((response) => {
 			if (response.status === 200) {
+				console.log('ici', response.data);
+
 				const data = response.data;
+				nomComplet.value = data.nomComplet
 
 				utilisateurId.value = response.data.id
 
@@ -88,7 +95,7 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 				// show.showAlertType = 'warning';
 				// // show.showAlertMessage = 'Échec de la récupération des informations';
 				console.log('erreur de récupération d\'utilisateur');
-				
+
 			}
 
 			setTimeout(() => {
@@ -134,7 +141,10 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 			commune: commune.value,
 			fokontany: fokontany.value,
 
-			user_id: auth.userId
+			user_id: auth.userId,
+			username: usernameAdmin.value,
+			email: emailAdmin.value
+
 
 		};
 
@@ -146,6 +156,9 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 				"Content-Type": "application/json"
 			}
 		}).then((response) => {
+			console.log('respo', response.data);
+			show.showAlert = true;
+
 
 			if (response.status === 200) {
 				show.showAlertType = 'success';
@@ -310,6 +323,8 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 		newUtilisateur,
 		telephone,
 		dateInscription,
+		usernameAdmin,
+		emailAdmin,
 		allElecteurs,
 		getUserInfo,
 		updateUserInfo

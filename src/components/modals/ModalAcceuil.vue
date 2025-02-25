@@ -18,8 +18,10 @@
                   <div class="h-[40%]">
                     <h3 class="text-[#555]">{{ item.descriptionAnnee }}</h3>
                   </div>
-                  <div class="flex justify-center items-center px-4 py-2 rounded-lg bg-green-600 ">
-                    <h4 @click="voirDetails(item)">Voir</h4>
+                  <div
+                    class="flex justify-center items-center px-4 py-2 rounded-lg bg-green-600 bgs"
+                    @click="voirDetails(item)">
+                    <h4>Voir</h4>
                   </div>
                 </div>
               </template>
@@ -139,7 +141,8 @@ function voirDetails(item) {
   padding: 15px 30px;
   font-size: 20px;
   color: white;
-  background-color: rgb(15, 117, 15);
+  background-color: rgb(19, 161, 19);
+
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -147,6 +150,12 @@ function voirDetails(item) {
 
 .cta-button:hover {
   background-color: rgb(19, 161, 19);
+}
+.bgs {
+  background-color: rgb(19, 161, 19);
+}
+.bgs:hover {
+  background-color: rgb(15, 117, 15);
 }
 
 .spinner-6 {
