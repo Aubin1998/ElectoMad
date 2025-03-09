@@ -22,9 +22,10 @@
 
 
             <a href="#guide">
-              <button
+
+              <button id="actualite"
                 class="w-full rounded-md bg-blue-500 px-8 py-2.5 font-semibold text-white shadow-md shadow-blue-500/20 hover:bg-blue-600 duration-200 sm:w-auto">
-                En savoir plus
+                Guide
               </button>
             </a>
 
@@ -37,7 +38,7 @@
               Vérifiez votre nom </button>
 
             <!-- brand -->
-            <div class="mt-4 flex flex-wrap gap-4">
+            <!-- <div class="mt-4 flex flex-wrap gap-4">
               <img src="/partenaire5.jpg" alt="brand"
                 class="w-36 cursor-pointer rounded-lg border border-blue-300/20 bg-white px-6 py-[-1] shadow-md shadow-blue-500/5 duration-200 hover:scale-95 sm:w-40">
               <img src="/partenaire3.webp" alt="brand"
@@ -50,7 +51,7 @@
 
               </a>
 
-            </div>
+            </div> -->
 
           </div>
 
@@ -60,17 +61,17 @@
             <div class="lg:ml-auto lg:text-right">
               <div class="relative z-10  pt-11 lg:pt-0">
                 <a href="#" class="">
-                  <img alt="Élection" src="/voteJPG.jpg"
+                  <img alt="Élection" src="/Vote-843x630.jpg"
                     class="h-56 w-full rounded-bl-3xl rounded-tr-3xl object-cover sm:h-64 lg:h-72" />
 
-                  <div class="mt-4 sm:flex sm:items-center sm:justify-center sm:gap-4">
+                  <!-- <div class="mt-4 sm:flex sm:items-center sm:justify-center sm:gap-4">
                     <strong class="font-medium text-gray-700">Votez pour l'Avenir</strong>
 
                     <span class="hidden sm:block sm:h-px sm:w-8 sm:bg-blue-500"></span>
 
                     <p class="mt-0.5 opacity-80 sm:mt-0 text-gray-700">Participez à l'élection et faites entendre votre
                       voix !</p>
-                  </div>
+                  </div> -->
                 </a>
 
               </div>
@@ -213,18 +214,19 @@
 
               <button @click="gotoList"
                 class="w-full rounded-md bg-blue-500 px-8 py-2.5 font-semibold text-white shadow-md shadow-blue-500/20 hover:bg-blue-600 duration-200 md:w-max">
-                Consultez</button>
+                Les étapes</button>
             </div>
 
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               <div class="flex flex-col items-center justify-center rounded-xl bg-white px-4 py-8 shadow-lg">
                 <img class="mb-3 w-16" src="/verifier.svg" alt="">
 
+                <a href="#inscription" class="text-sm text-blue-500">Etape 1</a>
+
                 <h3 @click="gotoList" class="text-lg text-center font-bold text-s late-600"
                   style="color: #525F72; cursor: pointer;">
                   Vérification de
                   l'inscription</h3>
-                <a href="#inscription" class="text-sm text-blue-500">En savoir plus</a>
               </div>
               <div class="flex flex-col items-center justify-center rounded-xl bg-white px-4 py-8 shadow-lg">
                 <!-- <img class="mb-3 w-16" src="/bureau.jpg" alt=""> -->
@@ -264,13 +266,13 @@
                       fill="#F39A2B"></path>
                   </g>
                 </svg>
+                <a href="#inscription" class="text-sm text-blue-500">Etape 2</a>
 
                 <a href="http://archive.ipu.org/parline-f/reports/1193_B.htm">
                   <h3 class="text-lg font-bold text-center text-slate-600">Documents nécessaires</h3>
 
                 </a>
 
-                <a href="#inscription" class="text-sm text-blue-500">En savoir plus</a>
               </div>
               <div class="flex flex-col items-center justify-center rounded-xl bg-white px-4 py-8 shadow-lg">
                 <!-- <img class="mb-3 w-16" src="/bureau.jpg" alt=""> -->
@@ -293,12 +295,11 @@
                   </g>
                 </svg>
 
-                <a
+                <a id="contact"
                   href="https://www.google.com/maps/@-12.2847613,49.3062532,396m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDIwOS4wIKXMDSoASAFQAw%3D%3D">
                   <h3 class="text-lg font-bold text-slate-600">Lieux de vote</h3>
                 </a>
 
-                <a href="#inscription" class="text-sm text-blue-500">En savoir plus</a>
 
               </div>
             </div>
@@ -317,13 +318,13 @@
 
 
     <!-- ====== Type élection ====== -->
-
+    <!-- 
     <section class="py-16">
       <div class="mx-auto max-w-7xl px-8 md:px-6">
         <div class="md:flex md:justify-between md:gap-6">
-          <div class="md:w-6/12">
-            <!-- heading text -->
-            <div class="mb-5 sm:mb-10">
+          <div class="md:w-6/12"> -->
+    <!-- heading text -->
+    <!-- <div class="mb-5 sm:mb-10">
               <span class="font-medium text-blue-500">Election</span>
               <h1 class="text-2xl font-bold text-slate-700 sm:text-3xl">Types d'élections</h1>
             </div>
@@ -401,7 +402,7 @@
                     </g>
                   </svg>
                 </div>
-                <p class="ml-4 max-w-md font-medium text-slate-600">Les <span @click="gotoConseilleMunicipaux" 
+                <p class="ml-4 max-w-md font-medium text-slate-600">Les <span @click="gotoConseilleMunicipaux"
                     class="text-blue-500  hover:text-blue-600 font-medium " style="cursor: pointer;">élections
                     municipales</span> concernent
                   l'élection des
@@ -414,15 +415,15 @@
             <button @click="gotoTypeElection"
               class="w-full rounded-md bg-blue-500 px-8 py-2.5 font-semibold text-white shadow-md shadow-blue-500/20 hover:bg-blue-600 duration-200 md:w-max">
               En Savoir Plus</button>
-          </div>
-          <!-- about img -->
-          <div class="mt-8 flex justify-center md:mt-0 md:w-5/12">
+          </div> -->
+    <!-- about img -->
+    <!-- <div class="mt-8 flex justify-center md:mt-0 md:w-5/12">
             <img src="/type.jpg" alt="about img" class="max-h-[500px] md:max-h-max">
           </div>
 
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- ====== END Type élection ====== -->
 
@@ -435,8 +436,8 @@
     This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
   -->
 
-    <link href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css" rel="stylesheet" />
-
+    <!-- <link href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css" rel="stylesheet" /> -->
+    <!-- 
     <section class="bg-gray-50">
       <div class="mx-auto max-w-[1340px] px-4 py-12 sm:px-6 lg:me-0 lg:py-16 lg:ps-8 lg:pe-0 xl:py-24">
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:items-center lg:gap-16">
@@ -592,7 +593,7 @@
           </button>
         </div>
       </div>
-    </section>
+    </section> -->
 
 
 
@@ -602,10 +603,10 @@
 
 
     <!-- ====== a propos ====== -->
-    <section class="py-16">
-      <div class="mx-auto max-w-7xl px-8 md:px-6">
-        <!-- heading text -->
-        <div class="mb-5 sm:mb-10">
+    <!-- <section class="py-16">
+      <div class="mx-auto max-w-7xl px-8 md:px-6"> -->
+    <!-- heading text -->
+    <!-- <div class="mb-5 sm:mb-10">
           <span class="font-medium text-blue-500">À propos</span>
           <h1 class="text-2xl font-bold text-slate-700 sm:text-3xl">A savoir sur VotiFlow</h1>
           <div class="mb-5">
@@ -620,18 +621,18 @@
             <p> Voici les rôles clés et leurs responsabilités :</p>
           </div>
 
-        </div>
+        </div> -->
 
-        <!-- wrapper -->
-        <div class="md:flex md:justify-between md:gap-6">
+    <!-- wrapper -->
+    <!-- <div class="md:flex md:justify-between md:gap-6">
           <div class="mb-8 flex justify-center md:mb-0 md:w-5/12 ">
             <img src="/bureauMembre.jpg" alt="faq images"
               class="max-h-[500px]   md:max-h-max rounded-bl-3xl rounded-tr-3xl ">
           </div>
 
-          <div id="accordion-color" class="  md:w-6/12">
-            <!-- Accordion Item 1 -->
-            <h2 id="accordion-color-heading-1">
+          <div id="accordion-color" class="  md:w-6/12"> -->
+    <!-- Accordion Item 1 -->
+    <!-- <h2 id="accordion-color-heading-1">
               <button type="button"
                 class="flex items-center bg-[#EFF6FF] shadow-xl justify-between w-full p-5 font-medium   rounded-t-xl  dark:border-gray-700 mb-8 text-gray-500   gap-3"
                 @click="toggleAccordion(1)" :aria-expanded="isOpen(1)" aria-controls="accordion-color-body-1">
@@ -642,9 +643,9 @@
                     d="M9 5 5 1 1 5" />
                 </svg>
               </button>
-            </h2>
+            </h2> -->
 
-            <div id="accordion-color-body-1" :class="{ hidden: !isOpen(1) }"
+    <!-- <div id="accordion-color-body-1" :class="{ hidden: !isOpen(1) }"
               aria-labelledby="accordion-color-heading-1">
               <div class="p-5 border border-t-0  ">
                 <p class="mb-2 text-gray-900 dark:text-gray-400">
@@ -655,19 +656,19 @@
                   <li>La gestion des électeurs et des bureaux de vote.</li>
                   <li>La consultation des statistiques globales et des historiques.</li>
                 </ul>
-                </p>
+                </p> -->
 
-                <!-- <p class="text-gray-500 dark:text-gray-400">
+    <!-- <p class="text-gray-500 dark:text-gray-400">
                   Check out this guide to learn how to
                   <a href="/docs/getting-started/introduction/"
                     class="text-blue-600 dark:text-blue-500 hover:underline">get started</a>
                   and start developing websites even faster with components on top of Tailwind CSS.
                 </p> -->
-              </div>
-            </div>
+    <!-- </div>
+            </div> -->
 
-            <!-- Accordion Item 2 -->
-            <h2 id="accordion-color-heading-2">
+    <!-- Accordion Item 2 -->
+    <!-- <h2 id="accordion-color-heading-2">
               <button type="button"
                 class="flex items-center bg-[#EFF6FF] shadow-xl mb-8 justify-between w-full p-5 font-medium text-gray-500    gap-3"
                 @click="toggleAccordion(2)" :aria-expanded="isOpen(2)" aria-controls="accordion-color-body-2">
@@ -689,19 +690,19 @@
                   <li>Mettre à jour les bases de données électorales.</li>
                   <li>Vérifier l’exactitude des données saisies.</li>
                 </ul>
-                </p>
+                </p> -->
 
-                <!-- <p class="text-gray-500 dark:text-gray-400">
+    <!-- <p class="text-gray-500 dark:text-gray-400">
                   Check out the
                   <a href="https://flowbite.com/figma/" class="text-blue-600 dark:text-blue-500 hover:underline">Figma
                     design system</a>
                   based on the utility classes from Tailwind CSS and components from Flowbite.
                 </p> -->
-              </div>
-            </div>
+    <!-- </div>
+            </div> -->
 
-            <!-- Accordion Item 3 -->
-            <h2 id="accordion-color-heading-3">
+    <!-- Accordion Item 3 -->
+    <!-- <h2 id="accordion-color-heading-3">
               <button type="button"
                 class="flex items-center bg-[#EFF6FF] mb-8 shadow-xl justify-between w-full p-5 font-medium text-gray-500   gap-3"
                 @click="toggleAccordion(3)" :aria-expanded="isOpen(3)" aria-controls="accordion-color-body-3">
@@ -712,8 +713,8 @@
                     d="M9 5 5 1 1 5" />
                 </svg>
               </button>
-            </h2>
-            <div id="accordion-color-body-3" :class="{ hidden: !isOpen(3) }"
+            </h2> -->
+    <!-- <div id="accordion-color-body-3" :class="{ hidden: !isOpen(3) }"
               aria-labelledby="accordion-color-heading-3">
               <div class="p-5 border border-t-0 border-gray-200 ">
                 <p class="mb-2 text-gray-500 dark:text-gray-400">
@@ -723,9 +724,9 @@
                   <li>Signaler toute anomalie ou tentative de fraude.</li>
                   <li>Garantir que les opérations respectent les règles électorales établies.</li>
                 </ul>
-                </p>
+                </p> -->
 
-                <!-- <p class="mb-2 text-gray-500 dark:text-gray-400">
+    <!-- <p class="mb-2 text-gray-500 dark:text-gray-400">
                   However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no
                   technical reason stopping you from using the best of two worlds.
                 </p>
@@ -740,12 +741,12 @@
                       class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a>
                   </li>
                 </ul> -->
-              </div>
-            </div>
+    <!-- </div>
+            </div> -->
 
 
-            <!-- Accordion Item 4 -->
-            <h2 id="accordion-color-heading-3">
+    <!-- Accordion Item 4 -->
+    <!-- <h2 id="accordion-color-heading-3">
               <button type="button"
                 class="flex items-center   bg-[#EFF6FF]  shadow-xl border-t-0 justify-between w-full p-5 font-medium text-gray-500       gap-3"
                 @click="toggleAccordion(4)" :aria-expanded="isOpen(4)" aria-controls="accordion-color-body-3">
@@ -778,8 +779,8 @@
                   <li>Signaler toute anomalie ou tentative de fraude.</li>
                   <li>Garantir que les opérations respectent les règles électorales établies.</li>
                 </ul>
-                </p>
-                <!-- <p class="mb-2 text-gray-500 dark:text-gray-400">
+                </p> -->
+    <!-- <p class="mb-2 text-gray-500 dark:text-gray-400">
                   However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no
                   technical reason stopping you from using the best of two worlds.
                 </p>
@@ -794,12 +795,12 @@
                       class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a>
                   </li>
                 </ul> -->
-              </div>
+    <!-- </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- ====== END A propos ====== -->
 

@@ -99,6 +99,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 	const Modifieremail = ref('')
 	const Modifieruser_id = ref('')
 	const ModifierIdCandidat = ref('')
+	const randomVal = ref(0)
 
 
 	async function getCandidats() {
@@ -110,6 +111,10 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 		}).then((response) => {
 
 			if (response.status === 200) {
+				randomVal.value += Math.random()
+				console.log('random', randomVal.value);
+
+
 				allCandidatData.value = response.data;
 				show.showAlert = true;
 				allListeCandidat.value = response.data.candidats;
@@ -367,6 +372,7 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 	});
 
 	return {
+		randomVal,
 		ModifierIdCandidat,
 		voirCandidatData,
 		modifierCandidatData,

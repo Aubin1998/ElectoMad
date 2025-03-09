@@ -1,20 +1,20 @@
 <template>
   <Transition>
     <div class="showModal backdrop-blur p-2px" v-if="show.showModalSupprimerElecteur">
-      <div class="modal" >
-      <div class="contenaireModalSupp">
-        <h4 class="supp">
-          Voulez vous vraiment supprimer
-        </h4>
-        <h4 class="suppNom">
-          Cet électeur ?
-        </h4>
-        <div class="flex">
-          <h3 class="btnAdd add" @click="supprimerElec()">Oui</h3>
-          <h3 class="btnAdd cancel" @click="show.showModalSupprimerElecteur =! show.showModalSupprimerElecteur">Non</h3>
+      <div class="modal">
+        <div class="contenaireModalSupp">
+          <h4 class="supp">
+            Voulez-vous vraiment supprimer </h4>
+          <h4 class="suppNom">
+            Cet électeur ?
+          </h4>
+          <div class="flex">
+            <h3 class="btnAdd add" @click="supprimerElec()">Oui</h3>
+            <h3 class="btnAdd cancel" @click="show.showModalSupprimerElecteur = !show.showModalSupprimerElecteur">Non
+            </h3>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   </Transition>
 
@@ -39,11 +39,11 @@ const listeElecteur = uselisteElecteur();
 
 function supprimerElec() {
   listeElecteur.deleteElecteur(listeElecteur.supprimerElecteurData.id)
-  
+
 }
 
 function voirDetails(item) {
- 
+
   show.showAlert = true;
   show.showAlertType = 'success';
   show.showAlertMessage = `Année choisi ${item.annee}`
@@ -106,55 +106,57 @@ function voirDetails(item) {
 }
 
 .contenaireModalSupp {
-    width: 25%;
-    height: 25vh;
-    background-color: rgb(84, 81, 81);
-    border-radius: 10px;
-    margin: 0 auto;
-    padding: 10px;
+  width: 25%;
+  height: 25vh;
+  background-color: rgb(84, 81, 81);
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 10px;
 }
+
 .supp {
-    color: #e1dddd;
-    padding: 0px 10px 20px 10px;
+  color: #e1dddd;
+  padding: 0px 10px 20px 10px;
 }
 
 .suppNom {
-    color: white;
-    padding: 0px 10px;
-    font-weight: bold;
-    margin-bottom: 20px;
+  color: white;
+  padding: 0px 10px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
+
 .flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 10px;
 }
 
 .btnAdd {
-    color: #fff;
-    font-weight: 600;
-    width: 50%;
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    background-color: rgb(34, 199, 83);
-    padding: 5px 20px;
-    border-radius: 5px;
+  color: #fff;
+  font-weight: 600;
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  background-color: rgb(34, 199, 83);
+  padding: 5px 20px;
+  border-radius: 5px;
 
 }
 
 .add {
-    width: 100px !important;
+  width: 100px !important;
 
 }
 
 .cancel {
-    width: 100px !important;
-    background-color: rgb(192, 190, 190);
-    border: 2px solid rgb(34, 199, 83);
-    color: rgb(7, 185, 60) !important;
+  width: 100px !important;
+  background-color: rgb(192, 190, 190);
+  border: 2px solid rgb(34, 199, 83);
+  color: rgb(7, 185, 60) !important;
 }
 
 .content {

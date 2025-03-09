@@ -10,8 +10,7 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 	const show = useShow();
 	const URL = useUrl().url;
 	const auth = useAuth();
-	const utilisateur = useUtilisateur()
-	;
+	const utilisateur = useUtilisateur();
 	const anneeElectoraleChoisi = ref()
 	const annee = ref()
 	const descriptionAnnee = ref()
@@ -23,11 +22,8 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 	const filteredanneeElectorale = ref()
 	const allanneeElectorale = ref()
 
+	const oneAnneeData = ref({})
 
-	
-
-
-	
 
 	function getAnnees() {
 		show.showSpinner = true;
@@ -67,6 +63,26 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 			show.showSpinner = false;
 		});
 	}
+	function getByIdAnnees(id) {
+
+		axios.get(`${URL}/api/anneeElectorale/${id}`, {
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).then((response) => {
+			oneAnneeData.value = response.data
+			console.log('poury ai', oneAnneeData.value);
+			utilisateur.controlleurAnneeElectorale = response.data
+			utilisateur.operateurSaisieAnneeElectorale = response.data
+
+			console.log('pppppppppp', utilisateur.operateurSaisieAnneeElectorale);
+
+
+		}).catch((err) => {
+			console.log(err);
+
+		})
+	}
 
 	function createAnnee() {
 
@@ -74,8 +90,6 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 			annee: annee.value,
 			descriptionAnnee: descriptionAnnee.value
 		}
-
-
 
 
 		show.showSpinner = true;
@@ -93,7 +107,7 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Année électorale créée avec succès';
 
-				
+
 			} else {
 				show.showAlert = true;
 				show.showAlertType = 'warning';
@@ -211,6 +225,8 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 	});
 
 	return {
+		getByIdAnnees,
+		oneAnneeData,
 		allanneeElectorale,
 		filteredanneeElectorale,
 		anneeElectoraleChoisi,

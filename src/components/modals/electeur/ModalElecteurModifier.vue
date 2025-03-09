@@ -5,6 +5,8 @@
         <div class="closeForm" @click="show.showModalModifierElecteur = !show.showModalModifierElecteur">
           <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
         </div>
+
+
         <div class="contenaireModal">
           <div class="content">
 
@@ -65,29 +67,14 @@
                       v-model="listeElecteur.modifierElecteurData.lieuNaissance" />
 
 
-                    <SelectInput label="Sexe" defaultOption="" :options="[
-                      { text: 'Masculin', value: 'Masculin' },
-                      { text: 'Femme', value: 'Femme' }
-                    ]" v-model="listeElecteur.modifierElecteurData.sexe" />
+                    <MyDateInput label="Date d'inscription" placeholder="Ecrire la date d'inscription"
+                      v-model="dateOfInscription" format="dd-MM-yyyy" />
+
+
                     <MyInput label="Filiation" placeholder="Nom du père et de la mère"
                       v-model="listeElecteur.modifierElecteurData.filiation" />
                   </div>
-
-
-
-
                 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -118,12 +105,13 @@
                   <MyInput label="Profession" placeholder="Ajoutez un profession"
                     v-model="listeElecteur.modifierElecteurData.profession" />
 
-                  <MyDateInput label="Date d'inscription" placeholder="Ecrire la date d'inscription"
-                    v-model="dateOfInscription" format="dd-MM-yyyy" />
+                  <SelectInput label="Sexe" defaultOption="" :options="[
+                    { text: 'Homme', value: 'Homme' },
+                    { text: 'Femme', value: 'Femme' }
+                  ]" v-model="listeElecteur.modifierElecteurData.sexe" />
 
-
-                  <MyDateInput label="Carte d'électeur" placeholder="Ecrire la date d'inscription"
-                    v-model="listeElecteur.modifierElecteurData.carteElecteur" format="dd-MM-yyyy" />
+                  <MyInput label="Adresse" placeholder="Insérez une adresse ou le lieu de résidence"
+                    v-model="listeElecteur.modifierElecteurData.carteElecteur" />
 
 
 
@@ -312,6 +300,18 @@ function modifier() {
 
 }
 
+.add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px !important;
+  height: 30px;
+  border-radius: 100%;
+  padding: 5px;
+  margin-left: 20px;
+
+}
+
 .cancel {
   width: 100px !important;
   background-color: #fff !important;
@@ -425,6 +425,14 @@ function modifier() {
   border-radius: 10px;
   width: 95%;
 
+}
+
+.tritreModal {
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  padding-bottom: 10px;
+  padding-left: 5%;
 }
 
 .title {

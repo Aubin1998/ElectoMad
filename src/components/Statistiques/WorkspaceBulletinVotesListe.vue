@@ -11,7 +11,7 @@
                 <div class="numero">
                     <h4>{{ item.id }}</h4>
                 </div>
-                <h3>{{item.nom}}</h3>
+                <h3>{{ item.nom }}</h3>
                 <h2>NOM</h2>
 
             </div>
@@ -177,8 +177,7 @@
     <div class="modal" v-if="show.showModalSupprimer">
         <div class="contenaireModalSupp">
             <h4 class="supp">
-                Voulez vous vraiment supprimer
-            </h4>
+                Voulez-vous vraiment supprimer </h4>
             <h4 class="suppNom">
                 Aubin ?
             </h4>

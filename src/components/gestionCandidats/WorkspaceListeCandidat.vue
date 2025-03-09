@@ -138,7 +138,7 @@
 
         <div class="modal backdrop-blur" v-if="show.showModalAjout">
 
-            <div class="contenaireModal bg-red-500">
+            <div class="contenaireModal ">
                 <div class="flex justify-between items-center">
                     <h1 class="tritreModal">AJOUT NOUVEAU CANDIDAT {{
                         anneeElectorale?.anneeElectoraleChoisi.descriptionAnnee }} : {{
@@ -371,8 +371,8 @@ function adds() {
 
     // Mapping des descriptions aux actions
     const actions = {
-        "Présidentiel": () => {
-            console.log('Présidentiel');
+        "Présidentielle": () => {
+            console.log('Présidentielle');
             show.showModalAjout = !show.showModalAjout;
         },
         "Municipale : Conseillé municipaux": () => {
@@ -398,9 +398,10 @@ function adds() {
 }
 
 
-
+// filtrage
 watch(anneeVerifier, (newList, oldList) => {
-    console.log("zzzzzzzzzzzzzzzzz", newList);
+    listeCandidatVerifier.value = []
+    console.log("bbbbbbbbbb", newList);
 
     listeCandidat.allListeCandidat.map((candidat) => {
         if (candidat.candidat.annee_electorale.annee === newList) {
@@ -409,10 +410,24 @@ watch(anneeVerifier, (newList, oldList) => {
     });
 });
 
+watch(() => listeCandidat.randomVal, (newList, oldList) => {
+    listeCandidatVerifier.value = []
+    console.log("aaaaaaaaaaa", newList);
+
+    listeCandidat.allListeCandidat.map((candidat) => {
+        if (candidat.candidat.annee_electorale.annee === anneeSelect.value) {
+            console.log('bonga', anneeSelect.value);
+
+            listeCandidatVerifier.value.push(candidat);
+        }
+    });
+    console.log('bonga2.0', listeCandidatVerifier.value);
+});
+
 
 watch(() => anneeSelectData.value, (newList, oldList) => {
     console.log('niova', newList);
-    if ("Présidentiel" === newList.descriptionAnnee) {
+    if ("Présidentielle" === newList.descriptionAnnee) {
 
     }
 
@@ -420,11 +435,11 @@ watch(() => anneeSelectData.value, (newList, oldList) => {
 
 });
 
-watch(() => listeCandidat.allListeCandidat, (newList, oldList) => {
+// watch(() => listeCandidat.allListeCandidat, (newList, oldList) => {
 
-    listeCandidatVerifier.value = newList
+//     listeCandidatVerifier.value = newList
 
-});
+// });
 
 const filteredCandidats = computed(() => {
     if (!searchTerm.value) {
@@ -716,8 +731,8 @@ option {
 }
 
 .contenaireModal {
-    width: 46%;
-    height: 25vh;
+    width: 100%;
+    height: 100vh;
     background-color: #414752;
     border-radius: 10px;
     margin: 0 auto;

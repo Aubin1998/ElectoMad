@@ -193,8 +193,7 @@
     <div class="modal" v-if="show.showModalSupprimer">
         <div class="contenaireModalSupp">
             <h4 class="supp">
-                Voulez vous vraiment supprimer
-            </h4>
+                Voulez-vous vraiment supprimer </h4>
             <h4 class="suppNom">
                 Aubin ?
             </h4>

@@ -49,6 +49,7 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 	const modifierElecteurData = ref();
 	const voirElecteurData = ref();
 
+
 	const Modifierelecteur_id = ref('');
 	const ModifiernomComplet = ref('');
 	const Modifierprofession = ref('');
@@ -69,13 +70,18 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 	const Modifierdistrict = ref('');
 	const Modifiercommune = ref('');
 	const Modifierfokontany = ref('');
+	const params = ref()
+	const paramsId = ref()
+	const listElecteursFiltrer = ref([])
 
 	const allListeElecteur = ref('');
+	const listBureaux = ref();
 	const Modifieruser_id = ref('');
 
 	const electeurs = ref([]);
 
 	const electeurFind = ref()
+	const presidentData = ref(null)
 
 
 	const fileUpload = ref()
@@ -100,9 +106,8 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 		}).then((response) => {
 
 
-
 			console.log('recherche', response.data);
-			
+
 			if (response.data.status === 'success') { // Stockage des données dans l'état du store si la recherche est réussie
 				electeurFind.value = response.data.data;
 				console.log('Electeur trouvé:', response.data.data);
@@ -160,6 +165,8 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 				fokontany: localStorage.getItem('fokontany')
 			}
 		}).then((response) => {
+
+
 			electeurs.value = response.data;
 
 			if (response.status === 200) {
@@ -168,19 +175,19 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 
 				// console.log('ty isy', response.data);
 				// response.data.map((item) => {
-				// 	let data1
-				// 	if (item.file) {
-				// 		data1 = item
+				// let data1
+				// if (item.file) {
+				// data1 = item
 
-				// 		console.log('peee', item.file ?. titre)
-				// 		data1.file.titre = "http://127.0.0.1:8000/" + item.file.titre
+				// console.log('peee', item.file ?. titre)
+				// data1.file.titre = "http://127.0.0.1:8000/" + item.file.titre
 
-				// 	} else {
-				// 		data1 = item
-				// 	}
+				// } else {
+				// data1 = item
+				// }
 
-				// 	//
-				// 	data.push(data1)
+				// //
+				// data.push(data1)
 				// })
 
 
@@ -348,72 +355,13 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			console.error("Erreur lors de l'upload de l'image :", error);
 		}
 	};
-	function updateElecteur(id) {
 
-		// adresse: "uijo"
-		// annee_electorale_id: 2
-		// carteElecteur: "io"
-		// commune: "AMBALAHONKO"
-		// created_at : "2025-02-07T13:59:40.000000Z"
-		// dateDelivreCIN: "2025-02-15T13:59:00.000Z"
-		// dateInscription: "2025-02-14T13:59:00.000Z"
-		// dateNaissance: "2025-02-05T13:59:00.000Z"
-		// district: "AMBANJA"
-		// filiation: "ui"
-		// fokontany: "AMBALAHONKO"
-		// id: 13
-		// lieuDelivreCIN: "uio"
-		// lieuNaissance: "tyu"
-		// nomComplet: "sdrf"
-		// numeroCIN: "yu"
-		// profession: "uijo"
-		// region: "DIANA"
-		// sexe: "yui"
-		// status : null
-		// telephone: "tyu"
-		// updated_at : "2025-02-07T13:59:40.000000Z"
-		// user : created_at : "2025-02-07T13:59:40.000000Z"
-		// email: "rfcfhhhhhhhhh@gmail.com"
-		// email_verified_at : null
-		// id: 13
-		// showPasswords : "0"
-		// updated_at : "2025-02-07T13:59:40.000000Z"
-		// username: "sdrf"
-		// [[Prototype]] : Object
-		// user_id: 13
 
-		let updatedData = {
-			electeur_id: modifierElecteurData.value.id,
-			nomComplet: modifierElecteurData.value.nomComplet,
-			profession: modifierElecteurData.value.profession,
-			adresse: modifierElecteurData.value.adresse,
-			numeroCIN: modifierElecteurData.value.numeroCIN,
-			dateDelivreCIN: modifierElecteurData.value.dateDelivreCIN,
-			lieuDelivreCIN: modifierElecteurData.value.lieuDelivreCIN,
-			carteElecteur: modifierElecteurData.value.carteElecteur,
-			sexe: modifierElecteurData.value.sexe,
-			lieuNaissance: modifierElecteurData.value.lieuNaissance,
-			filiation: modifierElecteurData.value.filiation,
-			dateNaissance: modifierElecteurData.value.dateNaissance,
-			telephone: modifierElecteurData.value.telephone,
-			dateInscription: modifierElecteurData.value.dateInscription,
-			annee_electorale_id: modifierElecteurData.value.annee_electorale_id,
-			email: modifierElecteurData.value.user.email,
-
-			user_id: modifierElecteurData.value.user_id,
-
-			region: modifierElecteurData.value.region,
-			district: modifierElecteurData.value.district,
-			commune: modifierElecteurData.value.commune,
-			fokontany: modifierElecteurData.value.fokontany,
-			verifier: false
-		};
-
-		console.log('updatedData', updatedData);
+	function updateElecteur(id, objet) {
 
 
 		show.showSpinner = true;
-		axios.put(`${URL}/api/electeur/${id}`, updatedData, {
+		axios.put(`${URL}/api/electeur/${id}`, objet, {
 			headers: {
 				Authorization: `Bearer ${
 					auth.token
@@ -495,12 +443,439 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 			show.showSpinner = false;
 		});
 	}
+
+	const allElecteurDataDistrict = ref()
+	const allElecteurDataDistrictlength = ref()
+	const nonlistVerifierNumber = ref(0)
+
+
+	function getElecteurDistrict(param, anneeId) {
+		show.showSpinner = true;
+
+		axios.get(`${URL}/api/electeursDistrict/${anneeId}`, {
+			headers: {
+				"Content-Type": "application/json"
+			},
+			params: param
+		}).then((response) => {
+			if (response.status === 200) {
+				allElecteurDataDistrict.value = response.data;
+				allElecteurDataDistrictlength.value = response.data.length
+				console.log('length', response.data.length);
+
+				for (let index = 0; index < response.data.length; index++) {
+					const element = response.data[index];
+					console.log('verifier pory', element.verifier);
+
+
+					if (element.verifier === 1) {
+
+						nonlistVerifierNumber.value += 1
+						console.log('verifier pory zero', nonlistVerifierNumber.value);
+					}
+				}
+
+
+				console.log('electeurDistrict', nonlistVerifierNumber.value);
+
+
+				show.showAlert = true;
+				show.showAlertType = 'success';
+				show.showAlertMessage = 'Données des électeurs récupérées avec succès';
+			} else {
+				show.showAlert = true;
+				show.showAlertType = 'warning';
+				show.showAlertMessage = 'Échec de la récupération des données des électeurs';
+			}
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}).catch((err) => {
+			show.showAlert = true;
+			show.showAlertType = 'danger';
+			show.showAlertMessage = 'Erreur lors de la récupération des données des électeurs';
+			console.error(err);
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}). finally(() => {
+			show.showSpinner = false;
+		});
+	}
+
+	function verifierElecteur(id) {
+		show.showSpinner = true;
+
+		axios.put(`${URL}/api/electeurs/${id}/valider`, {}, {
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).then((response) => {
+			if (response.status === 200) {
+				getElecteurDistrict(params.value, paramsId.value);
+				show.showAlert = true;
+				show.showAlertType = 'success';
+				show.showAlertMessage = 'Électeur vérifié avec succès';
+			} else {
+				show.showAlert = true;
+				show.showAlertType = 'warning';
+				show.showAlertMessage = 'Échec de la vérification de l\'électeur';
+			}
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}).catch((err) => {
+			show.showAlert = true;
+			show.showAlertType = 'danger';
+			show.showAlertMessage = 'Erreur lors de la vérification de l\'électeur';
+			console.error(err);
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}). finally(() => {
+			show.showSpinner = false;
+		});
+	}
+
+
 	onMounted(() => {
 		getElecteurs();
 	});
+
+
+	function getElecteurFiltrer(param) {
+		console.log(param);
+
+		show.showSpinner = true;
+
+		axios.get(`${URL}/api/electeurs/filter`, {
+			params: param,
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).then((response) => {
+			console.log('response fif : ', response.data);
+
+			if (response.status === 200) {
+				const listElecteurFilterFonkontany = filterElecteurs(response.data, param);
+				listElecteursFiltrer.value = listElecteurFilterFonkontany
+				show.showAlert = true;
+				show.showAlertType = 'success';
+				show.showAlertMessage = 'Données des électeurs récupérées avec succès';
+			} else {
+				show.showAlert = true;
+				show.showAlertType = 'warning';
+				show.showAlertMessage = 'Échec de la récupération des données des électeurs';
+			}
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}).catch((err) => {
+			show.showAlert = true;
+			show.showAlertType = 'danger';
+			show.showAlertMessage = 'Erreur lors de la récupération des données des électeurs';
+			console.error(err);
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}). finally(() => {
+			show.showSpinner = false;
+		});
+	}
+
+	function updateElecteurRole(id, role) {
+		console.log(`Updating role for elector ID: ${id}, new role: ${role}`);
+
+		show.showSpinner = true;
+
+		axios.put(`${URL}/api/electeurs/${id}/role`, {
+			role: role
+		}, {
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).then((response) => {
+			console.log('response : ', response.data);
+
+			if (response.status === 200) {
+				presidentData.value = response.data
+				show.showAlert = true;
+				show.showAlertType = 'success';
+				show.showAlertMessage = 'Rôle de l\'électeur mis à jour avec succès';
+			} else {
+				show.showAlert = true;
+				show.showAlertType = 'warning';
+				show.showAlertMessage = 'Échec de la mise à jour du rôle de l\'électeur';
+			}
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}).catch((err) => {
+			show.showAlert = true;
+			show.showAlertType = 'danger';
+			show.showAlertMessage = 'Erreur lors de la mise à jour du rôle de l\'électeur';
+			console.error(err);
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}). finally(() => {
+			show.showSpinner = false;
+		});
+	}
+
+	function getElecteurFiltrerRole(param) {
+		console.log(param);
+
+		show.showSpinner = true;
+
+		axios.get(`${URL}/api/electeurs/role`, {
+			params: param,
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).then((response) => {
+			console.log('response role por : ', response.data);
+
+			const listElecteurFilterFonkontany = filterElecteurs(response.data, param);
+			listElecteursFiltrer.value = listElecteurFilterFonkontany
+
+			presidentData.value = listElecteurFilterFonkontany.find((electeur) => electeur.role === 'president des bureaux de vote');
+			getBureauxByElecteurId(presidentData.value.id)
+
+
+			if (response.status === 200) {
+				show.showAlert = true;
+				show.showAlertType = 'success';
+				show.showAlertMessage = 'Données des électeurs récupérées avec succès';
+			} else {
+				show.showAlert = true;
+				show.showAlertType = 'warning';
+				show.showAlertMessage = 'Échec de la récupération des données des électeurs';
+			}
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}).catch((err) => {
+			show.showAlert = true;
+			show.showAlertType = 'danger';
+			show.showAlertMessage = 'Erreur lors de la récupération des données des électeurs';
+			console.error(err);
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}). finally(() => {
+			show.showSpinner = false;
+		});
+	}
+
+	function filterElecteurs(electeurs, params) {
+		return electeurs.filter(electeur => {
+			return((! params.annee_electorale_id || electeur.annee_electorale_id === params.annee_electorale_id) && (! params.region || electeur.region === params.region) && (! params.district || electeur.district === params.district) && (! params.commune || electeur.commune === params.commune) && (! params.fokontany || electeur.fokontany === params.fokontany));
+		});
+	}
+
+	function createBureau(formData) {
+
+
+		show.showSpinner = true;
+		axios.post(`${URL}/api/bureau`, formData, {
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).then((response) => {
+			if (response.status === 201) {
+				console.log('Bureau créé avec succès', response.data);
+				getBureauxByElecteurId(formData.electeur_id)
+				show.showCreationBureau = false
+				show.showAlert = true;
+				show.showAlertType = 'success';
+				show.showAlertMessage = 'Bureau créé avec succès';
+			} else {
+				show.showAlert = true;
+				show.showAlertType = 'warning';
+				show.showAlertMessage = 'Échec de la création du bureau';
+			}
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}).catch((err) => {
+			show.showAlertType = 'danger';
+			show.showAlertMessage = 'Erreur lors de la création du bureau';
+			console.error(err);
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}). finally(() => {
+			show.showSpinner = false;
+		});
+	}
+
+	function updateBureau(id) {
+		let formData = {
+			nomBureau: nomBureau.value,
+			adresse: adresse.value,
+			responsable: responsable.value,
+			dateOuverture: dateOuverture.value,
+			dateFermeture: dateFermeture.value,
+			region: JSON.parse(localStorage.getItem('selectRegion')),
+			district: JSON.parse(localStorage.getItem('selectDistrict')),
+			commune: JSON.parse(localStorage.getItem('selectCommune')),
+			fokontany: JSON.parse(localStorage.getItem('selectFokontany')),
+			electeur_id: electeur_id.value
+		};
+
+		show.showSpinner = true;
+		axios.put(`${URL}/api/bureaux/${id}`, formData, {
+			headers: {
+				Authorization: `Bearer ${
+					auth.token
+				}`
+			}
+		}).then((response) => {
+			if (response.status === 200) {
+				console.log('Bureau mis à jour avec succès', response);
+				// Réinitialiser les champs d'entrée
+				nomBureau.value = '';
+				adresse.value = '';
+				responsable.value = '';
+				dateOuverture.value = '';
+				dateFermeture.value = '';
+				region.value = '';
+				district.value = '';
+				commune.value = '';
+				fokontany.value = '';
+				electeur_id.value = '';
+
+				show.showAlert = true;
+				show.showAlertType = 'success';
+				show.showAlertMessage = 'Bureau mis à jour avec succès';
+			} else {
+				show.showAlert = true;
+				show.showAlertType = 'warning';
+				show.showAlertMessage = 'Échec de la mise à jour du bureau';
+			}
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}).catch((err) => {
+			show.showAlertType = 'danger';
+			show.showAlertMessage = 'Erreur lors de la mise à jour du bureau';
+			console.error(err);
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}). finally(() => {
+			show.showSpinner = false;
+		});
+	}
+
+	function getBureauxByElecteurId(electeur_id) {
+		console.log(electeur_id);
+
+		show.showSpinner = true;
+
+		axios.get(`${URL}/api/bureaux/electeur/${electeur_id}`, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${
+					auth.token
+				}`
+			}
+		}).then((response) => {
+			console.log('Réponse : ', response.data[0]);
+
+			if (response.status === 200) {
+				listBureaux.value = response.data[0];
+				show.showAlert = true;
+				show.showAlertType = 'success';
+				show.showAlertMessage = 'Données des bureaux récupérées avec succès';
+			} else {
+				show.showAlert = true;
+				show.showAlertType = 'warning';
+				show.showAlertMessage = 'Échec de la récupération des données des bureaux';
+			}
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}).catch((err) => {
+			show.showAlert = true;
+			show.showAlertType = 'danger';
+			show.showAlertMessage = 'Erreur lors de la récupération des données des bureaux';
+			console.error(err);
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		}). finally(() => {
+			show.showSpinner = false;
+		});
+	}
+
+
 	return {
+		updateElecteurRole,
+		getBureauxByElecteurId,
+		presidentData,
+		updateBureau,
+		listBureaux,
+		getElecteurFiltrerRole,
+		getElecteurFiltrer,
+		createBureau,
+		verifierElecteur,
+		allElecteurDataDistrictlength,
+		allElecteurDataDistrict,
+		nonlistVerifierNumber,
+		getElecteurDistrict,
 		searchElecteur,
 		electeurs,
+		listElecteursFiltrer,
 		Modifierregion,
 		Modifierdistrict,
 		Modifiercommune,
@@ -510,7 +885,7 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 		district,
 		commune,
 		fokontany,
-
+		params,
 		voirElecteurData,
 		modifierElecteurData,
 		Modifierannee_electorale_id,
@@ -519,6 +894,7 @@ export const uselisteElecteur = defineStore('ListeElecteur', () => {
 		dateNaissance,
 		lieuNaissance,
 		sexe,
+		paramsId,
 		filiation,
 		numeroCIN,
 

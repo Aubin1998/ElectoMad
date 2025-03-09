@@ -19,10 +19,14 @@
         <h3>Se connecter</h3>
       </div>
       <h5>
-        <span @click="show.showSingUpFunc()" class="forgotPass">Mot de passe oublié ?</span>
+        <span @click="show.showSingUpFunc()" class="forgotPass">Cette page est réservée aux utilisateurs
+          autorisés.</span>
       </h5>
-      <p class=" mt-2 text-xs text-gray-400 text-center">Vous n'avez pas de compte ? <b @click="show.showSingUpFunc"
-          class="text-blue-500 cursor-pointer">S'incrire ici</b></p>
+      <p class="mt-2 text-xs text-gray-400 text-center">
+        Vous n'avez pas de compte ?
+        <b @click="goToAcceuil()" class="text-blue-500 cursor-pointer">Retour à l'accueil</b>
+      </p>
+
     </div>
   </div>
 </template>
@@ -54,6 +58,8 @@ function goToAcceuil() {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url('/effect.png');
+
 }
 
 .container {

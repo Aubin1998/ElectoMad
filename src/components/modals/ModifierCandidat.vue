@@ -50,7 +50,7 @@
 
 
                         <SelectInput label="Sexe" defaultOption="" :options="[
-                            { text: 'Masculin', value: 'Masculin' },
+                            { text: 'Homme', value: 'Homme' },
                             { text: 'Femme', value: 'Femme' }
                         ]" v-model="listeCandidat.Modifiersexe" />
 
@@ -180,7 +180,7 @@
                     <SelectInput label=" Certificat de résidence " defaultOption="" :options="[
                         { text: 'Oui', value: 'oui' },
                         { text: 'Non', value: 'non' }
-                    ]"v-model="listeCandidat.ModifiercertificatResidence" />
+                    ]" v-model="listeCandidat.ModifiercertificatResidence" />
 
 
 
@@ -188,7 +188,7 @@
 
                 </div>
 
-              
+
 
             </div>
         </div>

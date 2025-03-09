@@ -78,26 +78,6 @@
                                 </svg></button>
                         </div>
                     </form>
-                    <!-- <form class="max-w-md mx-[5px]" v-if="district">
-
-                        <div class="relative w-[250px]">
-
-                            <input type="search" id="default-search"
-                                class="block w-full p-2  text-sm text-gray-900 border border-gray-300
-                                 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 
-                                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Rechecher commune" required />
-                            <button type="submit"
-                                class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800
-                                 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm
-                                  px-2   py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-full">
-                                <svg class="w-3 h-3 text-gray-500 text-white" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg></button>
-                        </div>
-                    </form> -->
 
 
 
@@ -149,7 +129,7 @@
                     <div class="w-[20%] p-2 flex flex-col items-center">
                         <h3 class="label">Date de naissance</h3>
                         <Datepicker v-model="listeCandidat.dateNaissance" placeholder="Insérez une date de naissance"
-                            style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;" 
+                            style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;"
                             class="input" format="dd-MM-yyyy" />
                     </div>
                     <div class="w-[20%] p-2 flex flex-col items-center">
@@ -187,13 +167,13 @@
                             v-model="listeCandidat.numeroCIN" />
                     </div>
 
-                    
+
 
 
                     <div class="w-[20%] p-2 flex flex-col items-center">
                         <h3 class="label">Date de délivrance CIN</h3>
                         <Datepicker v-model="listeCandidat.dateDelivreCIN" placeholder="Insérez une date de naissance"
-                            style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;" 
+                            style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;"
                             class="input" format="dd-MM-yyyy" />
                     </div>
 
@@ -234,14 +214,14 @@
 
 
 
-                    
+
                     <div class="w-[20%] p-2 flex flex-col items-center">
                         <h3 class="label">Date d'inscription </h3>
                         <Datepicker v-model="listeCandidat.dateInscription" placeholder="Insérez une date de naissance"
-                            style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;" 
+                            style="padding: 5px 10px;width: 100%;border-radius: 5px;border: 1px solid #aaaac5;background-color: #3c4c6d09;color: #fafbfd;"
                             class="input" format="dd-MM-yyyy" />
                     </div>
-                   
+
                     <div class="w-[20%] p-2 flex flex-col items-center">
                         <h3 class="label"> Année électorale</h3>
                         <select class="annee" v-model="listeCandidat.annee_electorale_id" id="">
@@ -320,16 +300,6 @@
                 </div>
 
             </div>
-
-
-
-
-
-
-
-
-
-
 
         </div>
 

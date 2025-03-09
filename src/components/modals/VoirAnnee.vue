@@ -5,7 +5,7 @@
       <div class="content">
         <h1 class="title">Bienvenue aux Élections</h1>
         <p class="message">Préparez-vous pour les élections à venir.</p>
-        <button class="cta-button">Voir les années électorales</button>
+        <button class="cta-button" v-if="show.user == 'admin'">Voir les années électorales</button>
       </div>
     </div>
   </Transition>

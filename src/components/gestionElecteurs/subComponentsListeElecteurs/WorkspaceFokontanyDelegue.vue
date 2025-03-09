@@ -2,7 +2,7 @@
   <div class="list" v-if="show.user == 'admin'">
     <div class="titre">
       <h4 class="subtitle">
-        Liste des électeurs
+        Liste des électeurs delegue
       </h4>
       <h4 class="number">{{ listFokontany.length }}</h4>
       <h3 class="btnAdd add" @click="see()">Ajouter</h3>

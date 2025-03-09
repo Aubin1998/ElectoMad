@@ -1,10 +1,9 @@
 <template>
-  <Transition>
-    <div class="modal backdrop-blur-[2px]" v-if="show.showModalSupprimer">
+    <Transition>
+        <div class="modal backdrop-blur-[2px]" v-if="show.showModalSupprimer">
             <div class="contenaireModalSupp">
                 <h4 class="supp">
-                    Voulez vous vraiment supprimer
-                </h4>
+                    Voulez-vous vraiment supprimer </h4>
                 <h4 class="suppNom">
                     ce candidat(e) ?
                 </h4>
@@ -15,7 +14,7 @@
             </div>
         </div>
 
-  </Transition>
+    </Transition>
 </template>
 
 <script setup>
@@ -36,7 +35,7 @@ const anneeElectorale = useAnneeElectorale();
 
 function accepter() {
     listeCandidat.deleteCandidat(listeCandidat.supprimerData.candidat.id)
-    
+
 }
 
 
@@ -342,4 +341,3 @@ input-placeholder {
 
 }
 </style>
-

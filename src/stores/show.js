@@ -6,9 +6,18 @@ import {useAuth} from "@/stores/auth";
 export const useShow = defineStore('Show', () => {
 	const auth = useAuth()
 	const municipaux = ref(false)
+	const electeurDistrict = ref(false)
+
+	const showSaisirElecteur = ref(false)
+
 	const user = ref()
 	const showModalAjoutImage = ref(false)
+	const electeurDistrictData = ref()
+	const showCreationBureau = ref(false)
+	const showDataParamBureau = ref({})
+
 	const senateur = ref(false)
+	const showTest = ref(false)
 	const showLogin = ref(true)
 	const deputes = ref(false)
 	const showSingUp = ref(false)
@@ -45,6 +54,33 @@ export const useShow = defineStore('Show', () => {
 	const showUser = ref(false)
 	const showAdmin = ref(false)
 	const showModalCIN = ref(false)
+	const showControleElecteur = ref(false)
+	const showSelectAction = ref('')
+	const optionText = ref('')
+	const showAnneElectoral = ref(false);
+	const showGenreElection = ref(false);
+	const showListeCandidat = ref(false);
+	const showAjoutCandidat = ref(false);
+	const showListeElecteurs = ref(false);
+	const showFiltrageRecherche = ref(false);
+	const showActionsGestion = ref(false);
+	const showSurveillance = ref(false);
+	const showCreation = ref(false);
+	const showListe = ref(false)
+	const showAjoutUtilisateur = ref(false)
+	const showListeUtilisateurs = ref(false)
+	const showChanger = ref(false)
+	const showElecteurInscrit = ref(false)
+	const showBureauActifs = ref(false)
+	const showTauxParticipation = ref(false)
+	const showNombreTotalVotes = ref(false)
+	const showMesTaches = ref(false)
+	const showAutres = ref(false)
+
+
+	const aubin = ref({})
+
+
 	const see = ref(true)
 
 	function showLoginFunc() {
@@ -67,7 +103,6 @@ export const useShow = defineStore('Show', () => {
 
 	function showDescFunc() {
 		showDesc.value = ! showDesc.value
-		// !showDesc.value veut dire exécute le cas contraire , soit true soit false
 
 	}
 	function showElectionFunc() {
@@ -192,31 +227,32 @@ export const useShow = defineStore('Show', () => {
 	}
 
 	// Variable of  subsection list
-	const optionText = ref('')
-	const showAnneElectoral = ref(false);
-	const showGenreElection = ref(false);
-	const showListeCandidat = ref(false);
-	const showAjoutCandidat = ref(false);
-	const showListeElecteurs = ref(false);
-	const showFiltrageRecherche = ref(false);
-	const showActionsGestion = ref(false);
-	const showSurveillance = ref(false);
-	const showCreation = ref(false);
-	const showListe = ref(false)
-	const showAjoutUtilisateur = ref(false)
-	const showListeUtilisateurs = ref(false)
-	const showChanger = ref(false)
-	const showElecteurInscrit = ref(false)
-	const showBureauActifs = ref(false)
-	const showTauxParticipation = ref(false)
-	const showNombreTotalVotes = ref(false)
-	const showMesTaches = ref(false)
-	const showAutres = ref(false)
+
+	// Function to handle the display logic for different options
+	function handleOption(option) {
+		showSelectAction.value = option;
+		acceuil.value = false;
+		console.log('ici', showSelectAction.value);
+
+		switch (option) {
+			case 'Liste complète des électeurs':
+			case 'Président des bureaux':
+			case 'Enregistrer les délégués': showListeElecteurs.value = true;
+				break;
+			default: showListeElecteurs.value = false;
+				break;
+		}
+	}
+
+	// Example usage
 
 
 	// condition non ternaire
 	function setOption(option) { // set option ampesaign @condition jiaby, na showElectionFunc na showElecteurFunc na ...
 		optionText.value = option
+
+		handleOption(option);
+
 		// for election
 		if (option === 'Année électorale') {
 			showElectionFunc()
@@ -266,16 +302,39 @@ export const useShow = defineStore('Show', () => {
 		} else {
 			showAjoutCandidat.value = false
 		}
-		// for electeur
-		if (option === 'Liste complète des électeurs') {
-			showElecteurFunc()
-			showListeElecteurs.value = true
+
+		if (option === 'Contrôle des électeurs') {
+			// showElecteurFunc()
+			// mama
+			showControleElecteur.value = true
 			acceuil.value = false
 
 
 		} else {
-			showListeElecteurs.value = false
+			showControleElecteur.value = false
 		}
+
+		if (option === 'test') {
+
+			showTest.value = true
+			acceuil.value = false
+
+
+		} else {
+			showTest.value = false
+		}
+
+		if (option === 'Saisir les données') {
+			// showElecteurFunc()
+			// mama
+			showSaisirElecteur.value = true
+			acceuil.value = false
+
+
+		} else {
+			showSaisirElecteur.value = false
+		}
+
 
 		if (option === 'Filtrage et recherche') {
 			showElecteurFunc()
@@ -1068,6 +1127,10 @@ export const useShow = defineStore('Show', () => {
 		showAutres.value = false
 		showListeCandidat.value = false
 		showAjoutCandidat.value = false
+		showControleElecteur.value = false
+		showSaisirElecteur.value = false
+		showTest.value = false
+
 
 	}
 
@@ -1083,9 +1146,6 @@ export const useShow = defineStore('Show', () => {
 	const typeDistrict = ref(false)
 	const typeCommune = ref(false)
 	const afterTypeCandidat = ref(false)
-
-
-
 
 
 	function showTypeElection(itemName) {
@@ -1104,21 +1164,30 @@ export const useShow = defineStore('Show', () => {
 		// Réinitialiser toutes les valeurs à false
 		for (const key in itemMap) {
 			itemMap[key].value = false;
-			
+
 		}
 
 		// Activer l'élément sélectionné
 		if (itemMap[itemName]) {
 			itemMap[itemName].value = true;
-			console.log('1', itemName );
-			console.log('2', itemMap[itemName].value );
-			
+			console.log('1', itemName);
+			console.log('2', itemMap[itemName].value);
+
 		}
 	}
 
-const showCandidatDataImage = ref()
-	return {
+	const showCandidatDataImage = ref()
 
+	const showProvinceElecteurOS = ref()
+	const listeCommuneOS = ref()
+	const listeFokontanyOS = ref()
+	const listePersonneOS = ref()
+	return {
+		listePersonneOS,
+		listeFokontanyOS,
+		listeCommuneOS,
+		showProvinceElecteurOS,
+		showSaisirElecteur,
 		typeProvince,
 		typeRegion,
 		typeDistrict,
@@ -1127,6 +1196,8 @@ const showCandidatDataImage = ref()
 		showTypeElection,
 		showAreas,
 		municipaux,
+		electeurDistrict,
+		electeurDistrictData,
 		depute,
 		showModalAjoutUtilisateur,
 		showAdmin,
@@ -1137,6 +1208,7 @@ const showCandidatDataImage = ref()
 		showModalElecteurSupprimer,
 		showModalModifierElecteur,
 		showModalCIN,
+		showControleElecteur,
 		showModalVoirElecteur,
 		showModalVoirElecteurFunc,
 		showVoirAnnee,
@@ -1184,6 +1256,7 @@ const showCandidatDataImage = ref()
 
 
 		isProvinceSpecial,
+		showDataParamBureau,
 
 		showOption,
 		isOptionProvince,
@@ -1204,6 +1277,7 @@ const showCandidatDataImage = ref()
 
 		// vao2
 		showListeCommuneFunc,
+		showCreationBureau,
 		listeCommune,
 		dataCommune,
 
@@ -1214,6 +1288,7 @@ const showCandidatDataImage = ref()
 		listePersonneFunc,
 		listePersonne,
 		dataPersonne,
+		showSelectAction,
 
 		// se connecter
 		showLogin,
@@ -1236,6 +1311,7 @@ const showCandidatDataImage = ref()
 		showBureau,
 		showBureauFunc,
 		showUtilisateur,
+		showTest,
 		showUtilisateurFunc,
 		showStatistique,
 		showStatistiqueFunc,
@@ -1252,8 +1328,9 @@ const showCandidatDataImage = ref()
 		showUtilisateurActive,
 		showStatistiquesActive,
 		showHistoriqueActive,
-		showModalAjoutImage, 
+		showModalAjoutImage,
 		showCandidatDataImage,
+		electeurDistrictData,
 
 		// importation subsection list
 		optionText,
@@ -1420,7 +1497,7 @@ const showCandidatDataImage = ref()
 		showCommuneElecteurAndranonahoatra,
 		showCommuneElecteurAnosizatoFunc,
 		deputes,
-	senateur,
+		senateur,
 		showCommuneElecteurAnosizato,
 		showCommuneElecteurIvato1Func,
 		showCommuneElecteurIvato1,
@@ -1452,7 +1529,8 @@ const showCandidatDataImage = ref()
 
 		showOptionCommune,
 		fokontanyData*/
-		showChoixElectionFunc
+		showChoixElectionFunc,
+		aubin
 
 	}
 

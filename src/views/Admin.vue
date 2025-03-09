@@ -57,12 +57,12 @@
         <SupprimerElecteur />
     </Teleport>
 
-    
+
     <Teleport to="body">
         <ModaleCIN />
     </Teleport>
 
-     
+
     <Teleport to="body">
         <ModalAreas />
     </Teleport>
@@ -76,7 +76,16 @@
     <Teleport to="body">
         <ModalAreasSenateur />
     </Teleport>
-    
+
+    <Teleport to="body">
+        <ModalVoirElecteur />
+    </Teleport>
+
+    <Teleport to="body">
+        <ModalCreationBureau />
+    </Teleport>
+
+
 </template>
 
 <script setup>
@@ -106,6 +115,8 @@ import ModalAreas from "@/components/gestionCandidats/ModalAreas.vue";
 import ModalAreasCommune from "@/components/gestionCandidats/ModalAreasCommune.vue";
 import ModalAreasDeputes from "@/components/gestionCandidats/ModalAreasDeputes.vue";
 import ModalAreasSenateur from "@/components/gestionCandidats/ModalAreasSenateur.vue";
+import ModalVoirElecteur from "@/components/gestionCandidats/ModalVoirElecteur.vue";
+import ModalCreationBureau from "@/components/gestionBureaux/ModalCreationBureau.vue";
 
 
 

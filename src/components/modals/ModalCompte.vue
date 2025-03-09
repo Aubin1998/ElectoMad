@@ -13,26 +13,27 @@
                 "Mon compte" : "Modifier mon compte" }}
               </h2>
 
-              <div class="py-4 md:py-8">
-                <div class="mb-4 grid gap-4 sm:grid-cols-2 sm:gap-8 lg:gap-16">
+              <div class="py-4 md:py-8  flex1  flex-col justify-center  ">
+                <div class="mb-4 grid gap-4 sm:grid-cols-2 sm:gap-8 lg:gap-16  justify-items-center w-[100%]">
 
 
                   <div class="space-y-2">
-                    <div class="flex space-x-4">
+
+                    <div class="flex1  h-[148px]">
                       <!-- <img class="h-16 w-16 rounded-lg object-cover" src="/profil.png" alt="Helene avatar" /> -->
 
 
 
-                      <div class=" w-[30%] flex justify-center items-center   ">
+                      <div class=" w-[50%] h-[90%] flex1 justify-center items-center  ">
                         <img v-if="utilisateur.user.file?.titre" :src="utilisateur.user.file?.titre" alt=""
-                          class="object-cover  mt-8   h-16 w-16 rounded-lg object-cover" />
+                          class="size-full rounded-tl-xl rounded-tr-xl  object-cover" />
 
                         <div class="file-input-container" v-else>
                           <input type="file" @change="(event) => onFileChange(event, utilisateur.user.id)"
                             id="file-upload" class="file-input-label" />
                           <label for="file-upload"
-                            class="flex items-center justify-center w-full h-full bg-[#e1dada] rounded-full cursor-pointer text-[24px]">
-                            <i class="pi pi-camera text-red-500"></i>
+                            class="flex1 items-center justify-center w-full h-full bg-[#130e0e] rounded-full cursor-pointer text-[24px]">
+                            <i class="pi pi-camera cursor-pointer text-gray-500 pointer-events-auto"></i>
                           </label>
                         </div>
 
@@ -42,8 +43,8 @@
                           <input type="file" @change="(event) => onFileChange(event, utilisateur.user.id)"
                             id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
                           <label for="file-upload"
-                            class="flex items-center justify-center w-full h-full  rounded-full cursor-pointer text-[24px]">
-                            <i class="pi pi-camera "></i>
+                            class="flex1 items-center justify-center w-full h-full  rounded-full cursor-pointer text-[24px]">
+                            <i class="pi pi-camera cursor-pointer text-gray-500 pointer-events-auto"></i>
                           </label>
                         </div>
                       </div>
@@ -52,7 +53,7 @@
 
 
 
-                      <div>
+                      <div class="w-[50%]">
                         <span
                           class="inline-block rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
                           Compte administrateur</span>
@@ -78,94 +79,81 @@
 
 
 
+                    <div class="w-[100%] ">
+                      <dl class="mb-3">
+                        <dt class="font-semibold text-gray-900 dark:text-white pb-1">Adresse e-mail</dt>
+                        <template v-if="!isEditing">
+
+                          <div class="info ">
+                            <h2>{{ utilisateur.user.email }}</h2>
+                          </div>
+                        </template>
+                        <template v-else>
+                          <input type=" text" placeholder="Votre pseudo" v-model="utilisateur.user.email"
+                            class="input" />
+                        </template>
+                      </dl>
 
 
+                      <dl class="mb-2 ">
+
+                        <dt class="font-semibold text-gray-900 dark:text-white pb-1">Nom et prénom</dt>
+                        <template v-if="!isEditing">
+                          <div class="info">
+                            <h2>{{ utilisateur.nomComplet }}</h2>
+                          </div>
+
+                        </template>
+                        <template v-else>
+                          <input type="text" placeholder="Votre pseudo" v-model="utilisateur.nomComplet"
+                            class="input" />
+                        </template>
+                      </dl>
+                      <dl class="mb-2 ">
+                        <dt class="font-semibold text-gray-900 dark:text-white pb-1">Date de naissance</dt>
+                        <template v-if="!isEditing">
+                          <div class="info">
+                            <h2 style="margin-bottom: 10px; display: block;">{{ utilisateur.dateNaissance }}</h2>
 
 
+                          </div>
+
+                        </template>
+                        <template v-else>
+                          <MyDateInput width="100%" label="" placeholder="Insérez une date de naissance"
+                            v-model="dateOfBirth" format="dd-MM-yyyy" />
 
 
+                        </template>
+                      </dl>
 
 
+                      <dl>
+                        <dt class="font-semibold text-gray-900 dark:text-white pb-1">Lieu de naissance</dt>
+                        <template v-if="!isEditing">
+                          <div class="info">
 
+                            <h2 style="margin-bottom: 10px;">{{ utilisateur.lieuNaissance }}</h2>
 
+                          </div>
 
+                        </template>
+                        <template v-else>
+                          <input type="text" placeholder="Votre pseudo" v-model="utilisateur.lieuNaissance"
+                            class="input" />
+                        </template>
+                      </dl>
 
-                    <dl class="">
-                      <dt class="font-semibold text-gray-900 dark:text-white">Email Address</dt>
-                      <template v-if="!isEditing">
-
-                        <div class="info">
-                          <h2>{{ utilisateur.user.email }}</h2>
-                        </div>
-                      </template>
-                      <template v-else>
-                        <input type="text" placeholder="Votre pseudo" v-model="utilisateur.user.email" class="input" />
-                      </template>
-                    </dl>
-
-
-                    <dl>
-
-                      <dt class="font-semibold text-gray-900 dark:text-white">Nom et Prénom</dt>
-                      <template v-if="!isEditing">
-                        <div class="info">
-                          <h2>{{ utilisateur.nomComplet }}</h2>
-                        </div>
-
-                      </template>
-                      <template v-else>
-                        <input type="text" placeholder="Votre pseudo" v-model="utilisateur.nomComplet" class="input" />
-                      </template>
-                    </dl>
-
-
-
-
-
-
-                    <dl>
-                      <dt class="font-semibold text-gray-900 dark:text-white">Date et lieu de naissance</dt>
-                      <template v-if="!isEditing">
-                        <div class="info">
-                          <h2 style="margin-bottom: 10px; display: block;">{{ utilisateur.dateNaissance }}</h2>
-
-
-                        </div>
-
-                      </template>
-                      <template v-else>
-                        <MyDateInput label="" placeholder="Insérez une date de naissance" v-model="dateOfBirth"
-                          format="dd-MM-yyyy" />
-
-
-                      </template>
-                    </dl>
-
-
-                    <dl>
-                      <dt class="font-semibold text-gray-900 dark:text-white">lieu de naissance</dt>
-                      <template v-if="!isEditing">
-                        <div class="info">
-
-                          <h2 style="margin-bottom: 10px;">{{ utilisateur.lieuNaissance }}</h2>
-
-                        </div>
-
-                      </template>
-                      <template v-else>
-                        <input type="text" placeholder="Votre pseudo" v-model="utilisateur.lieuNaissance"
-                          class="input" />
-                      </template>
-                    </dl>
+                    </div>
 
 
 
                   </div>
 
 
-                  <div class="space-y-2">
+                  <div class="space-y-2 w-[80%]">
                     <dl>
-                      <dt class="font-semibold text-gray-900 dark:text-white">Téléphone</dt>
+                      <dt class="font-semibold text-gray-900 dark:text-white pb-1">Téléphone</dt>
 
                       <template v-if="!isEditing">
                         <div class="info">
@@ -184,7 +172,7 @@
 
 
                     <dl>
-                      <dt class="font-semibold text-gray-900 dark:text-white">Numero Carte d'identité</dt>
+                      <dt class="font-semibold text-gray-900 dark:text-white pb-1">Numéro de carte d'identité</dt>
 
                       <template v-if="!isEditing">
                         <div class="info">
@@ -201,7 +189,7 @@
 
 
                     <dl>
-                      <dt class="font-semibold text-gray-900 dark:text-white">Date de délivrance</dt>
+                      <dt class="font-semibold text-gray-900 dark:text-white pb-1">Date de délivrance</dt>
 
                       <template v-if="!isEditing">
                         <div class="info">
@@ -245,7 +233,7 @@
                       </template>
                       <template v-else>
                         <SelectInput label="" defaultOption="" :options="[
-                          { text: 'Masculin', value: 'Masculin' },
+                          { text: 'Homme', value: 'Homme' },
                           { text: 'Femme', value: 'Femme' }
                         ]" v-model="utilisateur.sexe" />
                       </template>
@@ -253,7 +241,7 @@
                     </dl>
 
                     <dl>
-                      <dt class="font-semibold text-gray-900 dark:text-white">Adresse</dt>
+                      <dt class="font-semibold text-gray-900 dark:text-white pb-1">Adresse</dt>
                       <template v-if="!isEditing">
                         <div class="info">
                           <h2>{{ utilisateur.adresse }}</h2>
@@ -286,7 +274,7 @@
                       d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z">
                     </path>
                   </svg>
-                  {{ !isEditing ? "modifier" : "enregistrer" }}
+                  {{ !isEditing ? "Modifier" : "Enregistrer" }}
                 </button>
 
 
@@ -559,12 +547,11 @@ function modifier() {
   padding-bottom: 10px;
 }
 
-.flex {
+.flex1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  margin-bottom: 10px;
 }
 
 .section {

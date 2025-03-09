@@ -15,7 +15,7 @@
       <h1>Aucun electeur trouvé</h1>
     </div> -->
     <div v-if="filteredElecteurs.length === 0" class="no-results">
-      
+
       <h4 class="message">Aucune électeur trouvée.</h4>
     </div>
 
@@ -111,7 +111,7 @@
 
 
 
-  <div class="list" v-if="show.user == 'Controlleur'">
+  <div class="list" v-if="show.user === 'Contrôleur'">
     <div class="titre">
       <h4 class="subtitle">
         Liste des électeurs

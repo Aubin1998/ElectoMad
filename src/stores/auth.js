@@ -4,10 +4,14 @@ import {ref} from "vue";
 import {useShow} from "@/stores/show";
 import {useUrl} from "@/stores/url";
 import axios from "axios";
-import { useRouter } from 'vue-router';
+import {useRouter} from 'vue-router';
+import {useUtilisateur} from "@/stores/utilisateur";
 
+
+import {uselisteElecteur} from "@/stores/listeElecteur";
 
 export const useAuth = defineStore('Auth', () => {
+	const listeElecteur = uselisteElecteur();
 
 	const name = ref('Aubin')
 	const email = ref('Aubin@gmail.com')
@@ -15,6 +19,8 @@ export const useAuth = defineStore('Auth', () => {
 	const role_id = ref('1')
 	const show = useShow()
 	const user = ref({})
+	const utilisateur = useUtilisateur(); // c
+
 
 	const userId = ref('')
 	const utilisateurId = ref('')
@@ -120,6 +126,10 @@ export const useAuth = defineStore('Auth', () => {
 				localStorage.setItem("utilisateur", JSON.stringify(response.data.utilisateur));
 				show.showDashboard = true
 				show.showLogin = false
+
+
+				utilisateur.getUserInfo(response.data.user.id)
+				listeElecteur.getElecteurDistrict(params.value, paramsId.value);
 			} else {
 				show.showAlert = true
 				show.showAlertType = 'warning'
@@ -151,7 +161,6 @@ export const useAuth = defineStore('Auth', () => {
 	}
 
 
-
 	const router = useRouter();
 
 	function logout() {
@@ -179,12 +188,12 @@ export const useAuth = defineStore('Auth', () => {
 				localStorage.removeItem("user");
 				localStorage.removeItem("anneeSelectionne");
 				localStorage.removeItem("utilisateur");
-				show.showAdmin=false
+				show.showAdmin = false
 				show.showLogin = false
-window.location.reload();
+				window.location.reload();
 
-router.push('/');
-window.location.reload();
+				router.push('/');
+				window.location.reload();
 
 
 			} else {

@@ -2,11 +2,11 @@
   <div class="list">
     <div class="titre">
       <h4 class="subtitle">
-        Bureau de vote ANTANANARIVO 
+        Bureau de vote ANTANANARIVO
       </h4>
       <h4 class="number">{{ dataListePersonne.length }}</h4>
       <h3 class="btnAdd add" @click="show.showModalAjoutFunc">Ajouter</h3>
-      
+
       <div class="itemContainer">
         <input type="text" placeholder="Recherche par nom" class="input" />
       </div>
@@ -66,7 +66,7 @@
               <h3 class="label">Filiation</h3>
               <input type="text" placeholder="Nom du père et de la mère" class="input" />
             </div>
-            
+
           </div>
           <div class="section">
             <div class="inputCard">
@@ -184,82 +184,80 @@
     </div>
 
     <div class="modal" v-if="show.showModalModifier">
-            <div class="contenaireModal">
-                <h1 class="tritreModal">MODIFIER INFORMATION BUREAU</h1>
-                <div class="flex">
-                    <div class="section">
-                        <div class="inputCard">
-                            <h3 class="label">Nom</h3>
-                            <input type="text" placeholder="Ajoutez un nom" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Prénom</h3>
-                            <input type="text" placeholder="Ajoutez un prénom" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Date de naissance</h3>
-                            <input type="text" placeholder="Insérez une date de naissance" class="input" />
-
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Lieu de naissance</h3>
-                            <input type="text" placeholder="Insérez un lieu de naissance" class="input" />
-
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Sexe</h3>
-                            <input type="text" placeholder="Ajoutez un sexe" class="input" />
-
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Filiation</h3>
-                            <input type="text" placeholder="Nom du père et de la mère" class="input" />
-                        </div>
-
-                    </div>
-                    <div class="section">
-                        <div class="inputCard">
-                            <h3 class="label">Numéro de la CIN</h3>
-                            <input type="text" placeholder="Insérez un numéro de la CIN" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Date de délivrance de la CIN</h3>
-                            <input type="text" placeholder="Insérez une date de délivrance de la CIN" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Lieu de délivrance de la CIN</h3>
-                            <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Adresse ou le lieu de résidence</h3>
-                            <input type="text" placeholder="Insérez une adresse ou le lieu de résidence"
-                                class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Profession</h3>
-                            <input type="text" placeholder="Ajoutez un profession" class="input" />
-                        </div>
-                        <div class="inputCard">
-                            <h3 class="label">Carte d'électeur</h3>
-                            <input type="text" placeholder="Ecrire le numéro de la Carte électeur" class="input" />
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modalFooter">
-                    <h3 class="btnAdd add" @click="show.showModalModifierFunc">Ajouter</h3>
-                    <h3 class="btnAdd cancel" @click="show.showModalModifierFunc">Annuler</h3>
-                </div>
+      <div class="contenaireModal">
+        <h1 class="tritreModal">MODIFIER INFORMATION BUREAU</h1>
+        <div class="flex">
+          <div class="section">
+            <div class="inputCard">
+              <h3 class="label">Nom</h3>
+              <input type="text" placeholder="Ajoutez un nom" class="input" />
             </div>
+            <div class="inputCard">
+              <h3 class="label">Prénom</h3>
+              <input type="text" placeholder="Ajoutez un prénom" class="input" />
+            </div>
+            <div class="inputCard">
+              <h3 class="label">Date de naissance</h3>
+              <input type="text" placeholder="Insérez une date de naissance" class="input" />
+
+            </div>
+            <div class="inputCard">
+              <h3 class="label">Lieu de naissance</h3>
+              <input type="text" placeholder="Insérez un lieu de naissance" class="input" />
+
+            </div>
+            <div class="inputCard">
+              <h3 class="label">Sexe</h3>
+              <input type="text" placeholder="Ajoutez un sexe" class="input" />
+
+            </div>
+            <div class="inputCard">
+              <h3 class="label">Filiation</h3>
+              <input type="text" placeholder="Nom du père et de la mère" class="input" />
+            </div>
+
+          </div>
+          <div class="section">
+            <div class="inputCard">
+              <h3 class="label">Numéro de la CIN</h3>
+              <input type="text" placeholder="Insérez un numéro de la CIN" class="input" />
+            </div>
+            <div class="inputCard">
+              <h3 class="label">Date de délivrance de la CIN</h3>
+              <input type="text" placeholder="Insérez une date de délivrance de la CIN" class="input" />
+            </div>
+            <div class="inputCard">
+              <h3 class="label">Lieu de délivrance de la CIN</h3>
+              <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input" />
+            </div>
+            <div class="inputCard">
+              <h3 class="label">Adresse ou le lieu de résidence</h3>
+              <input type="text" placeholder="Insérez une adresse ou le lieu de résidence" class="input" />
+            </div>
+            <div class="inputCard">
+              <h3 class="label">Profession</h3>
+              <input type="text" placeholder="Ajoutez un profession" class="input" />
+            </div>
+            <div class="inputCard">
+              <h3 class="label">Carte d'électeur</h3>
+              <input type="text" placeholder="Ecrire le numéro de la Carte électeur" class="input" />
+            </div>
+
+          </div>
         </div>
+        <div class="modalFooter">
+          <h3 class="btnAdd add" @click="show.showModalModifierFunc">Ajouter</h3>
+          <h3 class="btnAdd cancel" @click="show.showModalModifierFunc">Annuler</h3>
+        </div>
+      </div>
+    </div>
     <div class="modal" v-if="show.showModalSupprimer">
       <div class="contenaireModalSupp">
         <h4 class="supp">
-            Voulez vous vraiment supprimer 
-          </h4>
-          <h4 class="suppNom">
-           Ce bureau ?
-          </h4>
+          Voulez-vous vraiment supprimer </h4>
+        <h4 class="suppNom">
+          Ce bureau ?
+        </h4>
         <div class="flex">
           <h3 class="btnAdd add" @click="show.showModalSupprimerFunc">Oui</h3>
           <h3 class="btnAdd cancel" @click="show.showModalSupprimerFunc">Non</h3>
@@ -584,6 +582,7 @@ input-placeholder {
   margin: 0 auto;
   padding: 10px;
 }
+
 .contenaireModalSupp {
   width: 25%;
   height: 25vh;
@@ -592,13 +591,15 @@ input-placeholder {
   margin: 0 auto;
   padding: 10px;
 }
-.supp{
+
+.supp {
   color: #2c2b2b;
   padding: 0px 10px 20px 10px;
 }
-.suppNom{
+
+.suppNom {
   color: #2c2b2b;
-  padding: 0px 10px ;
+  padding: 0px 10px;
   font-weight: bold;
   margin-bottom: 20px;
 }

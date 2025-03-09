@@ -1,29 +1,33 @@
 <template>
   <div class="w-full h-full ">
     <div class="acceuil" v-if="show.user == 'admin'">
-    <div class="content">
-     
-      <h1 class="title">Bienvenue sur VoteVision</h1>
-      <p class="message"> Votre plateforme électorale moderne.</p>
-      <button class="cta-button" @click="voirelection()">Voir les années électorales</button>
-    </div>
-  </div>
+      <div class="content">
 
-  <div class="acceuil1" v-if="show.user == 'Controlleur'">
-    <div class="content">
-      <h1 class="title">Bienvenue sur la plateforme du Contrôleur</h1>
-      <p class="message"> Votre plateforme électorale moderne.</p>
-      <button class="cta-button" @click="voirelection()">Voir les années électorales</button>
+        <h1 class="title">Bienvenue sur Votiflow</h1>
+        <p class="message"> Votre plateforme électorale .</p>
+        <button class="cta-button" @click="voirelection()">Voir les années électorales</button>
+      </div>
     </div>
-  </div>
 
-  <div class="acceuil2" v-if="show.user == 'Opérateur de saisie'">
-    <div class="content">
-      <h1 class="title">Bienvenue pour la saisie des données</h1>
-      <p class="message"> Votre plateforme électorale moderne.</p>
-      <button class="cta-button" @click="voirelection()">Voir les années électorales</button>
+    <div class="acceuil1" v-if="show.user === 'Contrôleur'">
+      <div class="content">
+        <h1 class="title">Bienvenue sur Votiflow</h1>
+        <!-- {{ show.user }} -->
+        <p class="message"> Votre plateforme électorale .</p>
+
+        <button class="cta-button" @click="show.setOption('Contrôle des électeurs')">Vous pouvez maintenant contrôler
+          les données</button>
+      </div>
     </div>
-  </div>
+
+    <div class="acceuil2" v-if="show.user == 'Opérateur de saisie'">
+      <div class="content">
+        <h1 class="title">Bienvenue sur Votiflow</h1>
+        <p class="message"> Votre plateforme électorale .</p>
+
+        <button class="cta-button">Vous pouvez maintenant saisir vos données</button>
+      </div>
+    </div>
   </div>
 
 </template>
@@ -36,6 +40,10 @@ function voirelection() {
   show.showAcceuilModala = !show.showAcceuilModala;
 
 }
+
+
+
+
 </script>
 
 <style scoped>
@@ -52,6 +60,7 @@ function voirelection() {
   align-items: center;
   text-align: center;
 }
+
 .acceuil1 {
   background-color: rgb(182, 190, 190);
   min-height: 80vh;
@@ -65,6 +74,7 @@ function voirelection() {
   align-items: center;
   text-align: center;
 }
+
 .acceuil2 {
   background-color: rgb(182, 190, 190);
   min-height: 80vh;
@@ -103,10 +113,5 @@ function voirelection() {
   background-color: rgb(15, 117, 15);
   border: none;
   border-radius: 5px;
-  cursor: pointer;
-}
-
-.cta-button:hover {
-  background-color: rgb(19, 161, 19);
 }
 </style>

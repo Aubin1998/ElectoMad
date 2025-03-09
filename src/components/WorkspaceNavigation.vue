@@ -1,8 +1,8 @@
 <template>
 
     <div class="navBar">
-        <div class="link">
-            <h3 class="liking" @click="show.showacceuilFunc">Acceuil</h3>
+        <div class="link ">
+            <h3 class="liking" @click="show.showacceuilFunc">Accueil</h3>
 
             <h3 class="liking" @click="show.setOption('Liste des utilisateurs')" v-if="show.user == 'admin'">
                 Utilisateurs</h3>
@@ -10,8 +10,14 @@
         </div>
 
 
+        <div class=" w-[30%] h-10 flex justify-around items-center  ">
+            <h1 class="text-xl font-bold"> {{ utilisateur.controlleurAnneeElectorale.annee }}</h1>
+            <h1 class="text-xl font-bold"> {{ utilisateur.controlleurAnneeElectorale.descriptionAnnee }}</h1>
+        </div>
 
-        <div class="selected-year w-[40%] ">
+
+
+        <div class="selected-year w-[40%]  ">
             <span class="annee">{{ anneeElectorale?.anneeElectoraleChoisi?.annee }}</span> <span class="description">{{
                 anneeElectorale?.anneeElectoraleChoisi?.descriptionAnnee }}</span>
         </div>
@@ -19,16 +25,17 @@
         <div class="profil ">
             <div class="notif">
 
-
             </div>
             <div class="profile-container">
                 <span class="admin-title">{{ utilisateurrole }}</span>
-                <div class="photo" @click="show.showDescFunc()">
+                <div class="photo flex justify-center items-center cursor-pointer" @click="show.showDescFunc()">
                     <template v-if="!utilisateur.user.file?.titre">
-                        <img src="/profileVoid.jpg" alt="Photo de profil" class="photo-profile">
+                        <img src="/profileVoid.jpg" alt="Photo de profil" class="w-10 h-10 object-cover rounded-full" />
+
                     </template>
                     <template v-else>
-                        <img :src="utilisateur.user.file?.titre" alt="Photo de profil" class="photo-profile">
+                        <img :src="utilisateur.user.file?.titre" alt="Photo de profil"
+                            class="w-10 h-10 object-cover rounded-full" />
                     </template>
                 </div>
             </div>
@@ -51,12 +58,13 @@
 
                         <template v-if="!utilisateur.user.file?.titre">
 
-                            <img src="/profileVoid.jpg" alt="Photo de profil" style="width: 50px; height: 50px; border-radius: 10px!important; cursor: pointer;
-    transition: transform 0.3s ease;" @click="show.showModalCompteFunc">
+                            <img src="/profileVoid.jpg" class="size-full object-cover rounded-full cursor-pointer"
+                                alt="Photo de profil" @click="show.showModalCompteFunc">
                         </template>
                         <template v-else>
-                            <img :src="utilisateur.user.file?.titre" alt="Photo de profil" style="width: 50px; height: 50px; border-radius: 100%; cursor: pointer;
-    transition: transform 0.3s ease;" @click="show.showModalCompteFunc">
+                            <img :src="utilisateur.user.file?.titre" alt="Photo de profil"
+                                class="size-full object-cover rounded-full cursor-pointer"
+                                @click="show.showModalCompteFunc">
                         </template>
 
 
@@ -88,7 +96,7 @@
                     <div class="option" style="cursor: pointer;
     transition: transform 0.3s ease;" @click="show.showModalCompteFunc">
                         <h5 class="item " style="cursor: pointer;
-    transition: transform 0.3s ease;">Gérer le compte</h5>
+    transition: transform 0.3s ease;">Gérer mon compte</h5>
                         <i class="pi pi-user-edit" style="font-size: 16px; color: white; cursor: pointer;
     transition: transform 0.3s ease;"></i>
                     </div>
@@ -118,6 +126,8 @@ import { useUtilisateur } from "@/stores/utilisateur";
 import { useAnneeElectorale } from "@/stores/anneeElectorale";
 const show = useShow(); //call Show in show.js
 const utilisateur = useUtilisateur(); //call Show in show.js
+
+
 const anneeElectorale = useAnneeElectorale();
 utilisateur.user = JSON.parse(localStorage.getItem("user"));
 const utilisateurrole = ref()
@@ -126,8 +136,12 @@ onMounted(() => {
     anneeElectorale.anneeElectoraleChoisi = JSON.parse(localStorage.getItem('anneeSelectionne'))
     if (show.user == 'admin') {
         utilisateurrole.value = 'Administrateur'
+        console.log('admin test', utilisateurrole.value)
+
     } else {
         utilisateurrole.value = show.user
+        console.log('tsy aiko test', show.user)
+
     }
 
 
@@ -308,6 +322,7 @@ onMounted(() => {
     display: flex;
     align-items: center;
     color: #d4d2d2;
+    margin-right: 70px;
 }
 
 .selected-year .annee {

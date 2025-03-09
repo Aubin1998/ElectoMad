@@ -51,14 +51,14 @@
                             <option v-for="item in listParlementaire" :key="item.id" :value=item>{{ item }}</option>
                         </select>
                     </div>
-                    <div class="mx-2 w-[45%] " v-if="'Municipale' === type">
+                    <!-- <div class="mx-2 w-[45%] " v-if="'Municipale' === type">
                         <p class="p-2">Type électoral Municipale </p>
 
                         <select class="annee" v-model="municipaleSelected" id="">
 
                             <option v-for="item in listMunicipale" :key="item.id" :value=item>{{ item }}</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
 
 
@@ -72,8 +72,7 @@
         <div class="list">
             <div class="titre">
                 <h4 class="subtitle">
-                    Liste des élections
-                </h4>
+                    Répertoire des élections </h4>
                 <h4 class="number1">{{ anneeElectorale?.allanneeData?.length }}</h4>
 
                 <div class="itemContainer1">
@@ -263,7 +262,7 @@
                     <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
                 </div>
                 <div class="contenaireModal">
-                    <h1 class="tritreModal">MODIFIER INFORMATION ELECTORALE</h1>
+                    <h1 class="tritreModal">MODIFIER L'INFORMATION ELECTORALE</h1>
                     <div class="flex justify-between">
 
                         <div class="section ml-4">
@@ -298,8 +297,7 @@
             <div class="modal backdrop-blur-[2px]" v-if="show.showModalAnneSupprimer">
                 <div class="contenaireModalSupp">
                     <h4 class="supp">
-                        Voulez vous vraiment supprimer
-                    </h4>
+                        Voulez-vous vraiment supprimer </h4>
                     <h4 class="suppNom">
                         Cette année {{ anneeElectorale.supprimerData.annee }} ?
 
@@ -363,17 +361,17 @@ function creer() {
         }
 
         if (type.value == 'Municipale') {
-            anneeElectorale.descriptionAnnee = type.value + ' : ' + municipaleSelected.value
+            anneeElectorale.descriptionAnnee = type.value + municipaleSelected.value
             console.log('ppppppppppp', anneeElectorale.descriptionAnnee);
         }
 
-        if (type.value == 'Présidentiel') {
+        if (type.value == 'Présidentielle ') {
             anneeElectorale.descriptionAnnee = type.value
             console.log('ppppppppppp', anneeElectorale.descriptionAnnee);
         }
         anneeElectorale.createAnnee();
     } else {
-        alert("Veuillez sélectionner une date.");
+        alert("Veuillez sélectionner et remplir les champs");
     }
 }
 function voir(item) {
@@ -416,7 +414,7 @@ const anneeData = [
     2030, 2031, 2032, 2033, 2034, 2035
 ];
 const descriptionAnneeData = [
-    'Présidentiel', 'Parlémentaire', 'Municipale'
+    'Présidentielle', 'Parlémentaire', 'Municipale'
 ];
 
 const listParlementaire = [

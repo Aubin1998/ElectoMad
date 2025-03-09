@@ -1,5 +1,5 @@
 <template>
-    <div class="contenaire" v-if="show.showProvince">
+    <div class="contenaire" v-if="show.showSaisirElecteur">
 
 
 
@@ -24,15 +24,10 @@
     </div>
 
 
-    <WorkspaceProvinceElecteur v-if="show.showProvinceElecteur" />
-    <WorkspaceDistrictElecteur v-if="show.listeCommune" />
-    <WorkspaceCommuneElecteur v-if="show.listeFokontany" />
-
-
-    <WorkspaceFokontanyPresidentBureau v-if="show.listePersonne && show.showSelectAction == 'Président des bureaux'" />
-    <WorkspaceFokontanyDelegue v-if="show.listePersonne && show.showSelectAction == 'Enregistrer les délégués'" />
-    <WorkspaceFokontanyElecteur v-if="show.listePersonne && show.showSelectAction == 'Liste complète des électeurs'" />
-
+    <WorkspaceProvinceElecteur v-if="show.showProvinceElecteurOS" />
+    <WorkspaceDistrictElecteur v-if="show.listeCommuneOS" />
+    <WorkspaceCommuneElecteur v-if="show.listeFokontanyOS" />
+    <WorkspaceFokontanyElecteur v-if="show.listePersonneOS" />
 </template>
 
 
@@ -42,8 +37,6 @@ import WorkspaceProvinceElecteur from "@/components/gestionElecteurs/subComponen
 import WorkspaceDistrictElecteur from "@/components/gestionElecteurs/subComponentsListeElecteurs/WorkspaceDistrictElecteur.vue";
 import WorkspaceCommuneElecteur from "@/components/gestionElecteurs/subComponentsListeElecteurs/WorkspaceCommuneElecteur.vue";
 import WorkspaceFokontanyElecteur from "@/components/gestionElecteurs/subComponentsListeElecteurs/WorkspaceFokontanyElecteur.vue";
-import WorkspaceFokontanyPresidentBureau from "@/components/gestionElecteurs/subComponentsListeElecteurs/WorkspaceFokontanyPresidentBureau.vue";
-import WorkspaceFokontanyDelegue from "@/components/gestionElecteurs/subComponentsListeElecteurs/WorkspaceFokontanyDelegue.vue";
 import { useShow } from "@/stores/show";
 import { useListeFokontanyDistrictStore } from "@/stores/jsonData/liste_fokontany_par_district";
 

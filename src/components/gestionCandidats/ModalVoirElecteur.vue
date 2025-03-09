@@ -1,228 +1,167 @@
 <template>
     <Transition>
-        <div class="modal w-full h-screen bg-gray-400 bg-opacity-40 absolute inset-0 overflow-y-hidden flex items-center z-50 backdrop-blur-[2px]"
-            v-if="show.senateur">
-            <div class="contenaireModal">
-                <div class="flex justify-between">
-                    <h1 class="tritreModal">Recherche senateur</h1>
-                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-20 
-            py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        @click="show.senateur = !show.senateur">
-                        <h3>
-                            Annuler</h3>
-                    </button>
+
+
+
+        <!-- 
+            <h1 v-if="show.electeurDistrictData.verifier == 0" @click="verifier(show.electeurDistrictData.id)">
+                Verifier</h1>
+            {{ show.electeurDistrictData }}
+            <h1 @click="show.electeurDistrict = !show.electeurDistrict">ferme</h1> -->
+        <!-- v-if="show.electeurDistrict" -->
+        <div class="showModal backdrop-blur p-2px" v-if="show.electeurDistrict">
+            <div class="modal">
+                <div class="closeForm" @click="show.electeurDistrict = !show.electeurDistrict">
+                    <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
                 </div>
 
-                <div class="flex justify-center items-center border-b-2 pb-4 mb-2">
-                    <form class="max-w-md mx-[5px]">
 
-                        <div class="relative w-[250px]">
+                <div class="contenaireModal">
+                    <div class="content">
 
-                            <input type="search" id="default-search" v-model="searchQuery" class="block w-full p-2  text-sm text-gray-900 border border-gray-300 focus:outline-none
-                                 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 
-                                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
-                                  dark:focus:border-blue-500 " placeholder="Rechecher region" required />
-                            <button type="submit"
-                                class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800
-                                 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm
-                                  px-2   py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-full">
-                                <svg class="w-3 h-3 text-gray-500 text-white" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
-                            </button>
+
+                        <h1 class="tritreModal">MODIFIER L'INFORMATION PERSONNEL dffffffff</h1>
+
+
+
+
+                        <div class="contenaire">
+
+                            <div class="flex justify-between   flex-col mt-4">
+
+                                <!-- <div class=" flex justify-around  h-[200px]  ">
+
+
+                                    <div class=" w-[30%] flex justify-center items-center   ">
+                                        <img v-if="show.electeurDistrictData.file?.titre"
+                                            :src="show.electeurDistrictData.file?.titre" alt=""
+                                            class="object-cover  mt-8   h-full w-full rounded-t-xl" />
+
+
+                                        <div class="file-input-container" v-else>
+                                            <input type="file"
+                                                @change="(event) => onFileChange(event, show.electeurDistrictData.id)"
+                                                id="file-upload" class="file-input-label" />
+                                            <label for="file-upload"
+                                                class="flex items-center justify-center w-full h-full bg-[#e1dada] rounded-full cursor-pointer text-[24px]">
+                                                <i class="pi pi-camera text-red-500"></i>
+                                            </label>
+                                        </div>
+
+
+
+                                        <div class="absolute w-[50px] h-[50px] t-0"
+                                            v-if="show.electeurDistrictData.file?.titre">
+                                            <input type="file"
+                                                @change="(event) => onFileChange(event, show.electeurDistrictData.id)"
+                                                id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
+                                            <label for="file-upload"
+                                                class="flex items-center justify-center w-full h-full  rounded-full cursor-pointer text-[24px]">
+                                                <i class="pi pi-camera "></i>
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class=" w-[65%]  grid grid-cols-2 gap-4  ">
+                                        <MyInput label="Nom et prénom" placeholder="Ajoutez un nom"
+                                            v-model="show.electeurDistrictData.nomComplet" />
+
+                                        <MyInput label="Email" placeholder="Ajouter un email"
+                                            v-model="show.electeurDistrictData.user.email" />
+
+                                        <MyDateInput label="Date de naissance"
+                                            placeholder="Insérez une date de naissance"
+                                            v-model="show.electeurDistrictData.dateDelivreCIN" format="dd-MM-yyyy" />
+
+                                        <MyInput label="Lieu de naissance" placeholder="Insérez un lieu de naissance"
+                                            v-model="show.electeurDistrictData.lieuNaissance" />
+
+
+                                        <MyDateInput label="Date d'inscription"
+                                            placeholder="Ecrire la date d'inscription"
+                                            v-model="show.electeurDistrictData.dateInscription" format="dd-MM-yyyy" />
+
+
+                                        <MyInput label="Filiation" placeholder="Nom du père et de la mère"
+                                            v-model="show.electeurDistrictData.filiation" />
+                                    </div>
+                                </div> -->
+
+
+
+
+
+
+
+                                <!-- <div class="m-2 mt-8 grid grid-cols-3 gap-4">
+
+                                    <MyInput label="Téléphone" placeholder="Ecrire le numéro de la Carte électeur"
+                                        v-model="show.electeurDistrictData.telephone" />
+
+
+                                    <MyInput label="Numéro de la CIN" placeholder="Insérez un numéro de la CIN"
+                                        v-model="show.electeurDistrictData.numeroCIN" />
+
+                                    {{ show.electeurDistrictData.dateDelivreCIN }}
+                                    <MyDateInput label="Date de délivrance"
+                                        placeholder="Insérez une date de délivrance de la CIN"
+                                        v-model="show.electeurDistrictData.dateDelivreCIN" format="dd-MM-yyyy" />
+
+
+
+                                    <MyInput label="Lieu de délivrance CIN"
+                                        placeholder="Insérez un lieu de délivrance de la CIN"
+                                        v-model="show.electeurDistrictData.lieuDelivreCIN" />
+
+                                    <MyInput label="Adresse" placeholder="Insérez une adresse ou le lieu de résidence"
+                                        v-model="show.electeurDistrictData.adresse" />
+
+
+
+                                    <MyInput label="Profession" placeholder="Ajoutez un profession"
+                                        v-model="show.electeurDistrictData.profession" />
+
+
+                                    <SelectInput label="Sexe" defaultOption="" :options="[
+                                        { text: 'Homme', value: 'Homme' },
+                                        { text: 'Femme', value: 'Femme' }
+                                    ]" v-model="show.electeurDistrictData.sexe" />
+
+                                    <MyInput label="Carte électeur" placeholder="Insérez le numéro de la carte"
+                                        v-model="show.electeurDistrictData.carteElecteur" />
+
+
+
+
+                                    <div class="flex   items-end justify-end font-bold gap-5 mr-4 ">
+                                        <h3 class="bg-green-500 px-4 h-8 rounded flex  items-center"
+                                            @click="modifier()">
+                                            modifier</h3>
+                                        <h1 class="bg-green-500 px-4 h-8 rounded flex items-center"
+                                            v-if="show.electeurDistrictData.verifier == 0"
+                                            @click="verifier(show.electeurDistrictData.id)">
+                                            Verifier</h1>
+
+                                    </div>
+
+
+                                </div> -->
+
+
+                                <MyInput label="Carte électeur" placeholder="Insérez le numéro de la carte"
+                                    v-model="show.electeurDistrictData.carteElecteur" />
+                                <button @click="modifiero">clickeo</button>
+
+                            </div>
                         </div>
-                    </form>
-
-
-
-
-
-                </div>
-
-
-                <!-- {{ filteredData }} -->
-                <div class="flex flex-row flex-wrap   px-5" v-if="region">
-                    <a class="inline-block w-[200px] flex justify-center items-center
-                     rounded-sm border border-current px-2 py-3 my-3 mx-2 text-sm font-medium
-                     text-white transition hover:scale-110 hover:rotate-2 focus:ring-3 focus:outline-hidden" href="#"
-                        v-for="(item, index) in filteredData" :key="index" @click="setQuery(item)" v-if="region">
-                        {{ item }}
-                    </a>
-                </div>
-
-
-                <div class="flex flex-row flex-wrap justify-between   px-5" v-if="formulaire">
-
-
-
-                    <MyDateInput label="Date de naissance" placeholder="Insérez une date de naissance"
-                        v-model="listeCandidat.dateNaissance" format="dd-MM-yyyy" />
-
-
-                    <MyInput label="Lieu de naissance" placeholder="Insérez un lieu de naissance"
-                        v-model="listeCandidat.lieuNaissance" />
-
-
-                    <SelectInput label="Déclaration honneur des biens" defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.declarationHonneurBiens" />
-
-
-                    <MyInput label="Nom et prénom" placeholder="Ajoutez un nom" v-model="listeCandidat.nomComplet" />
-
-
-
-
-                    <SelectInput label="Sexe" defaultOption="" :options="[
-                        { text: 'Homme', value: 'Homme' },
-                        { text: 'Femme', value: 'Femme' }
-                    ]" v-model="listeCandidat.sexe" />
-
-
-
-                    <MyInput label="Filiation" placeholder="Nom du père et de la mère"
-                        v-model="listeCandidat.filiation" />
-
-                    <MyInput label="Email" placeholder="Nom du père et de la mère" v-model="listeCandidat.email" />
-
-                    <SelectInput label="Déclaration honneur des biens" defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.declarationHonneurBiens" />
-
-                    <SelectInput label="Certificat de nationalité" defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.certificatNationalite" />
-
-
-
-                    <SelectInput label="Déclaration honneur des impôts" defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.declarationHonneurImpôts" />
-
-
-
-                    <SelectInput label="Copie d'acte de naissance" defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.copieActeNaissance" />
-
-                    <SelectInput label="Certificat d'administration fiscale" defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.certificatAdministrationFiscale" />
-
-
-
-
-
-                    <SelectInput label=" Copie de carte électeur" defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.copieCarteElecteur" />
-
-
-                    <SelectInput label=" Déclaration de probite" defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.declarationProbite" />
-
-
-
-                    <SelectInput label="  Copie de récipissé patrimoine" defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.copieRecipissePatrimoine" />
-
-
-
-                    <MyInput label="Numéro de la CIN" placeholder="Insérez un numéro de la CIN"
-                        v-model="listeCandidat.numeroCIN" />
-
-
-
-
-
-                    <MyDateInput label="Date de délivrance CIN" placeholder="Insérez une date de naissance"
-                        v-model="listeCandidat.dateDelivreCIN" format="dd-MM-yyyy" />
-
-                    <MyInput label="Lieu de délivrance CIN" placeholder="Insérez un lieu de délivrance de la CIN"
-                        v-model="listeCandidat.lieuDelivreCIN" />
-
-
-                    <MyInput label="Adresse ou le lieu de résidence"
-                        placeholder="Insérez une adresse ou le lieu de résidence" v-model="listeCandidat.adresse" />
-
-
-                    <MyInput label="Profession" placeholder="Ajoutez un profession"
-                        v-model="listeCandidat.profession" />
-
-                    <SelectInput label=" Casier judiciaire" defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.casierJudiciaire" />
-
-                    <MyInput label="Carte d'électeur" placeholder="Ecrire le numéro de la Carte électeur"
-                        v-model="listeCandidat.carteElecteur" />
-
-
-                    <MyInput label="Téléphone" placeholder="Ecrire votre numéro de téléphone"
-                        v-model="listeCandidat.telephone" />
-
-                    <MyDateInput label="Date d'inscription" placeholder="Insérez une date d'inscription"
-                        v-model="listeCandidat.dateInscription" format="dd-MM-yyyy" />
-
-
-                    <SelectInput label=" Matrice support électronique" defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.matriceSupportElectronique" />
-
-
-                    <SelectInput label="Quittance de contribution" defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.quittanceContribution" />
-
-
-                    <SelectInput label="Déclaration d'honneur de constitution" defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.declarationHonneurConstitution" />
-
-                    <SelectInput label="Attestation d'investiture " defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.attestationInvestiture" />
-
-                    <SelectInput label="Certificat de résidence " defaultOption="" :options="[
-                        { text: 'Oui', value: 'oui' },
-                        { text: 'Non', value: 'non' }
-                    ]" v-model="listeCandidat.certificatResidence" />
-                    <div class="flex w-[20%] mr-2 ">
-                        <Cancel @toggle="show.senateur = !show.senateur" />
-                        <Confirm @toggle="ajouter()" buttonText="Ajouter" />
                     </div>
 
                 </div>
-
             </div>
-
-
-
-
-
-
-
-
-
-
-
         </div>
 
 
@@ -241,8 +180,6 @@ import { useAnneeElectorale } from "@/stores/anneeElectorale";
 import { useListeFokontanyDistrictStore } from "@/stores/jsonData/liste_fokontany_par_district";
 
 
-
-
 import Datepicker from "vue3-datepicker";
 import Cancel from "@/components/btnComponents/Cancel.vue";
 import Confirm from "@/components/btnComponents/Confirm.vue";
@@ -253,8 +190,13 @@ import MyDateInput from "../date/MyDateInput.vue";
 import SelectInput from "../selects/SelectInput.vue";
 
 
+
+import { uselisteElecteur } from "@/stores/listeElecteur";
+
+
 const show = useShow(); //call Show in show.js
 const auth = useAuth();
+const listeElecteur = uselisteElecteur();
 const utilisateur = useUtilisateur();
 const listeCandidat = uselisteCandidat();
 const anneeElectorale = useAnneeElectorale();
@@ -276,6 +218,82 @@ const formulaire = ref(false)
 
 
 
+function modifiero() {
+
+    console.log('objet :', show.electeurDistrictData);
+
+    let objet = {
+        carteElecteur: show.electeurDistrictData.carteElecteur
+
+    }
+    listeElecteur.updateElecteur(show.electeurDistrictData.id, objet)
+
+
+    // console.log('objet :', show.electeurDistrictData);
+
+    // let object = {
+    //     electeur_id: show.electeurDistrictData.id,
+    //     nomComplet: modifierElecteurData.value.nomComplet,
+    //     profession: show.electeurDistrictData.profession,
+    //     adresse: modifierElecteurData.value.adresse,
+    //     numeroCIN: modifierElecteurData.value.numeroCIN,
+    //     dateDelivreCIN: modifierElecteurData.value.dateDelivreCIN,
+    //     lieuDelivreCIN: modifierElecteurData.value.lieuDelivreCIN,
+    //     carteElecteur: show.electeurDistrictData.carteElecteur,
+    //     sexe: modifierElecteurData.value.sexe,
+    //     lieuNaissance: modifierElecteurData.value.lieuNaissance,
+    //     filiation: modifierElecteurData.value.filiation,
+    //     dateNaissance: modifierElecteurData.value.dateNaissance,
+    //     telephone: modifierElecteurData.value.telephone,
+    //     dateInscription: modifierElecteurData.value.dateInscription,
+    //     annee_electorale_id: modifierElecteurData.value.annee_electorale_id,
+    //     email: modifierElecteurData.value.user.email,
+
+    //     user_id: modifierElecteurData.value.user_id,
+
+    //     region: modifierElecteurData.value.region,
+    //     district: modifierElecteurData.value.district,
+    //     commune: modifierElecteurData.value.commune,
+    //     fokontany: modifierElecteurData.value.fokontany,
+    //     verifier: false
+    // };
+
+
+    // listeElecteur.updateElecteur(show.electeurDistrictData.id, object)
+
+
+
+
+
+
+
+}
+
+
+function verifier(idElecteur) {
+    listeElecteur.verifierElecteur(idElecteur)
+}
+
+function ajouter() {
+    console.log('lllllllllllll', anneeElectorale?.anneeElectoraleChoisi);
+
+
+    listeCandidat.annee_electorale_id = anneeElectorale?.anneeElectoraleChoisi.id
+
+    listeCandidat.regionCandidat = searchQuery.value
+    listeCandidat.districtCandidat = searchQueryDistrict.value
+    listeCandidat.communeCandidat = searchQueryCommune.value
+
+
+    listeCandidat.createCandidat();
+}
+
+function modifier() {
+
+    listeElecteur.updateElecteur(listeElecteur.modifierElecteurData.id)
+
+}
+
 function close() {
 
     dataDistrict.value = ''
@@ -291,23 +309,13 @@ function close() {
     searchQueryCommune.value = ''
 
 }
-function ajouter() {
-    console.log('lllllllllllll', anneeElectorale?.anneeElectoraleChoisi);
 
-
-    listeCandidat.annee_electorale_id = anneeElectorale?.anneeElectoraleChoisi.id
-
-    listeCandidat.provinceCandidat = searchQuery.value
-
-
-
-    listeCandidat.createCandidat();
-}
-
-function setQuery(item) {
-    searchQuery.value = item
+function setQuery(query, item) {
+    searchQuery.value = query
     region.value = false
-    formulaire.value = true
+    district.value = true
+    formdistrict.value = true
+    dataDistrict.value = item.listeDistrict
 }
 
 function setQueryDistrict(query, item) {
@@ -362,15 +370,16 @@ const data = computed(() => {
 
 onMounted(() => {
     listeFokontanyDistrictStore.get
+    console.log('date', typeof show.electeurDistrictData?.dateDelivreCIN);
+
 })
 
 // Filtrer les données en fonction de la recherche
 const filteredData = computed(() => {
-    let filtered = ["ANTANANARIVO", "FIANARATSOA", "MAHAJANGA", "TOAMASINA", "ANTSIRANANA", "TOLIARA"
-    ]
+    let filtered = data.value;
 
     if (searchQuery.value) {
-        filtered = filtered.value.filter(item => item.toLowerCase().includes(searchQuery.value.toLowerCase()));
+        filtered = data.value.filter(item => item.region.toLowerCase().includes(searchQuery.value.toLowerCase()));
     } return filtered; // Ignorer le premier élément 
 });
 
@@ -444,6 +453,19 @@ watch(data, (newData) => {
 
 
 <style scoped>
+.showModal {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(216, 213, 213, 0.326);
+    z-index: 100;
+    height: 100%;
+    display: flex;
+    background: rgba(43, 38, 38, 0.801);
+    justify-content: center;
+    align-items: center;
+}
+
 .position {
     position: absolute;
     right: 150px;
@@ -488,8 +510,28 @@ watch(data, (newData) => {
 }
 
 .modal {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(196, 190, 190, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow-y: hidden;
+    align-items: center;
+    padding: 10vh;
+}
 
-    z-index: 100;
+.closeForm {
+    background-color: rgb(231, 230, 230);
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    position: absolute;
+    right: 210px;
+    top: 90px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .contenaireModalSupp {
@@ -513,13 +555,22 @@ watch(data, (newData) => {
     margin-bottom: 20px;
 }
 
+
 .contenaireModal {
-    width: 84%;
-    height: 85vh;
-    background-color: #414752;
+    width: 90%;
     border-radius: 10px;
     margin: 0 auto;
     padding: 10px;
+}
+
+.content {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    margin-right: 0px;
+    border-radius: 10px;
+    width: 95%;
+
 }
 
 .tritreModal {
@@ -530,7 +581,35 @@ watch(data, (newData) => {
     padding-left: 5%;
 }
 
+.contenaire {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
 
+}
+
+.file-input-container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    /* background-color: #f5572c; */
+}
+
+.file-input-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #e1dada;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+
+.btnAdd {}
 
 .section {
     width: 40%;

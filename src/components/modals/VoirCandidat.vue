@@ -48,7 +48,7 @@
             <!-- {{ listeCandidat.voirCandidatData.electeur.sexe }} -->
 
             <SelectInput :disabled="true" label="Sexe" defaultOption="" :options="[
-              { text: 'Masculin', value: 'Masculin' },
+              { text: 'Homme', value: 'Homme' },
               { text: 'Femme', value: 'Femme' }
             ]" v-model="listeCandidat.voirCandidatData.electeur.sexe" />
 

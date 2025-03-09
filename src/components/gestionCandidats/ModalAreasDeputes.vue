@@ -156,7 +156,7 @@
                     <MyInput label="Nom et prénom" placeholder="Ajoutez un nom" v-model="listeCandidat.nomComplet" />
 
                     <SelectInput label="Sexe" defaultOption="" :options="[
-                        { text: 'Masculin', value: 'Masculin' },
+                        { text: 'Homme', value: 'Homme' },
                         { text: 'Femme', value: 'Femme' }
                     ]" v-model="listeCandidat.sexe" />
 

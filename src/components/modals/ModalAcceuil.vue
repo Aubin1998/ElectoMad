@@ -18,8 +18,7 @@
                   <div class="h-[40%]">
                     <h3 class="text-[#555]">{{ item.descriptionAnnee }}</h3>
                   </div>
-                  <div
-                    class="flex justify-center items-center px-4 py-2 rounded-lg bg-green-600 bgs"
+                  <div class="flex justify-center items-center px-4 py-2 rounded-lg bg-green-600 bgs"
                     @click="voirDetails(item)">
                     <h4>Voir</h4>
                   </div>
@@ -63,14 +62,9 @@ function voirDetails(item) {
   anneeElectorale.anneeElectoraleChoisi = item
   localStorage.setItem('anneeSelectionne', JSON.stringify(item));
   console.log('localStorage', localStorage.getItem('anneeSelectionne'));
+  show.showAcceuilModala = false;
 
 
-  setTimeout(() => {
-    show.showAlert = false;
-    show.showAlertType = '';
-    show.showAlertMessage = '';
-    show.showAcceuilModala = false;
-  }, 3000);
 }
 </script>
 
@@ -100,7 +94,7 @@ function voirDetails(item) {
   top: 0;
   width: 100%;
   background-color: rgba(216, 213, 213, 0.326);
-  z-index: 2;
+  z-index: 100;
   height: 100%;
   display: flex;
   background: rgba(43, 38, 38, 0.801);
@@ -151,9 +145,11 @@ function voirDetails(item) {
 .cta-button:hover {
   background-color: rgb(19, 161, 19);
 }
+
 .bgs {
   background-color: rgb(19, 161, 19);
 }
+
 .bgs:hover {
   background-color: rgb(15, 117, 15);
 }

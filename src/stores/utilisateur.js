@@ -3,11 +3,13 @@ import {ref, onMounted} from "vue";
 import {useShow} from "@/stores/show";
 import {useAuth} from "@/stores/auth";
 import {useUrl} from "@/stores/url";
+import {useAnneeElectorale} from "@/stores/anneeElectorale";
 import axios from "axios";
 
 export const useUtilisateur = defineStore('Utilisateur', () => {
 	const show = useShow();
 	const auth = useAuth();
+	const anneeElectorale = useAnneeElectorale();
 	const URL = useUrl().url;
 
 	const newUtilisateur = ref()
@@ -19,26 +21,26 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 	const districtSelected = ref('')
 
 
-	const nom = ref('xxxxxxx')
-	const prenom = ref('xxxxxxx')
-	const nomComplet = ref('xxxxxxx');
-	const profession = ref('xxxxxxx');
-	const adresse = ref('xxxxxxx');
-	const numeroCIN = ref('xxxxxxx');
-	const dateDelivreCIN = ref('xxxxxxx');
-	const lieuDelivreCIN = ref('xxxxxxx');
-	const carteElecteur = ref('xxxxxxx');
-	const sexe = ref('xxxxxxx');
-	const lieuNaissance = ref('xxxxxxx');
-	const filiation = ref('xxxxxxx');
-	const dateNaissance = ref('xxxxxxx');
-	const telephone = ref('xxxxxxx');
-	const dateInscription = ref('xxxxxxx');
+	const nom = ref('')
+	const prenom = ref('')
+	const nomComplet = ref('');
+	const profession = ref('');
+	const adresse = ref('');
+	const numeroCIN = ref('');
+	const dateDelivreCIN = ref('');
+	const lieuDelivreCIN = ref('');
+	const carteElecteur = ref('');
+	const sexe = ref('');
+	const lieuNaissance = ref('');
+	const filiation = ref('');
+	const dateNaissance = ref('');
+	const telephone = ref('');
+	const dateInscription = ref('');
 
-	const region = ref('xxxxxxx');
-	const district = ref('xxxxxxx');
-	const commune = ref('xxxxxxx');
-	const fokontany = ref('xxxxxxx');
+	const region = ref('');
+	const district = ref('');
+	const commune = ref('');
+	const fokontany = ref('');
 
 
 	const user_id = ref('')
@@ -48,6 +50,14 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 
 	const utilisateurId = ref('')
 	const allElecteurs = ref()
+
+
+	const controlleurRegion = ref()
+	const operateurSaisieRegion = ref()
+	const controlleurDistrict = ref()
+	const operateurSaisieDistrict = ref()
+	const controlleurAnneeElectorale = ref({})
+	const operateurSaisieAnneeElectorale = ref({})
 
 
 	function getUserInfo(userId) {
@@ -60,7 +70,8 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 
 		}).then((response) => {
 			if (response.status === 200) {
-				console.log('ici', response.data);
+				console.log('ici data', response.data);
+
 
 				const data = response.data;
 				nomComplet.value = data.nomComplet
@@ -85,6 +96,36 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 				commune.value = data.commune;
 				fokontany.value = data.fokontany;
 
+				let role = JSON.parse(localStorage.getItem('usersRole'))
+
+				console.log('role', role);
+
+
+				if (role === 'Contrôleur') {
+					controlleurRegion.value = response.data.region
+					controlleurDistrict.value = response.data.district
+					console.log('roleyyyyyyyyyyyyyyyyyyyyyy');
+					anneeElectorale.getByIdAnnees(response.data.annee_electorale_id)
+					controlleurAnneeElectorale.value = anneeElectorale.oneAnneeData
+					console.log('roleyyyyyyyyyyyyyyyyyyyyyy', controlleurAnneeElectorale.value);
+
+				}
+				if (role === 'Opérateur de saisie') {
+
+					console.log('saisie', response.data);
+
+
+					operateurSaisieRegion.value = response.data.region
+					operateurSaisieDistrict.value = response.data.district
+					anneeElectorale.getByIdAnnees(response.data.annee_electorale_id)
+					operateurSaisieAnneeElectorale.value = anneeElectorale.oneAnneeData
+					console.log('iiiiiiiiiiiiiiiii', anneeElectorale.oneAnneeData);
+					console.log('region', operateurSaisieRegion.value);
+
+					console.log('district', operateurSaisieDistrict.value);
+
+
+				}
 
 				show.showAlert = true;
 
@@ -97,6 +138,7 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 				console.log('erreur de récupération d\'utilisateur');
 
 			}
+
 
 			setTimeout(() => {
 				show.showAlert = false;
@@ -293,6 +335,12 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 	});
 
 	return {
+		controlleurAnneeElectorale,
+		operateurSaisieAnneeElectorale,
+		controlleurRegion,
+		operateurSaisieDistrict,
+		operateurSaisieRegion,
+		controlleurDistrict,
 		anneeSelected,
 		regionSelected,
 		districtSelected,

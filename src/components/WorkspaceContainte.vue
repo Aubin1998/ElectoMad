@@ -1,64 +1,73 @@
-<template >
+<template>
     <!-- <div  class="flex  justify-center items-center w-full h-full bg-red-500 " > -->
-        <!-- <div class="flex justify-center items-center h-[20px] bg-green-500"
-            v-if="show.showListeElecteurs || show.showListe || show.showAjoutUtilisateur || show.showListeUtilisateurs || show.showElecteurInscrit || show.showNombreTotalVotes">
-            <div class="nav button">
+    <div class="flex justify-center items-center h-[60px]   "
+        v-if="show.showListeElecteurs || show.showListe || show.showAjoutUtilisateur || show.showListeUtilisateurs || show.showElecteurInscrit || show.showNombreTotalVotes">
+        <div class="nav button">
 
 
-                <h4 class="btn" v-if="show.isOptionProvince" @click="show.showOption('province')">Région</h4>
-                <h4 class="btn" v-if="show.isOptionDistrict" @click="show.showOption('district')">District</h4>
-                <h4 class="btn" v-if="show.isOptionCommune" @click="show.showOption('commune')">Commune</h4>
-                <h4 class="btn" v-if="show.isOptionFokontany" @click="show.showOption('fokontany')">Fokontany</h4>
-
-
-
-            </div>
-
-            <div class="navListe">
-
-
-                <h4 v-if="show.isProvince"> {{ show.selectedProvince }}</h4>
-                <h4 v-if="show.isDistrict"> {{ show.selectedProvince }}/{{ show.selectedDistrict }}</h4>
-                <h4 v-if="show.isCommune"> {{ show.selectedProvince }}/{{ show.selectedDistrict }}/{{
-                    show.selectedCommune }}</h4>
-                <h4 v-if="show.isFokontany"> {{ show.selectedProvince }}/{{ show.selectedDistrict }}/{{
-                    show.selectedCommune }}/{{ show.selectedFokontany }}</h4>
-
-            </div>
-        </div> -->
-
-        <div class="bg-[#434955] w-full h-[87vh] flex justify-center items-center rounded-xl shadow-md p-4 
-        my-auto mx-0 ">        
-
-    
-            <WorkspaceAcceuil v-if="show.acceuil" />
-
-
-            <WorkspaceAnneeElectorale v-if="show.showAnneElectoral" />
-            <WorkspaceGenreElection v-if="show.showGenreElection" />
-            <WorkspaceListeElecteurs v-if="show.showListeElecteurs || show.showListe" />
-            <WorkspaceLocalisationElection v-if="show.showLocalisationElection " />
-
-            <WorkspaceFiltrageRecherche v-if="show.showFiltrageRecherche" />
-            <WorkspaceActionsGestion v-if="show.showActionsGestion" />
-            <WorkspaceSurveillance v-if="show.showSurveillance" />
-            <WorkspaceCreation v-if="show.showCreation" />
-            <!--   <WorkspaceListe v-if="show.showListe" /> -->
-            <WorkspaceAjoutUtilisateurListe v-if="show.showAjoutUtilisateur" />
-            <WorkspaceListeUtilisateursListe v-if="show.showListeUtilisateurs" />
-            <WorkspaceChanger v-if="show.showChanger" />
-            <WorkspaceVerificationElecteurListe v-if="show.showElecteurInscrit" />
-            <!-- <WorkspaceBureauActifs v-if="show.showBureauActifs" /> -->
-            <WorkspaceTauxParticipationGlobal v-if="show.showTauxParticipation" />
-            <WorkspaceBulletinVotesListe v-if="show.showNombreTotalVotes" />
-            <WorkspaceMesTaches v-if="show.showMesTaches" />
-            <WorkspaceAutres v-if="show.showAutres" />
-            <WorkspaceListeCandidat v-if="show.showListeCandidat" />
-            <WorkspaceAjoutCandidat v-if="show.showAjoutCandidat" />
+            <h4 class="btn" v-if="show.isOptionProvince" @click="show.showOption('province')">Région</h4>
+            <h4 class="btn" v-if="show.isOptionDistrict" @click="show.showOption('district')">District</h4>
+            <h4 class="btn" v-if="show.isOptionCommune" @click="show.showOption('commune')">Commune</h4>
+            <h4 class="btn" v-if="show.isOptionFokontany" @click="show.showOption('fokontany')">Fokontany</h4>
 
 
 
         </div>
+
+        <div class="navListe">
+
+
+            <h4 class="text-sm font-semibold" v-if="show.isProvince"> {{ show.selectedProvince }}</h4>
+            <h4 class="text-sm font-semibold" v-if="show.isDistrict"> {{ show.selectedProvince }}/{{
+                show.selectedDistrict }}</h4>
+            <h4 class="text-sm font-semibold" v-if="show.isCommune"> {{ show.selectedProvince }}/{{
+                show.selectedDistrict }}/{{
+                    show.selectedCommune }}</h4>
+            <h4 class="text-sm font-semibold" v-if="show.isFokontany"> {{ show.selectedProvince }}/{{
+                show.selectedDistrict }}/{{
+                    show.selectedCommune }}/{{ show.selectedFokontany }}</h4>
+
+        </div>
+    </div>
+
+    <div class="bg-[#434955] w-full h-[78vh] flex justify-center items-center rounded-xl shadow-md p-4 
+        my-auto mx-0 ">
+
+
+        <WorkspaceAcceuil v-if="show.acceuil" />
+
+
+        <WorkspaceAnneeElectorale v-if="show.showAnneElectoral" />
+        <WorkspaceGenreElection v-if="show.showGenreElection" />
+        <!-- <WorkspaceListeElecteurs v-if="show.showListeElecteurs || show.showListe" /> -->
+        <WorkspaceListeElecteurs v-if="show.showListeElecteurs" />
+        <WorkspaceLocalisationElection v-if="show.showLocalisationElection" />
+
+        <WorkspaceFiltrageRecherche v-if="show.showFiltrageRecherche" />
+        <WorkspaceActionsGestion v-if="show.showActionsGestion" />
+        <WorkspaceSurveillance v-if="show.showSurveillance" />
+        <WorkspaceCreation v-if="show.showCreation" />
+        <!--   <WorkspaceListe v-if="show.showListe" /> -->
+        <WorkspaceAjoutUtilisateurListe v-if="show.showAjoutUtilisateur" />
+        <WorkspaceListeUtilisateursListe v-if="show.showListeUtilisateurs" />
+        <WorkspaceChanger v-if="show.showChanger" />
+        <WorkspaceVerificationElecteurListe v-if="show.showElecteurInscrit" />
+        <!-- <WorkspaceBureauActifs v-if="show.showBureauActifs" /> -->
+        <WorkspaceTauxParticipationGlobal v-if="show.showTauxParticipation" />
+        <WorkspaceBulletinVotesListe v-if="show.showNombreTotalVotes" />
+        <WorkspaceMesTaches v-if="show.showMesTaches" />
+        <WorkspaceAutres v-if="show.showAutres" />
+        <WorkspaceListeCandidat v-if="show.showListeCandidat" />
+        <WorkspaceAjoutCandidat v-if="show.showAjoutCandidat" />
+
+        <!-- Controlleur -->
+        <WorkspaceControleElecteur v-if="show.showControleElecteur" />
+        <WorkspaceSaisirElecteur v-if="show.showSaisirElecteur" />
+        <WorkspaceTest v-if="show.showTest" />
+
+
+
+    </div>
     <!-- </div> -->
 </template>
 
@@ -96,12 +105,13 @@ import WorkspaceLocalisationElection from "@/components/gestionElecteurs/Workspa
 
 
 import { useShow } from "@/stores/show";
+import WorkspaceControleElecteur from "./gestionElecteurs/WorkspaceControleElecteur.vue";
+import WorkspaceSaisirElecteur from "./gestionElecteurs/WorkspaceSaisirElecteur.vue";
+import WorkspaceTest from "./gestionElecteurs/WorkspaceTest.vue";
 const show = useShow(); //call Show in show.js
 </script>
 
 <style scoped>
-
-
 .nav {
     background-color: #4349553a;
     width: 40%;

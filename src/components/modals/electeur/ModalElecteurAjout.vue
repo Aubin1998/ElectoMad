@@ -5,32 +5,23 @@
         <div class="closeForm" @click="show.showModalAjoutElecteur = !show.showModalAjoutElecteur">
           <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
         </div>
-        <div class="closeForm1"  @click="show.see = !show.see" v-if="!show.see">
+        <div class="closeForm1" @click="show.see = !show.see" v-if="!show.see">
           <i class="pi pi-arrow-left" style="font-size: 18px; color: white"></i>
         </div>
-       
+
         <div class="contenaireModal">
           <div class="content">
 
 
 
-
-
-
             <div class="contenaireModal" v-if="show.see">
-
               <h1 class="tritreModal">AJOUT NOUVEAU ELECTEUR</h1>
-
-
-              <div class="contenaire">
-
-
+              <div class="contenaire ">
 
                 <div class="inputCard">
                   <h3 class="label">Nom et prénom</h3>
                   <input type="text" placeholder="Ajoutez un nom" class="input" v-model="listeElecteur.nomComplet" />
                 </div>
-
 
                 <div class="inputCard">
                   <h3 class="label">Email</h3>
@@ -49,126 +40,87 @@
                   <input type="text" placeholder="Insérez un lieu de naissance" class="input"
                     v-model="listeElecteur.lieuNaissance" />
                 </div>
+
                 <div class="inputCard">
                   <h3 class="label">Sexe</h3>
                   <input type="text" placeholder="Ajoutez un sexe" class="input" v-model="listeElecteur.sexe" />
                 </div>
+
                 <div class="inputCard">
                   <h3 class="label">Filiation</h3>
                   <input type="text" placeholder="Nom du père et de la mère" class="input"
                     v-model="listeElecteur.filiation" />
                 </div>
+
                 <div class="inputCard">
                   <h3 class="label">Téléphone</h3>
                   <input type="text" placeholder="Nom du père et de la mère" class="input"
                     v-model="listeElecteur.telephone" />
                 </div>
+
                 <div class="inputCard">
                   <h3 class="label">Numéro de la CIN</h3>
                   <input type="text" placeholder="Insérez un numéro de la CIN" class="input"
                     v-model="listeElecteur.numeroCIN" />
                 </div>
+
                 <div class="inputCard">
                   <h3 class="label">Date de délivrance</h3>
                   <VueDatePicker v-model="listeElecteur.dateDelivreCIN" placeholder="Insérez une date de naissance"
                     class="input" />
                 </div>
 
-
-
                 <div class="inputCard">
                   <h3 class="label">Lieu de délivrance CIN</h3>
                   <input type="text" placeholder="Insérez un lieu de délivrance de la CIN" class="input"
                     v-model="listeElecteur.lieuDelivreCIN" />
                 </div>
+
                 <div class="inputCard">
                   <h3 class="label">Adresse ou le lieu de résidence</h3>
                   <input type="text" placeholder="Insérez une adresse ou le lieu de résidence" class="input"
                     v-model="listeElecteur.adresse" />
-
                 </div>
+
                 <div class="inputCard">
                   <h3 class="label">Profession</h3>
                   <input type="text" placeholder="Ajoutez un profession" class="input"
                     v-model="listeElecteur.profession" />
                 </div>
-                <div class="inputCard">
+
+                <div class="inputCard ">
                   <h3 class="label">Date d'inscription</h3>
                   <VueDatePicker v-model="listeElecteur.dateInscription" placeholder="Insérez une date de naissance"
                     class="input1" />
                 </div>
 
-                <div class="inputCard">
+                <div class="inputCard ">
                   <h3 class="label">Carte d'électeur</h3>
                   <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
                     v-model="listeElecteur.carteElecteur" />
                 </div>
 
-
-
-
-                <div class="inputCard">
+                <div class="inputCard ">
                   <h3 class="label">Année électorale</h3>
-                  <h3>{{ }}</h3>
-
-
                   <select class="annee" v-model="listeElecteur.annee_electorale_id">
-                    <option selected disabled value=""> sélectionner une année électorale</option>
+                    <option selected disabled value="">sélectionner une année électorale</option>
                     <option v-for="annee in anneeElectorale.allanneeData" :key="annee.id" :value="annee.id">
                       {{ annee.annee }} - {{ annee.descriptionAnnee }}
                     </option>
                   </select>
                 </div>
 
-                <!-- <div class="inputCard">
-                  <h3 class="label">Région</h3>
-                  <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
-                    v-model="listeElecteur.region" />
-                </div>
-
-                <div class="inputCard">
-                  <h3 class="label">Disrict</h3>
-                  <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
-                    v-model="listeElecteur.district" />
-                </div>
-                
-                <div class="inputCard">
-                  <h3 class="label">Commune</h3>
-                  <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
-                    v-model="listeElecteur.commune" />
-                </div>
-                <div class="inputCard">
-                  <h3 class="label">Fokontany</h3>
-                  <input type="text" placeholder="Ajoutez une carte d'électeur" class="input"
-                    v-model="listeElecteur.fokontany" />
-                </div>-->
-
-
-
-
-
-                <!-- <div class="inputCard"> 
-                  <h3 class="label">Année électorale</h3>
-                  <input type="text" placeholder="Ajoutez une année électorale" class="input"
-                   />
-                </div> -->
-
-                <div class="btn">
-                  <h3 class="btnAdd add"></h3>
-                </div>
               </div>
 
               <div class="modalFooter">
                 <h3 class="btnAdd add" @click="show.see = !show.see">Suivant</h3>
               </div>
-
-
-
             </div>
 
 
+
             <div class="contenaireModal" v-if="!show.see">
-             
+
 
               <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload
                 file</label>
@@ -243,7 +195,6 @@ function voirDetails(item) {
 </script>
 
 <style scoped>
-
 .modalFooter {
   background-color: rgb(34, 199, 83);
   width: 170px;
@@ -294,8 +245,8 @@ function voirDetails(item) {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
-
+  justify-content: left;
+  gap: 15px;
 }
 
 .contenaireModal {
