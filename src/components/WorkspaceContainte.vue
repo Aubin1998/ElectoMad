@@ -30,10 +30,8 @@
         </div>
     </div>
 
-    <div class="bg-[#434955] w-full h-[78vh] flex justify-center items-center rounded-xl shadow-md p-4 
-        my-auto mx-0 ">
-
-
+    <div>
+        <!-- class="bg-[#434955]  flex justify-center items-center rounded-xl shadow-md p-4  " -->
         <WorkspaceAcceuil v-if="show.acceuil" />
 
 

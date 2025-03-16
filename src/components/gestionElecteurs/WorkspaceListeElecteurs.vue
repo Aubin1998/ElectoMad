@@ -1,13 +1,16 @@
 <template>
-    <div class="contenaire" v-if="show.showProvince">
+    <div class="my-8 " v-if="show.showProvince">
 
+        <div class="my-8  flex  justify-between gap-4 items-center">
 
+            <h4 class="font-bold ml-12 ">
+                Liste des régions
+            </h4>
+            <div class="mr-10 w-[30%] ">
+                <input v-model="searchQuery" class="input custom-input" type="text"
+                    placeholder="Rechercher par nom de région">
 
-        <!-- Barre de recherche -->
-        <div class="recherche">
-            <input v-model="searchQuery" class="input custom-input" type="text"
-                placeholder="Rechercher par nom de région">
-
+            </div>
         </div>
         <div class="form">
             <div class="itemForm">
@@ -116,6 +119,7 @@ watch(data, (newData) => {
 <style scoped>
 .contenaire {
     padding-top: 20px;
+    width: 100%;
 }
 
 /* Customisation de l'input */

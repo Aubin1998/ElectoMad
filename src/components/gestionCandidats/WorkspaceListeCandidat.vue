@@ -1,6 +1,6 @@
 <template>
     <div class=" w-full h-full">
-        <div class="flex justify-around items-center">
+        <div class="my-8 flex justify-around items-center">
 
 
             <h4 class="font-bold">
@@ -16,35 +16,36 @@
         </div>
 
 
-        <div class="overflow-y-auto h-[500px] ">
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg down">
-                <table class="w-full  text-sm  text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <div class="relative shadow-md  down">
+            <table
+                class="w-full text-sm  mb-1 shadow-[0_10px_30px_rgba(0,0,0,0.5)] text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead
+                    class="text-xs  border-b-4 border-gray-500 !z-0 text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="pl-7 w-[20%] rounded-tl-lg  py-4">
+                            Nom
+                        </th>
+                        <th scope="col" class="pl-3 w-[15%] py-3">
+                            Sexe
+                        </th>
+                        <th scope="col" class="w-[20%] py-3">
+                            Type
+                        </th>
+                        <th scope="col" class="pl-11 w-[20%] py-3">
+                            Année
+                        </th>
+                        <th scope="col" class=" w-[20%] pl-9 rounded-tr-lg py-3">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+            </table>
 
-                    <thead class="text-xs   !z- text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                Nom
-                            </th>
 
-                            <th scope="col" class="px-6 py-3">
-                                Sexe
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Genre
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Année
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-
-                            </th>
-                        </tr>
-                    </thead>
-
-
-                    <tbody>
+            <div class="table-container w-full max-h-[440px]  overflow-y-auto">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <tbody class="">
                         <div v-if="filteredCandidats.length === 0" class="no-results">
-
                             <h4 class="message">Aucun candidat trouvé.</h4>
                         </div>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
@@ -64,18 +65,21 @@
                             </td>
                             <td class="px-6 py-4">
                                 <div class="btn">
-                                    <div class="icon blue" @click="voir(item)"> <i class="pi pi-eye"
-                                            style="font-size: 18px; color: white;"></i> </div>
-                                    <div class="icon orange" @click="modifier(item)"> <i class="pi pi-pencil"
-                                            style="font-size: 18px; color: white;"></i> </div>
-                                    <div class="icon red" @click="supprimer(item)"> <i class="pi pi-trash"
-                                            style="font-size: 18px; color: white;"></i> </div>
+                                    <div class="icon blue" @click="voir(item)">
+                                        <i class="pi pi-eye" style="font-size: 18px; color: white;"></i>
+                                    </div>
+                                    <div class="icon orange" @click="modifier(item)">
+                                        <i class="pi pi-pencil" style="font-size: 18px; color: white;"></i>
+                                    </div>
+                                    <div class="icon red" @click="supprimer(item)">
+                                        <i class="pi pi-trash" style="font-size: 18px; color: white;"></i>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
+
             </div>
 
         </div>
@@ -163,7 +167,7 @@
                         v-model="listeCandidat.lieuNaissance" />
 
                     <SelectInput label="Sexe" defaultOption="" :options="[
-                        { text: 'Masculin', value: 'Masculin' },
+                        { text: 'Homme', value: 'Homme' },
                         { text: 'Femme', value: 'Femme' }
                     ]" v-model="listeCandidat.sexe" />
 
@@ -293,17 +297,14 @@
                     ]" v-model="listeCandidat.certificatResidence" />
                 </div>
 
-                <div class="mt-4 w-[400px]">
-                    <ModalUploadFile />
 
-                </div>
             </div>
         </div>
 
 
         <div class="modal backdrop-blur" v-if="show.showModalAjoutImage">
-            <div class="contenaireModal">
-                <div class="closeForm" @click="show.showModalAjoutImage = !show.showModalAjoutImage">
+            <div class="contenaireModal1">
+                <div class="closeForm1" @click="show.showModalAjoutImage = !show.showModalAjoutImage">
                     <i class="pi pi-times text-gray-700 text-lg"></i>
                 </div>
                 <div class="flex justify-between items-center">
@@ -311,13 +312,15 @@
                         show.showCandidatDataImage.electeur.nomComplet }}
                     </h1>
                 </div>
-                <div class="flex flex-wrap justify-around items-center">
-                    <div class="mt-4 w-[400px] justify-center items-center ml-0">
+                <div class="flex flex-wrap justify-lefte mx-12 items-center">
+                    <div class="mt-6 w-[700px]  items-center">
                         <ModalUploadFile :data="show.showCandidatDataImage" />
                     </div>
                 </div>
             </div>
         </div>
+
+
 
 
     </div>
@@ -697,7 +700,7 @@ option {
 .modal {
     width: 100%;
     height: 100vh;
-    background-color: rgba(196, 190, 190, 0.452);
+    background-color: rgba(196, 190, 190, 0);
     position: absolute;
     top: 0;
     left: 0;
@@ -731,14 +734,22 @@ option {
 }
 
 .contenaireModal {
-    width: 100%;
-    height: 100vh;
+    width: 95%;
+    height: 85vh;
     background-color: #414752;
     border-radius: 10px;
     margin: 0 auto;
     padding: 10px;
 }
 
+.contenaireModal1 {
+    width: 60%;
+    height: 25vh;
+    background-color: #414752;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 10px;
+}
 
 .tritreModal {
     color: white;
@@ -826,12 +837,30 @@ option {
     justify-content: center;
 }
 
+.closeForm1 {
+    background-color: rgb(231, 230, 230);
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    position: absolute;
+    right: 300px;
+    top: 39%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
 .closeForm:hover {
     background-color: rgb(186, 11, 11);
     transform: scale(1.1);
     /* Ajoute un effet de zoom au survol */
 }
 
+.closeForm1:hover {
+    background-color: rgb(186, 11, 11);
+    transform: scale(1.1);
+    /* Ajoute un effet de zoom au survol */
+}
 
 .showProfil {
     position: absolute;

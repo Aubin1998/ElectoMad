@@ -19,18 +19,19 @@
       <h4 class="message">Aucune électeur trouvée.</h4>
     </div>
 
-    <div v-if="filteredElecteurs.length !== 0" class="flex items-center">
+    <div v-if="filteredElecteurs.length !== 0" class="flex mb-8 items-center">
       <h1 class="px-2 w-[10%]">Numéros</h1>
-      <div class="flex items-center justify-between px-4 w-[70%]">
-        <h1>Nom</h1>
-        <h1>Sexe</h1>
+      <div class="flex items-center justify-between  w-[70%]">
+        <h1 class=" ml-10 ">Nom</h1>
+        <h1 class="mr-14">Sexe</h1>
       </div>
-      <div class=" bg-green-500   w-[20%]">
+      <div class="  flex justify-center w-[20%]">
+        Action
       </div>
     </div>
 
 
-    <div class="scroll-container">
+    <div class="scroll-container border-t-2">
       <div class="item" v-for="(item, index) in filteredElecteurs" :key="index">
 
         <h4 class="w-[10%] px-2">{{ item?.id }}</h4>
@@ -38,6 +39,7 @@
           <h4>{{ item.nomComplet }}</h4>
           <h5>{{ item.sexe }}</h5>
         </div>
+
         <div class="flex justify-between px-2 w-[20%]">
           <div class="icon blue" @click="voir(item)">
             <i class="pi pi-eye" style="font-size: 18px; color: white;"></i>
@@ -49,6 +51,8 @@
             <i class="pi pi-trash" style="font-size: 18px; color: white;"></i>
           </div>
         </div>
+
+
       </div>
     </div>
   </div>
@@ -200,11 +204,7 @@ const voir = (item) => {
 const modifier = (item) => {
   show.showModalModifierElecteur = !show.showModalModifierElecteur;
   listeElecteur.modifierElecteurData = item;
-
-
-
   console.log('item', listeElecteur.modifierElecteurData);
-
 
 }
 
@@ -217,10 +217,6 @@ const supprimer = (item) => {
   show.showModalSupprimerElecteur = !show.showModalSupprimerElecteur;
   listeElecteur.supprimerElecteurData = item;
   console.log("sup", listeElecteur.supprimerElecteurData);
-
-
-
-
 
 }
 
@@ -359,9 +355,10 @@ onMounted(() => {
 }
 
 .scroll-container {
-  max-height: 100%;
+  max-height: 60vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
   /* Limite la hauteur */
-  overflow-y: auto;
   /* Ajoute un défilement vertical si nécessaire */
   padding: 10px;
   /* Espacement interne */

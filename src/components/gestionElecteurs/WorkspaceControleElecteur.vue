@@ -8,7 +8,7 @@
         <div class=" w-full h-[90%] flex justify-between">
             <div class="w-[24%] h-[450px]  ">
                 <!-- <h1 class="w-[100%] p-2 border-b-2 shadow-sm mb-1">Fokontany</h1> -->
-                <div class="w-[100%] h-[500px] rounded-lg bg-gray-600">
+                <div class="w-[100%] h-[539px] rounded-lg bg-gray-600">
                     <div class="px-4 py-1">
                         <ul class=" space-y-1">
                             <li>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="w-[75%] h-[450px] ">
-                <div class="w-[100%] h-[40px]  flex justify-between items-center">
+                <div class="w-[100%] h-[62px]  flex justify-between items-center">
                     <div class="w-[70%] h-full flex items-center mb-1  ">
                         <h1 @click="toggle('non')"
                             class="w-[45%] px-4 py-2 text-white bg-gray-500 border-b-2 rounded-sm mx-1 shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">

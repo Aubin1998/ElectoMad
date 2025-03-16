@@ -6,10 +6,14 @@
       <div class="mx-auto max-w-7xl px-8 md:px-6">
         <div class="flex flex-wrap">
           <div class="w-full lg:w-5/12">
+            <i class="pi pi-pencil text-slate-800" style="font-size: 18px; "></i>
+
             <h1 id="partenaire"
               class="text-slate-800 mb-3 text-4xl font-bold leading-snug sm:text-[42px] lg:text-[40px] xl:text-[42px]">
-              Bienvenue sur Votiflow Votre source d'information <span id="association" class="!text-blue-600 font-bold">
-                électorale</span>
+
+              Bienvenue sur Votiflow, votre source d'information
+
+              <span id="association" class="text-blue-600 font-bold">électorale</span>
             </h1>
             <p class="text-slate-500 mb-8 max-w-[480px] text-base">Bienvenue sur Votiflow, la plateforme qui vous
               fournit
@@ -17,6 +21,7 @@
               essentielles sur les élections. Restez informé des dernières actualités,
               des dates importantes et des consignes de vote.
 
+              <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
             </p>
 
 
@@ -29,29 +34,12 @@
               </button>
             </a>
 
-            <!-- <button
-              class="w-full rounded-md bg-blue-500 px-8 py-2.5 font-semibold text-white shadow-md shadow-blue-500/20 hover:bg-blue-600 duration-200 sm:w-auto">
-              En savoir plus</button> -->
 
             <button @click="gotoList"
               class="mt-4 box-border w-full rounded-md border border-blue-500/20 px-8 py-2.5 font-semibold text-blue-500 shadow-md shadow-blue-500/10 duration-200 sm:ml-4 sm:mt-0 sm:w-auto ">
               Vérifiez votre nom </button>
 
-            <!-- brand -->
-            <!-- <div class="mt-4 flex flex-wrap gap-4">
-              <img src="/partenaire5.jpg" alt="brand"
-                class="w-36 cursor-pointer rounded-lg border border-blue-300/20 bg-white px-6 py-[-1] shadow-md shadow-blue-500/5 duration-200 hover:scale-95 sm:w-40">
-              <img src="/partenaire3.webp" alt="brand"
-                class="w-36 cursor-pointer rounded-lg border border-blue-300/20 bg-white px-6 py-[-0.5] shadow-md shadow-blue-500/5 duration-200 hover:scale-95 sm:w-40">
-              <img src="/partenaire4.webp" alt="brand"
-                class="w-36 cursor-pointer rounded-lg border border-blue-300/20 bg-white px-6 py-[-0.5] shadow-md shadow-blue-500/5 duration-200 hover:scale-95 sm:w-40">
-              <a id="actualite">
-                <img src="/partenaire6.png" alt="brand"
-                  class="w-36 cursor-pointer rounded-lg border border-blue-300/20 bg-white px-6 py-[-0.5] shadow-md shadow-blue-500/5 duration-200 hover:scale-95 sm:w-40">
 
-              </a>
-
-            </div> -->
 
           </div>
 
@@ -60,18 +48,14 @@
           <div class="w-full px-4 lg:w-6/12">
             <div class="lg:ml-auto lg:text-right">
               <div class="relative z-10  pt-11 lg:pt-0">
+
                 <a href="#" class="">
+                  <i class="pi pi-pencil text-slate-800" style="font-size: 18px; "></i>
+
                   <img alt="Élection" src="/Vote-843x630.jpg"
                     class="h-56 w-full rounded-bl-3xl rounded-tr-3xl object-cover sm:h-64 lg:h-72" />
 
-                  <!-- <div class="mt-4 sm:flex sm:items-center sm:justify-center sm:gap-4">
-                    <strong class="font-medium text-gray-700">Votez pour l'Avenir</strong>
 
-                    <span class="hidden sm:block sm:h-px sm:w-8 sm:bg-blue-500"></span>
-
-                    <p class="mt-0.5 opacity-80 sm:mt-0 text-gray-700">Participez à l'élection et faites entendre votre
-                      voix !</p>
-                  </div> -->
                 </a>
 
               </div>
@@ -99,6 +83,8 @@
         <div class="grid gap-6  sm:grid-cols-2 md:grid-cols-3 lg:gap-10">
           <!-- single-blog -->
           <div @click="gotoPdf" class="w-full  duration-200 hover:scale-95 ">
+            <i class="pi pi-pencil text-slate-800" style="font-size: 18px; "></i>
+
             <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
               <img src="/liste.jpg" alt="blog img" class="w-full " style="cursor:pointer   ">
             </div>
@@ -111,16 +97,21 @@
                   Assurez-vous de vérifier votre inscription avant la date limite.</a>
               </div>
               <hr class="my-4 border-slate-100">
+              <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
               <div class="flex">
                 <img src="/admin01.png" alt="user img" class="mr-3 h-10 w-10 rounded-full object-cover">
                 <p class="text-sm font-semibold capitalize text-slate-600">Commision électorale <span
                     class="block text-xs text-slate-400">Rédacteur électoral </span></p>
               </div>
+
             </div>
           </div>
 
           <!-- single-blog -->
           <div class="w-full duration-200 hover:scale-95">
+            <i class="pi pi-pencil text-slate-800" style="font-size: 18px; "></i>
+
             <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
 
               <a
@@ -141,6 +132,8 @@
               </div>
               <hr class="my-4 border-slate-100">
               <div class="flex">
+                <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
                 <img src="/admin02.png" alt="user img" class="mr-3 h-10 w-10 rounded-full object-cover">
                 <p class="text-sm font-semibold capitalize text-slate-600">Commission électorale <span
                     class="block text-xs text-slate-400"> Rédacteur Électoral</span></p>
@@ -150,6 +143,8 @@
 
           <!-- single-blog -->
           <div class="w-full duration-200 hover:scale-95">
+            <i class="pi pi-pencil text-slate-800" style="font-size: 18px; "></i>
+
             <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
               <a
                 href="https://www.youtube.com/results?search_query=Annonce+pe%C3%A9liminaire+r%C3%A9sultat+%C3%A9lectorale+Madagacar">
@@ -168,6 +163,7 @@
                   Restez connecté pour les mises à jour.</a>
               </div>
               <hr class="my-4 border-slate-100">
+              <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
               <div class="flex">
                 <img id="accueil" src="/admin03.webp" alt="user img" class="mr-3 h-10 w-10 rounded-full object-cover">
 
@@ -193,15 +189,23 @@
         <div class="mb-5 sm:mb-10">
           <span id="document" class="font-medium text-blue-500">Votre guide</span>
           <h1 class="text-2xl font-bold text-slate-700 sm:text-3xl">Découvrez les Consignes</h1>
+
         </div>
         <!-- features img -->
-        <div class="md:flex md:justify-between md:gap-6 xl:gap-10">
+        <div class="md:flex relative  md:justify-between md:gap-6 xl:gap-10">
+          <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
           <div class="mb-5 max-h-[600px] overflow-hidden rounded-lg md:mb-0 md:w-5/12">
+
             <img src="/consigne.png" alt="features img"
               class="h-full scale-125 sm:w-full sm:object-cover rounded-bl-3xl rounded-tr-3xl">
+
           </div>
           <div class="md:w-7/12">
+            <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
             <div class="mb-16 flex flex-col">
+
               <p class="mb-3 text-slate-500">Assurez-vous de vérifier votre inscription sur les listes
                 électorales avant le jour du scrutin. Votre participation est essentielle pour garantir une élection
                 juste
@@ -218,6 +222,8 @@
             </div>
 
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
               <div class="flex flex-col items-center justify-center rounded-xl bg-white px-4 py-8 shadow-lg">
                 <img class="mb-3 w-16" src="/verifier.svg" alt="">
 
@@ -228,7 +234,9 @@
                   Vérification de
                   l'inscription</h3>
               </div>
-              <div class="flex flex-col items-center justify-center rounded-xl bg-white px-4 py-8 shadow-lg">
+
+              <div class="relative flex flex-col items-center justify-center rounded-xl bg-white px-4 py-8 shadow-lg">
+
                 <!-- <img class="mb-3 w-16" src="/bureau.jpg" alt=""> -->
                 <svg width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1"
                   xmlns="http://www.w3.org/2000/svg" fill="#000000">
@@ -266,6 +274,7 @@
                       fill="#F39A2B"></path>
                   </g>
                 </svg>
+
                 <a href="#inscription" class="text-sm text-blue-500">Etape 2</a>
 
                 <a href="http://archive.ipu.org/parline-f/reports/1193_B.htm">
@@ -274,6 +283,7 @@
                 </a>
 
               </div>
+
               <div class="flex flex-col items-center justify-center rounded-xl bg-white px-4 py-8 shadow-lg">
                 <!-- <img class="mb-3 w-16" src="/bureau.jpg" alt=""> -->
                 <svg width="89px" height="89px" viewBox="-4.8 -4.8 57.60 57.60" fill="none"
@@ -294,6 +304,7 @@
                       fill="#43CCF8" stroke="white" stroke-width="4" stroke-linejoin="round"></path>
                   </g>
                 </svg>
+                <a href="#inscription" class="text-sm text-blue-500">Etape 3</a>
 
                 <a id="contact"
                   href="https://www.google.com/maps/@-12.2847613,49.3062532,396m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDIwOS4wIKXMDSoASAFQAw%3D%3D">
@@ -312,499 +323,6 @@
 
 
 
-
-
-
-
-
-    <!-- ====== Type élection ====== -->
-    <!-- 
-    <section class="py-16">
-      <div class="mx-auto max-w-7xl px-8 md:px-6">
-        <div class="md:flex md:justify-between md:gap-6">
-          <div class="md:w-6/12"> -->
-    <!-- heading text -->
-    <!-- <div class="mb-5 sm:mb-10">
-              <span class="font-medium text-blue-500">Election</span>
-              <h1 class="text-2xl font-bold text-slate-700 sm:text-3xl">Types d'élections</h1>
-            </div>
-            <p class="text-slate-500 mb-6">Les élections sont un pilier essentiel de la démocratie.
-              Elles permettent aux citoyens de choisir leurs représentants à différents niveaux de gouvernement.
-              Découvrez les différents types d'élections et leur importance.</p>
-            <ul>
-              <li class="mb-6 flex items-center">
-                <div class="flex h-[35px] w-[35px] min-w-[35px] items-center justify-center rounded-full  text-white">
-                  <svg fill="#3B82F6" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 236 256" enable-background="new 0 0 236 256"
-                    xml:space="preserve">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                      <path
-                        d="M117.5,2c-12.47,0-22.63,10.16-22.63,22.63c0,12.46,10.06,22.62,22.63,22.62c12.37,0,22.62-10.16,22.62-22.62 C140.12,12.16,129.97,2,117.5,2z M146,52H89c-15.59,0-28,13.41-28,29v32h20V86c0-1.71,1.29-3,3-3s3,1.29,3,3v27h61V86 c0-1.71,1.29-3,3-3s3,1.29,3,3v27h20V81C174,65.51,161.49,52,146,52z M109.48,154.61v9.38h16.96v-9.38H109.48z M109.48,154.61v9.38 h16.96v-9.38H109.48z M2,118v27h23v109h185V145h24v-27H2z M87.38,227.46h-6.95c-4.8,0-9.43-3.57-9.43-9.72c0,0,0-44.11,0-44.28 c0-5.48,4.55-9.63,9.43-9.63h6.95V227.46z M143.9,227.54H92.1v-63.55h12.66v-9.13c0-3.33,2.98-5.4,6.45-5.4h13.49 c3.56,0,6.46,2.07,6.46,5.4v9.13h12.74V227.54z M165,217.74c0,6.15-4.63,9.72-9.43,9.72h-6.95v-63.63h6.95 c4.88,0,9.43,4.15,9.43,9.63C165,173.63,165,217.74,165,217.74z M109.48,163.99h16.96v-9.38h-16.96V163.99z M109.48,154.61v9.38 h16.96v-9.38H109.48z M109.48,154.61v9.38h16.96v-9.38H109.48z">
-                      </path>
-                    </g>
-                  </svg>
-
-                </div>
-
-                <p class="ml-4 max-w-md font-medium text-slate-600">L'<span
-                    class="text-blue-500  hover:text-blue-600 font-medium " style="cursor: pointer;"
-                    @click="gotoPresidentiel">élection
-                    présidentielle</span> est le
-                  processus par lequel
-                  les citoyens élisent le chef de l'État.
-                </p>
-              </li>
-              <li class="mb-6 flex items-center">
-                <div class="flex h-[35px] w-[35px] min-w-[35px] items-center justify-center rounded-full  text-white">
-                  <ion-icon name="cube-outline"></ion-icon>
-                  <svg fill="#3B82F6" height="200px" width="200px" version="1.1" id="_x31_"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 128 128"
-                    xml:space="preserve">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                      <g>
-                        <ellipse transform="matrix(0.7071 -0.7071 0.7071 0.7071 0.5609 40.0092)" cx="48.6" cy="19.3"
-                          rx="10.4" ry="10.4"></ellipse>
-                        <path
-                          d="M78,47.1c-0.1-0.6-0.3-1.2-0.6-1.7l10,8.4c0.3,0.2,0.6,0.3,0.9,0.3c0.4,0,0.8-0.2,1.1-0.5c0.5-0.6,0.4-1.5-0.2-2L70.5,35.9 c-0.6-0.5-1.5-0.4-2,0.2c-0.5,0.6-0.4,1.5,0.2,2l6,5c-0.5-0.2-1-0.3-1.5-0.3h-19L40.4,28.9c-2.3-2.3-6-2.3-8.3,0L9,54.3 c-1.2,1-2,2.7-2,4.4v54.9c0,3.6,2.9,6.5,6.5,6.5c3.6,0,6.5-2.9,6.5-6.5V68.9c0.9-0.3,1.7-0.5,2.6-1c6.2-3.9,9.9-8.6,15.4-14.1 c0.4-0.4,1.3-1.3,1.4-1.4c2.1-2.1,3.6-4.7,4.4-7.4l5.5,5.5c0.8,0.8,2,1.3,3.3,1.3h20.8C75.9,51.7,78,49.6,78,47.1z">
-                        </path>
-                        <polygon
-                          points="97.8,58.6 123.2,38.5 118.5,32.6 63.7,76 68.4,81.9 91.7,63.4 91.7,116.2 76,116.2 76,120.1 113.4,120.1 113.4,116.2 97.8,116.2 ">
-                        </polygon>
-                      </g>
-                    </g>
-                  </svg>
-                </div>
-                <p class="ml-4 max-w-md font-medium text-slate-600">Les <span @click="gotoParlementaire"
-                    class="text-blue-500  hover:text-blue-600 font-medium " style="cursor: pointer;">élections
-                    parlementaires </span> permettent
-                  aux citoyens
-                  d'élire les membres du parlement ou de l'assemblée législative.
-                </p>
-              </li>
-              <li class="mb-6 flex items-center">
-                <div class="flex h-[35px] w-[35px] min-w-[35px] items-center justify-center rounded-full  text-white">
-                  <ion-icon name="mail-unread-outline">
-
-                  </ion-icon>
-                  <svg fill="#3B82F6" height="200px" width="200px" version="1.2" baseProfile="tiny" id="Layer_1"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    viewBox="-351 154 256 254" xml:space="preserve">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                      <path
-                        d="M-226.5,156.3c10.9,0,19.8,8.9,19.8,19.8s-8.9,19.8-19.8,19.8s-19.8-8.9-19.8-19.8S-237.4,156.3-226.5,156.3z M-176.9,291.8 h-17.3h-5h-54.5h-5h-17.4H-331v14.4h16.1v99.5h175.8v-99.5h16.1v-14.4H-176.9z M-258.4,230.6c0-1.5,1-2.4,2.4-2.4s2.4,1,2.4,2.4 v55.5h54.5v-55.5c0-1.5,1-2.4,2.4-2.4c1.5,0,2.4,1,2.4,2.4v55.5h17.4v-60.5c0-13.7-11.1-24.8-24.8-24.8h-5l-14.5,22.7l-1.7-17 l2.4-5.7H-231l2.4,5.7l-1.9,17.1l-14.6-22.8h-5.8c-13.7,0.1-24.8,11.2-24.8,24.8v60.5h17.4L-258.4,230.6L-258.4,230.6z">
-                      </path>
-                    </g>
-                  </svg>
-                </div>
-                <p class="ml-4 max-w-md font-medium text-slate-600">Les <span @click="gotoConseilleMunicipaux"
-                    class="text-blue-500  hover:text-blue-600 font-medium " style="cursor: pointer;">élections
-                    municipales</span> concernent
-                  l'élection des
-                  représentants locaux,
-                  tels que les maires et les conseillers municipaux.
-                </p>
-              </li>
-            </ul>
-            <a id="apropos"></a>
-            <button @click="gotoTypeElection"
-              class="w-full rounded-md bg-blue-500 px-8 py-2.5 font-semibold text-white shadow-md shadow-blue-500/20 hover:bg-blue-600 duration-200 md:w-max">
-              En Savoir Plus</button>
-          </div> -->
-    <!-- about img -->
-    <!-- <div class="mt-8 flex justify-center md:mt-0 md:w-5/12">
-            <img src="/type.jpg" alt="about img" class="max-h-[500px] md:max-h-max">
-          </div>
-
-        </div>
-      </div>
-    </section> -->
-
-    <!-- ====== END Type élection ====== -->
-
-
-
-
-    <!--
-    Heads up! 👋
-
-    This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
-  -->
-
-    <!-- <link href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css" rel="stylesheet" /> -->
-    <!-- 
-    <section class="bg-gray-50">
-      <div class="mx-auto max-w-[1340px] px-4 py-12 sm:px-6 lg:me-0 lg:py-16 lg:ps-8 lg:pe-0 xl:py-24">
-        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:items-center lg:gap-16">
-          <div class="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">
-              Découvrez les historiques des résultats des élections...
-            </h2>
-
-            <p class="mt-4 text-gray-600">
-              Consultez les résultats officiels et voyez comment votre voix a contribué à façonner l'avenir de notre
-              nation.
-              Chaque vote compte et chaque participation est essentielle pour notre démocratie!
-            </p>
-
-            <div class="hidden lg:mt-8 lg:flex lg:gap-4">
-              <button aria-label="Previous slide" id="keen-slider-previous-desktop"
-                class="rounded-full border border-gray-300 p-3 text-gray-600 transition hover:bg-gray-300 hover:text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="size-5 rtl:rotate-180">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                </svg>
-              </button>
-
-              <button aria-label="Next slide" id="keen-slider-next-desktop"
-                class="rounded-full border border-gray-300 p-3 text-gray-600 transition hover:bg-gray-300 hover:text-white">
-                <svg class="size-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="-mx-1  lg:col-span-2 lg:mx-0 flex gap-1">
-            <div id="keen-slider" class="keen-slider">
-
-              <div class="keen-slider__slide flex   ">
-
-
-                <article
-                  class="relative w-90  !mr-0 overflow-hidden rounded-lg shadow duration-400 hover:scale-95 transition hover:shadow-lg sm:grid-cols-2 md:grid-cols-3 lg:gap-10">
-                  <img alt="" src="/candidat01.jpg"
-                    class="absolute inset-0  object-cover transition-transform duration-300 hover:translate-x-2 hover:translate-y-2" />
-
-                  <div class="relative bg-gradient-to-t from-gray-900/50 to-gray-900/25 pt-24 sm:pt-32 lg:pt-40">
-                    <div class="p-4 sm:p-6">
-                      <time datetime="2022-10-10" class="block text-xs text-white/90">10 Oct 2024</time>
-
-                      <a href="#">
-                        <h3 class="mt-2 text-xl font-bold text-white">Président de la République</h3>
-                      </a>
-
-                      <p class="mt-2 line-clamp-3 text-sm/relaxed text-white/95">
-                        <strong>Nom du Président Élu :</strong> Jean Dupont<br>
-                        <strong>Parti Politique :</strong> Parti de l'Unité<br>
-                        Ensemble, nous allons construire un avenir meilleur
-                        <span class="more-content" id="more-content">
-                          pour tous. Merci pour votre confiance. Nous travaillerons sans relâche pour améliorer la vie
-                          de chaque citoyen et assurer un avenir prospère pour notre nation.
-                        </span>
-
-                      </p>
-
-                      <button @click="gotoPresidentiel" class="text-blue-700 hover mt-2">
-                        {{ showMore ? 'Voir moins' : 'Voir plus' }}
-                      </button>
-                    </div>
-                  </div>
-                </article>
-
-              </div>
-
-              <div class="keen-slider__slide  !mr-0">
-                <article
-                  class="relative w-90  !mr-0 overflow-hidden rounded-lg shadow duration-400 hover:scale-95 transition hover:shadow-lg sm:grid-cols-2 md:grid-cols-3 lg:gap-10">
-                  <img alt="" src="/parlementaire.jpg"
-                    class="absolute inset-0  object-cover transition-transform duration-300 hover:translate-x-2 hover:translate-y-2" />
-
-                  <div class="relative bg-gradient-to-t from-gray-900/50 to-gray-900/25 pt-24 sm:pt-32 lg:pt-40">
-                    <div class="p-4 sm:p-6">
-                      <time datetime="2022-10-10" class="block text-xs text-white/90">10 Oct 2024</time>
-
-                      <a href="#">
-                        <h3 class="mt-2 text-xl font-bold text-white">Elections parlémentaires</h3>
-                      </a>
-
-                      <p class="mt-2 line-clamp-3 text-sm/relaxed text-white/95">
-                        Découvrez l'historique des élections parlementaires passées. Explorez les résultats, les
-                        tendances et les moments clés qui ont façonné notre démocratie.
-
-                        <span class="more-content" id="more-content">
-                          Cliquez pour voir les détails des précédentes élections, les candidats, et les événements
-                          marquants qui ont influencé notre pays.
-                        </span>
-                      </p>
-
-                      <button @click="gotoParlementaire" class="text-blue-700 mt-2">
-                        {{ showMore ? 'Voir moins' : 'Voir plus' }}
-                      </button>
-                    </div>
-                  </div>
-                </article>
-
-              </div>
-              <div class="keen-slider__slide  !mr-0">
-                <article
-                  class="relative w-90  !mr-0 overflow-hidden rounded-lg shadow duration-400 hover:scale-95 transition hover:shadow-lg sm:grid-cols-2 md:grid-cols-3 lg:gap-10">
-                  <img alt="" src="/municipale.jpg"
-                    class="absolute inset-0  object-cover transition-transform duration-300 hover:translate-x-2 hover:translate-y-2" />
-
-                  <div class="relative bg-gradient-to-t from-gray-900/50 to-gray-900/25 pt-24 sm:pt-32 lg:pt-40">
-                    <div class="p-4 sm:p-6">
-                      <time datetime="2022-10-10" class="block text-xs text-white/90">10 Oct 2022</time>
-
-                      <a href="#">
-                        <h3 class="mt-2 text-xl font-bold text-white">Elections municipales</h3>
-                      </a>
-
-                      <p class="mt-2 line-clamp-3 text-sm/relaxed text-white/95">
-                        Découvrez l'historique des élections municipales passées. Explorez les résultats, les tendances
-                        et les moments clés qui ont façonné notre communauté locale.
-                        <span class="more-content" id="more-content">
-                          Cliquez pour voir les détails des précédentes élections, les candidats, et les événements
-                          marquants qui ont influencé notre ville.
-                        </span>
-                      </p>
-                      <button @click="gotoConseilleMunicipaux" class="text-blue-700 mt-2">
-                        {{ showMore ? 'Voir moins' : 'Voir plus' }}
-                      </button>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-8 flex justify-center gap-4 lg:hidden">
-          <button aria-label="Previous slide" id="keen-slider-previous"
-            class="rounded-full border border-gray-300 p-4 text-gray-600 transition hover:bg-gray-300 hover:text-white">
-            <svg class="size-5 -rotate-180 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-            </svg>
-          </button>
-
-          <button aria-label="Next slide" id="keen-slider-next"
-            class="rounded-full border border-gray-300 p-4 text-gray-600 transition hover:bg-gray-300 hover:text-white">
-            <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </section> -->
-
-
-
-
-
-
-
-
-    <!-- ====== a propos ====== -->
-    <!-- <section class="py-16">
-      <div class="mx-auto max-w-7xl px-8 md:px-6"> -->
-    <!-- heading text -->
-    <!-- <div class="mb-5 sm:mb-10">
-          <span class="font-medium text-blue-500">À propos</span>
-          <h1 class="text-2xl font-bold text-slate-700 sm:text-3xl">A savoir sur VotiFlow</h1>
-          <div class="mb-5">
-
-          </div>
-          <div class="font-medium text-gray-500">
-            <p>VotiFlow est une plateforme de gestion des processus électoraux,
-            </p>
-            <p>utilisée par plusieurs acteurs pour garantir des élections transparentes et <efficaces class="">
-              </efficaces>
-            </p>
-            <p> Voici les rôles clés et leurs responsabilités :</p>
-          </div>
-
-        </div> -->
-
-    <!-- wrapper -->
-    <!-- <div class="md:flex md:justify-between md:gap-6">
-          <div class="mb-8 flex justify-center md:mb-0 md:w-5/12 ">
-            <img src="/bureauMembre.jpg" alt="faq images"
-              class="max-h-[500px]   md:max-h-max rounded-bl-3xl rounded-tr-3xl ">
-          </div>
-
-          <div id="accordion-color" class="  md:w-6/12"> -->
-    <!-- Accordion Item 1 -->
-    <!-- <h2 id="accordion-color-heading-1">
-              <button type="button"
-                class="flex items-center bg-[#EFF6FF] shadow-xl justify-between w-full p-5 font-medium   rounded-t-xl  dark:border-gray-700 mb-8 text-gray-500   gap-3"
-                @click="toggleAccordion(1)" :aria-expanded="isOpen(1)" aria-controls="accordion-color-body-1">
-                <span>Administrateur 🛠️</span>
-                <svg class="w-3 h-3 shrink-0 transition-transform duration-200" :class="{ 'rotate-180': isOpen(1) }"
-                  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 5 5 1 1 5" />
-                </svg>
-              </button>
-            </h2> -->
-
-    <!-- <div id="accordion-color-body-1" :class="{ hidden: !isOpen(1) }"
-              aria-labelledby="accordion-color-heading-1">
-              <div class="p-5 border border-t-0  ">
-                <p class="mb-2 text-gray-900 dark:text-gray-400">
-                  L'administrateur est responsable de la gestion globale de la plateforme. Ses principales missions
-                  incluent :
-                <ul class="list-disc dark:text-blue-400  pl-5">
-                  <li>La création et l'organisation des élections.</li>
-                  <li>La gestion des électeurs et des bureaux de vote.</li>
-                  <li>La consultation des statistiques globales et des historiques.</li>
-                </ul>
-                </p> -->
-
-    <!-- <p class="text-gray-500 dark:text-gray-400">
-                  Check out this guide to learn how to
-                  <a href="/docs/getting-started/introduction/"
-                    class="text-blue-600 dark:text-blue-500 hover:underline">get started</a>
-                  and start developing websites even faster with components on top of Tailwind CSS.
-                </p> -->
-    <!-- </div>
-            </div> -->
-
-    <!-- Accordion Item 2 -->
-    <!-- <h2 id="accordion-color-heading-2">
-              <button type="button"
-                class="flex items-center bg-[#EFF6FF] shadow-xl mb-8 justify-between w-full p-5 font-medium text-gray-500    gap-3"
-                @click="toggleAccordion(2)" :aria-expanded="isOpen(2)" aria-controls="accordion-color-body-2">
-                <span>Opérateur de saisie ⌨️</span>
-                <svg class="w-3 h-3 shrink-0 transition-transform duration-200" :class="{ 'rotate-180': isOpen(2) }"
-                  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 5 5 1 1 5" />
-                </svg>
-              </button>
-            </h2>
-            <div id="accordion-color-body-2" :class="{ hidden: !isOpen(2) }"
-              aria-labelledby="accordion-color-heading-2">
-              <div class="p-5 border border-t-0  ">
-                <p class="mb-2 text-gray-500 dark:text-gray-400">
-                  L'opérateur de saisie joue un rôle crucial dans l'encodage des données électorales. Il est chargé de :
-                <ul class="list-disc dark:text-blue-400 pl-5">
-                  <li>Enregistrer les informations des électeurs.</li>
-                  <li>Mettre à jour les bases de données électorales.</li>
-                  <li>Vérifier l’exactitude des données saisies.</li>
-                </ul>
-                </p> -->
-
-    <!-- <p class="text-gray-500 dark:text-gray-400">
-                  Check out the
-                  <a href="https://flowbite.com/figma/" class="text-blue-600 dark:text-blue-500 hover:underline">Figma
-                    design system</a>
-                  based on the utility classes from Tailwind CSS and components from Flowbite.
-                </p> -->
-    <!-- </div>
-            </div> -->
-
-    <!-- Accordion Item 3 -->
-    <!-- <h2 id="accordion-color-heading-3">
-              <button type="button"
-                class="flex items-center bg-[#EFF6FF] mb-8 shadow-xl justify-between w-full p-5 font-medium text-gray-500   gap-3"
-                @click="toggleAccordion(3)" :aria-expanded="isOpen(3)" aria-controls="accordion-color-body-3">
-                <span>Contrôleur 🔍</span>
-                <svg class="w-3 h-3 shrink-0 transition-transform duration-200" :class="{ 'rotate-180': isOpen(3) }"
-                  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 5 5 1 1 5" />
-                </svg>
-              </button>
-            </h2> -->
-    <!-- <div id="accordion-color-body-3" :class="{ hidden: !isOpen(3) }"
-              aria-labelledby="accordion-color-heading-3">
-              <div class="p-5 border border-t-0 border-gray-200 ">
-                <p class="mb-2 text-gray-500 dark:text-gray-400">
-                  Le contrôleur assure la surveillance et la conformité du processus électoral. Il s’occupe de :
-                <ul class="list-disc dark:text-blue-400 pl-5">
-                  <li>Vérifier la validité des inscriptions et des votes.</li>
-                  <li>Signaler toute anomalie ou tentative de fraude.</li>
-                  <li>Garantir que les opérations respectent les règles électorales établies.</li>
-                </ul>
-                </p> -->
-
-    <!-- <p class="mb-2 text-gray-500 dark:text-gray-400">
-                  However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no
-                  technical reason stopping you from using the best of two worlds.
-                </p>
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
-                <ul class="ps-5 text-gray-500 list-disc dark:text-gray-400">
-                  <li>
-                    <a href="https://flowbite.com/pro/" class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite
-                      Pro</a>
-                  </li>
-                  <li>
-                    <a href="https://tailwindui.com/" rel="nofollow"
-                      class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a>
-                  </li>
-                </ul> -->
-    <!-- </div>
-            </div> -->
-
-
-    <!-- Accordion Item 4 -->
-    <!-- <h2 id="accordion-color-heading-3">
-              <button type="button"
-                class="flex items-center   bg-[#EFF6FF]  shadow-xl border-t-0 justify-between w-full p-5 font-medium text-gray-500       gap-3"
-                @click="toggleAccordion(4)" :aria-expanded="isOpen(4)" aria-controls="accordion-color-body-3">
-
-                <a id="inscription">
-                  <div></div>
-                </a>
-                <a id="contact">
-                  <span>Visiteurs 👁️</span>
-                </a>
-
-
-                <svg class="w-3 h-3 shrink-0 transition-transform duration-200" :class="{ 'rotate-180': isOpen(4) }"
-                  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 5 5 1 1 5" />
-                </svg>
-              </button>
-            </h2>
-            <div id="accordion-color-body-3" :class="{ hidden: !isOpen(4) }"
-              aria-labelledby="accordion-color-heading-3">
-              <div class="p-5 border border-t-0 border-gray-200 ">
-                <p class="mb-2 text-gray-500 dark:text-gray-400">
-                  Les opérateurs jouent un rôle crucial dans l'encodage des données électorales. Leurs principales
-                  missions incluent :
-                <ul class="list-disc dark:text-blue-400 pl-5">
-
-
-                  <li>Vérifier la validité des inscriptions et des votes.</li>
-                  <li>Signaler toute anomalie ou tentative de fraude.</li>
-                  <li>Garantir que les opérations respectent les règles électorales établies.</li>
-                </ul>
-                </p> -->
-    <!-- <p class="mb-2 text-gray-500 dark:text-gray-400">
-                  However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no
-                  technical reason stopping you from using the best of two worlds.
-                </p>
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
-                <ul class="ps-5 text-gray-500 list-disc dark:text-gray-400">
-                  <li>
-                    <a href="https://flowbite.com/pro/" class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite
-                      Pro</a>
-                  </li>
-                  <li>
-                    <a href="https://tailwindui.com/" rel="nofollow"
-                      class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a>
-                  </li>
-                </ul> -->
-    <!-- </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- ====== END A propos ====== -->
-
-
     <!-- ====== Contact ====== -->
     <section class=" overflow-hidden px-20 py-16 bg-contact-grayscale">
       <img src="/effect.png" alt="effect" class="absolute bottom-[-400px] -z-10 w-full opacity-[0.2]">
@@ -816,17 +334,23 @@
           <div class="w-full px-4 md:w-1/2 xl:w-6/12">
             <div class="mb-12 max-w-[570px] lg:mb-0">
               <span class="font-medium text-blue-500">Contact</span>
-              <h1 class="mb-3 text-2xl font-bold text-slate-700 sm:text-3xl">CONTACTEZ-NOUS</h1>
+              <h1 class="mb-3 text-2xl font-bold text-slate-700 sm:text-3xl">CONTACTEZ-NOUS
+                <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+              </h1>
+
+
               <p class="text-slate-500 mb-8">Ensemble, construisons un avenir meilleur pour notre pays.
-                Contactez-nous pour partager vos idées et soutenir notre vision.</p>
+                Contactez-nous pour partager vos idées et soutenir notre vision. </p>
 
 
               <a class="z-100 hhhh"
                 href="https://www.google.com/maps/@-12.2847613,49.3062532,396m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDIwOS4wIKXMDSoASAFQAw%3D%3D">
+                <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
 
                 <!-- address -->
                 <div
                   class="mb-8 flex w-full max-w-[420px] items-center rounded-lg bg-white p-4 shadow-md shadow-blue-500/10">
+
                   <div
                     class="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-blue-500 bg-opacity-5 text-blue-500 sm:h-[70px] sm:max-w-[70px]">
                     <ion-icon name="location-outline" class="text-3xl"></ion-icon>
@@ -858,9 +382,11 @@
 
 
                   <div class="w-full">
+
                     <h4 class="mb-1 text-xl font-bold text-slate-700">Localisation </h4>
                     <p class="text-base text-slate-400
                                   ">Lazaret CUR, Antsiranana, Madagascar</p>
+
                   </div>
                 </div>
 
@@ -871,8 +397,11 @@
               </a>
 
               <!-- phone -->
+              <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
               <div
                 class="mb-8 flex w-full max-w-[420px] items-center rounded-lg bg-white p-4 shadow-md shadow-blue-500/10">
+
                 <div
                   class="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-blue-500 bg-opacity-5 text-blue-500 sm:h-[70px] sm:max-w-[70px]">
                   <ion-icon name="call-outline" class="text-3xl"></ion-icon>
@@ -896,6 +425,8 @@
                 </div>
               </div>
               <!-- mail -->
+              <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
               <div
                 class="mb-8 flex w-full max-w-[420px] items-center rounded-lg bg-white p-4 shadow-md shadow-blue-500/10">
                 <div
@@ -933,12 +464,15 @@
           </div>
 
           <!-- about img -->
-          <div class="mt-8 flex flex-col justify-center md:mt-0 md:w-5/12 relative">
+          <div class="mt-8 flex relative flex-col justify-center md:mt-0 md:w-5/12 ">
+            <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
             <!-- Première image alignée à droite -->
             <img src="/contact06.png" alt="about img" class="max-h-[500px] md:max-h-max ml-auto">
 
             <!-- Deuxième image alignée à gauche -->
-            <img src="/contact02.png" alt="second img" class="max-h-[500px] md:max-h-max ml-[-200px] mt-4">
+            <!-- <img src="/contact02.png" alt="second img" class="max-h-[500px] md:max-h-max ml-[-200px] mt-4"> -->
+
 
             <!-- Troisième image avec positionnement absolu -->
           </div>
@@ -960,6 +494,8 @@
 
         <!-- footer top -->
         <div class="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
+          <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
           <div class="md:max-w-md lg:col-span-2">
 
 
@@ -972,6 +508,7 @@
 
 
             <div class="mt-4 lg:max-w-sm">
+
               <p class="text-sm text-slate-500">Ensemble, construisons l'avenir de Madagascar.
                 Notre plateforme électorale est dédiée à la promotion de la justice sociale, de l'éducation pour tous,
                 et du développement durable. </p>
@@ -982,7 +519,10 @@
           </div>
 
           <div class="grid row-gap-8 grid-cols-2 gap-5 md:grid-cols-4 lg:col-span-4">
+
             <div class="">
+              <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
               <!-- head -->
               <p class="font-semibold text-slate-700">Catégories </p>
               <ul class="mt-2 space-y-2">
@@ -997,6 +537,8 @@
             </div>
 
             <div class="">
+              <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
               <!-- head -->
               <p class="font-semibold text-slate-700">Business</p>
               <ul class="mt-2 space-y-2">
@@ -1025,6 +567,8 @@
             </div>
 
             <div class="">
+              <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
               <!-- head -->
               <p class="font-semibold text-slate-700">Ressources</p>
               <ul class="mt-2 space-y-2">
@@ -1047,6 +591,8 @@
             </div>
 
             <div class="">
+              <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
               <!-- head -->
               <p class="font-semibold text-slate-700">Engagement</p>
               <ul class="mt-2 space-y-2">
@@ -1064,12 +610,16 @@
 
         <!-- footer bottom -->
         <div class="flex flex-col justify-between items-center  border-t mt-4 py-2 sm:flex-row">
+          <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
           <p class="text-sm items-center justify-content-center text-slate-500">
             &copy; 2025
             <a href="#" class="text-slate-700 hover:text-blue-500" rel="noopener noreferrer">Votiflow</a>
             Tous droits réservés.
           </p>
           <div class="mt-4 flex items-center space-x-4 sm:mt-0">
+            <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
             <a href="https://www.facebook.com/profile.php?id=100069808050865" aria-label="Facebook"
               rel="noopener noreferrer">
               <!-- Facebook SVG Icon -->

@@ -1,31 +1,41 @@
 <template>
-   <div class="contenaire" >
-      <div class="recherche">
-            <input v-model="searchQuery" class="input custom-input" type="text"
-                placeholder="Rechercher par nom de région">
+    <div class="my-8  ">
+        <div class="my-8  flex  justify-between gap-4 items-center">
 
-        </div>
-      <div class="form">
-
-         <div class="itemForm">
-            <div class="formulaire" v-for="(item, index) in filteredData" :key="index">
-               <div class="cercle">
-                  <h1>{{ item.listeCommune.length}}</h1>
-               </div>
-               <h4>{{ item.district }}</h4>
-
-               <h3 class="btnAdd" @click="select(item)">Voir</h3> <!--//etape 1 -->
+            <h4 class="font-bold ml-12 ">
+                Liste des districts
+            </h4>
+            <div class="mr-10 w-[30%] ">
+                <input v-model="searchQuery" class="input custom-input" type="text"
+                    placeholder="Rechercher par nom de région">
 
             </div>
-         </div>
+        </div>
 
-        
 
-      </div>
-   </div>
-   <!-- vao2-->
 
-   
+
+
+        <div class="form">
+
+            <div class="itemForm">
+                <div class="formulaire" v-for="(item, index) in filteredData" :key="index">
+                    <div class="cercle">
+                        <h1>{{ item.listeCommune.length }}</h1>
+                    </div>
+                    <h4>{{ item.district }}</h4>
+
+                    <h3 class="btnAdd" @click="select(item)">Voir</h3> <!--//etape 1 -->
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <!-- vao2-->
+
 
 
 
@@ -42,7 +52,7 @@ import { useShow } from "@/stores/show";
 function select(item) {
     show.showListeCommuneFunc(item.district, item.listeCommune)
     localStorage.setItem('selectDistrict', JSON.stringify(item.district))
-    
+
 }
 
 
@@ -54,11 +64,11 @@ const searchQuery = ref('');
 
 // Filtrer les données en fonction de la recherche
 const filteredData = computed(() => {
-    let filtered = show.districtData; 
-    if (searchQuery.value) 
-    { filtered =show.districtData.filter(
-      item => item.district.toLowerCase().includes(searchQuery.value.toLowerCase())); 
-   } return filtered; // Ignorer le premier élément 
+    let filtered = show.districtData;
+    if (searchQuery.value) {
+        filtered = show.districtData.filter(
+            item => item.district.toLowerCase().includes(searchQuery.value.toLowerCase()));
+    } return filtered; // Ignorer le premier élément 
 });
 
 </script>
@@ -110,7 +120,7 @@ const filteredData = computed(() => {
 .recherche {
     width: 30%;
     position: relative;
-    right: -65%;
+    right: -55%;
 }
 
 .form {
@@ -263,11 +273,13 @@ input-placeholder {
     margin: 0 auto;
     border-radius: 100%;
 }
+
 .cercle h1 {
     font-size: 25px;
     font-weight: 500;
     color: rgba(112, 105, 105, 0.74);
 }
+
 .add {
     width: 100px !important;
 }

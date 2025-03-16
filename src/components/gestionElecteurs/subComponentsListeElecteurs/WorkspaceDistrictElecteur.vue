@@ -1,28 +1,34 @@
 <template>
-    <div class="contenaire">
-      <div class="recherche">
-            <input v-model="searchQuery" class="input custom-input" type="text"
-                placeholder="Rechercher par nom de région">
+    <div class="my-8 ">
+        <div class="my-8  flex  justify-between gap-4 items-center">
 
+            <h4 class="font-bold ml-12 ">
+                Liste des communes
+            </h4>
+            <div class="mr-10 w-[30%] ">
+                <input v-model="searchQuery" class="input custom-input" type="text"
+                    placeholder="Rechercher par nom de région">
+
+            </div>
         </div>
         <div class="form">
             <div class="itemForm">
 
-                <div class="formulaire" v-for="(item, index) in  filteredData" :key="index">
+                <div class="formulaire" v-for="(item, index) in filteredData" :key="index">
                     <div class="cercle">
                         <h1>{{ item.listeFokontany.length }}</h1>
                     </div>
                     <h4>{{ item.commune }}</h4>
 
-               <h3 class="btnAdd" @click="select(item)">Voir</h3> <!--//etape 1 -->
+                    <h3 class="btnAdd" @click="select(item)">Voir</h3> <!--//etape 1 -->
 
                 </div>
             </div>
 
-            
+
         </div>
     </div>
-  
+
 
 
 </template>
@@ -36,7 +42,7 @@ import { useShow } from "@/stores/show";
 function select(item) {
     show.listeFokontanyFunc(item.commune, item.listeFokontany)
     localStorage.setItem('selectCommune', JSON.stringify(item.commune))
-    
+
 }
 const show = useShow(); //call Show in show.js
 
@@ -46,11 +52,11 @@ const searchQuery = ref('');
 
 // Filtrer les données en fonction de la recherche
 const filteredData = computed(() => {
-    let filtered = show.dataCommune; 
-    if (searchQuery.value) 
-    { filtered =show.dataCommune.filter(
-      item => item.commune.toLowerCase().includes(searchQuery.value.toLowerCase())); 
-   } return filtered; // Ignorer le premier élément 
+    let filtered = show.dataCommune;
+    if (searchQuery.value) {
+        filtered = show.dataCommune.filter(
+            item => item.commune.toLowerCase().includes(searchQuery.value.toLowerCase()));
+    } return filtered; // Ignorer le premier élément 
 });
 
 </script>
@@ -255,11 +261,13 @@ input-placeholder {
     margin: 0 auto;
     border-radius: 100%;
 }
+
 .cercle h1 {
     font-size: 25px;
     font-weight: 500;
     color: rgba(112, 105, 105, 0.74);
 }
+
 .add {
     width: 100px !important;
 }

@@ -2,27 +2,12 @@
     <div class="flex flex-col  w-full h-full">
 
 
-        <div class="w-full  mb-5 mt-0 bg-[#414b5e]   items-center rounded-t-lg ">
-            <h4 class="p-2">Création élection</h4>
-            <div class=" flex justify-around items-center">
+        <div class="w-full  h-full  mb-5 mt-4 bg-[#414b5e]   items-center rounded-t-lg ">
+            <h4 class="p-2 font-bold text-[#dbdbf7] text-lg">Création élection</h4>
+            <div class="mb-4 flex justify-around items-center">
 
 
 
-                <!-- .formulaire {
-    display: flex;
-    justify-content: space-around;
-    background-color: #1F2937;
-    align-items: center;
-    border-radius: 0px 0px 6px 6px;
-    padding: 5px 10px;
-
-
-} -->
-                <!-- .itemContainer {
-    width: 20%;
-    margin: 10px 2px;
-
-} -->
 
                 <div class=" mx-4 w-[25%]">
                     <p class="p-2">Veuillez sélectionner une année </p>
@@ -51,14 +36,7 @@
                             <option v-for="item in listParlementaire" :key="item.id" :value=item>{{ item }}</option>
                         </select>
                     </div>
-                    <!-- <div class="mx-2 w-[45%] " v-if="'Municipale' === type">
-                        <p class="p-2">Type électoral Municipale </p>
 
-                        <select class="annee" v-model="municipaleSelected" id="">
-
-                            <option v-for="item in listMunicipale" :key="item.id" :value=item>{{ item }}</option>
-                        </select>
-                    </div> -->
                 </div>
 
 
@@ -89,56 +67,55 @@
 
 
 
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg down">
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <div class="relative shadow-md  down">
+                    <table
+                        class=" mb-1 dark:bg-gray-700 rounded-tl-lg rounded-tr-lg w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="border-b-4 rounded-tr-lg border-gray-500 text-xs uppercase ">
                             <tr>
-                                <th scope="col" class="px-6 py-3">
-                                    Année
-                                </th>
-
-                                <th scope="col" class="px-6 py-3">
-                                    Genre
-                                </th>
-
-                                <th scope="col" class="px-6 py-3">
-
+                                <th scope="col" class="px-6 rounded-tl-lg py-4">Année</th>
+                                <th scope="col" class="px-6 py-3">Genre</th>
+                                <th scope="col" class=" rounded-tr-lg flex justify-center items-center py-4">
+                                    Action
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <div v-if="filteredCandidats.length === 0" class="no-results">
-                                <h4 class="message">Aucune année trouvée.</h4>
-                            </div>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                                v-for="(item, index) in filteredCandidats" :key="index">
-
-                                <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ item.annee }}
-                                </th>
-
-                                <td class="px-6 py-4">
-                                    {{ item.descriptionAnnee }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="btn">
-                                        <div class="icon blue" @click="voir(item)">
-                                            <i class="pi pi-eye" style="font-size: 18px; color: white;"></i>
-                                        </div>
-                                        <div class="icon orange" @click="modifier(item)">
-                                            <i class="pi pi-pencil" style="font-size: 18px; color: white;"></i>
-                                        </div>
-                                        <div class="icon red" @click="supprimer(item)">
-                                            <i class="pi pi-trash" style="font-size: 18px; color: white;"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                        </tbody>
                     </table>
+
+
+                    <div class="overflow-y-auto max-h-[44vh]">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                            <tbody>
+                                <div v-if="filteredCandidats.length === 0" class="no-results">
+                                    <h4 class="message">Aucune année trouvée.</h4>
+                                </div>
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                                    v-for="(item, index) in filteredCandidats" :key="index">
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ item.annee }}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ item.descriptionAnnee }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="btn">
+                                            <div class="icon blue" @click="voir(item)">
+                                                <i class="pi pi-eye" style="font-size: 18px; color: white;"></i>
+                                            </div>
+                                            <div class="icon orange" @click="modifier(item)">
+                                                <i class="pi pi-pencil" style="font-size: 18px; color: white;"></i>
+                                            </div>
+                                            <div class="icon red" @click="supprimer(item)">
+                                                <i class="pi pi-trash" style="font-size: 18px; color: white;"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
 
             </div>
 
@@ -461,13 +438,15 @@ const listMunicipale = [
 }
 
 .scroll-container {
-    max-height: 100%;
-    /* Limite la hauteur */
-    overflow-y: auto;
+
     /* Ajoute un défilement vertical si nécessaire */
     padding: 10px;
     height: 50vh;
     /* Espacement interne */
+}
+
+.bord {
+    border-radius: 60px;
 }
 
 .closeForm {

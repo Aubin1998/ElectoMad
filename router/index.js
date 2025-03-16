@@ -1,25 +1,8 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import Accueil from '@/views/Acceuil.vue';
-import Elections from '@/views/Elections.vue';
-import Resultats from '@/views/Resultats.vue';
-import Actualite from '@/views/Actualite.vue';
 import APropos from '@/views/Apropos.vue';
 import Admin from '@/views/Admin.vue';
 import Test from '@/views/test.vue';
-import ElectionsCommunale from '@/components/user/elections/ElectionsCommunale.vue';
-import ElectionsLegislative from '@/components/user/elections/ElectionsLegislative.vue';
-import ElectionsPresidentiel from '@/components/user/elections/ElectionsPresidentiel.vue';
-import ElectionsEtapesSuivie from '@/components/user/elections/ElectionsEtapesSuivie.vue';
-import ElectionsTextsElection from '@/components/user/elections/ElectionsTextsElection.vue';
-import ElectionsVerificationNom from '@/components/user/elections/ElectionsVerificationNom.vue';
-import ElectionsPiecesAFounir from '@/components/user/elections/ElectionsPiecesAFounir.vue';
-import ResultatsCommunale from '@/components/user/resultats/ResultatsCommunale.vue';
-import ResultatsLegislative from '@/components/user/resultats/ResultatsLegislative.vue';
-import ResultatsPresidentiel from '@/components/user/resultats/ResultatsPresidentiel.vue';
-import ResultatsArchivesElections from '@/components/user/resultats/ResultatsArchivesElections.vue';
-import ListeElectoraleNoms from '@/components/user/listeElectorale/ListeElectoraleNoms.vue';
-import ListeElectoraleLegislative from '@/components/user/listeElectorale/ListeElectoraleLegislative.vue';
-import ListeElectoralePresidentiel from '@/components/user/listeElectorale/ListeElectoralePresidentiel.vue';
 import ListeElectoraleArchives from '@/components/user/listeElectorale/ListeElectoraleArchives.vue';
 import ActualiteALaUne from '@/components/user/actualite/ActualiteALaUne.vue';
 import ActualiteDepeche from '@/components/user/actualite/ActualiteDepeche.vue';
@@ -28,6 +11,9 @@ import ActualiteDecision from '@/components/user/actualite/ActualiteDecision.vue
 import ActualiteGenreInclusion from '@/components/user/actualite/ActualiteGenreInclusion.vue';
 // import ActualiteComponent from '@/components/ActualiteComponent.vue';
 import ListeElectorale from '@/views/ListeElectorale.vue';
+import ListProvince from '@/views/ListProvince.vue';
+import ListRegion from '@/views/ListRegion.vue';
+
 import PdfTest from '@/views/PdfTest.vue';
 import Carte from '@/views/Carte.vue';
 import TypeElection from '@/views/TypeElection.vue';
@@ -43,22 +29,6 @@ import AnneeConseilleMunicipaux from '@/views/AnneeConseilleMunicipaux.vue';
 import AnneeMaire from '@/views/AnneeMaire.vue';
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const routes = [
 	{
 		path: '/',
@@ -69,15 +39,17 @@ const routes = [
 		path: '/elections/listeElectorale',
 		component: ListeElectorale
 	},
-	// {
-	// path: '/elections/actualite',
-	// component: ActualiteComponent
-	// },
 	{
 		path: '/elections/Pdf',
 		component: PdfTest
 	},
 	{
+		path: '/elections/ListProvince',
+		component: ListProvince
+	}, {
+		path: '/elections/ListProvince/region',
+		component: ListRegion
+	}, {
 		path: '/elections/carte',
 		component: Carte
 	}, {
@@ -92,11 +64,10 @@ const routes = [
 	}, {
 		path: '/elections/versoCIN',
 		component: ModalVersoCIN
-	},
-	{
+	}, {
 		path: '/elections/electionPresidentiel',
 		component: ElectionPresidentiel
-	}, 
+	},
 
 	// Resultats
 	{

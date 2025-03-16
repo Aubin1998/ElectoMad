@@ -15,7 +15,7 @@
 
 
             <div class="contenaireModal" v-if="show.see">
-              <h1 class="tritreModal">AJOUT NOUVEAU ELECTEUR</h1>
+              <h1 class="tritreModal  text-[23px]">AJOUT NOUVEAU ELECTEUR</h1>
               <div class="contenaire ">
 
                 <div class="inputCard">
@@ -151,7 +151,7 @@ import { useUtilisateur } from "@/stores/utilisateur";
 import { useAnneeElectorale } from "@/stores/anneeElectorale";
 import { uselisteElecteur } from "@/stores/listeElecteur";
 
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 
@@ -192,6 +192,88 @@ function voirDetails(item) {
 
 
 }
+
+
+
+onMounted(() => {
+
+  // Call the function to fill the form with random values
+  remplirFormulaireAleatoires();
+});
+function remplirFormulaireAleatoires() {
+  listeElecteur.nomComplet = genererNomAleatoire();
+  listeElecteur.email = genererEmailAleatoire();
+  listeElecteur.dateNaissance = genererDateAleatoire();
+  listeElecteur.lieuNaissance = genererLieuAleatoire();
+  listeElecteur.sexe = genererSexeAleatoire();
+  listeElecteur.filiation = genererFiliationAleatoire();
+  listeElecteur.telephone = genererTelephoneAleatoire();
+  listeElecteur.numeroCIN = genererNumeroCINAleatoire();
+  listeElecteur.dateDelivreCIN = genererDateAleatoire();
+  listeElecteur.lieuDelivreCIN = genererLieuAleatoire();
+  listeElecteur.adresse = genererAdresseAleatoire();
+  listeElecteur.profession = genererProfessionAleatoire();
+  listeElecteur.carteElecteur = genererCarteElecteurAleatoire();
+  listeElecteur.dateInscription = genererDateAleatoire();
+}
+
+function genererNomAleatoire() {
+  const prenoms = ['Jean', 'Marie', 'Paul', 'Sophie', 'Pierre', 'Julie'];
+  const noms = ['Dupont', 'Martin', 'Bernard', 'Thomas', 'Petit', 'Robert'];
+  return `${prenoms[Math.floor(Math.random() * prenoms.length)]} ${noms[Math.floor(Math.random() * noms.length)]}`;
+}
+
+function genererEmailAleatoire() {
+  const chars = 'abcdefghijklmnopqrstuvwxyz';
+  let email = '';
+  for (let i = 0; i < 7; i++) {
+    email += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return `${email}@gmail.com`;
+}
+
+function genererDateAleatoire() {
+  const start = new Date(1950, 0, 1);
+  const end = new Date();
+  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
+
+function genererLieuAleatoire() {
+  const lieux = ['Paris', 'Lyon', 'Marseille', 'Toulouse', 'Nice', 'Nantes'];
+  return lieux[Math.floor(Math.random() * lieux.length)];
+}
+
+function genererSexeAleatoire() {
+  return Math.random() < 0.5 ? 'Homme' : 'Femme';
+}
+
+function genererFiliationAleatoire() {
+  const filiations = ['Fils de X et Y', 'Fille de X et Y', 'Fils de A et B', 'Fille de A et B'];
+  return filiations[Math.floor(Math.random() * filiations.length)];
+}
+
+function genererTelephoneAleatoire() {
+  return '06' + Math.floor(10000000 + Math.random() * 90000000).toString();
+}
+
+function genererNumeroCINAleatoire() {
+  return Math.floor(10000000 + Math.random() * 90000000).toString();
+}
+
+function genererAdresseAleatoire() {
+  const adresses = ['1 rue de la Paix', '2 avenue des Champs-Élysées', '3 boulevard Saint-Germain'];
+  return adresses[Math.floor(Math.random() * adresses.length)];
+}
+
+function genererProfessionAleatoire() {
+  const professions = ['Ingénieur', 'Médecin', 'Avocat', 'Enseignant', 'Artiste'];
+  return professions[Math.floor(Math.random() * professions.length)];
+}
+
+function genererCarteElecteurAleatoire() {
+  return Math.floor(1000000 + Math.random() * 9000000).toString();
+}
+
 </script>
 
 <style scoped>

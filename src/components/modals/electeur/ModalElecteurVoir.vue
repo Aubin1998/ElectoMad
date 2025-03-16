@@ -37,29 +37,29 @@
 
 
 
-                  <div class="flex flex-wrap justify-between w-[890px] pr-0 ">
-                    <div class="inputCard">
+                  <div class="flex flex-wrap justify-between w-[890px]  ">
+                    <div class="inputCard  px-6">
                       <h3 class="label">Nom et prénom</h3>
                       <h3 class="val">{{ listeElecteur.voirElecteurData.nomComplet }}</h3>
 
                     </div>
 
-                    <div class="inputCard">
+                    <div class="inputCard  px-3">
                       <h3 class="label">Email</h3>
                       <h3 class="val">{{ listeElecteur.voirElecteurData.user.email }}</h3>
 
                     </div>
 
-                    <div class="inputCard">
-                      <h3 class="label">Date de naissance</h3>
+                    <div class="inputCard ">
+                      <h3 class="label  ">Date de naissance</h3>
                       <h3 class="val">{{ listeElecteur.voirElecteurData.dateNaissance }}</h3>
 
                     </div>
-                    <div class="inputCard">
+                    <div class="inputCard  px-6">
                       <h3 class="label">Lieu de naissance</h3>
                       <h3 class="val">{{ listeElecteur.voirElecteurData.lieuNaissance }}</h3>
                     </div>
-                    <div class="inputCard">
+                    <div class="inputCard  px-3">
                       <h3 class="label">Sexe</h3>
                       <h3 class="val">{{ listeElecteur.voirElecteurData.sexe }}</h3>
 
@@ -99,35 +99,35 @@
 
                   </div>
                   <div class="inputCard">
-                    <h3 class="label">Adresse ou le lieu de résidence</h3>
+                    <h3 class="label">Adresse </h3>
 
-                    <h3 class="val">{{ listeElecteur.voirElecteurData.adresse }}</h3>
+                    <h3 class="val">{{ listeElecteur.voirElecteurData?.adresse }}</h3>
 
 
                   </div>
                   <div class="inputCard">
                     <h3 class="label">Profession</h3>
-                    <h3 class="val">{{ listeElecteur.voirElecteurData.profession }}</h3>
+                    <h3 class="val">{{ listeElecteur.voirElecteurData?.profession }}</h3>
 
 
                   </div>
                   <div class="inputCard">
                     <h3 class="label">Date d'inscription</h3>
 
-                    <h3 class="val">{{ listeElecteur.voirElecteurData.dateInscription }}</h3>
+                    <h3 class="val">{{ listeElecteur.voirElecteurData?.dateInscription }}</h3>
 
                   </div>
                   <div class="inputCard">
                     <h3 class="label">Carte d'électeur</h3>
 
-                    <h3 class="val">{{ listeElecteur.voirElecteurData.carteElecteur }}</h3>
+                    <h3 class="val">{{ listeElecteur.voirElecteurData?.carteElecteur }}</h3>
 
                   </div>
                   <div class="inputCard">
                     <h3 class="label">Année électorale</h3>
 
 
-                    <h3 class="val">{{ listeElecteur.voirElecteurData.annee_electorale.annee }}</h3>
+                    <h3 class="val">{{ listeElecteur.voirElecteurData?.annee_electorale?.annee }}</h3>
 
                   </div>
                 </div>
@@ -378,7 +378,8 @@ input[type="file"] {
 }
 
 .val {
-  padding: 10px
+  padding: 10px;
+  font-weight: 100;
 }
 
 .btnAdd {
@@ -411,7 +412,7 @@ input[type="file"] {
 }
 
 .label {
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 600;
 }
 
@@ -427,8 +428,14 @@ input[type="file"] {
   align-items: center;
 }
 
+.tritreModal {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .modal {
-  width: 100%;
+  width: 90%;
   height: 100vh;
   position: absolute;
   bottom: 40px;

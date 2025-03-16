@@ -2,262 +2,145 @@
     <div class="sideBar">
         <div class="logo">
             <img src="/logo.svg" alt="Logo" class="logo-image" />
-            <div class="logo-name">Votiflow</div>
+            <div class="logo-name text-sm font-semibold">Votiflow</div>
         </div>
         <div class="container">
-            <!-- sections -->
             <div class="section">
                 <div class="sectionTitle">
-                    <h4>ELECTION</h4>
+                    <h4 class="text-sm font-semibold">ELECTION</h4>
                 </div>
-
-
                 <div class="sectionContainer">
-                    <!-- For election -->
-                    <!-- <div class="itemSection" :class="{ active: show.showElectionActive }">
-                        <i class="pi pi-id-card" style="font-size: 18px; color: white;"></i>
-                        <h4 class="text" @click="show.setSelectSideBar('Création élection')">Création</h4>
-                        <WorkspaceSubSectionElections v-if="show.showElection" />
-                    </div> -->
-
-                    <div class="itemSection" @click="show.setOption('Année électorale')" v-if="show.user == 'admin'">
+                    <div class="itemSection text-sm font-semibold"
+                        :class="{ active: activeSection === 'Année électorale' }"
+                        @click="setActiveSection('Année électorale'); show.setOption('Année électorale')"
+                        v-if="show.user == 'admin'">
                         <i class="pi pi-id-card" style="font-size: 18px; color: white;"></i>
                         <h4>Création</h4>
                     </div>
-
-                    <!-- For candidates -->
-                    <!-- <div class="itemSection" :class="{ active: show.showCandidatActive }">
-                        <i class="pi pi-user" style="font-size: 18px; color: white;"></i>
-                        <h4 class="text" @click="show.setSelectSideBar('Gestion des candidats')">Gestion des candidats
-                        </h4>
-                        <WorkspaceSubSectionCandidats v-if="show.showCandidat" />
-                    </div> -->
-                    <div class="itemSection" @click="show.setOption('Liste des utilisateurs')"
+                    <div class="itemSection text-sm font-semibold"
+                        :class="{ active: activeSection === 'Liste des utilisateurs' }"
+                        @click="setActiveSection('Liste des utilisateurs'); show.setOption('Liste des utilisateurs')"
                         v-if="show.user == 'admin'">
                         <i class="pi pi-sitemap" style="font-size: 18px; color: white;"></i>
-
-                        <h4 class="text">Utilisateurs</h4>
+                        <h4>Utilisateurs</h4>
                     </div>
-
-
-
-
-                    <div class="itemSection" @click="show.setOption('Président des bureaux')"
+                    <div class="itemSection text-sm font-semibold"
+                        :class="{ active: activeSection === 'Président des bureaux' }"
+                        @click="setActiveSection('Président des bureaux'); show.setOption('Président des bureaux')"
                         v-if="show.user == 'admin'">
-                        <!-- v-if="show.user !== 'Contrôleur'"> -->
                         <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4>Président des bureaux </h4>
+                        <h4>Président des bureaux</h4>
                     </div>
-                    <div class="itemSection" @click="show.setOption('Enregistrer les délégués')"
+                    <div class="itemSection text-sm font-semibold"
+                        :class="{ active: activeSection === 'Enregistrer les délégués' }"
+                        @click="setActiveSection('Enregistrer les délégués'); show.setOption('Enregistrer les délégués')"
                         v-if="show.user == 'admin'">
-                        <!-- v-if="show.user !== 'Contrôleur'"> -->
                         <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4>Enregistrer les délégués </h4>
+                        <h4>Enregistrer les délégués</h4>
                     </div>
-                    <div class="itemSection" @click="show.setOption('Liste complète des électeurs')"
+                    <div class="itemSection text-sm font-semibold"
+                        :class="{ active: activeSection === 'Liste complète des électeurs' }"
+                        @click="setActiveSection('Liste complète des électeurs'); show.setOption('Liste complète des électeurs')"
                         v-if="show.user == 'admin'">
-                        <!-- v-if="show.user !== 'Contrôleur'"> -->
                         <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
                         <h4>Suivi des électeurs</h4>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <div class="itemSection" @click="show.setOption('Liste complète des électeurs')"
+                    <div class="itemSection text-sm font-semibold"
+                        :class="{ active: activeSection === 'Président des bureaux' }"
+                        @click="setActiveSection('Président des bureaux'); show.setOption('Président des bureaux')"
                         v-if="show.user == 'Opérateur de saisie'">
-                        <!-- v-if="show.user !== 'Contrôleur'"> -->
                         <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4>Président des bureaux </h4>
+                        <h4>Président des bureaux</h4>
                     </div>
-
-                    <div class="itemSection" @click="show.setOption('Liste totale des candidats')"
+                    <div class="itemSection text-sm font-semibold"
+                        :class="{ active: activeSection === 'Liste totale des candidats' }"
+                        @click="setActiveSection('Liste totale des candidats'); show.setOption('Liste totale des candidats')"
                         v-if="show.user == 'admin'">
                         <i class="pi pi-user" style="font-size: 18px; color: white;"></i>
                         <h4>Gérer les candidats</h4>
                     </div>
-                    <div class="itemSection" @click="show.setOption('Liste totale des candidats')"
+                    <div class="itemSection text-sm font-semibold"
+                        :class="{ active: activeSection === 'Liste totale des candidats' }"
+                        @click="setActiveSection('Liste totale des candidats'); show.setOption('Liste totale des candidats')"
                         v-if="show.user == 'Opérateur de saisie'">
                         <i class="pi pi-user" style="font-size: 18px; color: white;"></i>
                         <h4>Gérer les candidats</h4>
                     </div>
-                    <div class="itemSection" @click="show.setOption('Liste complète des électeurs')"
-                        v-if="show.user == 'Opérateur de saisie'">
-                        <!-- v-if="show.user !== 'Contrôleur'"> -->
-                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4>Enregistrer les délégués </h4>
-                    </div>
-                    <!-- For electors -->
-                    <!-- <div class="itemSection" :class="{ active: show.showElecteursActive }">
-                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4 class="text" @click="show.setSelectSideBar('Gestion des électeurs')">Suivi des Électeurs
-                        </h4>
-                        <WorkspaceSubSectionElecteurs v-if="show.showElecteur" />
-                    </div> -->
-
-
-                    <div class="itemSection" @click="show.setOption('Liste complète des électeurs')"
-                        v-if="show.user == 'Opérateur de saisie'">
-                        <!-- v-if="show.user !== 'Contrôleur'"> -->
-                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4>Saisir les électeurs </h4>
-                    </div>
-                    <div class="itemSection" @click="show.setOption('Contrôle des électeurs')"
-                        v-if="show.user === 'Contrôleur'">
-                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4>Vérification des Présidents </h4>
-                    </div>
-
-                    <div class="itemSection" @click="show.setOption('Contrôle des électeurs')"
-                        v-if="show.user === 'Contrôleur'">
-                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4>Délégués de vote </h4>
-                    </div>
-                    <div class="itemSection" @click="show.setOption('Contrôle des électeurs')"
-                        v-if="show.user === 'Contrôleur'">
-                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4> Candidats</h4>
-                    </div>
-
-                    <div class="itemSection" @click="show.setOption('Contrôle des électeurs')"
-                        v-if="show.user === 'Contrôleur'">
-                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4>Electeurs </h4>
-                    </div>
-
-
-                    <!-- <div class="itemSection" @click="show.setOption('Saisir les données')"
+                    <div class="itemSection text-sm font-semibold"
+                        :class="{ active: activeSection === 'Enregistrer les délégués' }"
+                        @click="setActiveSection('Enregistrer les délégués'); show.setOption('Enregistrer les délégués')"
                         v-if="show.user == 'Opérateur de saisie'">
                         <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4>Saisie des données</h4>
-                    </div> -->
-                    <!-- <div class="itemSection" @click="show.setOption('test')">
-                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4>Test</h4>
-                    </div> -->
-
-
-                    <!-- For offices -->
-                    <!-- <div class="itemSection" :class="{ active: show.showBureauxActive }">
-                        <i class="pi pi-building" style="font-size: 18px; color: white;"></i>
-                        <h4 class="text" @click="show.setSelectSideBar('Gestion des bureaux')">Bureaux de vote</h4>
-                        <WorkspaceSubSectionBureaux v-if="show.showBureau" />
-                    </div> -->
-
-                    <!-- <div class="itemSection" @click="show.setOption('Liste des bureaux de votes')">
-                            <i class="pi pi-building" style="font-size: 18px; color: white;"></i>
-                            <h4>Bureaux de votes</h4>
-                        </div> -->
-
-
-
-                    <!-- For users -->
-                    <!-- <div class="itemSection" :class="{ active: show.showUtilisateurActive }">
-                            <i class="pi pi-sitemap" style="font-size: 18px; color: white;"></i>
-                            <h4 class="text"  @click="show.setSelectSideBar('Gestion des utilisateurs')">Utilisateurs</h4>
-                            <WorkspaceSubSectionUtilisateurs v-if="show.showUtilisateur"/>  
-                        </div> -->
-
-                    <!-- For users -->
-
-
-                    <!-- For statistics -->
-                    <!-- <div class="itemSection" :class="{ active: show.showStatistiquesActive }"
-                        v-if="show.user == 'admin'">
-                        <i class="pi pi-clock" style="font-size: 18px; color: white;"></i>
-                        <h4 class="text" @click="show.setSelectSideBar('Statistiques')">Statistiques</h4>
-                        <WorkspaceSubSectionStatistiques v-if="show.showStatistique" />
-                    </div> -->
-                    <!-- <div class="itemSection" :class="{ active: show.showStatistiquesActive }"
-                        v-if="show.user === 'Contrôleur'">
-                        <i class="pi pi-clock" style="font-size: 18px; color: white;"></i>
-                        <h4 class="text" @click="show.setSelectSideBar('Statistiques')">Statistiques</h4>
-                        <WorkspaceSubSectionStatistiques v-if="show.showStatistique" />
-                    </div> -->
-                    <!-- For history -->
-                    <!-- <div class="itemSection" :class="{ active: show.showHistoriqueActive }" v-if="show.user == 'admin'">
-                        <i class="pi pi-history" style="font-size: 18px; color: white;"></i>
-                        <h4 class="text" @click="show.setSelectSideBar('Historique')">Historique</h4>
-                        <WorkspaceSubSectionHistoriques v-if="show.showHistorique" />
-                    </div> -->
-
-
-                    <!-- For current election -->
-                    <!-- <div class="itemSection" :class="{ active: show.showElectionEnCoursActive }">
-                        <i class="pi pi-clock" style="font-size: 18px; color: white;"></i>
-                        <h4 @click="show.setSelectSideBar('Election en cours')">Election en cours</h4>
-                        <WorkspaceSubSectionElectionEnCours v-if="show.showElectionEnCours" />
-                    </div>-->
-
-                    <div class="option " style="cursor: pointer;
-    transition: transform 0.3s ease;" @click="show.showModalLogout = !show.showModalLogout">
-                        <h5 class="item ml-[50px]  " style="cursor: pointer;
-    transition: transform 0.3s ease;">Déconnexion</h5>
-                        <i class="pi pi-sign-out mr-[50px]" style="font-size: 14px; color: white; cursor: pointer;
-    transition: transform 0.3s ease;"></i>
-
-
+                        <h4>Enregistrer les délégués</h4>
                     </div>
-
+                    <div class="itemSection text-sm font-semibold"
+                        :class="{ active: activeSection === 'Saisir les électeurs' }"
+                        @click="setActiveSection('Saisir les électeurs'); show.setOption('Saisir les électeurs')"
+                        v-if="show.user == 'Opérateur de saisie'">
+                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
+                        <h4>Saisir les électeurs</h4>
+                    </div>
+                    <div class="itemSection text-sm font-semibold"
+                        :class="{ active: activeSection === 'Vérification des Présidents' }"
+                        @click="setActiveSection('Vérification des Présidents'); show.setOption('Contrôle des électeurs')"
+                        v-if="show.user === 'Contrôleur'">
+                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
+                        <h4>Vérification des Présidents</h4>
+                    </div>
+                    <div class="itemSection text-sm font-semibold"
+                        :class="{ active: activeSection === 'Délégués de vote' }"
+                        @click="setActiveSection('Délégués de vote'); show.setOption('Contrôle des électeurs')"
+                        v-if="show.user === 'Contrôleur'">
+                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
+                        <h4>Délégués de vote</h4>
+                    </div>
+                    <div class="itemSection text-sm font-semibold" :class="{ active: activeSection === 'Candidats' }"
+                        @click="setActiveSection('Candidats'); show.setOption('Contrôle des électeurs')"
+                        v-if="show.user === 'Contrôleur'">
+                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
+                        <h4>Candidats</h4>
+                    </div>
+                    <div class="itemSection text-sm font-semibold" :class="{ active: activeSection === 'Electeurs' }"
+                        @click="setActiveSection('Electeurs'); show.setOption('Contrôle des électeurs')"
+                        v-if="show.user === 'Contrôleur'">
+                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
+                        <h4>Electeurs</h4>
+                    </div>
+                    <div class="option text-sm font-semibold" style="cursor: pointer; transition: transform 0.3s ease;"
+                        @click="show.showModalLogout = !show.showModalLogout">
+                        <h5 class="item ml-[50px]" style="cursor: pointer; transition: transform 0.3s ease;">Déconnexion
+                        </h5>
+                        <i class="pi pi-sign-out mr-[50px]"
+                            style="font-size: 14px; color: white; cursor: pointer; transition: transform 0.3s ease;"></i>
+                    </div>
                 </div>
-
-
-
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import WorkspaceSubSectionElections from "@/components/subsections/WorkspaceSubSectionElections.vue";
-import WorkspaceSubSectionCandidats from "@/components/subsections/WorkspaceSubSectionCandidats.vue";
-import WorkspaceSubSectionElecteurs from "@/components/subsections/WorkspaceSubSectionElecteurs.vue";
-import WorkspaceSubSectionBureaux from "@/components/subsections/WorkspaceSubSectionBureaux.vue";
-import WorkspaceSubSectionUtilisateurs from "@/components/subsections/WorkspaceSubSectionUtilisateurs.vue";
-import WorkspaceSubSectionStatistiques from "@/components/subsections/WorkspaceSubSectionStatistiques.vue";
-import WorkspaceSubSectionHistoriques from "@/components/subsections/WorkspaceSubSectionHistoriques.vue";
-
 import { useShow } from "@/stores/show";
-const show = useShow(); // call Show in show.js
-
+const show = useShow();
 
 import { ref, onMounted } from 'vue';
 
 onMounted(() => {
-    show.user = JSON.parse(localStorage.getItem('usersRole'))
+    show.user = JSON.parse(localStorage.getItem('usersRole'));
+});
 
-    console.log('aaaaaaaaaaaaa', show.user);
-
-})
-
-// Gérez l'état de la section active
 const activeSection = ref(null);
 
-// Fonction pour définir la section active
 function setActiveSection(section) {
     activeSection.value = section;
 }
 </script>
+
 <style scoped>
 .sideBar {
     width: 20%;
     background-color: #434955;
     padding: 0px 20px 20px 20px;
-    border-right: 1px solid rgba(134, 132, 132, 0.514);
 }
 
 .logo {
@@ -272,16 +155,14 @@ function setActiveSection(section) {
     max-height: 100%;
     max-width: 100%;
     margin-right: 20px;
-    /* Ajout d'espace entre l'image et le nom */
 }
 
 .container {
     width: 100%;
-    height: 82vh;
+    height: 65vh;
     margin-top: 22px;
     color: #434955;
 }
-
 
 .sectionTitle {
     background-color: #72767e;
@@ -299,7 +180,7 @@ function setActiveSection(section) {
 
 .sectionContainer {
     background-color: #2d405193;
-    padding: 0px;
+    padding: 10px;
     border-radius: 10px;
     height: 480px;
 }
@@ -313,8 +194,10 @@ function setActiveSection(section) {
     margin-top: 5px;
     transition: background-color 0.3s ease, transform 0.3s ease;
     cursor: pointer;
+}
 
-
+.itemSection.active {
+    background-color: rgb(116, 116, 244);
 }
 
 .option {
@@ -328,7 +211,6 @@ function setActiveSection(section) {
 
 .option:hover {
     background-color: #21629f;
-
 }
 
 .item {
@@ -336,22 +218,17 @@ function setActiveSection(section) {
     font-weight: 600;
 }
 
-
 .pi {
     transition: transform 0.2s ease-in-out;
 }
 
 .pi:hover {
     transform: scale(1.2);
-    /* Agrandit l'icône de 20% au survol */
 }
-
 
 .text {
     font-size: 15px !important;
 }
-
-
 
 .itemSection i {
     margin-right: 10px;
@@ -361,20 +238,14 @@ function setActiveSection(section) {
 .itemSection h4 {
     display: flex;
     align-items: center;
-    /* Centre verticalement le contenu */
     color: white;
     font-size: 16px;
     margin: 0;
     padding-left: 1px;
-    /* Ajoute un léger espacement à gauche du texte */
     position: relative;
     white-space: nowrap;
-    /* Empêche les titres de se couper à la ligne */
     justify-content: flex-start;
-    /* Aligne le contenu à gauche */
 }
-
-
 
 .itemSection:hover {
     background-color: #21629f;
@@ -389,6 +260,5 @@ function setActiveSection(section) {
     max-height: 100%;
     max-width: 100%;
     margin-left: 10px;
-    /* Ajout d'espace pour éviter que le texte ne touche l'image */
 }
 </style>

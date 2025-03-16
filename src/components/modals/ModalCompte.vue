@@ -33,7 +33,7 @@
                             id="file-upload" class="file-input-label" />
                           <label for="file-upload"
                             class="flex1 items-center justify-center w-full h-full bg-[#130e0e] rounded-full cursor-pointer text-[24px]">
-                            <i class="pi pi-camera cursor-pointer text-gray-500 pointer-events-auto"></i>
+                            <!-- <i class="pi pi-camera cursor-pointer text-gray-500 pointer-events-auto"></i> -->
                           </label>
                         </div>
 
@@ -102,7 +102,6 @@
                           <div class="info">
                             <h2>{{ utilisateur.nomComplet }}</h2>
                           </div>
-
                         </template>
                         <template v-else>
                           <input type="text" placeholder="Votre pseudo" v-model="utilisateur.nomComplet"

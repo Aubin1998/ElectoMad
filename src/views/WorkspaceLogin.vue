@@ -1,22 +1,33 @@
 <template>
-  <div class="login " v-if="show.showLogin">
-    <button @click="goToAcceuil()" class="bg-blue-500 text-white absolute top-2 right-5 px-5 rounded py-2">
+  <div class="login" v-if="show.showLogin">
+    <button @click="goToAcceuil()" class="bg-[#6261CC] text-white absolute top-2 right-5 px-5 rounded py-2">
       Acceuil
+      <i class="pi pi-arrow-right mr-[2px]"
+        style="font-size: 14px; color: white; cursor: pointer; transition: transform 0.3s ease;"></i>
     </button>
     <div class="bg-gray-700 rounded-lg text-white py-20 px-10">
       <h3 class="bienvenu text-center">Se connecter</h3>
       <h4 class="subtitle text-center">Entrez vos informations</h4>
       <div class="inputForm">
-        <div class="itemContainer">
-          <input type="text" placeholder="Votre email" class="input !w-80" v-model="auth.email" />
+        <div class="itemContainer relative">
+          <input type="text" placeholder="Votre email" class="input !w-80 pl-10" v-model="auth.email" />
+          <i class="pi pi-envelope absolute right-10  top-1/2 transform -translate-y-1/2"
+            style="font-size: 16px; color: gray;"></i>
         </div>
-        <div class="itemContainer">
-          <input type="password" placeholder="Votre Mot de passe" class="input !w-80" v-model="auth.mdp" />
-        </div>
+        <div class="itemContainer relative">
+          <input :type="showPassword ? 'text' : 'password'" placeholder="Votre Mot de passe"
+            class="input !w-80 pl-10 pr-10" v-model="auth.mdp" />
 
+          <i class="pi pi-eye absolute right-10 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500 hover:text-gray-400"
+            style="font-size: 16px; " @mousedown="showPassword = true" @mouseup="showPassword = false"
+            @touchstart="showPassword = true" @touchend="showPassword = false"></i>
+        </div>
       </div>
       <div class="btnlogin" @click="connecte()">
-        <h3>Se connecter</h3>
+        <h3>Se connecter
+          <i class="pi pi-sign-out mr-[2px]"
+            style="font-size: 14px; color: white; cursor: pointer; transition: transform 0.3s ease;"></i>
+        </h3>
       </div>
       <h5>
         <span @click="show.showSingUpFunc()" class="forgotPass">Cette page est réservée aux utilisateurs
@@ -24,17 +35,26 @@
       </h5>
       <p class="mt-2 text-xs text-gray-400 text-center">
         Vous n'avez pas de compte ?
-        <b @click="goToAcceuil()" class="text-blue-500 cursor-pointer">Retour à l'accueil</b>
+        <b @click="goToAcceuil()" class="text-blue-500 cursor-pointer">Retour à l'accueil
+          <i class="pi pi-arrow-right text-blue-500 mr-[2px]"
+            style="font-size: 8px; cursor: pointer; transition: transform 0.3s ease;"></i>
+        </b>
       </p>
-
     </div>
   </div>
 </template>
+
+
+
+
+
 <script setup>
+import { ref } from 'vue';
 import { useShow } from '@/stores/show';
-import { useAuth } from "@/stores/auth";
+import { useAuth } from '@/stores/auth';
 import { useRouter } from 'vue-router';
 
+const showPassword = ref(false);
 const show = useShow();
 const auth = useAuth();
 const router = useRouter();

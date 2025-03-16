@@ -1,25 +1,22 @@
 <template>
   <div>
-    <label
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      for="file_input"
-    >
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">
       Joindre une image
     </label>
     <input
       class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-      id="file_input"
-      type="file"
-      @change="upload"
-    />
+      id="file_input" type="file" @change="upload" />
   </div>
+
+
+
 </template>
 
 <script setup>
 import axios from "axios";
 import { defineProps } from "vue";
-import {useUrl} from "@/stores/url";
-import {useShow} from "@/stores/show";
+import { useUrl } from "@/stores/url";
+import { useShow } from "@/stores/show";
 import { uselisteCandidat } from "@/stores/listeCandidat";
 const URL = useUrl().url;
 const show = useShow();
@@ -62,4 +59,13 @@ const onFileChange = async (file, id) => {
 
 <style scoped>
 /* Ajoutez ici les styles spécifiques au composant si nécessaire */
+
+
+
+
+.closeForm:hover {
+  background-color: rgb(186, 11, 11);
+  transform: scale(1.1);
+  /* Ajoute un effet de zoom au survol */
+}
 </style>

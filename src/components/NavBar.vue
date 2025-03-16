@@ -6,6 +6,8 @@
       <div class="relative flex h-full items-center justify-between border-b border-slate-500/10">
         <!-- logo -->
         <div class="flex items-center w-[15rem] max-w-full">
+          <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+
           <a href="#" class="flex items-center">
             <img src="/logo.svg" alt="logo" class="w-1/3">
             <span class="ml-1 text-4xl font-bold" style="color:  #0A2753;">votiflow</span>
@@ -52,6 +54,8 @@
             class="mr-6 hidden rounded-md bg-blue-500 px-8 py-2.5 font-semibold text-white shadow-md shadow-blue-500/20 duration-200 hover:bg-blue-600 sm:block lg:mr-0"
             style="white-space: nowrap;">
             Se connecter
+            <i class="pi pi-sign-out mr-[2px]"
+              style="font-size: 14px; color: white; cursor: pointer; transition: transform 0.3s ease;"></i>
           </button>
 
         </div>

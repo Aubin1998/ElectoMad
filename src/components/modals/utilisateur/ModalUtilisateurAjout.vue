@@ -6,13 +6,47 @@
 
           <div class="titre">
 
-            <h1 class="tritreModal">AJOUT NOUVEAU UTILISATEUR {{ page }}</h1>
+            <h1 class="tritreModal">AJOUT NOUVEAU UTILISATEUR </h1>
             <div class="closeForm" @click="show.showModalAjoutUtilisateur = !show.showModalAjoutUtilisateur">
               <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
             </div>
           </div>
 
+          <!-- {{ utilisateur.AllElecteurs }} -->
 
+          <div class="mb-3">
+            <dt class="font-semibold text-sm text-gray-900 dark:text-white pb-1">Rechercher un électeur</dt>
+            <input type="text" placeholder="Chercher par nom" class="input text-sm focus:outline-none"
+              v-model="searchQuery" />
+          </div>
+          <div class="w-full h-[55vh] overflow-y-scroll px-2">
+            <div class="grid grid-cols-1 gap-y-1">
+              <div v-for="electeur in filteredElecteurs" :key="electeur.id"
+                class="flex items-center justify-between bg-white px-4 py-1 rounded shadow">
+
+                <div class="flex-1 text-sm font-semibold text-gray-800">
+                  {{ electeur.nomComplet }}
+                  {{ electeur.user?.roles[0]?.nomRole }}
+
+                </div>
+                <div class="w-[250px] flex justify-end space-x-2">
+                  <button @click="makePresident(electeur.user.id, 2, electeur.annee_electorale_id)"
+                    v-if="electeur.user?.roles[0]?.nomRole !== 'Contrôleur'"
+                    class="bg-blue-500 text-white px-4 py-2 rounded text-[11px]">
+                    Nommer Controleur
+                  </button>
+                  <button @click="makePresident(electeur.user.id, 3, electeur.annee_electorale_id)"
+                    v-if="electeur.user?.roles[0]?.nomRole !== 'Opérateur de saisie'"
+                    class="bg-green-500 text-white px-4 py-2 rounded text-[11px]">
+                    Nommer saisie
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- 
           <div class="contenaire" v-if="isFirst">
 
             <div class="inputCard">
@@ -48,7 +82,6 @@
                       d="m1 1 4 4 4-4" />
                   </svg>
                 </button>
-                <!-- Dropdown menu -->
                 <div v-if="isDropdownOpenRole"
                   class="z-10 bg-white rounded-lg shadow-sm w-60 dark:bg-gray-700 absolute right-50 mt-2">
                   <ul class="h-48 py-2 overflow-y-auto text-gray-700 dark:text-gray-200"
@@ -102,10 +135,7 @@
               <h3 class="label">Numéro de la CIN</h3>
               <input type="text" placeholder="Son numéro CIN" class="input" v-model="numeroCIN" />
             </div>
-            <!-- <div class="inputCard">
-              <h3 class="label">Date de délivrance CIN</h3>
-              <input type="text" placeholder="Délivré le" class="input" v-model="dateDelivreCIN" />
-            </div> -->
+ 
 
             <div class="inputCard">
               <h3 class="label">Date de délivrance </h3>
@@ -114,11 +144,6 @@
                 class="input" format="dd-MM-yyyy"   :format="formatDate" :model-config="modelConfig" />
             </div>
 
-            <!-- <div class="inputCard">
-              <h3 class="label">Date de délivrance</h3>
-              <VueDatePicker v-model="dateDelivreCIN" placeholder="Insérez une date de naissance" class="input"
-                :format="formatDate" :model-config="modelConfig" />
-            </div> -->
 
 
             <div class="inputCard">
@@ -169,10 +194,7 @@
               <h3 class="label">Filiation</h3>
               <input type="text" placeholder="Père et mère" class="input" v-model="filiation" />
             </div>
-            <!-- <div class="inputCard">
-              <h3 class="label">Date de naissance</h3>
-              <input type="text" placeholder="Sa date de naissance" class="input" v-model="dateNaissance" />
-            </div> -->
+        
 
 
 
@@ -180,25 +202,11 @@
               <h3 class="label">Téléphone</h3>
               <input type="text" placeholder="Numéro" class="input" v-model="telephone" />
             </div>
-            <!-- <div class="inputCard">
-              <h3 class="label">Date d'inscription</h3>
-              <input type="text" placeholder="Sa date d'inscription" class="input" v-model="dateInscription" />
-            </div> -->
-
-
-            
-
-         
-            <!-- <div class="inputCard">
-              <h3 class="label">Date d'inscription</h3>
-              <VueDatePicker v-model="dateInscription" placeholder="Insérez une date de naissance" class="input1" />
-            </div> -->
-
-
+        
             <div class="modalFooter" v-if="areFieldsFilled3">
               <h3 class="btnAdd add" @click="Ajout()">Ajouter</h3>
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -234,6 +242,46 @@ const listeElecteur = uselisteElecteur();
 const isSeconde = ref(false)
 const isThird = ref(false)
 const page = ref('1')
+
+const searchQuery = ref('');
+const filteredElecteurs = computed(() => {
+  if (!searchQuery.value) {
+    return utilisateur.AllElecteurs;
+  }
+  return utilisateur.AllElecteurs.filter(electeur =>
+    electeur.nomComplet.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
+
+
+
+
+const makePresident = (idUser, idRole, annee_electorale_id) => {
+  // listeElecteur.updateElecteurRole(id, "president des bureaux de vote");
+  console.log('idUser', idUser);
+  console.log('idRole', idRole);
+
+  let data = {
+    roleId: idRole,
+    userId: idUser,
+  }
+  utilisateur.updateRole(data, annee_electorale_id)
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function suivant2(item) {
   // Initialiser toutes les valeurs à false
   isFirst.value = false;
@@ -634,7 +682,7 @@ function voirDetails(item) {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 30px;
   border-radius: 10px;
-  width: 30%;
+  width: 60%;
   margin: 0 auto;
 }
 

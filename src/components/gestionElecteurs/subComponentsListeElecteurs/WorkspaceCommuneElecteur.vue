@@ -1,9 +1,15 @@
 <template>
-   <div class="contenaire" >
-    <div class="recherche">
-            <input v-model="searchQuery" class="input custom-input" type="text"
-                placeholder="Rechercher par nom de fokontany">
+    <div class="my-8">
+        <div class="my-8  flex  justify-between gap-4 items-center">
 
+            <h4 class="font-bold ml-12 ">
+                Liste des fokontany
+            </h4>
+            <div class="mr-10 w-[30%] ">
+                <input v-model="searchQuery" class="input custom-input" type="text"
+                    placeholder="Rechercher par nom de région">
+
+            </div>
         </div>
         <div class="form">
             <div class="itemForm">
@@ -19,39 +25,39 @@
                 </div>
             </div>
 
-           
+
         </div>
     </div>
- 
-   
- 
- </template>
- 
- <script setup>
- import { useShow } from "@/stores/show";
- import { ref, computed, onMounted, watch } from "vue";
 
- const searchQuery = ref('');
+
+
+</template>
+
+<script setup>
+import { useShow } from "@/stores/show";
+import { ref, computed, onMounted, watch } from "vue";
+
+const searchQuery = ref('');
 
 // Filtrer les données à partir de la recherche
 const filteredData = computed(() => {
-  let filtered = show.dataFokontany;
-  if (searchQuery.value) {
-    filtered = show.dataFokontany.filter(item => item.toLowerCase().includes(searchQuery.value.toLowerCase()));
-  }
-  return filtered;
+    let filtered = show.dataFokontany;
+    if (searchQuery.value) {
+        filtered = show.dataFokontany.filter(item => item.toLowerCase().includes(searchQuery.value.toLowerCase()));
+    }
+    return filtered;
 });
 //étape 2
 function select(item) {
     show.listePersonneFunc(item)
     localStorage.setItem('selectFokontany', JSON.stringify(item))
-    
+
 }
 
 const show = useShow(); //call Show in show.js
- </script>
- 
- <style scoped>
+</script>
+
+<style scoped>
 .contenaire {
     padding-top: 20px;
 }
@@ -258,6 +264,7 @@ input-placeholder {
     font-weight: 700;
     color: rgba(112, 105, 105, 0.74);
 }
+
 .add {
     width: 100px !important;
 }

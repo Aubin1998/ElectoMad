@@ -19,18 +19,19 @@
       <h4 class="message">Aucune électeur trouvée.</h4>
     </div>
 
-    <div v-if="filteredElecteurs.length !== 0" class="flex items-center">
+    <div v-if="filteredElecteurs.length !== 0" class="flex mb-8  items-center">
       <h1 class="px-2 w-[10%]">Numéros</h1>
-      <div class="flex items-center justify-between px-4 w-[70%]">
-        <h1>Nom</h1>
-        <h1>Sexe</h1>
+      <div class="flex items-center justify-between  w-[70%]">
+        <h1 class=" ml-10 ">Nom</h1>
+        <h1 class="mr-14">Sexe</h1>
       </div>
-      <div class=" bg-green-500   w-[20%]">
+      <div class="  flex justify-center w-[20%]">
+        Action
       </div>
     </div>
 
 
-    <div class="scroll-container">
+    <div class="scroll-container  border-t-2">
       <div class="item" v-for="(item, index) in filteredElecteurs" :key="index">
 
         <h4 class="w-[10%] px-2">{{ item?.id }}</h4>
@@ -359,9 +360,9 @@ onMounted(() => {
 }
 
 .scroll-container {
-  max-height: 100%;
+  max-height: 60vh;
   /* Limite la hauteur */
-  overflow-y: auto;
+  overflow-y: scroll;
   /* Ajoute un défilement vertical si nécessaire */
   padding: 10px;
   /* Espacement interne */

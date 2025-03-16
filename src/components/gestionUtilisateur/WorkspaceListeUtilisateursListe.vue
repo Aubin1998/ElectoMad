@@ -1,7 +1,7 @@
 <template>
-  <div class="relative overflow-x-auto shadow-md sm:rounded-lg utili">
+  <div class=" shadow-md sm:rounded-lg utili">
     <div
-      class="flex flex-col md:flex-row items-center rounded-lg justify-between p-3 space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
+      class="flex flex-col md:flex-row items-center rounded-tl-lg rounded-tr-lg  justify-between p-3 space-y-5 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
       <div>
         <h2 class="text-xl font-bold mb-2.5">Gestion des utilisateurs</h2>
         <button @click="ajout()" type="button" v-if="seeAjout"
@@ -15,6 +15,13 @@
         </button>
       </div>
 
+
+
+
+
+
+
+
       <div class="relative space-y-4 forme">
         <!-- Dropdown 1: Année -->
         <div class="droper">
@@ -22,7 +29,8 @@
             class="inline-flex items-center justify-between text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-full"
             type="button">
             <span class="sr-only">Action button</span>
-            {{ selectedAnnee ? selectedAnnee.annee : 'Année' }}
+            {{ selectedAnnee ? selectedAnnee.annee : 'Année' }} {{ selectedAnnee ? selectedAnnee.descriptionAnnee :
+              'Année' }}
             <svg class="w-2.5 h-2.5 ml-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
               viewBox="0 0 10 6">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -32,10 +40,10 @@
           <div v-if="isYearDropdownOpen"
             class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-full dark:bg-gray-700 dark:divide-gray-600 mt-2">
             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
-              <li v-for="annee in anneeElectorale.allanneeData" :key="annee.id" @click="selectAnnee(annee)">
+              <li v-for="annee in anneeElectorale.allanneeData" :key="annee.id" @click="selectAnnee(annee, false)">
                 <a href="#"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">
-                  {{ annee.annee }}
+                  {{ annee.annee }} {{ annee.descriptionAnnee }}
                 </a>
               </li>
             </ul>
@@ -98,6 +106,12 @@
         </div>
       </div>
 
+
+
+
+
+
+
       <div class="flex items-center space-x-4">
         <label for="table-search" class="sr-only">Search</label>
         <div class="relative">
@@ -108,9 +122,14 @@
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
             </svg>
           </div>
+
+
           <input type="text" id="table-search-users"
             class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Recherche des utilisateurs" />
+            placeholder="Recherche des utilisateurs" v-model="recherche" />
+
+
+
         </div>
 
         <!-- Project Users Dropdown -->
@@ -161,29 +180,41 @@
       </div>
     </div>
 
-    <div class="overflow-y max-h-[55vh]">
+
+
+    <div>
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead
+          class="text-xs text-gray-700 uppercase border-b-4 border-gray-500 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" class="px-6 py-3">Name</th>
-            <th scope="col" class="px-6 py-3">Rôle</th>
-            <th scope="col" class="px-6 py-3">Status</th>
-            <th scope="col" class="px-6 py-3">Mot de passe</th>
-            <th scope="col" class="px-6 py-3">Actions</th>
+            <th scope="col" class="  w-[18%] px-6 py-3">Rôle</th>
+            <th scope="col" class="  w-[13%] px-6 py-3">Status</th>
+            <th scope="col" class=" w-[14%] py-3">Mot de passe</th>
+            <th scope="col" class="   px-6  w-[12%] py-3">Actions</th>
           </tr>
         </thead>
-        <tbody>
-          <tr v-for="user in listUtilisateur" :key="user.id"
-            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+      </table>
+      <div class="overflow-y-auto max-h-[45vh]">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+
+          <tr v-for="user in filteredCandidats" :key="user.id"
+            class="bg-white  border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <!-- <th scope="row"
+              class="flex bg-green-500  w-[30%] items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"> -->
+
+            <td class="px-6 py-4 w-[85%]  flex">
               <img class="w-10 h-10 rounded-full" src="/admin.png" :alt="user.name + ' image'" />
-              <div class="ps-3">
-                <div class="text-base font-semibold">{{ user.nomComplet }}</div>
+              <div class="ps-3  ">
+                <div class="text-base  font-semibold">{{ user.nomComplet }}
+                </div>
                 <div class="font-normal text-gray-500">{{ user.user.email }}</div>
               </div>
-            </th>
-            <td class="px-6 py-4">{{ user.user.roles[0].nomRole }}</td>
-            <td class="px-6 py-4">
+            </td>
+            <th scope="col" class=" w-[20%]  py-3">{{
+              user.user?.roles[0]?.nomRole }}</th>
+
+            <td class="px-6 py-4 ">
               <div class="flex items-center">
                 <div class="h-2.5 w-2.5 rounded-full"
                   :class="user.status === 'Permanent' ? 'bg-green-500' : 'bg-red-500'">
@@ -191,11 +222,11 @@
                 {{ user.status }}
               </div>
             </td>
-            <td class="px-6 py-4">
+            <td class="px-0 py-4  w-[0%]">
               <div class="font-medium text-blue-600 dark:text-blue-500" @click="togglePasswordVisibility(user.id)">
-                <span class="pi pi-eye ms-2" v-if="!isPasswordVisible[user.id]"></span>
-                <span class="pi pi-eye-slash ms-2 voirMdp" v-else>
-                  <div v-if="isPasswordVisible[user.id]" class="mt-2">
+                <span class="pi pi-eye ms-2 w-[90px] " v-if="!isPasswordVisible[user.id]"></span>
+                <span class="pi pi-eye-slash w-[10%] ms-2 " v-else>
+                  <div v-if="isPasswordVisible[user.id]" class="">
                     {{ user.user.showPasswords }}
                   </div>
                 </span>
@@ -212,34 +243,43 @@
                 </svg>
               </button>
               <div v-if="showDropdown && currentUserId === user.id"
-                class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600 absolute right-0"
+                class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600 absolute bottom-4 right-0"
                 :style="{ bottom: dropdownBottomPosition }">
+
+
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
-                  <li>
-                    <a href="#" @click="voir"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                      <i class="pi pi-eye" style="font-size: 18px; color: white;"></i> Voir
+                  <li class="flex  mb-1 ml-2 items-center">
+                    <a href="#" class="icon blue" @click="voir(user)">
+                      <i class="pi pi-eye" style="font-size: 18px; color: white;"></i>
                     </a>
+                    <a href="#" style="font-size: 18px; color: white;" class="ml-4">Voir</a>
                   </li>
-                  <li>
-                    <a href="#" @click="modifier"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                      <i class="pi pi-pencil" style="font-size: 18px; color: white;"></i> Modifier
+                  <li class="flex mb-1 ml-2 items-center">
+                    <a href="#" @click="modifier(user)" class="icon orange">
+                      <i class="pi pi-pencil" style="font-size: 18px; color: white;"></i>
                     </a>
+                    <a href="#" style="font-size: 18px; color: white;" class="ml-4">Modifier</a>
+
                   </li>
-                  <li>
-                    <a href="#" @click="supprimer"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                      <i class="pi pi-trash" style="font-size: 18px; color: white;"></i> Supprimer
+                  <li class="flex ml-2 items-center">
+                    <a href="#" @click="supprimer(user)" class="icon red">
+                      <i class="pi pi-trash" style="font-size: 18px; color: white;"></i>
                     </a>
+                    <a href="#" style="font-size: 18px; color: white;" class="ml-4">Supprimer</a>
+
                   </li>
                 </ul>
+
               </div>
             </td>
           </tr>
-        </tbody>
-      </table>
+
+
+        </table>
+      </div>
     </div>
+
+
   </div>
 </template>
 
@@ -253,7 +293,10 @@ import { useListeCommuneDistrictStore } from "@/stores/jsonData/liste_commune_pa
 import { useListeFokontanyDistrictStore } from "@/stores/jsonData/liste_fokontany_par_district";
 import { useUtilisateur } from "@/stores/utilisateur";
 import { useDataRegion } from "@/service/dataLocation";
+import { uselisteElecteur } from "@/stores/listeElecteur";
 
+
+const listeElecteur = uselisteElecteur();
 const seeMdp = ref(false);
 const utilisateur = useUtilisateur();
 const listeFokontanyDistrictStore = useListeFokontanyDistrictStore();
@@ -340,23 +383,29 @@ const adjustDropdownPosition = () => {
   }
 };
 
-const voir = () => {
-  show.showModalOeil = !show.showModalOeil;
-  fermerDropdown();
-};
+const voir = (item) => {
+  show.showModalVoirElecteur = !show.showModalVoirElecteur;
+  listeElecteur.voirElecteurData = item;
+  console.log(item);
 
-const modifier = () => {
-  show.showModalModifier = !show.showModalModifier;
-  fermerDropdown();
-};
+}
 
-const supprimer = () => {
-  const anneeElectoraleData = {}; // Assurez-vous que anneeElectoraleData est défini correctement
-  const item = {}; // Assurez-vous que item est défini correctement
-  anneeElectoraleData.supprimerData = item;
-  show.showModalAnneSupprimer = true;
-  fermerDropdown();
-};
+const modifier = (item) => {
+  show.showModalModifierElecteur = !show.showModalModifierElecteur;
+  listeElecteur.modifierElecteurData = item;
+  console.log('item', listeElecteur.modifierElecteurData);
+
+}
+
+
+
+
+const supprimer = (item) => {
+  show.showModalSupprimerElecteur = !show.showModalSupprimerElecteur;
+  listeElecteur.supprimerElecteurData = item;
+  console.log("sup", listeElecteur.supprimerElecteurData);
+
+}
 
 const ajoutRole = () => {
   isInput.value = !isInput.value;
@@ -370,17 +419,44 @@ const Confirmer = () => {
 watch(() => utilisateur.newUtilisateur, (newVal, oldVal) => {
   if (newVal !== oldVal) {
     selectAnnee(selectedAnnee.value);
+    console.log('123 : ', selectedAnnee.value);
+    console.log('123 : ', selectedRegion.value);
+    console.log('123 : ', selectedDistrict.value);
+
+
+
+
   }
 });
 
-const selectAnnee = async (annee) => {
+watch(() => utilisateur.update, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    selectAnnee(selectedAnnee.value);
+    console.log('123 test: ', selectedAnnee.value);
+    console.log('123 test: ', selectedRegion.value);
+    console.log('123 test : ', selectedDistrict.value);
+    // selectAnnee(selectedAnnee.value.id)
+    selectRegion(selectedRegion.value)
+    selectDistrict(selectedDistrict.value)
+
+
+
+
+  }
+});
+
+const selectAnnee = async (annee, value) => {
+  // console.log('formate data ', transformedData);
+
   seeRegion.value = true;
   selectedAnnee.value = annee;
-  isYearDropdownOpen.value = false; // Fermez le menu déroulant après la sélection
+  isYearDropdownOpen.value = value; // Fermez le menu déroulant après la sélection
 
   utilisateur.anneeSelected = annee.id;
 
   await utilisateur.getElecteur(annee.id);
+
+  console.log('test1', utilisateur.allElecteurs);
 
   listUtilisateur.value = [];
   for (let i = 0; i < utilisateur.allElecteurs?.length; i++) {
@@ -393,25 +469,13 @@ const selectAnnee = async (annee) => {
   }
 };
 
-const togglePasswordVisibility = (userId) => {
-  if (isPasswordVisible.value[userId] === undefined) {
-    isPasswordVisible.value[userId] = true;
-  } else {
-    isPasswordVisible.value[userId] = !isPasswordVisible.value[userId];
-  }
-};
-
-const selectDistrict = (district) => {
-  selectedDistrict.value = district;
-  utilisateur.districtSelected = district;
-  isDistrictDropdownOpen.value = false; // Fermez le menu déroulant après la sélection
-  seeAjout.value = true;
-};
 
 const selectRegion = (region) => {
   selectedDistrict.value = '';
   seeDistrict.value = true;
   selectedRegion.value = region;
+  console.log('test2', region);
+
   utilisateur.regionSelected = region;
   isRegionDropdownOpen.value = false; // Fermez le menu déroulant après la sélection
 
@@ -421,7 +485,70 @@ const selectRegion = (region) => {
       districtData.value = data[i].listeDistrict.map(e => e[0]);
     }
   }
+
+  let listElecteurRegion = utilisateur.allElecteurs.filter((electeur) => electeur.region === region)
+  console.log('liste region ', listElecteurRegion);
+  utilisateur.allElecteurs = listElecteurRegion
+
+
+
+
+
 };
+
+const communeData = ref()
+const selectDistrict = (district) => {
+  selectedDistrict.value = district;
+  utilisateur.districtSelected = district;
+  isDistrictDropdownOpen.value = false; // Fermez le menu déroulant après la sélection
+  seeAjout.value = true;
+
+  console.log('test3', district);
+
+  let listElecteurRegion = utilisateur.allElecteurs.filter((electeur) => electeur.district === district)
+  console.log('liste district ', listElecteurRegion);
+  utilisateur.allElecteurs = listElecteurRegion
+  console.log('liste district 2', utilisateur.allElecteurs);
+
+  utilisateur.AllElecteurs = utilisateur.allElecteurs
+
+  let filtrerUtilisateurRole = utilisateur.allElecteurs.filter((electeur) => electeur.user?.roles[0]?.nomRole == "Contrôleur" || electeur.user?.roles[0]?.nomRole == "Opérateur de saisie")
+  console.log('liste role 1', filtrerUtilisateurRole);
+  utilisateur.allElecteurs = filtrerUtilisateurRole
+
+  const data = districtData.value;
+
+
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].district == district) {
+      communeData.value = data[i].listeCommune.map(e => e[0]);
+    }
+  }
+  console.log('data comm : ', communeData.value);
+};
+
+
+
+const recherche = ref('');
+const filteredCandidats = computed(() => {
+  if (!recherche.value) {
+    return utilisateur.allElecteurs;
+  } return utilisateur.allElecteurs.filter(electeur => {
+    return electeur.nomComplet.toLowerCase().includes(recherche.value.toLowerCase());
+  });
+});
+
+
+
+
+const togglePasswordVisibility = (userId) => {
+  if (isPasswordVisible.value[userId] === undefined) {
+    isPasswordVisible.value[userId] = true;
+  } else {
+    isPasswordVisible.value[userId] = !isPasswordVisible.value[userId];
+  }
+};
+
 
 function ajout() {
   show.showModalAjoutUtilisateur = !show.showModalAjoutUtilisateur;
@@ -463,7 +590,7 @@ onMounted(() => {
 }
 
 .droper {
-  width: 200px;
+  width: 300px;
 }
 
 .forme {
@@ -519,10 +646,8 @@ onMounted(() => {
   position: absolute;
   top: 150px;
   justify-content: center;
-  margin-left: 2%;
-  width: 70%;
+  align-items: center;
+  width: 77.5%;
   height: 500px;
 }
-
-.voirMdp {}
 </style>

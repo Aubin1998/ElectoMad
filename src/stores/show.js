@@ -9,12 +9,16 @@ export const useShow = defineStore('Show', () => {
 	const electeurDistrict = ref(false)
 
 	const showSaisirElecteur = ref(false)
+	const provinceSelectUser = ref({})
+
 
 	const user = ref()
 	const showModalAjoutImage = ref(false)
 	const electeurDistrictData = ref()
 	const showCreationBureau = ref(false)
 	const showDataParamBureau = ref({})
+	const communeSelectUser = ref()
+
 
 	const senateur = ref(false)
 	const showTest = ref(false)
@@ -1279,6 +1283,7 @@ export const useShow = defineStore('Show', () => {
 		showListeCommuneFunc,
 		showCreationBureau,
 		listeCommune,
+		provinceSelectUser,
 		dataCommune,
 
 		listeFokontanyFunc,
@@ -1407,6 +1412,7 @@ export const useShow = defineStore('Show', () => {
 		// Fokontany d'AMBATOLAMPY
 		// Fokontany
 		showFokontanyElecteurAmbatolampyFunc,
+		communeSelectUser,
 		showFokontanyElecteurAmbatolampy,
 		// Fokontany par Commune
 		showFokontanyElecteurAmbatolampyGaraFunc,

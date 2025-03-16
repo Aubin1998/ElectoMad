@@ -27,7 +27,7 @@
         <!-- {{ listeElecteur.electeurFind.electeur }} -->
       </a>
 
-     
+
 
       <div v-if="listeElecteur.electeurFind"
         class="w-full max-w-lg mx-auto bg-blue-100 mb-5 rounded-md shadow-sm overflow-hidden mt-8">
@@ -127,6 +127,7 @@
           </div>
         </div>
       </div>
+
     </main>
     <footer class="bg-blue-800 text-white text-center p-4 footer">
       Commission Électorale Nationale - Enceinte CUR - Lazaret nord Antsiranana (201)
@@ -185,7 +186,7 @@ const elector = ref('AUBIN');
 const profession = ref('dsfgfds');
 const cin = ref('301071074079');
 const birthDate = ref('huio');
-const status = ref('uihy');
+const status = ref('');
 const updateDate = ref('2024-09-11T09:57:52.000000Z');
 
 const email = ref('admin@gmail.com');
@@ -204,7 +205,7 @@ const nom = ref('RAFANOMEZANTSOA');
 const prenom = ref('Latsaka Aubin');
 
 const cni = ref(' 201071074079 ');
- 
+
 
 // Function to format the name (uppercase and only letters)
 const formatNom = () => {
@@ -229,7 +230,7 @@ const verifyElectoralList = () => {
 // Navigate to the PDF page
 function gotoPdf() {
   console.log("Navigating to PDF");
-  router.push("/elections/Pdf");
+  router.push("/elections/ListProvince");
 }
 </script>
 

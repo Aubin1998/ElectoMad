@@ -1,8 +1,9 @@
 <template>
   <div class="w-full h-full flex justify-between">
-    <div class="w-[65%] h-full">
+    <div class="w-[65%] h-[80%]">
+
       <div class="bg-gray-700 p-2 mb-2 flex justify-between items-center">
-        <h1 class="text-xl font-semibold">President de bureaux</h1>
+        <h1 class="text-xl font-semibold">President de bureau de vote</h1>
         <div class="flex">
           <h2 v-if="!listeElecteur.presidentData" class="text-sm px-4 py-1 bg-green-400 rounded-sm mx-2 text-white"
             @click="ajouter">
@@ -11,6 +12,7 @@
           </h2>
         </div>
       </div>
+
       <template v-if="listeElecteur.presidentData">
         <div class="w-full grid grid-cols-2 gap-x-4 gap-y-1">
           <div class="mb-3">

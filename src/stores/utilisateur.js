@@ -47,9 +47,12 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 	const usernameAdmin = ref('')
 	const emailAdmin = ref('')
 
+	const update = ref()
+
 
 	const utilisateurId = ref('')
 	const allElecteurs = ref()
+	const AllElecteurs = ref()
 
 
 	const controlleurRegion = ref()
@@ -247,6 +250,7 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 			if (response.status === 201) {
 				show.showAlertType = 'success';
 				show.showAlertMessage = 'Utilisateur et électeur créés avec succès';
+
 				await getElecteur(formData.annee_electorale_id)
 
 
@@ -257,6 +261,41 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 				show.showAlertType = 'warning';
 				show.showAlertMessage = 'Échec de la création de l\'utilisateur et de l\'électeur';
 			}
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		} catch (err) {
+			show.showAlertType = 'danger';
+			show.showAlertMessage = 'Erreur lors de la création de l\'utilisateur et de l\'électeur';
+			console.error(err);
+
+			setTimeout(() => {
+				show.showAlert = false;
+				show.showAlertType = '';
+				show.showAlertMessage = '';
+			}, 3000);
+		} finally {
+			show.showSpinner = false;
+		}
+	}
+
+
+	async function updateRole(formData, annee_electorale_id) {
+		show.showSpinner = true;
+
+		try {
+			const response = await axios.put(`${URL}/api/electeur/user/role`, formData, {
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+			console.log('update ', response.data);
+			await getElecteur(annee_electorale_id)
+			update.value = Math.random()
+
 
 			setTimeout(() => {
 				show.showAlert = false;
@@ -341,6 +380,7 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 		operateurSaisieDistrict,
 		operateurSaisieRegion,
 		controlleurDistrict,
+		updateRole,
 		anneeSelected,
 		regionSelected,
 		districtSelected,
@@ -374,6 +414,8 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 		usernameAdmin,
 		emailAdmin,
 		allElecteurs,
+		AllElecteurs,
+		update,
 		getUserInfo,
 		updateUserInfo
 	};

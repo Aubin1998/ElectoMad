@@ -1,34 +1,34 @@
 <template>
-  <div class="w-full h-full ">
-    <div class="acceuil" v-if="show.user == 'admin'">
-      <div class="content">
+  <!-- <div class="w-full h-full "> -->
+  <div class="acceuil" v-if="show.user == 'admin'">
+    <div class="content">
 
-        <h1 class="title">Bienvenue sur Votiflow</h1>
-        <p class="message"> Votre plateforme électorale .</p>
-        <button class="cta-button" @click="voirelection()">Voir les années électorales</button>
-      </div>
-    </div>
-
-    <div class="acceuil1" v-if="show.user === 'Contrôleur'">
-      <div class="content">
-        <h1 class="title">Bienvenue sur Votiflow</h1>
-        <!-- {{ show.user }} -->
-        <p class="message"> Votre plateforme électorale .</p>
-
-        <button class="cta-button" @click="show.setOption('Contrôle des électeurs')">Vous pouvez maintenant contrôler
-          les données</button>
-      </div>
-    </div>
-
-    <div class="acceuil2" v-if="show.user == 'Opérateur de saisie'">
-      <div class="content">
-        <h1 class="title">Bienvenue sur Votiflow</h1>
-        <p class="message"> Votre plateforme électorale .</p>
-
-        <button class="cta-button">Vous pouvez maintenant saisir vos données</button>
-      </div>
+      <h1 class="title">Bienvenue sur Votiflow</h1>
+      <p class="message"> Votre plateforme électorale </p>
+      <button class="cta-button" @click="voirelection()">Voir les années électorales</button>
     </div>
   </div>
+
+  <div class="acceuil1" v-if="show.user === 'Contrôleur'">
+    <div class="content">
+      <h1 class="title">Bienvenue sur Votiflow</h1>
+      <!-- {{ show.user }} -->
+      <p class="message"> Votre plateforme électorale </p>
+
+      <button class="cta-button" @click="show.setOption('Contrôle des électeurs')">Vous pouvez maintenant contrôler
+        les données</button>
+    </div>
+  </div>
+
+  <div class="acceuil2" v-if="show.user == 'Opérateur de saisie'">
+    <div class="content">
+      <h1 class="title">Bienvenue sur Votiflow</h1>
+      <p class="message"> Votre plateforme électorale </p>
+
+      <button class="cta-button">Vous pouvez maintenant saisir vos données</button>
+    </div>
+  </div>
+  <!-- </div> -->
 
 </template>
 
@@ -48,8 +48,8 @@ function voirelection() {
 
 <style scoped>
 .acceuil {
-  background-color: rgb(182, 190, 190);
-  min-height: 100%;
+  height: 590px;
+  width: 100%;
   border-radius: 10px;
   background-image: url('../fokontany.jpg');
   background-size: cover;
@@ -63,7 +63,7 @@ function voirelection() {
 
 .acceuil1 {
   background-color: rgb(182, 190, 190);
-  min-height: 80vh;
+  min-height: 87.5vh;
   border-radius: 10px;
   background-image: url('../controleur.jpeg');
   background-size: cover;
@@ -77,7 +77,7 @@ function voirelection() {
 
 .acceuil2 {
   background-color: rgb(182, 190, 190);
-  min-height: 80vh;
+  min-height: 87.5vh;
   border-radius: 10px;
   background-image: url('../opérateur-de-saisie.jpg');
   background-size: cover;
