@@ -135,12 +135,10 @@ import Datepicker from "vue3-datepicker";
 onMounted(() => {
     anneeElectorale.anneeElectoraleChoisi = JSON.parse(localStorage.getItem('anneeSelectionne'))
     if (show.user == 'admin') {
-        utilisateurrole.value = 'Administrateur'
-        console.log('admin test', utilisateurrole.value)
+        show.utilisateurrole = 'Administrateur'
 
     } else {
-        utilisateurrole.value = show.user
-        console.log('tsy aiko test', show.user)
+        show.utilisateurrole = show.user
 
     }
 

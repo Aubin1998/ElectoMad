@@ -73,7 +73,6 @@ onMounted(() => {
 })
 
 function showInfo(a) {
-    console.log('apprend', a.id);
 
 }
 
@@ -114,7 +113,6 @@ function enregistrer() {
         actif: "actifvar.value",
         date_naissance: "date_naissancevar.value"
     }
-    console.log('dataPost', dataPost);
     test.postlearn(dataPost)
 
 }

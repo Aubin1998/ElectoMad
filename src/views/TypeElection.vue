@@ -22,20 +22,22 @@
         <div id="accordion-color-body-1" :class="{ hidden: !isOpen(1) }" aria-labelledby="accordion-color-heading-1">
           <div class="p-5 border border-t-0">
             <p class="mb-2 text-gray-900 dark:text-gray-700">
-              L'élection présidentielle est le processus par lequel les citoyens élisent le  <span class="text-blue-800">Président de la République</span>  .
+              L'élection présidentielle est le processus par lequel les citoyens élisent le <span
+                class="text-blue-800">Président de la République</span> .
               Ce
               dernier est le chef de l'État et détient des pouvoirs exécutifs importants. Le mandat présidentiel dure
               <span class="text-blue-800">cinq
-                ans</span>  et est renouvelable une fois.
+                ans</span> et est renouvelable une fois.
             </p>
             <p class="mb-2 text-gray-900 dark:text-gray-700">
               Le mode de scrutin pour l'élection présidentielle est uninominal majoritaire à deux tours. Cela signifie
               que
               si aucun candidat n'obtient la majorité absolue des suffrages au premier tour, un second tour est organisé
-              entre les deux candidats ayant obtenu le          <span class="text-blue-800">plus de voix</span> .
+              entre les deux candidats ayant obtenu le <span class="text-blue-800">plus de voix</span> .
             </p>
             <p class="mb-2 text-gray-900 dark:text-gray-700">
-              Pour se présenter, un candidat doit être parrainé par    <span class="text-blue-800">au moins 500 élus</span>  , répartis sur au moins 30
+              Pour se présenter, un candidat doit être parrainé par <span class="text-blue-800">au moins 500 élus</span>
+              , répartis sur au moins 30
               départements. Ce système vise à éviter les candidatures fantaisistes et à
               garantir un certain niveau de représentativité.
             </p>
@@ -58,24 +60,30 @@
           <div class="p-5 border border-t-0">
             <h3 class="text-md font-semibold" style="color: #0A2753;">Députés</h3>
             <p class="mb-2 text-gray-900 dark:text-gray-700">
-              Les députés sont élus pour représenter les citoyens à l'Assemblée nationale. Leur mandat est de   
-               <span class="text-blue-800"> cinq ans</span> ,
-              renouvelable. Ils sont élus au scrutin majoritaire   <span class="text-blue-800"> à deux tours </span>  par circonscription.
+              Les députés sont élus pour représenter les citoyens à l'Assemblée nationale. Leur mandat est de
+              <span class="text-blue-800"> cinq ans</span> ,
+              renouvelable. Ils sont élus au scrutin majoritaire <span class="text-blue-800"> à deux tours </span> par
+              circonscription.
             </p>
             <p class="mb-2 text-gray-900 dark:text-gray-700">
               Au premier tour, un candidat doit obtenir la majorité absolue des suffrages exprimés et un nombre de voix
-              équivalent à  <span class="text-blue-800">  au moins 25%  </span> des électeurs inscrits pour être élu. Si aucun candidat ne remplit ces
-              conditions, un  <span class="text-blue-800">  second tour est organisé </span> .
+              équivalent à <span class="text-blue-800"> au moins 25% </span> des électeurs inscrits pour être élu. Si
+              aucun candidat ne remplit ces
+              conditions, un <span class="text-blue-800"> second tour est organisé </span> .
             </p>
             <p class="mb-2 text-gray-900 dark:text-gray-700">
-              Au second tour, la majorité relative suffit pour être élu. Seuls les candidats ayant obtenu au moins  <span class="text-blue-800"> 12,5%
-                des voix </span>  des électeurs inscrits au premier tour peuvent se présenter au  <span class="text-blue-800">  second tour</span> .
+              Au second tour, la majorité relative suffit pour être élu. Seuls les candidats ayant obtenu au moins <span
+                class="text-blue-800"> 12,5%
+                des voix </span> des électeurs inscrits au premier tour peuvent se présenter au <span
+                class="text-blue-800"> second tour</span> .
             </p>
 
             <h3 class="text-md font-semibold mt-4" style="color: #0A2753;">Sénateurs</h3>
             <p class="mb-2 text-gray-900 dark:text-gray-700">
-              Les sénateurs sont élus pour représenter les collectivités territoriales au Sénat. Leur mandat est de <span class="text-blue-800">  six
-                ans</span>, renouvelable par moitié tous les trois ans. Ils sont   <span class="text-blue-800">  élus par un collège électoral</span>   composé de
+              Les sénateurs sont élus pour représenter les collectivités territoriales au Sénat. Leur mandat est de
+              <span class="text-blue-800"> six
+                ans</span>, renouvelable par moitié tous les trois ans. Ils sont <span class="text-blue-800"> élus par
+                un collège électoral</span> composé de
               représentants locaux.
             </p>
             <p class="mb-2 text-gray-900 dark:text-gray-700">
@@ -84,7 +92,8 @@
               ou plus, le scrutin est proportionnel.
             </p>
             <p class="mb-2 text-gray-900 dark:text-gray-700">
-              Le vote est  <span class="text-blue-800">  obligatoire  </span> pour les membres du collège électoral, garantissant ainsi une participation
+              Le vote est <span class="text-blue-800"> obligatoire </span> pour les membres du collège électoral,
+              garantissant ainsi une participation
               maximale.
             </p>
           </div>
@@ -106,17 +115,21 @@
           <div class="p-5 border border-t-0">
             <h3 class="text-md font-semibold" style="color: #0A2753;">Maires</h3>
             <p class="mb-2 text-gray-900 dark:text-gray-700">
-              Le maire est  <span class="text-blue-800">   élu par le conseil municipal  </span>  parmi ses membres. Il est le représentant de l'État dans la
-              commune et exerce des fonctions exécutives. Le mandat du maire est de  <span class="text-blue-800">    six ans</span>, renouvelable.
+              Le maire est <span class="text-blue-800"> élu par le conseil municipal </span> parmi ses membres. Il est
+              le représentant de l'État dans la
+              commune et exerce des fonctions exécutives. Le mandat du maire est de <span class="text-blue-800"> six
+                ans</span>, renouvelable.
             </p>
             <p class="mb-2 text-gray-900 dark:text-gray-700">
               L'élection du maire se fait à la majorité absolue des membres du conseil municipal lors des deux premiers
-              tours. Si aucun candidat n'obtient cette majorité, un  <span class="text-blue-800">  troisième tour  </span>   est organisé à la majorité relative.
+              tours. Si aucun candidat n'obtient cette majorité, un <span class="text-blue-800"> troisième tour </span>
+              est organisé à la majorité relative.
             </p>
 
             <h3 class="text-md font-semibold mt-4" style="color: #0A2753;">Conseillers municipaux</h3>
             <p class="mb-2 text-gray-900 dark:text-gray-700">
-              Les conseillers municipaux sont élus au <span class="text-blue-800">   suffrage universel direct </span>  pour un mandat de six ans. Ils gèrent
+              Les conseillers municipaux sont élus au <span class="text-blue-800"> suffrage universel direct </span>
+              pour un mandat de six ans. Ils gèrent
               les affaires de la commune et votent le budget municipal.
             </p>
             <p class="mb-2 text-gray-900 dark:text-gray-700">
@@ -151,7 +164,6 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const gotoPdf = () => {
-  console.log("HERE");
   router.push("/elections/Pdf");
 };
 
@@ -242,5 +254,4 @@ const isOpen = (index) => {
   margin: auto;
   background-color: #ffffff;
 }
-</style> 
-
+</style>

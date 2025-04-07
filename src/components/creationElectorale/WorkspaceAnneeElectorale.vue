@@ -73,7 +73,7 @@
                         <thead class="border-b-4 rounded-tr-lg border-gray-500 text-xs uppercase ">
                             <tr>
                                 <th scope="col" class="px-6 rounded-tl-lg py-4">Année</th>
-                                <th scope="col" class="px-6 py-3">Genre</th>
+                                <th scope="col" class="px-6 py-3">Type</th>
                                 <th scope="col" class=" rounded-tr-lg flex justify-center items-center py-4">
                                     Action
                                 </th>
@@ -334,17 +334,14 @@ function creer() {
 
         if (type.value == 'Parlémentaire') {
             anneeElectorale.descriptionAnnee = type.value + ' : ' + parlementSelected.value
-            console.log('ppppppppppp', anneeElectorale.descriptionAnnee);
         }
 
         if (type.value == 'Municipale') {
             anneeElectorale.descriptionAnnee = type.value + municipaleSelected.value
-            console.log('ppppppppppp', anneeElectorale.descriptionAnnee);
         }
 
         if (type.value == 'Présidentielle ') {
             anneeElectorale.descriptionAnnee = type.value
-            console.log('ppppppppppp', anneeElectorale.descriptionAnnee);
         }
         anneeElectorale.createAnnee();
     } else {

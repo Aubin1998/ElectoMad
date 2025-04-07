@@ -6,30 +6,8 @@
             <h1 class="w-[20%]   ">{{ utilisateur.controlleurDistrict }}</h1>
         </div>
         <div class=" w-full h-[90%] flex justify-between">
-            <div class="w-[24%] h-[450px]  ">
-                <!-- <h1 class="w-[100%] p-2 border-b-2 shadow-sm mb-1">Fokontany</h1> -->
-                <div class="w-[100%] h-[539px] rounded-lg bg-gray-600">
-                    <div class="px-4 py-1">
-                        <ul class=" space-y-1">
-                            <li>
-                                <a href="#"
-                                    class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
-                                    Fokontany
-                                </a>
-                            </li>
-                            <li v-for="item in listeFokontany" :key="item.id">
-                                <a href="#"
-                                    class="block rounded-lg px-4 py-2 text-sm font-medium text-white hover:bg-gray-100 hover:text-gray-700">
-                                    {{ item }}
-                                </a>
-                            </li>
-                            <li>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="w-[75%] h-[450px] ">
+
+            <div class="w-full h-[450px] ">
                 <div class="w-[100%] h-[62px]  flex justify-between items-center">
                     <div class="w-[70%] h-full flex items-center mb-1  ">
                         <h1 @click="toggle('non')"
@@ -39,19 +17,10 @@
                             class="w-[45%] px-4 py-2 bg-green-500 text-white border-b-2 rounded-sm mx-1 shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
                             Vérifié</h1>
                     </div>
-                    <h1 class="w-[15%] p-2  ml-4">200/{{ listeElecteur.allElecteurDataDistrictlength }}</h1>
+                  
                 </div>
                 <div class="w-[100%] h-[459px] rounded-xl mt-4 bg-gray-600  ">
                     <div class="overflow-x-auto rounded-tl-lg rounded-tr-lg " v-if="noChecked">
-
-
-
-
-
-
-
-
-
 
                         <h1 class="m-4 text-white">Liste des électeurs non vérifié</h1>
 
@@ -75,12 +44,13 @@
                                 </tr>
                             </thead>
 
-                            <tbody class="divide-y  divide-gray-800">
-                                <tr v-for="electeur in nonlistVerifier" :key="electeur.id" @click="Voir(electeur)">
+                            <tbody class="divide-y  divide-gray-800 h-[50vh] overflow-scroll">
+                                <tr v-for="electeur in listeElecteur.nolistVerifier" :key="electeur.id"
+                                    @click="Voir(electeur)">
 
                                     <td class="px-4 py-2 font-medium whitespace-nowrap text-white">{{
                                         electeur.nomComplet
-                                        }}</td>
+                                    }}</td>
                                     <td class="px-4 py-2 whitespace-nowrap text-white">{{ electeur.numeroCIN }}</td>
                                     <td class="px-4 py-2 whitespace-nowrap text-white">{{ electeur.carteElecteur }}</td>
                                     <td class="icon blue mt-0.5 ml-5 flex justify-center items-center "> <i
@@ -88,26 +58,6 @@
                                     </td>
 
                                 </tr>
-
-                                <tr v-for="fruit in listeFruits" :key="fruit.id">
-
-                                    <td class="px-4 py-2 font-medium whitespace-nowrap text-white">{{
-                                        fruit.name
-                                        }}</td>
-                                    <td class="px-4 py-2 font-medium whitespace-nowrap text-white">{{
-                                        fruit.prix
-                                        }}</td>
-
-                                    <td @click="modifierFruit(fruit)"
-                                        class="icon blue mt-0.5 ml-5 flex justify-center items-center "> <i
-                                            class="pi pi-eye" style="font-size: 12px; color: white;"></i>
-                                    </td>
-
-                                </tr>
-
-
-
-
 
                             </tbody>
                         </table>
@@ -138,12 +88,13 @@
                                 </tr>
                             </thead>
 
-                            <tbody class="divide-y  divide-gray-800">
-                                <tr v-for="electeur in listVerifier" :key="electeur.id" @click="Voir(electeur)">
+                            <tbody class="divide-y  divide-gray-800  h-[50vh] overflow-scroll">
+                                <tr v-for="electeur in listeElecteur.listVerifier" :key="electeur.id"
+                                    @click="Voir(electeur)">
 
                                     <td class="px-4 py-2 font-medium whitespace-nowrap text-white">{{
                                         electeur.nomComplet
-                                    }}</td>
+                                        }}</td>
                                     <td class="px-4 py-2 whitespace-nowrap text-white">{{ electeur.numeroCIN }}</td>
                                     <td class="px-4 py-2 whitespace-nowrap text-white">{{ electeur.carteElecteur }}</td>
                                     <td class="icon blue mt-0.5 ml-5 flex justify-center items-center "> <i
@@ -181,7 +132,6 @@ const listeElecteur = uselisteElecteur();
 const noChecked = ref(true)
 const checked = ref(false)
 
-console.log('listeElecteur', listeElecteur.value);
 
 const listeFokontany = ref([])
 
@@ -206,7 +156,6 @@ let listeFruits = [
 
 
 function modifierFruit(fruit) {
-    console.log('fruit selectionner : ', fruit);
 
 }
 
@@ -245,19 +194,12 @@ function toggle(option) {
 
 
 function Voir(electeur) {
-    console.log('electeur selectionne : ', electeur);
     show.electeurDistrict = true
     show.electeurDistrictData = electeur
+    console.log('voir', electeur);
+
 
 }
-
-
-
-
-
-
-
-
 
 
 function getElecteurDistrict() {
@@ -271,87 +213,75 @@ function getElecteurDistrict() {
     listeElecteur.params = params
     listeElecteur.paramsId = utilisateur.controlleurAnneeElectorale.id
 
-    console.log('param', params);
-    listeElecteur.getElecteurDistrict(params, utilisateur.controlleurAnneeElectorale.id)
+    listeElecteur.getElecteurDistrict()
 }
 
 
 const listVerifier = ref([])
 const nonlistVerifier = ref([])
 
-watch(() => listeElecteur.allElecteurDataDistrict, () => {
-    nonlistVerifier.value = []
-    listVerifier.value = []
-    listeFokontany.value = []
-    console.log('electeur 1', typeof listeElecteur.allElecteurDataDistrict);
-    const fokontanySet = new Set();
+// watch(() => listeElecteur.allElecteurDataDistrict, () => {
+//     nonlistVerifier.value = []
+//     listVerifier.value = []
+//     listeFokontany.value = []
+//     const fokontanySet = new Set();
 
-    for (let index = 0; index < listeElecteur.allElecteurDataDistrictlength; index++) {
-        const element = listeElecteur.allElecteurDataDistrict[index];
+//     for (let index = 0; index < listeElecteur.allElecteurDataDistrictlength; index++) {
+//         const element = listeElecteur.allElecteurDataDistrict[index];
 
-        if (element.fokontany && !fokontanySet.has(element.fokontany)) {
-            // Ajouter seulement si ce n'est pas déjà dans le Set
-            fokontanySet.add(element.fokontany);
-            listeFokontany.value.push(element.fokontany);
-        }
-
-
-        console.log('verifier ', typeof element.verifier);
+//         if (element.fokontany && !fokontanySet.has(element.fokontany)) {
+//             // Ajouter seulement si ce n'est pas déjà dans le Set
+//             fokontanySet.add(element.fokontany);
+//             listeFokontany.value.push(element.fokontany);
+//         }
 
 
-        if (element.verifier === 0) {
-            nonlistVerifier.value.push(element)
-        } else {
-            listVerifier.value.push(element)
-        }
-    }
-
-    console.log(listeFokontany.value);
-    console.log('listverifier ', listVerifier.value);
-    console.log('nonlistverifier ', nonlistVerifier.value);
-
-})
-
-watch(() => listeElecteur.nonlistVerifierNumber, () => {
-    nonlistVerifier.value = []
-    listVerifier.value = []
-    listeFokontany.value = []
-
-    console.log('electeur 1', typeof listeElecteur.allElecteurDataDistrict);
-    const fokontanySet = new Set();
-
-    for (let index = 0; index < listeElecteur.allElecteurDataDistrictlength; index++) {
-        const element = listeElecteur.allElecteurDataDistrict[index];
-
-        if (element.fokontany && !fokontanySet.has(element.fokontany)) {
-            // Ajouter seulement si ce n'est pas déjà dans le Set
-            fokontanySet.add(element.fokontany);
-            listeFokontany.value.push(element.fokontany);
-        }
 
 
-        console.log('verifier ', typeof element.verifier);
+//         if (element.verifier === 0) {
+//             nonlistVerifier.value.push(element)
+//         } else {
+//             listVerifier.value.push(element)
+//         }
+//     }
 
 
-        if (element.verifier === 0) {
-            nonlistVerifier.value.push(element)
-        } else {
-            listVerifier.value.push(element)
-        }
-    }
+// })
 
-    console.log(listeFokontany.value);
-    console.log('listverifier ', listVerifier.value);
-    console.log('nonlistverifier ', nonlistVerifier.value);
+// watch(() => listeElecteur.nonlistVerifierNumber, () => {
+//     nonlistVerifier.value = []
+//     listVerifier.value = []
+//     listeFokontany.value = []
 
-})
+//     const fokontanySet = new Set();
+
+//     for (let index = 0; index < listeElecteur.allElecteurDataDistrictlength; index++) {
+//         const element = listeElecteur.allElecteurDataDistrict[index];
+
+//         if (element.fokontany && !fokontanySet.has(element.fokontany)) {
+//             // Ajouter seulement si ce n'est pas déjà dans le Set
+//             fokontanySet.add(element.fokontany);
+//             listeFokontany.value.push(element.fokontany);
+//         }
+
+
+
+
+//         if (element.verifier === 0) {
+//             nonlistVerifier.value.push(element)
+//         } else {
+//             listVerifier.value.push(element)
+//         }
+//     }
+
+
+// })
+
+watch(() => listeElecteur.nolistVerifier, listeElecteur.nolistVerifier);
+watch(() => listeElecteur.listVerifier, listeElecteur.listVerifier);
+
 onMounted(() => {
     getElecteurDistrict()
-
-
-
-
-
 })
 
 // Recherche

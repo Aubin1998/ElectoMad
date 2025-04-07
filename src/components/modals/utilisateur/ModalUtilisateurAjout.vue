@@ -258,8 +258,6 @@ const filteredElecteurs = computed(() => {
 
 const makePresident = (idUser, idRole, annee_electorale_id) => {
   // listeElecteur.updateElecteurRole(id, "president des bureaux de vote");
-  console.log('idUser', idUser);
-  console.log('idRole', idRole);
 
   let data = {
     roleId: idRole,
@@ -376,7 +374,6 @@ function selectRole(role) {
 }
 
 function generate() {
-  console.log('xdfcv,jk,l;');
 
 
 }
@@ -464,33 +461,9 @@ const toggleDropdown = (dropdown, userId = null) => {
 };
 
 function Ajout() {
-  console.log('ajoutElecteur');
 
   // users
-  // 'user_id',
-  console.log('username', nomComplet.value);
-  console.log('email', email.value);
-  console.log('mdp', role.mdpGenerate);
-  console.log('roleId', roleId.value);
-  console.log('status', status.value);
-  console.log('nomComplet', nomComplet.value);
-  console.log('adresse', adresse.value);
-  console.log('numeroCIN', numeroCIN.value);
-  console.log('dateDelivreCIN', dateDelivreCIN.value);
-  console.log('lieuDelivreCIN', lieuDelivreCIN.value);
-  console.log('carteElecteur', carteElecteur.value);
-  console.log('sexe', sexe.value);
-  console.log('lieuNaissance', lieuNaissance.value);
-  console.log('filiation', filiation.value);
-  console.log('dateNaissance', dateNaissance.value);
-  console.log('telephone', telephone.value);
-  console.log('dateInscription', dateInscription.value);
-  console.log('profession', profession.value);
-  console.log('annee_electorale_id', utilisateur.anneeSelected);
-  console.log('region', utilisateur.regionSelected);
-  console.log('district', utilisateur.districtSelected);
-  console.log('commune');
-  console.log('fokontany');
+
 
   let formData = {
     username: nomComplet.value,
@@ -518,7 +491,6 @@ function Ajout() {
     fokontany: ''
   }
 
-  console.log('formData', formData);
 
   utilisateur.createUtilisateur(formData)
 

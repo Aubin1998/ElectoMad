@@ -128,11 +128,9 @@ const router = useRouter();
 
 
 const gotoAnneeMaire = () => {
-  console.log("HERE");
   router.push("/elections/anneeMaire");
 };
 const gotoConseilleeMunicipaux = () => {
-  console.log("HERE");
   router.push("/elections/anneeConseilleMunicipaux");
 };
 

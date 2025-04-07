@@ -59,13 +59,13 @@
                         <i class="pi pi-user" style="font-size: 18px; color: white;"></i>
                         <h4>Gérer les candidats</h4>
                     </div>
-                    <div class="itemSection text-sm font-semibold"
+                    <!-- <div class="itemSection text-sm font-semibold"
                         :class="{ active: activeSection === 'Liste totale des candidats' }"
                         @click="setActiveSection('Liste totale des candidats'); show.setOption('Liste totale des candidats')"
                         v-if="show.user == 'Opérateur de saisie'">
                         <i class="pi pi-user" style="font-size: 18px; color: white;"></i>
                         <h4>Gérer les candidats</h4>
-                    </div>
+                    </div> -->
                     <div class="itemSection text-sm font-semibold"
                         :class="{ active: activeSection === 'Enregistrer les délégués' }"
                         @click="setActiveSection('Enregistrer les délégués'); show.setOption('Enregistrer les délégués')"
@@ -75,24 +75,18 @@
                     </div>
                     <div class="itemSection text-sm font-semibold"
                         :class="{ active: activeSection === 'Saisir les électeurs' }"
-                        @click="setActiveSection('Saisir les électeurs'); show.setOption('Saisir les électeurs')"
+                        @click="show.setOption('Saisir les électeurs'); setActiveSection('Saisir les électeurs');"
                         v-if="show.user == 'Opérateur de saisie'">
                         <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
                         <h4>Saisir les électeurs</h4>
                     </div>
-                    <div class="itemSection text-sm font-semibold"
-                        :class="{ active: activeSection === 'Vérification des Présidents' }"
-                        @click="setActiveSection('Vérification des Présidents'); show.setOption('Contrôle des électeurs')"
-                        v-if="show.user === 'Contrôleur'">
-                        <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4>Vérification des Présidents</h4>
-                    </div>
+                   
                     <div class="itemSection text-sm font-semibold"
                         :class="{ active: activeSection === 'Délégués de vote' }"
                         @click="setActiveSection('Délégués de vote'); show.setOption('Contrôle des électeurs')"
                         v-if="show.user === 'Contrôleur'">
                         <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
-                        <h4>Délégués de vote</h4>
+                        <h4>Electeurs</h4>
                     </div>
                     <div class="itemSection text-sm font-semibold" :class="{ active: activeSection === 'Candidats' }"
                         @click="setActiveSection('Candidats'); show.setOption('Contrôle des électeurs')"
@@ -100,12 +94,12 @@
                         <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
                         <h4>Candidats</h4>
                     </div>
-                    <div class="itemSection text-sm font-semibold" :class="{ active: activeSection === 'Electeurs' }"
+                    <!-- <div class="itemSection text-sm font-semibold" :class="{ active: activeSection === 'Electeurs' }"
                         @click="setActiveSection('Electeurs'); show.setOption('Contrôle des électeurs')"
                         v-if="show.user === 'Contrôleur'">
                         <i class="pi pi-users" style="font-size: 18px; color: white;"></i>
                         <h4>Electeurs</h4>
-                    </div>
+                    </div> -->
                     <div class="option text-sm font-semibold" style="cursor: pointer; transition: transform 0.3s ease;"
                         @click="show.showModalLogout = !show.showModalLogout">
                         <h5 class="item ml-[50px]" style="cursor: pointer; transition: transform 0.3s ease;">Déconnexion
@@ -133,6 +127,8 @@ const activeSection = ref(null);
 
 function setActiveSection(section) {
     activeSection.value = section;
+    console.log('mandea');
+
 }
 </script>
 

@@ -31,8 +31,6 @@ const route = useRoute();
 watch(
   () => route.path,
   (newPath, oldPath) => {
-    console.log('Nouvelle route:', newPath);
-    console.log('Ancienne route:', oldPath);
     // Vous pouvez ajouter votre logique ici
     if (newPath != "/admin") {
       show.showUser = true;
@@ -52,5 +50,4 @@ watch(
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

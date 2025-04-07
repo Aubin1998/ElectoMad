@@ -57,11 +57,13 @@
         <WorkspaceAutres v-if="show.showAutres" />
         <WorkspaceListeCandidat v-if="show.showListeCandidat" />
         <WorkspaceAjoutCandidat v-if="show.showAjoutCandidat" />
+        <WorkspaceAjoutCandidat v-if="show.showAjoutCandidat" />
 
         <!-- Controlleur -->
         <WorkspaceControleElecteur v-if="show.showControleElecteur" />
         <WorkspaceSaisirElecteur v-if="show.showSaisirElecteur" />
         <WorkspaceTest v-if="show.showTest" />
+        <WorkspaceSaisie v-if="show.showSaisie" />
 
 
 
@@ -106,6 +108,7 @@ import { useShow } from "@/stores/show";
 import WorkspaceControleElecteur from "./gestionElecteurs/WorkspaceControleElecteur.vue";
 import WorkspaceSaisirElecteur from "./gestionElecteurs/WorkspaceSaisirElecteur.vue";
 import WorkspaceTest from "./gestionElecteurs/WorkspaceTest.vue";
+import WorkspaceSaisie from "@/components/gestionCandidats/WorkspaceSaisie.vue";
 const show = useShow(); //call Show in show.js
 </script>
 

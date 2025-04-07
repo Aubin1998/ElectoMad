@@ -61,7 +61,6 @@ function voirDetails(item) {
   show.showAlertMessage = `Année choisi ${item.annee}`
   anneeElectorale.anneeElectoraleChoisi = item
   localStorage.setItem('anneeSelectionne', JSON.stringify(item));
-  console.log('localStorage', localStorage.getItem('anneeSelectionne'));
   show.showAcceuilModala = false;
 
 

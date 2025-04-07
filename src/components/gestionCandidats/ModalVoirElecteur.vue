@@ -1,14 +1,5 @@
 <template>
     <Transition>
-
-
-
-        <!-- 
-            <h1 v-if="show.electeurDistrictData.verifier == 0" @click="verifier(show.electeurDistrictData.id)">
-                Verifier</h1>
-            {{ show.electeurDistrictData }}
-            <h1 @click="show.electeurDistrict = !show.electeurDistrict">ferme</h1> -->
-        <!-- v-if="show.electeurDistrict" -->
         <div class="showModal backdrop-blur p-2px" v-if="show.electeurDistrict">
             <div class="modal">
                 <div class="closeForm" @click="show.electeurDistrict = !show.electeurDistrict">
@@ -20,143 +11,52 @@
                     <div class="content">
 
 
-                        <h1 class="tritreModal">MODIFIER L'INFORMATION PERSONNEL dffffffff</h1>
+                        <h1 class="tritreModal">MODIFIER L'INFORMATION PERSONNEL</h1>
 
 
 
 
                         <div class="contenaire">
-
-                            <div class="flex justify-between   flex-col mt-4">
-
-                                <!-- <div class=" flex justify-around  h-[200px]  ">
-
-
-                                    <div class=" w-[30%] flex justify-center items-center   ">
-                                        <img v-if="show.electeurDistrictData.file?.titre"
-                                            :src="show.electeurDistrictData.file?.titre" alt=""
-                                            class="object-cover  mt-8   h-full w-full rounded-t-xl" />
-
-
-                                        <div class="file-input-container" v-else>
-                                            <input type="file"
-                                                @change="(event) => onFileChange(event, show.electeurDistrictData.id)"
-                                                id="file-upload" class="file-input-label" />
-                                            <label for="file-upload"
-                                                class="flex items-center justify-center w-full h-full bg-[#e1dada] rounded-full cursor-pointer text-[24px]">
-                                                <i class="pi pi-camera text-red-500"></i>
-                                            </label>
-                                        </div>
-
-
-
-                                        <div class="absolute w-[50px] h-[50px] t-0"
-                                            v-if="show.electeurDistrictData.file?.titre">
-                                            <input type="file"
-                                                @change="(event) => onFileChange(event, show.electeurDistrictData.id)"
-                                                id="file-upload" class="absolute inset-0 opacity-0 cursor-pointer" />
-                                            <label for="file-upload"
-                                                class="flex items-center justify-center w-full h-full  rounded-full cursor-pointer text-[24px]">
-                                                <i class="pi pi-camera "></i>
-                                            </label>
-                                        </div>
-                                    </div>
-
-
-
-
-
-                                    <div class=" w-[65%]  grid grid-cols-2 gap-4  ">
-                                        <MyInput label="Nom et prénom" placeholder="Ajoutez un nom"
-                                            v-model="show.electeurDistrictData.nomComplet" />
-
-                                        <MyInput label="Email" placeholder="Ajouter un email"
-                                            v-model="show.electeurDistrictData.user.email" />
-
-                                        <MyDateInput label="Date de naissance"
-                                            placeholder="Insérez une date de naissance"
-                                            v-model="show.electeurDistrictData.dateDelivreCIN" format="dd-MM-yyyy" />
-
-                                        <MyInput label="Lieu de naissance" placeholder="Insérez un lieu de naissance"
-                                            v-model="show.electeurDistrictData.lieuNaissance" />
-
-
-                                        <MyDateInput label="Date d'inscription"
-                                            placeholder="Ecrire la date d'inscription"
-                                            v-model="show.electeurDistrictData.dateInscription" format="dd-MM-yyyy" />
-
-
-                                        <MyInput label="Filiation" placeholder="Nom du père et de la mère"
-                                            v-model="show.electeurDistrictData.filiation" />
-                                    </div>
-                                </div> -->
-
-
-
-
-
-
-
-                                <!-- <div class="m-2 mt-8 grid grid-cols-3 gap-4">
-
-                                    <MyInput label="Téléphone" placeholder="Ecrire le numéro de la Carte électeur"
-                                        v-model="show.electeurDistrictData.telephone" />
-
-
-                                    <MyInput label="Numéro de la CIN" placeholder="Insérez un numéro de la CIN"
-                                        v-model="show.electeurDistrictData.numeroCIN" />
-
-                                    {{ show.electeurDistrictData.dateDelivreCIN }}
-                                    <MyDateInput label="Date de délivrance"
-                                        placeholder="Insérez une date de délivrance de la CIN"
-                                        v-model="show.electeurDistrictData.dateDelivreCIN" format="dd-MM-yyyy" />
-
-
-
-                                    <MyInput label="Lieu de délivrance CIN"
-                                        placeholder="Insérez un lieu de délivrance de la CIN"
-                                        v-model="show.electeurDistrictData.lieuDelivreCIN" />
-
-                                    <MyInput label="Adresse" placeholder="Insérez une adresse ou le lieu de résidence"
-                                        v-model="show.electeurDistrictData.adresse" />
-
-
-
-                                    <MyInput label="Profession" placeholder="Ajoutez un profession"
-                                        v-model="show.electeurDistrictData.profession" />
-
-
-                                    <SelectInput label="Sexe" defaultOption="" :options="[
-                                        { text: 'Homme', value: 'Homme' },
-                                        { text: 'Femme', value: 'Femme' }
-                                    ]" v-model="show.electeurDistrictData.sexe" />
-
-                                    <MyInput label="Carte électeur" placeholder="Insérez le numéro de la carte"
-                                        v-model="show.electeurDistrictData.carteElecteur" />
-
-
-
-
-                                    <div class="flex   items-end justify-end font-bold gap-5 mr-4 ">
-                                        <h3 class="bg-green-500 px-4 h-8 rounded flex  items-center"
-                                            @click="modifier()">
-                                            modifier</h3>
-                                        <h1 class="bg-green-500 px-4 h-8 rounded flex items-center"
-                                            v-if="show.electeurDistrictData.verifier == 0"
-                                            @click="verifier(show.electeurDistrictData.id)">
-                                            Verifier</h1>
-
-                                    </div>
-
-
-                                </div> -->
-
-
+                            <div class="grid grid-cols-3 gap-2 mt-2">
+                                <MyInput label="Nom complet" placeholder="Insérez le nom complet"
+                                    v-model="show.electeurDistrictData.nomComplet" />
+                                <MyInput label="Numéro CIN" placeholder="Insérez le numéro CIN"
+                                    v-model="show.electeurDistrictData.numeroCIN" />
                                 <MyInput label="Carte électeur" placeholder="Insérez le numéro de la carte"
                                     v-model="show.electeurDistrictData.carteElecteur" />
-                                <button @click="modifiero">clickeo</button>
+                                <MyInput label="Date de naissance" type="date"
+                                    v-model="show.electeurDistrictData.dateNaissance" />
+                                <MyInput label="Sexe" placeholder="Insérez le sexe"
+                                    v-model="show.electeurDistrictData.sexe" />
+                                <MyInput label="Adresse" placeholder="Insérez l'adresse"
+                                    v-model="show.electeurDistrictData.adresse" />
+                                <MyInput label="Téléphone" placeholder="Insérez le téléphone"
+                                    v-model="show.electeurDistrictData.telephone" />
+                                <MyInput label="Email" placeholder="Insérez l'email"
+                                    v-model="show.electeurDistrictData.user.email" />
+                                <MyInput label="Profession" placeholder="Insérez la profession"
+                                    v-model="show.electeurDistrictData.profession" />
+                                <MyInput label="Filiation" placeholder="Insérez la filiation"
+                                    v-model="show.electeurDistrictData.filiation" />
+                                <MyInput label="Lieu de naissance" placeholder="Insérez le lieu de naissance"
+                                    v-model="show.electeurDistrictData.lieuNaissance" />
+                                <MyInput label="Date d'inscription" type="date"
+                                    v-model="show.electeurDistrictData.dateInscription" />
+                                <MyInput label="Date de délivrance CIN" type="date"
+                                    v-model="show.electeurDistrictData.dateDelivreCIN" />
+                                <MyInput label="Lieu de délivrance CIN" placeholder="Insérez le lieu de délivrance CIN"
+                                    v-model="show.electeurDistrictData.lieuDelivreCIN" />
+                                <MyInput label="District" placeholder="Insérez le district"
+                                    v-model="show.electeurDistrictData.district" />
+                                <MyInput label="Commune" placeholder="Insérez la commune"
+                                    v-model="show.electeurDistrictData.commune" />
+                                <MyInput label="Région" placeholder="Insérez la région"
+                                    v-model="show.electeurDistrictData.region" />
 
+                                <button @click="modifiero" class="col-span-3">Modifier</button>
                             </div>
+
+
                         </div>
                     </div>
 
@@ -220,126 +120,31 @@ const formulaire = ref(false)
 
 function modifiero() {
 
-    console.log('objet :', show.electeurDistrictData);
 
-    let objet = {
-        carteElecteur: show.electeurDistrictData.carteElecteur
-
-    }
-    listeElecteur.updateElecteur(show.electeurDistrictData.id, objet)
-
-
-    // console.log('objet :', show.electeurDistrictData);
-
-    // let object = {
-    //     electeur_id: show.electeurDistrictData.id,
-    //     nomComplet: modifierElecteurData.value.nomComplet,
-    //     profession: show.electeurDistrictData.profession,
-    //     adresse: modifierElecteurData.value.adresse,
-    //     numeroCIN: modifierElecteurData.value.numeroCIN,
-    //     dateDelivreCIN: modifierElecteurData.value.dateDelivreCIN,
-    //     lieuDelivreCIN: modifierElecteurData.value.lieuDelivreCIN,
-    //     carteElecteur: show.electeurDistrictData.carteElecteur,
-    //     sexe: modifierElecteurData.value.sexe,
-    //     lieuNaissance: modifierElecteurData.value.lieuNaissance,
-    //     filiation: modifierElecteurData.value.filiation,
-    //     dateNaissance: modifierElecteurData.value.dateNaissance,
-    //     telephone: modifierElecteurData.value.telephone,
-    //     dateInscription: modifierElecteurData.value.dateInscription,
-    //     annee_electorale_id: modifierElecteurData.value.annee_electorale_id,
-    //     email: modifierElecteurData.value.user.email,
-
-    //     user_id: modifierElecteurData.value.user_id,
-
-    //     region: modifierElecteurData.value.region,
-    //     district: modifierElecteurData.value.district,
-    //     commune: modifierElecteurData.value.commune,
-    //     fokontany: modifierElecteurData.value.fokontany,
-    //     verifier: false
-    // };
-
-
-    // listeElecteur.updateElecteur(show.electeurDistrictData.id, object)
-
-
-
-
-
-
-
-}
-
-
-function verifier(idElecteur) {
-    listeElecteur.verifierElecteur(idElecteur)
-}
-
-function ajouter() {
-    console.log('lllllllllllll', anneeElectorale?.anneeElectoraleChoisi);
-
-
-    listeCandidat.annee_electorale_id = anneeElectorale?.anneeElectoraleChoisi.id
-
-    listeCandidat.regionCandidat = searchQuery.value
-    listeCandidat.districtCandidat = searchQueryDistrict.value
-    listeCandidat.communeCandidat = searchQueryCommune.value
-
-
-    listeCandidat.createCandidat();
-}
-
-function modifier() {
-
-    listeElecteur.updateElecteur(listeElecteur.modifierElecteurData.id)
-
-}
-
-function close() {
-
-    dataDistrict.value = ''
-    district.value = false
-    commune.value = false
-    region.value = false
-    show.showAreas = false
-    formdistrict.value = false
-    formcommune.value = false
-    formulaire.value = false
-    searchQuery.value = ''
-    searchQueryDistrict.value = ''
-    searchQueryCommune.value = ''
-
-}
-
-function setQuery(query, item) {
-    searchQuery.value = query
-    region.value = false
-    district.value = true
-    formdistrict.value = true
-    dataDistrict.value = item.listeDistrict
-}
-
-function setQueryDistrict(query, item) {
-    searchQueryDistrict.value = query
-    district.value = false
-
-    if (show.typeDistrict) {
-        commune.value = false
-        formcommune.value = false
-        formulaire.value = true
-    } else {
-        formcommune.value = true
-        commune.value = true
-        dataCommune.value = item.listeCommune
+    let data = {
+        nomComplet: show.electeurDistrictData.nomComplet,
+        numeroCIN: show.electeurDistrictData.numeroCIN,
+        carteElecteur: show.electeurDistrictData.carteElecteur,
+        dateNaissance: show.electeurDistrictData.dateNaissance,
+        sexe: show.electeurDistrictData.sexe,
+        adresse: show.electeurDistrictData.adresse,
+        telephone: show.electeurDistrictData.telephone,
+        email: show.electeurDistrictData.user.email,
+        profession: show.electeurDistrictData.profession,
+        filiation: show.electeurDistrictData.filiation,
+        lieuNaissance: show.electeurDistrictData.lieuNaissance,
+        dateInscription: show.electeurDistrictData.dateInscription,
+        dateDelivreCIN: show.electeurDistrictData.dateDelivreCIN,
+        district: show.electeurDistrictData.district,
+        commune: show.electeurDistrictData.commune,
+        region: show.electeurDistrictData.region,
+        annee_electorale_id: show.electeurDistrictData.annee_electorale_id,
+        district: show.electeurDistrictData.district,
+        verifier: 1
     }
 
-}
-
-function setQueryCommune(query, item) {
-    searchQueryCommune.value = query
-    commune.value = false
-    formcommune.value = true
-    formulaire.value = true
-    // dataDistrict.value= item.listeDistrict  
+    console.log('data', data);
+    listeElecteur.updateElecteur(show.electeurDistrictData.id, data)
 }
 
 // Transformation des données
@@ -370,41 +175,15 @@ const data = computed(() => {
 
 onMounted(() => {
     listeFokontanyDistrictStore.get
-    console.log('date', typeof show.electeurDistrictData?.dateDelivreCIN);
 
 })
 
-// Filtrer les données en fonction de la recherche
-const filteredData = computed(() => {
-    let filtered = data.value;
-
-    if (searchQuery.value) {
-        filtered = data.value.filter(item => item.region.toLowerCase().includes(searchQuery.value.toLowerCase()));
-    } return filtered; // Ignorer le premier élément 
-});
-
-const filteredDataDistrict = computed(() => {
-    let filtered = dataDistrict.value
-    if (searchQueryDistrict.value) {
-        filtered = dataDistrict.value.filter(item => item.district.toLowerCase().includes(searchQueryDistrict.value.toLowerCase()));
-    } return filtered; // Ignorer le premier élément 
-});
-
-const filteredDataCommune = computed(() => {
-    let filtered = dataCommune.value
-    if (searchQueryCommune.value) {
-        filtered = dataCommune.value.filter(item => item.commune.toLowerCase().includes(searchQueryCommune.value.toLowerCase()));
-    } return filtered; // Ignorer le premier élément 
-});
 
 const dataJSON = computed(() => {
     return JSON.stringify(data.value, null, 2);
 });
 
 watch(searchQuery, (newValue, oldValue) => {
-    console.log('new', newValue);
-    console.log('old', oldValue);
-    console.log('--------------------');
     if (oldValue) {
         region.value = true
         district.value = false
@@ -421,9 +200,6 @@ watch(searchQuery, (newValue, oldValue) => {
 });
 
 watch(searchQueryDistrict, (newValue, oldValue) => {
-    console.log('new', newValue);
-    console.log('old', oldValue);
-    console.log('--------------------');
     if (oldValue) {
         district.value = true
 

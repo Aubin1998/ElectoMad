@@ -1,9 +1,8 @@
 <template>
     <WorkspaceLogin v-if="show.showLogin" />
-    <WorkspaceSignUp v-if="show.showSingUp" />
+    <WorkspaceSignUp v-if="show.showSignUp" />
     <WorkspaceDashboard v-if="show.showDashboard" />
     <!-- <Homepage v-if="true" /> -->
-
 
     <Teleport to="body">
         <SpinnerComponent />
@@ -12,7 +11,6 @@
         <AlertComponent />
     </Teleport>
     <Teleport to="body">
-
         <ModalCompte />
     </Teleport>
     <Teleport to="body">
@@ -33,16 +31,12 @@
     <Teleport to="body">
         <VoirAnnee />
     </Teleport>
-
     <Teleport to="body">
         <ModalElecteurAjout />
     </Teleport>
-
-
     <Teleport to="body">
         <ModalUtilisateurAjout />
     </Teleport>
-
     <Teleport to="body">
         <ModalElecteurVoir />
     </Teleport>
@@ -52,38 +46,40 @@
     <Teleport to="body">
         <ModalElecteurSupprimer />
     </Teleport>
-
     <Teleport to="body">
         <SupprimerElecteur />
     </Teleport>
-
-
     <Teleport to="body">
         <ModaleCIN />
     </Teleport>
-
-
     <Teleport to="body">
         <ModalAreas />
     </Teleport>
     <Teleport to="body">
         <ModalAreasCommune />
     </Teleport>
-
     <Teleport to="body">
         <ModalAreasDeputes />
     </Teleport>
     <Teleport to="body">
         <ModalAreasSenateur />
     </Teleport>
-
     <Teleport to="body">
         <ModalVoirElecteur />
     </Teleport>
-
     <Teleport to="body">
         <ModalCreationBureau />
     </Teleport>
+    <Teleport to="body">
+        <ModalAssignerDeleguer />
+    </Teleport>
+    <Teleport to="body">
+        <ModalVoirDetailDeleguer />
+    </Teleport>
+    <Teleport to="body">
+        <ModalAddNewElecteur />
+    </Teleport>
+
 
 
 </template>
@@ -117,23 +113,27 @@ import ModalAreasDeputes from "@/components/gestionCandidats/ModalAreasDeputes.v
 import ModalAreasSenateur from "@/components/gestionCandidats/ModalAreasSenateur.vue";
 import ModalVoirElecteur from "@/components/gestionCandidats/ModalVoirElecteur.vue";
 import ModalCreationBureau from "@/components/gestionBureaux/ModalCreationBureau.vue";
-
-
-
+import ModalAssignerDeleguer from "@/components/modals/electeur/ModalAssignerDeleguer.vue";
+import ModalVoirDetailDeleguer from "@/components/modals/electeur/ModalVoirDetailDeleguer.vue";
+import ModalAddNewElecteur from "@/components/modals/electeur/ModalAddNewElecteur.vue";
 
 const show = useShow();
 const cookies = new Cookies();
-if (localStorage.getItem("user")) {
+
+// Utility function to check for authentication
+function isAuthenticated() {
+    const token = document.cookie.split('; ').find(row => row.startsWith('access_token='))?.split('=')[1];
+    return !!token;
+}
+
+// Check authentication status on component setup
+if (isAuthenticated() || localStorage.getItem("user")) {
     show.showDashboard = true;
     show.showLogin = false;
 } else {
     show.showDashboard = false;
     show.showLogin = false;
-    show.showHomePage = true;
-
 }
-
-
 </script>
 
 <style scoped></style>

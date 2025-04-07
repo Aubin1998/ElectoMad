@@ -1,8 +1,8 @@
 <template>
   <Transition>
-    <div class="showModal backdrop-blur p-2px" v-if="show.showModalAjoutElecteur">
+    <div class="showModal backdrop-blur p-2px" v-if="show.showModallAddElecteur">
       <div class="modal">
-        <div class="closeForm" @click="show.showModalAjoutElecteur = !show.showModalAjoutElecteur">
+        <div class="closeForm" @click="show.showModallAddElecteur = !show.showModallAddElecteur">
           <i class="pi pi-times" style="font-size: 18px; color: #2d4051"></i>
         </div>
         <div class="closeForm1" @click="show.see = !show.see" v-if="!show.see">
@@ -15,7 +15,7 @@
 
 
             <div class="contenaireModal" v-if="show.see">
-              <h1 class="tritreModal  text-[23px]">AJOUT NOUVEAU DELEGUE</h1>
+              <h1 class="tritreModal  text-[23px]">AJOUT NOUVEAU ELECTEUR</h1>
               <div class="contenaire ">
 
                 <div class="inputCard">
@@ -31,8 +31,8 @@
 
                 <div class="inputCard">
                   <h3 class="label">Date de naissance</h3>
-                  <VueDatePicker v-model="listeElecteur.dateNaissance" placeholder="Insérez une date de naissance"
-                    class="input" />
+                  <VueDatePicker v-model="listeElecteur.dateNaissance" placeholder="Insérez une date de naissance" />
+
                 </div>
 
                 <div class="inputCard">
@@ -66,8 +66,7 @@
 
                 <div class="inputCard">
                   <h3 class="label">Date de délivrance</h3>
-                  <VueDatePicker v-model="listeElecteur.dateDelivreCIN" placeholder="Insérez une date de naissance"
-                    class="input" />
+                  <VueDatePicker v-model="listeElecteur.dateDelivreCIN" placeholder="Insérez une date de naissance" />
                 </div>
 
                 <div class="inputCard">
@@ -90,8 +89,7 @@
 
                 <div class="inputCard ">
                   <h3 class="label">Date d'inscription</h3>
-                  <VueDatePicker v-model="listeElecteur.dateInscription" placeholder="Insérez une date de naissance"
-                    class="input1" />
+                  <VueDatePicker v-model="listeElecteur.dateInscription" placeholder="Insérez une date de naissance" />
                 </div>
 
                 <div class="inputCard ">
@@ -165,9 +163,9 @@ const listeElecteur = uselisteElecteur();
 
 
 function Ajout() {
-  listeElecteur.createElecteur()
+  console.log('post');
 
-
+  listeElecteur.createElecteurSaisie()
 }
 
 function upload(event) {

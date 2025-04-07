@@ -8,7 +8,8 @@
           <h2 v-if="!listeElecteur.presidentData" class="text-sm px-4 py-1 bg-green-400 rounded-sm mx-2 text-white"
             @click="ajouter">
             Ajouter</h2>
-          <h2 v-if="listeElecteur.presidentData" class="text-sm px-4 py-1 bg-yellow-400 rounded-sm text-white">Modifier
+          <h2 v-if="listeElecteur.presidentData" class="text-sm px-4 py-1 bg-yellow-400 rounded-sm text-white"
+            @click="changer()">changer
           </h2>
         </div>
       </div>
@@ -117,7 +118,7 @@
         </div>
         <h1 class="text-sm font-semibold">Nom : {{ listeElecteur.listBureaux?.nomBureau }}</h1>
         <h1 class="text-sm font-semibold">Adresse : {{ listeElecteur.listBureaux?.adresse }}</h1>
-        <h1 class="text-sm font-semibold">Nombre population : {{ listeElecteur.listElecteursFiltrer.length }}</h1>
+        <h1 class="text-sm font-semibold">Nombre des électeurs : {{ listeElecteur.listElecteursFiltrer.length }}</h1>
       </div>
     </div>
   </div>
@@ -128,7 +129,9 @@ import { ref, computed, onMounted, watch } from 'vue';
 import { useShow } from "@/stores/show";
 import { uselisteElecteur } from "@/stores/listeElecteur";
 import axios from "axios";
+import { useAnneeElectorale } from "@/stores/anneeElectorale";
 
+const anneeElectorale = useAnneeElectorale();
 
 
 const listeElecteur = uselisteElecteur();
@@ -136,35 +139,48 @@ const show = useShow();
 
 const searchQuery = ref('');
 
-
+// ampiasaina
 
 const ajouter = () => {
-  const params = {
+
+  let params = {
     annee_electorale_id: localStorage.getItem('anneeSelectionne')
       ? JSON.parse(localStorage.getItem('anneeSelectionne')).id
-      : null,
+      : JSON.parse(localStorage.getItem('utilisateur'))[0].annee_electorale_id,
     region: JSON.parse(localStorage.getItem('selectRegion')),
     district: JSON.parse(localStorage.getItem('selectDistrict')),
     commune: JSON.parse(localStorage.getItem('selectCommune')),
     fokontany: JSON.parse(localStorage.getItem('selectFokontany'))
   };
+  if (params.annee_electorale_id == null) {
+    params.annee_electorale_id = anneeElectorale?.anneeElectoraleChoisi?.id
+  }
 
   listeElecteur.getElecteurFiltrer(params);
 };
 
 onMounted(() => {
-  const params = {
-    annee_electorale_id: localStorage.getItem('anneeSelectionne')
-      ? JSON.parse(localStorage.getItem('anneeSelectionne')).id
-      : null,
-    region: JSON.parse(localStorage.getItem('selectRegion')),
-    district: JSON.parse(localStorage.getItem('selectDistrict')),
-    commune: JSON.parse(localStorage.getItem('selectCommune')),
-    fokontany: JSON.parse(localStorage.getItem('selectFokontany')),
-    role: 'president des bureaux de vote'
-  };
-  listeElecteur.getElecteurFiltrerRole(params);
-  listeElecteur.presidentData = listeElecteur.listElecteursFiltrer.find((electeur) => electeur.role === 'president des bureaux de vote');
+  // const params = {
+  //   annee_electorale_id: localStorage.getItem('anneeSelectionne')
+  //     ? JSON.parse(localStorage.getItem('anneeSelectionne')).id
+  //     : JSON.parse(localStorage.getItem('utilisateur'))[0].annee_electorale_id,
+  //   region: JSON.parse(localStorage.getItem('selectRegion')),
+  //   district: JSON.parse(localStorage.getItem('selectDistrict')),
+  //   commune: JSON.parse(localStorage.getItem('selectCommune')),
+  //   fokontany: JSON.parse(localStorage.getItem('selectFokontany')),
+  //   role: 'president des bureaux de vote'
+  // };
+
+  let annee_electorale_id = localStorage.getItem('anneeSelectionne')
+    ? JSON.parse(localStorage.getItem('anneeSelectionne')).id
+    : JSON.parse(localStorage.getItem('utilisateur'))[0].annee_electorale_id
+  let region = JSON.parse(localStorage.getItem('selectRegion'))
+  let district = JSON.parse(localStorage.getItem('selectDistrict'))
+  let commune = JSON.parse(localStorage.getItem('selectCommune'))
+  let fokontany = JSON.parse(localStorage.getItem('selectFokontany'))
+  let role = 'president des bureaux de vote'
+  listeElecteur.getElecteurFiltrerRole(annee_electorale_id, region , commune, district, fokontany, role);
+  // listeElecteur.presidentData = listeElecteur.listElecteursFiltrer.find((electeur) => electeur.role === 'president des bureaux de vote');
 });
 
 function formatDate(isoDateString) {
@@ -184,7 +200,7 @@ function formatDate(isoDateString) {
 }
 
 watch(() => listeElecteur.listElecteursFiltrer, (newVal) => {
-  listeElecteur.presidentData = newVal.find((electeur) => electeur.role === 'president des bureaux de vote');
+  // listeElecteur.presidentData = newVal.find((electeur) => electeur.role === 'president des bureaux de vote');
 
   listeElecteur.getBureauxByElecteurId(listeElecteur.presidentData.id)
 
@@ -202,6 +218,12 @@ const filteredElecteurs = computed(() => {
 const makePresident = (id) => {
   listeElecteur.updateElecteurRole(id, "president des bureaux de vote");
 };
+
+function changer() {
+  console.log('hovan');
+  listeElecteur.presidentData = null
+
+}
 
 function formatDateToInput(dateString) {
   if (!dateString) return '';
@@ -265,7 +287,6 @@ const creerBureau = () => {
     fokontany: JSON.parse(localStorage.getItem('selectFokontany')),
     electeur_id: listeElecteur.presidentData.id
   };
-  console.log('possss', show.showDataParamBureau);
 
 
 

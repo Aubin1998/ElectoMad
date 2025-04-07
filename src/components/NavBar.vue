@@ -6,7 +6,7 @@
       <div class="relative flex h-full items-center justify-between border-b border-slate-500/10">
         <!-- logo -->
         <div class="flex items-center w-[15rem] max-w-full">
-          <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i>
+          <!-- <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i> -->
 
           <a href="#" class="flex items-center">
             <img src="/logo.svg" alt="logo" class="w-1/3">

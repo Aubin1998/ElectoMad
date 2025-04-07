@@ -14,11 +14,20 @@ export const useShow = defineStore('Show', () => {
 
 	const user = ref()
 	const showModalAjoutImage = ref(false)
+	const showModallAddElecteur = ref(false)
 	const electeurDistrictData = ref()
 	const showCreationBureau = ref(false)
 	const showDataParamBureau = ref({})
 	const communeSelectUser = ref()
+	const districtSelectUser = ref()
+	const regionSelectUser = ref()
+	const modalAssignerDeleduer = ref(false)
+	const modalAssignerDeleduerData = ref({})
 
+	const showDetailDelegue = ref(false)
+	const showDetailDelegueData = ref()
+	const utilisateurrole = ref()
+	
 
 	const senateur = ref(false)
 	const showTest = ref(false)
@@ -80,6 +89,7 @@ export const useShow = defineStore('Show', () => {
 	const showNombreTotalVotes = ref(false)
 	const showMesTaches = ref(false)
 	const showAutres = ref(false)
+	const showSaisie = ref(false)
 
 
 	const aubin = ref({})
@@ -236,7 +246,7 @@ export const useShow = defineStore('Show', () => {
 	function handleOption(option) {
 		showSelectAction.value = option;
 		acceuil.value = false;
-		console.log('ici', showSelectAction.value);
+		console.log('ici pppp', showSelectAction.value);
 
 		switch (option) {
 			case 'Liste complète des électeurs':
@@ -465,6 +475,15 @@ export const useShow = defineStore('Show', () => {
 
 		} else {
 			showAutres.value = false
+		}
+		if (option === 'Saisir les électeurs') {
+			console.log('saisie ici');
+
+			showSaisie.value = true
+			acceuil.value = false
+
+		} else {
+			showSaisie.value = false
 		}
 
 	}
@@ -1371,6 +1390,7 @@ export const useShow = defineStore('Show', () => {
 		showProvinceAntananarivo,
 		showProvinceToamasinaFunc,
 		showProvinceToamasina,
+		showModallAddElecteur,
 		showProvinceMahajangaFunc,
 		showProvinceMahajanga,
 		showProvinceFianarantsoaFunc,
@@ -1435,6 +1455,7 @@ export const useShow = defineStore('Show', () => {
 		// Les Communes de District d'AntananarivoAvaradrano
 		showCommuneElecteurAmbohimangakelyFunc,
 		showCommuneElecteurAmbohimangakely,
+		showSaisie,
 		showCommuneElecteurAndranonahoatraFunc,
 		showCommuneElecteurAndranonahoatra,
 		showCommuneElecteurAnkadifotsyFunc,
@@ -1528,14 +1549,20 @@ export const useShow = defineStore('Show', () => {
 		showCommuneElecteur,*/
 
 		showOptionProvince,
+		districtSelectUser,
+		regionSelectUser,
 		districtData,
-
+		modalAssignerDeleduer,
+		modalAssignerDeleduerData,
+		showDetailDelegue,
+		showDetailDelegueData,
 		/*	showOptionDistrict,
 		communeData,
 
 		showOptionCommune,
 		fokontanyData*/
 		showChoixElectionFunc,
+		utilisateurrole,
 		aubin
 
 	}

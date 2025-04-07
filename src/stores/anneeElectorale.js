@@ -35,20 +35,10 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 
 			if (response.status === 200) {
 				allanneeData.value = response.data
-				show.showAlert = true;
-				show.showAlertType = 'success';
-				show.showAlertMessage = 'Années récupérées avec succès';
-			} else {
-				show.showAlert = true;
-				show.showAlertType = 'warning';
-				show.showAlertMessage = 'Échec de la récupération des années';
+
 			}
 
-			setTimeout(() => {
-				show.showAlert = false;
-				show.showAlertType = '';
-				show.showAlertMessage = '';
-			}, 3000);
+
 		}).catch((err) => {
 			show.showAlertType = 'danger';
 			show.showAlertMessage = 'Erreur lors de la récupération des années';
@@ -71,11 +61,8 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 			}
 		}).then((response) => {
 			oneAnneeData.value = response.data
-			console.log('poury ai', oneAnneeData.value);
 			utilisateur.controlleurAnneeElectorale = response.data
 			utilisateur.operateurSaisieAnneeElectorale = response.data
-
-			console.log('pppppppppp', utilisateur.operateurSaisieAnneeElectorale);
 
 
 		}).catch((err) => {
@@ -103,22 +90,11 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 
 			if (response.status === 201) {
 				getAnnees()
-				show.showAlert = true;
-				show.showAlertType = 'success';
-				show.showAlertMessage = 'Année électorale créée avec succès';
 
 
-			} else {
-				show.showAlert = true;
-				show.showAlertType = 'warning';
-				show.showAlertMessage = 'Échec de la création de l\'année';
 			}
 
-			setTimeout(() => {
-				show.showAlert = false;
-				show.showAlertType = '';
-				show.showAlertMessage = '';
-			}, 3000);
+
 		}).catch((err) => {
 			show.showAlertType = 'danger';
 			show.showAlertMessage = 'Erreur lors de la création de l\'année';
@@ -151,20 +127,8 @@ export const useAnneeElectorale = defineStore('AnneeElectorale', () => {
 		}).then((response) => {
 			if (response.status === 200) {
 				getAnnees()
-				show.showAlert = true;
-				show.showAlertType = 'success';
-				show.showAlertMessage = 'Année électorale mise à jour avec succès';
-			} else {
-				show.showAlert = true;
-				show.showAlertType = 'warning';
-				show.showAlertMessage = 'Échec de la mise à jour de l\'année';
-			}
 
-			setTimeout(() => {
-				show.showAlert = false;
-				show.showAlertType = '';
-				show.showAlertMessage = '';
-			}, 3000);
+			}
 		}).catch((err) => {
 			show.showAlertType = 'danger';
 			show.showAlertMessage = 'Erreur lors de la mise à jour de l\'année';

@@ -2,7 +2,7 @@
   <div class="list" v-if="show.user == 'admin'">
     <div class="titre">
       <h4 class="subtitle">
-        Liste des électeurs delegue
+        Liste des délégués de vote
       </h4>
       <h4 class="number">{{ listFokontany.length }}</h4>
       <h3 class="btnAdd add" @click="see()">Ajouter</h3>
@@ -60,22 +60,18 @@
       <h4 class="subtitle">
         Liste des électeurs
       </h4>
-      <h4 class="number">{{ listeElecteur?.electeurs.length }}</h4>
       <h3 class="btnAdd add" @click="show.showModalAjoutElecteur = !show.showModalAjoutElecteur">Ajouter</h3>
 
       <div class="itemContainer">
         <input v-model="searchQuery" type="text" placeholder="Recherche par nom" class="input" />
       </div>
     </div>
-    <!-- <div v-if="listeElecteur?.electeurs.length === 0">
-      <h1>Aucun electeur trouvé</h1>
-    </div> -->
     <div v-if="filteredElecteurs.length === 0" class="no-results">
       <h4 class="message">Aucune année trouvée.</h4>
     </div>
 
     <div v-if="filteredElecteurs.length !== 0" class="flex items-center">
-      <h1 class="px-2 w-[10%] text-color-numeros">Numéros</h1>
+      <h1 class="px-2 w-[10%] text-color-numeros">ID</h1>
       <div class="flex items-center justify-between px-4 w-[70%]">
         <h1 class="text-color-nom">Nom</h1>
         <h1 class="text-color-sexe">Sexe</h1>
@@ -87,26 +83,46 @@
 
     <div class="scroll-container">
       <div class="item" v-for="(item, index) in filteredElecteurs" :key="index">
-
-
         <h4 class="w-[10%] px-2">{{ item?.id }}</h4>
         <div class=" flex w-[70%] justify-between px-4  ">
           <h4>{{ item.nomComplet }}</h4>
           <h5>{{ item.sexe }}</h5>
         </div>
-        <div class="flex justify-between px-2 w-[20%]">
-          <!-- <div class="icon blue" @click="voir(item)">
-            <i class="pi pi-eye" style="font-size: 18px; color: white;"></i>
-          </div>
-          <div class="icon orange" @click="modifier(item)">
-            <i class="pi pi-pencil" style="font-size: 18px; color: white;"></i>
-          </div>
-          <div class="icon red" @click="supprimer(item)">
-            <i class="pi pi-trash" style="font-size: 18px; color: white;"></i>
-          </div> -->
+        <div class="flex justify-between px-2 w-[15%]">
+          <div @click="assigne(item)">Assigner</div>
         </div>
       </div>
     </div>
+
+    <div>
+      <h1 class="px-4 py-2">Liste des delegues </h1>
+      <div class="scroll-container">
+        <div class="item" v-for="(item, index) in delegue.listDelegues" :key="index">
+          <h4 class="w-[10%] px-2">{{ item?.id }}</h4>
+          <div class=" flex w-[70%] justify-between px-4  ">
+            <h4>{{ item.electeur.nomComplet }}</h4>
+          </div>
+          <div class="flex justify-around px-2 w-[15%]">
+
+            <i class="pi pi-eye" style="font-size: 18px; color:blue" @click="voirdetail(item)"></i>
+            <!-- <i class="pi pi-times" style="font-size: 18px; color:red" @click="deleteDelegue(item)"></i> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   </div>
 
 
@@ -176,10 +192,15 @@
 import { ref, computed, onMounted, watch } from 'vue';
 import { useShow } from "@/stores/show";
 import { uselisteElecteur } from "@/stores/listeElecteur";
+import { useDelegue } from '@/stores/delegue';
 
 
 const listeElecteur = uselisteElecteur();
 const show = useShow();
+const delegue = useDelegue()
+
+
+
 // Déclaration de query de recherche
 const searchQuery = ref('');
 const params = ref({
@@ -190,11 +211,19 @@ const params = ref({
   fokontany: localStorage.getItem('fokontany')
 });
 
+function assigne(item) {
+  show.modalAssignerDeleduer = true
+  show.modalAssignerDeleduerData = item
+
+
+
+}
+
+
 
 const voir = (item) => {
   show.showModalVoirElecteur = !show.showModalVoirElecteur;
   listeElecteur.voirElecteurData = item;
-  console.log(item);
 
 }
 
@@ -204,7 +233,6 @@ const modifier = (item) => {
 
 
 
-  console.log('item', listeElecteur.modifierElecteurData);
 
 
 }
@@ -217,7 +245,6 @@ function see() {
 const supprimer = (item) => {
   show.showModalSupprimerElecteur = !show.showModalSupprimerElecteur;
   listeElecteur.supprimerElecteurData = item;
-  console.log("sup", listeElecteur.supprimerElecteurData);
 
 
 
@@ -262,7 +289,28 @@ function filtreElect() {
 
 watch(listElect, (newList, oldList) => {
   filtreElect();
+
+
+
+  getListDelegue()
+
+
 });
+
+function getListDelegue() {
+  let annee_electorale_id = JSON.parse(localStorage.getItem('utilisateur'))[0].annee_electorale_id
+  let region = JSON.parse(localStorage.getItem('selectRegion'))
+  let district = JSON.parse(localStorage.getItem('selectDistrict'))
+  let commune = JSON.parse(localStorage.getItem('selectCommune'))
+  let fokontany = JSON.parse(localStorage.getItem('selectFokontany'))
+
+  delegue.filterDelegue(annee_electorale_id, region, commune, district, fokontany)
+
+
+  setTimeout(() => {
+    console.log(delegue.listDelegues);
+  }, 3000);
+}
 
 
 // Filtrer les électeurs par nom complet basé sur la recherche
@@ -274,6 +322,21 @@ const filteredElecteurs = computed(() => {
     electeur.nomComplet.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
+
+const filtresDelegue = computed(() => {
+  return listFokontany.value.filter(electeur =>
+    electeur.nomComplet.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
+
+
+
+
+
+
+
+
+
 const listDef = ref([])
 const listRegion = ref([])
 const listDistrict = ref([])
@@ -282,16 +345,35 @@ const listFokontany = ref([])
 
 
 onMounted(() => {
-  console.log('yes I am here');
-  console.log('region', show.selectedProvince);
-  console.log('dist', show.selectedDistrict);
-  console.log('com', show.selectedCommune);
-  console.log('fok', show.selectedFokontany);
   filtreElect()
-
-
   listeElecteur.getElecteurs();
 });
+
+
+function deleteDelegue(item) {
+  console.log(item.id);
+  delegue.deleteDelegue(item.id)
+  getListDelegue()
+}
+
+function voirdetail(item) {
+  show.showDetailDelegue = true
+  show.showDetailDelegueData = item
+
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <style scoped>
@@ -360,7 +442,8 @@ onMounted(() => {
 }
 
 .scroll-container {
-  max-height: 60vh;
+  height: 200px;
+  margin-bottom: 5px;
   /* Limite la hauteur */
   overflow-y: scroll;
   /* Ajoute un défilement vertical si nécessaire */

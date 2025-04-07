@@ -112,7 +112,6 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 
 			if (response.status === 200) {
 				randomVal.value += Math.random()
-				console.log('random', randomVal.value);
 
 
 				allCandidatData.value = response.data;
@@ -198,7 +197,6 @@ export const uselisteCandidat = defineStore('ListeCandidat', () => {
 				}`
 			}
 		}).then((response) => {
-			console.log('responseData', response.data);
 
 
 			if (response.status === 201) {

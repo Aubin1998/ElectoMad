@@ -57,7 +57,6 @@ const createBureau = () => {
     electeur_id: show.showDataParamBureau.electeur_id,
   }
 
-  console.log('pip', formData);
 
   listeElecteur.createBureau(formData)
 
@@ -68,7 +67,6 @@ const createBureau = () => {
 
 
 onMounted(() => {
-  console.log('possss add', show.showDataParamBureau);
 
 })
 

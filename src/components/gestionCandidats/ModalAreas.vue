@@ -452,9 +452,6 @@ const dataJSON = computed(() => {
 });
 
 watch(searchQuery, (newValue, oldValue) => {
-    console.log('new', newValue);
-    console.log('old', oldValue);
-    console.log('--------------------');
     if (oldValue) {
         region.value = true
         district.value = false
@@ -471,9 +468,6 @@ watch(searchQuery, (newValue, oldValue) => {
 });
 
 watch(searchQueryDistrict, (newValue, oldValue) => {
-    console.log('new', newValue);
-    console.log('old', oldValue);
-    console.log('--------------------');
     if (oldValue) {
         district.value = true
 

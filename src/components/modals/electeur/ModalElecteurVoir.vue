@@ -194,15 +194,12 @@ const filer = ref()
 
 // Watcher for imageSource
 watch(listeElecteur.voirElecteurData?.file, (newUrl, oldUrl) => {
-  console.log('Image source changed from', oldUrl, 'to', newUrl);
-  console.log('mimi');
 
   listeElecteur.voirElecteurData.file_id = newUrl
   // Add any additional logic you want to execute when imageSource changes
 });
 
 watch(imageSource, (newUrl, oldUrl) => {
-  console.log('Image source changed from', oldUrl, 'to', newUrl);
   listeElecteur.voirElecteurData.file_id = newUrl
   // Add any additional logic you want to execute when imageSource changes
 });
@@ -225,7 +222,6 @@ const onFileChange = async (event, electeurId) => {
       }
     );
     // Update the file information after successful upload
-    console.log('zzzzzzzzzzzzzzzzz', response.data);
 
     filer.value = {
       id: 1,
@@ -287,7 +283,6 @@ onMounted(() => {
 
   anneeElectorale.getAnnees()
 
-  console.log('manaraka');
 
 
   // image = `http://127.0.0.1:8000/${listeElecteur.voirElecteurData.file.titre}`

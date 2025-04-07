@@ -48,7 +48,6 @@ const onFileChange = async (file, id) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log("response uploadImage", response.data);
     show.showModalAjoutImage = false
     listeCandidat.getCandidats();
   } catch (error) {

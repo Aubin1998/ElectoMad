@@ -193,7 +193,6 @@ const params = ref({
 const voir = (item) => {
   show.showModalVoirElecteur = !show.showModalVoirElecteur;
   listeElecteur.voirElecteurData = item;
-  console.log(item);
 
 }
 
@@ -203,7 +202,6 @@ const modifier = (item) => {
 
 
 
-  console.log('item', listeElecteur.modifierElecteurData);
 
 
 }
@@ -216,7 +214,6 @@ function see() {
 const supprimer = (item) => {
   show.showModalSupprimerElecteur = !show.showModalSupprimerElecteur;
   listeElecteur.supprimerElecteurData = item;
-  console.log("sup", listeElecteur.supprimerElecteurData);
 
 
 
@@ -281,13 +278,7 @@ const listFokontany = ref([])
 
 
 onMounted(() => {
-  console.log('yes I am here');
-  console.log('region', show.selectedProvince);
-  console.log('dist', show.selectedDistrict);
-  console.log('com', show.selectedCommune);
-  console.log('fok', show.selectedFokontany);
   filtreElect()
-
 
   listeElecteur.getElecteurs();
 });

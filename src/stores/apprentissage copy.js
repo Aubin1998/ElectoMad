@@ -31,7 +31,6 @@ export const useApprentissage = defineStore('Apprentissage', () => {
 			}
 
 		}).then((response) => {
-			console.log('response apprend', response.data); // 3
 			apprentissageData.value = response.data // 5
 
 		}).catch((err) => {

@@ -43,7 +43,6 @@ export const useApprentissage = defineStore('Apprentissage', () => {
 			}
 
 		}).then((response) => {
-			console.log('response test fo', response.data);
 			testData.value = response.data
 		}).catch((err) => {
 			console.log(err); // 6
@@ -63,7 +62,6 @@ export const useApprentissage = defineStore('Apprentissage', () => {
 			}
 
 		}).then((response) => {
-			console.log('response learn', response.data);
 			postData.value = response.data
 		}).catch((err) => {
 			console.log(err); // 6

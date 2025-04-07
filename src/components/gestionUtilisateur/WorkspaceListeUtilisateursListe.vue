@@ -386,14 +386,12 @@ const adjustDropdownPosition = () => {
 const voir = (item) => {
   show.showModalVoirElecteur = !show.showModalVoirElecteur;
   listeElecteur.voirElecteurData = item;
-  console.log(item);
 
 }
 
 const modifier = (item) => {
   show.showModalModifierElecteur = !show.showModalModifierElecteur;
   listeElecteur.modifierElecteurData = item;
-  console.log('item', listeElecteur.modifierElecteurData);
 
 }
 
@@ -403,7 +401,6 @@ const modifier = (item) => {
 const supprimer = (item) => {
   show.showModalSupprimerElecteur = !show.showModalSupprimerElecteur;
   listeElecteur.supprimerElecteurData = item;
-  console.log("sup", listeElecteur.supprimerElecteurData);
 
 }
 
@@ -419,9 +416,6 @@ const Confirmer = () => {
 watch(() => utilisateur.newUtilisateur, (newVal, oldVal) => {
   if (newVal !== oldVal) {
     selectAnnee(selectedAnnee.value);
-    console.log('123 : ', selectedAnnee.value);
-    console.log('123 : ', selectedRegion.value);
-    console.log('123 : ', selectedDistrict.value);
 
 
 
@@ -432,9 +426,6 @@ watch(() => utilisateur.newUtilisateur, (newVal, oldVal) => {
 watch(() => utilisateur.update, (newVal, oldVal) => {
   if (newVal !== oldVal) {
     selectAnnee(selectedAnnee.value);
-    console.log('123 test: ', selectedAnnee.value);
-    console.log('123 test: ', selectedRegion.value);
-    console.log('123 test : ', selectedDistrict.value);
     // selectAnnee(selectedAnnee.value.id)
     selectRegion(selectedRegion.value)
     selectDistrict(selectedDistrict.value)
@@ -456,7 +447,6 @@ const selectAnnee = async (annee, value) => {
 
   await utilisateur.getElecteur(annee.id);
 
-  console.log('test1', utilisateur.allElecteurs);
 
   listUtilisateur.value = [];
   for (let i = 0; i < utilisateur.allElecteurs?.length; i++) {
@@ -474,7 +464,6 @@ const selectRegion = (region) => {
   selectedDistrict.value = '';
   seeDistrict.value = true;
   selectedRegion.value = region;
-  console.log('test2', region);
 
   utilisateur.regionSelected = region;
   isRegionDropdownOpen.value = false; // Fermez le menu déroulant après la sélection
@@ -487,7 +476,6 @@ const selectRegion = (region) => {
   }
 
   let listElecteurRegion = utilisateur.allElecteurs.filter((electeur) => electeur.region === region)
-  console.log('liste region ', listElecteurRegion);
   utilisateur.allElecteurs = listElecteurRegion
 
 
@@ -503,17 +491,13 @@ const selectDistrict = (district) => {
   isDistrictDropdownOpen.value = false; // Fermez le menu déroulant après la sélection
   seeAjout.value = true;
 
-  console.log('test3', district);
 
   let listElecteurRegion = utilisateur.allElecteurs.filter((electeur) => electeur.district === district)
-  console.log('liste district ', listElecteurRegion);
   utilisateur.allElecteurs = listElecteurRegion
-  console.log('liste district 2', utilisateur.allElecteurs);
 
   utilisateur.AllElecteurs = utilisateur.allElecteurs
 
   let filtrerUtilisateurRole = utilisateur.allElecteurs.filter((electeur) => electeur.user?.roles[0]?.nomRole == "Contrôleur" || electeur.user?.roles[0]?.nomRole == "Opérateur de saisie")
-  console.log('liste role 1', filtrerUtilisateurRole);
   utilisateur.allElecteurs = filtrerUtilisateurRole
 
   const data = districtData.value;
@@ -524,7 +508,6 @@ const selectDistrict = (district) => {
       communeData.value = data[i].listeCommune.map(e => e[0]);
     }
   }
-  console.log('data comm : ', communeData.value);
 };
 
 

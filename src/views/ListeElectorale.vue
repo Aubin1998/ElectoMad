@@ -23,14 +23,17 @@
 
       <!-- Lien vers le PDF -->
       <a @click="gotoPdf" class="mt-4 text-blue-600 flex w-50 rounded-lg" href="#">
-        Consultation en ligne de la liste électorale provisoire 2025 en version PDF
+
+        Consultation en ligne de la liste électorale dans toutes les différentes provinces
         <!-- {{ listeElecteur.electeurFind.electeur }} -->
+        <!-- <i class="pi pi-pencil absolute text-slate-800 z-20" style="font-size: 18px; "></i> -->
+
       </a>
 
 
 
-      <div v-if="listeElecteur.electeurFind"
-        class="w-full max-w-lg mx-auto bg-blue-100 mb-5 rounded-md shadow-sm overflow-hidden mt-8">
+      <div v-if="listeElecteur.find"
+        class="w-[60%] mx-auto bg-blue-100 mb-5 rounded-md shadow-sm overflow-hidden mt-8">
         <div class="card">
           <div class="card-header">
 
@@ -48,7 +51,6 @@
             </div>
           </div>
           <div class="card-body">
-            <!-- année et description -->
             <div class="year-description">
               <h2 class="text-lg font-semibold text-gray-800 mb-2">{{
                 listeElecteur.electeurFind.electeur.annee_electorale.annee }}</h2>
@@ -130,7 +132,7 @@
 
     </main>
     <footer class="bg-blue-800 text-white text-center p-4 footer">
-      Commission Électorale Nationale - Enceinte CUR - Lazaret nord Antsiranana (201)
+      Commission Électorale Nationale - Palais faritany - Lazaret nord Antsiranana (201)
     </footer>
   </div>
 </template>
@@ -219,9 +221,6 @@ const formatCni = () => {
 
 // Function to trigger the search
 const verifyElectoralList = () => {
-  console.log('Nom:', nom.value);
-  console.log('Prénom:', prenom.value);
-  console.log('CNI:', cni.value);
 
   let nomComplet = nom.value + ' ' + prenom.value;
   listeElecteur.searchElecteur(cni.value, nomComplet); // Ensure this correctly updates 'electeurFind'
@@ -229,7 +228,6 @@ const verifyElectoralList = () => {
 
 // Navigate to the PDF page
 function gotoPdf() {
-  console.log("Navigating to PDF");
   router.push("/elections/ListProvince");
 }
 </script>

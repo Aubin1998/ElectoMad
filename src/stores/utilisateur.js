@@ -73,7 +73,6 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 
 		}).then((response) => {
 			if (response.status === 200) {
-				console.log('ici data', response.data);
 
 
 				const data = response.data;
@@ -101,31 +100,21 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 
 				let role = JSON.parse(localStorage.getItem('usersRole'))
 
-				console.log('role', role);
-
 
 				if (role === 'Contrôleur') {
 					controlleurRegion.value = response.data.region
 					controlleurDistrict.value = response.data.district
-					console.log('roleyyyyyyyyyyyyyyyyyyyyyy');
 					anneeElectorale.getByIdAnnees(response.data.annee_electorale_id)
 					controlleurAnneeElectorale.value = anneeElectorale.oneAnneeData
-					console.log('roleyyyyyyyyyyyyyyyyyyyyyy', controlleurAnneeElectorale.value);
 
 				}
 				if (role === 'Opérateur de saisie') {
-
-					console.log('saisie', response.data);
 
 
 					operateurSaisieRegion.value = response.data.region
 					operateurSaisieDistrict.value = response.data.district
 					anneeElectorale.getByIdAnnees(response.data.annee_electorale_id)
 					operateurSaisieAnneeElectorale.value = anneeElectorale.oneAnneeData
-					console.log('iiiiiiiiiiiiiiiii', anneeElectorale.oneAnneeData);
-					console.log('region', operateurSaisieRegion.value);
-
-					console.log('district', operateurSaisieDistrict.value);
 
 
 				}
@@ -138,7 +127,6 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 				// show.showAlert = true;
 				// show.showAlertType = 'warning';
 				// // show.showAlertMessage = 'Échec de la récupération des informations';
-				console.log('erreur de récupération d\'utilisateur');
 
 			}
 
@@ -201,7 +189,6 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 				"Content-Type": "application/json"
 			}
 		}).then((response) => {
-			console.log('respo', response.data);
 			show.showAlert = true;
 
 
@@ -292,7 +279,6 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 					'Content-Type': 'application/json'
 				}
 			});
-			console.log('update ', response.data);
 			await getElecteur(annee_electorale_id)
 			update.value = Math.random()
 
@@ -330,7 +316,6 @@ export const useUtilisateur = defineStore('Utilisateur', () => {
 
 			if (response.status === 200) {
 				const data = response.data;
-				console.log('data', data);
 				allElecteurs.value = Object.values(response.data.electeurs)
 
 

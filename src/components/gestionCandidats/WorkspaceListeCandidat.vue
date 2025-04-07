@@ -375,15 +375,12 @@ function adds() {
     // Mapping des descriptions aux actions
     const actions = {
         "Présidentielle": () => {
-            console.log('Présidentielle');
             show.showModalAjout = !show.showModalAjout;
         },
         "Municipale : Conseillé municipaux": () => {
-            console.log('conseillerMunicipaux');
             show.municipaux = true;
         },
         "Municipale": () => {
-            console.log('conseillerMunicipaux');
             show.municipaux = true;
         },
         "Parlémentaire : Député": () => {
@@ -404,7 +401,6 @@ function adds() {
 // filtrage
 watch(anneeVerifier, (newList, oldList) => {
     listeCandidatVerifier.value = []
-    console.log("bbbbbbbbbb", newList);
 
     listeCandidat.allListeCandidat.map((candidat) => {
         if (candidat.candidat.annee_electorale.annee === newList) {
@@ -415,21 +411,17 @@ watch(anneeVerifier, (newList, oldList) => {
 
 watch(() => listeCandidat.randomVal, (newList, oldList) => {
     listeCandidatVerifier.value = []
-    console.log("aaaaaaaaaaa", newList);
 
     listeCandidat.allListeCandidat.map((candidat) => {
         if (candidat.candidat.annee_electorale.annee === anneeSelect.value) {
-            console.log('bonga', anneeSelect.value);
 
             listeCandidatVerifier.value.push(candidat);
         }
     });
-    console.log('bonga2.0', listeCandidatVerifier.value);
 });
 
 
 watch(() => anneeSelectData.value, (newList, oldList) => {
-    console.log('niova', newList);
     if ("Présidentielle" === newList.descriptionAnnee) {
 
     }
@@ -472,7 +464,6 @@ onMounted(() => {
             anneeSelect.value = parsedData.annee;
             anneeSelectData.value = parsedData
         } else {
-            console.log('No "anneeSelectionne" item found in localStorage.');
         }
     } catch (error) {
         // Handle potential JSON parsing errors
@@ -530,7 +521,6 @@ const showMunicipale = ref(false);
 
 // Fonctions
 const choisirElection = (type) => {
-    console.log("Élection sélectionnée :", type);
     showModalAjout.value = false; // Fermer la modale après sélection
 };
 
@@ -610,14 +600,12 @@ function genererAnneeElectoraleAleatoire() {
 
 function voir(item) {
     listeCandidat.voirCandidatData = item;
-    console.log('232323232', listeCandidat.voirCandidatData);
 
     show.showModalOeilCandidat = !show.showModalOeilCandidat;
 }
 
 
 function ajouter() {
-    console.log('lllllllllllll', anneeElectorale?.anneeElectoraleChoisi);
 
 
     listeCandidat.annee_electorale_id = anneeElectorale?.anneeElectoraleChoisi.id

@@ -239,7 +239,6 @@ const onFileChange = async (event, electeurId) => {
     formData.append('file', file);
 
     try {
-        console.log('rrrrrrrrrrrrr', listeCandidat.modifierCandidatData.candidat?.file?.titre);
 
 
         const response = await axios.post(
